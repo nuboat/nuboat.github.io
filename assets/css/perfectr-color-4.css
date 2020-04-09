@@ -1,0 +1,96 @@
+.poi:before,
+.twentytwenty-right-arrow:before,
+.overlay-on-scroll .overlay,
+.bg-color,
+[type="radio"]:checked + i:after,
+.icon-inline.icon-solid-color,
+hr.hr-fancy:after,
+.hover-mask-color:before,
+.main-nav .navbar-toggle:hover .icon-bar,
+.main-nav .nav a:before,
+.filter-button.active,
+.flexslider:hover .flex-next:hover, 
+.flexslider:hover .flex-prev:hover,
+.flex-control-paging li a.flex-active,
+.progress-bg-color:before,
+.progress-bar,
+.progress-bar-vertical
+{
+  background: #E5C41A;
+}
+
+
+.text-color,
+.text-hover-color:hover,
+a.link-color,
+a.link-color:focus,
+a.link-color:hover,
+a.link-color-2,
+a.link-color-2:focus,
+a.link-both,
+a.link-both:focus,
+a.link-both:hover,
+a.link-both-2,
+a.link-both-2:focus,
+[type="checkbox"]:checked + i:after,
+.form-i-left .form-control:focus + .fa,
+.form-i-right .form-control:focus + .fa,
+.main-nav .nav .active > a,
+.main-nav .nav a:hover,
+.twitter-slider .tweet a:hover,
+.close-modal:hover,
+.device-button.active,
+.rotate-button:hover{
+  color: #E5C41A;
+}
+
+.form-control:focus,
+[type="checkbox"]:not(:checked) + i:before,
+[type="checkbox"]:checked  + i:before,
+[type="radio"]:not(:checked) + i:before,
+[type="radio"]:checked + i:before,
+.icon-inline.icon-border-color,
+hr.hr-color,
+.bg-image.text-dark hr.hr-color,
+.bg-video.text-dark hr.hr-color,
+.img-border-color{
+  border-color: #E5C41A;
+}
+
+
+
+/*btn*/
+
+
+.btn,
+.btn.btn-hover-border,
+.btn.btn-border,
+.btn.btn-border.btn-hover-solid:hover{
+  background: #E5C41A;
+  border-color: #E5C41A;
+  color:#fff;
+}
+
+.btn.btn-border,
+.btn.btn-hover-border:hover{
+  color:#E5C41A;
+  background:transparent;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
