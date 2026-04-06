@@ -2646,6 +2646,7 @@ input, select, textarea {
  	#footer {
 		position: relative;
 		min-height: 100vh;
+		text-align: center;
 	}
 
 	#footer .icons {
