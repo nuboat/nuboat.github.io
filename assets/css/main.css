@@ -2644,8 +2644,6 @@ input, select, textarea {
 /* Footer */
 
  	#footer {
-		background: url("../../images/background.png") bottom center no-repeat;
-		background-size: contain;
 		position: relative;
 		min-height: 100vh;
 	}

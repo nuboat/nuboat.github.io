@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="cs">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta content="width=device-width, initial-scale=1" name="viewport">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<link href="./assets/css" rel="stylesheet">
+	<link href="./assets/yellow-black.css" rel="stylesheet">
+	<link href="./assets/preview.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+	<title>Peerapat A | AWS Lambday by Java</title>
+</head>
+
+<body class="with-header position-relative" data-spy="scroll" data-target="#sections-nav" data-offset="80"
+	data-new-gr-c-s-check-loaded="14.1080.0" data-gr-ext-installed="">
+	<nav class="sections-nav-container">
+		<ul id="sections-nav" class="nav sections-nav sections-nav-animated">
+			<li class="sections-nav-item">
+				<a href="#section-01"
+					class="nav-link sections-nav-link goto-section active">
+					<span class="sections-nav-counter">01</span>
+					Setup Role
+				</a>
+			</li>
+			<li class="sections-nav-item">
+				<a href="#section-02"
+					class="nav-link sections-nav-link goto-section active">
+					<span class="sections-nav-counter">02</span>
+					Example Code
+				</a>
+			</li>
+		</ul>
+	</nav>
+	<main class="content">
+		<div class="container-fluid-limited">
+			<div class="row">
+				<div class="col col-xl-9">
+					<section id="section-01" class="section animation">
+						<div class="section-body">
+							<div class="row animation-item-2">
+								<div class="col-12 col-md-12">
+								<h6>Implement AWS Lambda Web Services with Java.</h6>
+							</div>
+							</div>
+							<div class="row animation-item-2">
+								<div class="col-12 col-md-12">
+									<div>
+<pre>
+	<b>1. To create an execution role</b>
+		- Open the roles page in the IAM console.
+		- Choose Create role.
+		- Create a role with the following properties.
+		- Trusted entity – Lambda.
+		- Permissions – AWSLambdaBasicExecutionRole.
+		- Role name – lambda-role.
+		- The AWSLambdaBasicExecutionRole policy has the permissions that the function needs to write logs to CloudWatch Logs.
+		- You can add permissions to the role later, or swap it out for a different role that's specific to a single function.
+	<br>
+	<b>2. To create a Java function</b>
+		- Open the Lambda console.
+		- Choose Create function.
+		- Configure the following settings:
+		- Name – my-function.
+		- Runtime – Java 11.
+		- Role – Choose an existing role.
+		- Existing role – lambda-role.
+		- Choose Create function.
+		- To configure a test event, choose Test.
+		- For Event name, enter test.
+		- Choose Save changes.
+		- To invoke the function, choose Test.
+</pre>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</section>
+					<section id="section-02" class="section animation">
+<pre class="prettyprint">
+	package cc.peerapat;
+
+	import com.amazonaws.services.lambda.runtime.Context;
+	import com.amazonaws.services.lambda.runtime.RequestHandler;
+	import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPEvent;
+	import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPResponse;
+	
+	import java.util.HashMap;
+	import java.util.Map;
+	
+	/**
+	* cc.peerapat.BahtTextHTTP::handleRequest
+	*/
+	public class BahtTextHTTP implements RequestHandler<APIGatewayV2HTTPEvent, APIGatewayV2HTTPResponse> {
+	
+		final Map<String, String> headers = new HashMap<>();
+	
+		public BahtTextHTTP() {
+			headers.put("Content-Type", "text/plain");
+		}
+	
+		@Override
+		public APIGatewayV2HTTPResponse handleRequest(final APIGatewayV2HTTPEvent request, final Context context) {
+			return buildResponse(BahtText.toText(request.getBody()));
+		}
+	
+		private APIGatewayV2HTTPResponse buildResponse(final String body) {
+			final APIGatewayV2HTTPResponse response = new APIGatewayV2HTTPResponse();
+			response.setIsBase64Encoded(false);
+			response.setStatusCode(200);
+			response.setHeaders(headers);
+			response.setBody(body);
+			return response;
+		}
+	
+	}
+</pre>
+					</section>
+				</div>
+			</div>
+
+		</div>
+	</main>
+	<script src="./assets/all.js"></script>
+</body>
+</html>
