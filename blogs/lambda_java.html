@@ -4,7 +4,7 @@
 		<title>Peerapat A - AWS Lambda by Java</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="/assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
@@ -19,7 +19,7 @@
 
 		<header id="header">
 			<div class="inner">
-				<a href="profile.html" class="image avatar"><img src="https://ui-avatars.com/api/?name=Peerapat+A&size=128&bg=49bf9d&color=fff" alt="" /></a>
+				<img src="https://ui-avatars.com/api/?name=Peerapat+A&size=128&bg=49bf9d&color=fff"/>
 				<hr>
 				Intern Director
 				<br>Fulltime AI Vibe Software Engineer
@@ -34,7 +34,7 @@
 
 			<section id="one">
 				<header class="major">
-					<h1><strong>AWS Lambda by Java</strong></h1>
+					<h1><strong>AWS Lambda with Java</strong></h1>
 				</header>
 				<p>Implement AWS Lambda Web Services with Java.</p>
 				
@@ -69,42 +69,47 @@
 			<section id="two">
 				<h2>Example Code</h2>
 				<div class="box">
-					<pre><code>package cc.peerapat;
-                    import com.amazonaws.services.lambda.runtime.Context;
-                    import com.amazonaws.services.lambda.runtime.RequestHandler;
-                    import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPEvent;
-                    import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPResponse;
+					<pre><code>
+package cc.peerapat;
+import com.amazonaws.services.lambda.runtime.Context;
+import com.amazonaws.services.lambda.runtime.RequestHandler;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPEvent;
+import com.amazonaws.services.lambda.runtime.events.APIGatewayV2HTTPResponse;
 
-                    import java.util.HashMap;
-                    import java.util.Map;
+import java.util.HashMap;
+import java.util.Map;
 
-                    /**
-                    * cc.peerapat.BahtTextHTTP::handleRequest
-                    */
-                    public class BahtTextHTTP implements RequestHandler&lt;APIGatewayV2HTTPEvent, APIGatewayV2HTTPResponse&gt; {
+/**
+* cc.peerapat.BahtTextHTTP::handleRequest
+*/
+public class BahtTextHTTP
+  implements RequestHandler&lt;APIGatewayV2HTTPEvent, APIGatewayV2HTTPResponse&gt; {
 
-                        final Map&lt;String, String&gt; headers = new HashMap&lt;&gt;();
-                        
-                        public BahtTextHTTP() {
-                            headers.put("Content-Type", "text/plain");
-                        }
-                        
-                        @Override
-                        public APIGatewayV2HTTPResponse handleRequest(final APIGatewayV2HTTPEvent request, final Context context) {
-                            return buildResponse(BahtText.toText(request.getBody()));
-                        }
-                        
-                        private APIGatewayV2HTTPResponse buildResponse(final String body) {
-                            final APIGatewayV2HTTPResponse response = new APIGatewayV2HTTPResponse();
-                            response.setIsBase64Encoded(false);
-                            response.setStatusCode(200);
-                            response.setHeaders(headers);
-                            response.setBody(body);
-                            return response;
-                        }
-
-                    }</code></pre>
+	final Map&lt;String, String&gt; headers = new HashMap&lt;&gt;();
+	
+	public BahtTextHTTP() {
+		headers.put("Content-Type", "text/plain");
+	}
+	
+	@Override
+	public APIGatewayV2HTTPResponse handleRequest(
+		final APIGatewayV2HTTPEvent request
+		, final Context context) {
+		return buildResponse(BahtText.toText(request.getBody()));
+	}
+	
+	private APIGatewayV2HTTPResponse buildResponse(final String body) {
+		var response = new APIGatewayV2HTTPResponse();
+		response.setIsBase64Encoded(false);
+		response.setStatusCode(200);
+		response.setHeaders(headers);
+		response.setBody(body);
+		return response;
+	}
+}
+					</code></pre>
 				</div>
+				<a href="https://github.com/nuboat/lambda-peerapat">Source Code available here</a>
 			</section>
 
 		</div>
@@ -121,11 +126,11 @@
 			</div>
 		</footer>
 
-		<script src="/assets/js/jquery.min.js"></script>
-		<script src="/assets/js/jquery.poptrox.min.js"></script>
-		<script src="/assets/js/browser.min.js"></script>
-		<script src="/assets/js/breakpoints.min.js"></script>
-		<script src="/assets/js/util.js"></script>
-		<script src="/assets/js/main.js"></script>
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
 	</body>
 </html>
