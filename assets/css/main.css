@@ -3219,3 +3219,29 @@ input, select, textarea {
 			}
 
 	}
+
+	/* Print/PDF - Hide sidebar */
+	@media print {
+		body {
+			margin: 0;
+			padding: 0;
+		}
+		#header {
+			display: none !important;
+		}
+		#main {
+			width: 100% !important;
+			max-width: 100% !important;
+			margin-left: 0 !important;
+			padding: 1em !important;
+		}
+		#main > section {
+			page-break-before: always;
+		}
+		#main > section:first-child {
+			page-break-before: auto;
+		}
+		#footer {
+			page-break-after: always;
+		}
+	}
