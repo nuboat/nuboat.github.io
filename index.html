@@ -32,6 +32,59 @@
 		</header>
 
 		<div id="main">
+			<section id="one">
+				<header class="major">
+					<img src="./images/ollama.png" alt="Geek Cat" style="display: block; margin: 0 auto 2em auto; width: 100%;" />
+					<h2>Using Ollama with Opencode</h2>
+				</header>
+				<p>Today I'm showcasing how to integrate <strong>Ollama</strong> with <strong>Opencode</strong> to run local AI models seamlessly.</p>
+				
+				<h3>What is Ollama?</h3>
+				<p>Ollama is a tool that makes running large language models (LLMs) on your local machine easy. It supports models like Llama 2, Mistral, and many others with simple commands.</p>
+				
+				<h3>What is Opencode?</h3>
+				<p>Opencode is an AI-powered coding assistant that helps developers write, debug, and optimize code faster. When combined with Ollama, it can run locally without sending your code to external servers.</p>
+				
+				<h3>Quick Setup Guide</h3>
+				<ol>
+					<li><strong>Install Ollama</strong>: <code>curl -fsSL https://ollama.com/install.sh | sh</code></li>
+					<li><strong>Download a model</strong>: <code>ollama run qwen3-coder-next:q8_0</code></li>
+					<li><strong>Start Ollama server</strong>: <code>ollama serve</code></li>
+					<li><strong>Configure Opencode</strong> to use your local Ollama endpoint
+
+<pre><code>$ vi ~/.config/opencode/opencode.json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "models": {
+        "qwen3-coder-next:q8_0": {
+          "_launch": true,
+          "name": "qwen3-coder-next"
+        }
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      }
+    }
+  }
+}</pre></code>
+					</li>
+				</ol>
+				
+				<h3>Benefits of Local AI</h3>
+				<ul>
+					<li>✅ Privacy - Your code never leaves your machine</li>
+					<li>✅ No API costs - Run models for free</li>
+					<li>✅ Offline capability - Work without internet</li>
+					<li>✅ Full control - Choose any model you want</li>
+				</ul>
+				
+				<h3>My Experience</h3>
+				<p>Using Ollama with Opencode has been a game-changer for my development workflow. The local AI assistant helps me write better code faster while keeping everything private and on my terms.</p>
+			</section>
 			
 			<div class="inner">
 				<p class="copyright">
