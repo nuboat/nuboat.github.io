@@ -212,6 +212,7 @@ input, select, textarea {
 		border-radius: 0.35em;
 		font-family: monospace;
 		margin: 2em 0;
+		font-size: 0.75em;
 	}
 
 	pre {
