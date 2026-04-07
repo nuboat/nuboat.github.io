@@ -46,6 +46,57 @@
 				<h3>What is Opencode?</h3>
 				<p>Opencode is an AI-powered coding assistant that helps developers write, debug, and optimize code faster. When combined with Ollama, it can run locally without sending your code to external servers.</p>
 				
+				<h3>Understanding AI Agent Context</h3>
+				<p>AI coding assistants like Opencode rely on context files to understand your project structure and coding style. These files contain instructions and information that guide the AI's behavior.</p>
+				
+				<h4>"AGENTS.md"</h4>
+				<p>The "AGENTS.md" file defines system prompts for AI agents. It typically includes:</p>
+				<ul>
+					<li><strong>Project goals and architecture</strong> - What the codebase is designed to accomplish</li>
+					<li><strong>Technical stack</strong> -Languages, frameworks, and tools used</li>
+					<li><strong>Development patterns</strong> - Coding standards, naming conventions, and best practices</li>
+					<li><strong>Security guidelines</strong> - How to handle sensitive data, authentication, and authorization</li>
+				</ul>
+				
+				<h4>"CLAUDE.md"</h4>
+				<p>The "CLAUDE.md" file (named after Claude AI) provides similar context for AI assistants. It often includes:</p>
+				<ul>
+					<li><strong>Project overview</strong> - High-level description of the system</li>
+					<li><strong>Key directories and their purposes</strong> - File organization structure</li>
+					<li><strong>Common tasks and workflows</strong> - How to build, test, and deploy</li>
+					<li><strong>Example commands and configurations</strong> - Quick reference for common operations</li>
+				</ul>
+				
+				<h4>Why Context Files Matter</h4>
+				<p>Without proper context files, AI assistants may:</p>
+				<ul>
+					<li>Use incorrect patterns or conventions</li>
+					<li>Introduce security issues</li>
+					<li>Generate code that doesn't fit the project architecture</li>
+					<li>miss important project-specific details</li>
+				</ul>
+				
+				<h4>Priority Conditions for "AGENTS.md" and "CLAUDE.md" in Opencode</h4>
+				<p>Opencode follows a specific priority order when loading context files to avoid conflicts and ensure predictable behavior:</p>
+				
+				<p><strong>Priority 1: "AGENTS.md"</strong></p>
+				<p>Opencode always checks for "AGENTS.md" first. If this file exists, it takes precedence over all other context files. This file is designed to override system-level settings and provide project-specific instructions.</p>
+				
+				<p><strong>Priority 2: "CLAUDE.md"</strong></p>
+				<p>If "AGENTS.md" is not found, Opencode falls back to "CLAUDE.md". This file serves as the default context provider for AI assistants and is inspired by Claude's context-loading behavior.</p>
+				
+				<p><strong>Priority 3: Project Root README.md</strong></p>
+				<p>As a final fallback, Opencode may use the README.md file from your project root if neither context file exists.</p>
+				
+				<p><strong>Key Points:</strong></p>
+				<ul>
+					<li>"AGENTS.md" completely overrides "CLAUDE.md" when both are present</li>
+					<li>Context files must be in the project root directory to be detected automatically</li>
+					<li>Use "AGENTS.md" for strict, project-specific guidelines that must be enforced</li>
+					<li>Use "CLAUDE.md" for general project documentation and workflow guidance</li>
+					<li>Neither file supports nested configurations - only the root-level file is used</li>
+				</ul>
+				
 				<h3>Quick Setup Guide</h3>
 				<ol>
 					<li><strong>Install Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
