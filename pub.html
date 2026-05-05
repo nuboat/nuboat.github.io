@@ -16,10 +16,16 @@
 		</script>
 	</head>
 	<body class="is-preload">
-
 		<header id="header">
 			<div class="inner">
-				<img src="images/myvcard.png" alt="PromptPay" style="max-width: 240px;" />
+				<h3>Peerapat Asoktummarungsri</h3>
+				<h3>Department Director @ UIH</h3>
+				<br>
+				<img src="images/myvcard.png" alt="VCard" id="vcard-thumb" style="max-width: 240px; cursor: pointer;" />
+				<br><br><br>
+				<br>Lecturer @ KMIT'L
+				<br>PhD Candidate @ Mahidol
+				<br><br><br>
 				<hr>
 				<img src="images/promptpay.jpeg" alt="PromptPay" style="max-width: 240px;" />
 				<hr>
@@ -58,5 +64,11 @@
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<script>
+			var thumb = document.getElementById('vcard-thumb');
+			var overlay = document.getElementById('vcard-overlay');
+			thumb.addEventListener('click', function() { overlay.style.display = 'flex'; });
+			overlay.addEventListener('click', function() { overlay.style.display = 'none'; });
+		</script>
 	</body>
 </html>
