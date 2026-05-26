@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - Working on LaTeX with Claude</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="How I use Claude AI to write and structure LaTeX documents — from building a custom Thai-language document class to enterprise architecture reports." />
+		<meta name="keywords" content="LaTeX, Claude AI, XeLaTeX, Thai font, easreport, document template, TOGAF, enterprise architecture" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-TKCX2DN0ZT');
+		</script>
+	</head>
+
+	<body class="is-preload">
+
+		<header id="header">
+			<div class="inner">
+				<img src="../images/avatar.png" style="max-width: 240px;" />
+				<hr>
+				Intern Director
+				<br>Solution Architecture
+				<br>Lecturer @ KMIT'L
+				<br>PhD Candidate @ Mahidol
+				<hr><a href="../index.html"">Home</a><span style="padding: 0px 8px 0px 8px;">|</span>
+					<a href="../profile.html">Profile</a><span style="padding: 0px 8px 0px 8px;">|</span>
+					<a href="../blog.html">Blog</a>
+			</div>
+		</header>
+
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<h2>Working on LaTeX with Claude</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A</em></p>
+				</header>
+
+				<p>
+					LaTeX is still my go-to for any serious document — especially when it needs to look professional, handle Thai text correctly, and be reusable across projects.
+					In this post I walk through how I built <a href="https://github.com/nuboat/template-doc" target="_blank"><strong>template-doc</strong></a>,
+					a custom LaTeX template for Thai-language enterprise reports, and how Claude became an essential part of that workflow.
+				</p>
+
+				<h3>The Problem with Thai in LaTeX</h3>
+				<p>
+					Standard LaTeX (pdflatex) cannot render Thai script. You need <strong>XeLaTeX</strong>, which supports Unicode and OpenType fonts natively.
+					The template is built around the <strong>TH Sarabun New</strong> font — a clean, readable Thai typeface — loaded via <code>fontspec</code>.
+					Getting Thai hyphenation, line-breaking, and mixed Thai-English spacing right took real iteration, and that is where having Claude as a pair was invaluable.
+				</p>
+
+				<h3>Project Structure</h3>
+				<p>The repository follows a modular layout to keep large documents manageable:</p>
+<pre><code>template-doc/
+├── main.tex              # Entry point — includes all sections
+├── easreport.cls         # Custom document class (Thai fonts, headers, layout)
+├── conf/
+│   └── latexmkrc         # Build config: XeLaTeX engine, out/ output dir
+├── sections/             # One .tex file per section
+│   ├── title.tex
+│   ├── togaf.tex
+│   ├── a_vision.tex
+│   ├── b_business.tex
+│   ├── c_system.tex
+│   ├── d_technology.tex
+│   ├── e_opportunities.tex
+│   ├── f_migration.tex
+│   ├── g_security_er.tex
+│   ├── overview.tex
+│   ├── security.tex
+│   └── install.tex
+├── figures/              # Images referenced in sections
+└── assets/               # Watermark and other assets
+</code></pre>
+				<p>
+					Each section is an independent <code>.tex</code> file included via <code>\input{}</code> in <code>main.tex</code>.
+					This makes it easy to draft one section at a time with Claude without touching the whole document.
+				</p>
+
+				<h3>The Custom Class: easreport.cls</h3>
+				<p>
+					The heart of the template is <code>easreport.cls</code> — a custom document class that extends the standard <code>article</code> class.
+					It bundles everything needed for professional Thai-language technical reports:
+				</p>
+				<ul>
+					<li><strong>fontspec + xunicode</strong> — Unicode font management for Thai script</li>
+					<li><strong>TH Sarabun New</strong> — primary font configured for Thai and Latin text</li>
+					<li><strong>microtype</strong> — advanced typographic enhancements</li>
+					<li><strong>geometry</strong> — A4 page with 1" top/bottom and 0.7" side margins</li>
+					<li><strong>fancyhdr</strong> — header and footer with organization name, document title, and page numbers</li>
+					<li><strong>tabularx, booktabs, longtable</strong> — professional table formatting</li>
+					<li><strong>hyperref</strong> — clickable links with hidden borders</li>
+					<li><strong>hyphenat + ragged2e</strong> — hyphenation control for mixed Thai-English content</li>
+				</ul>
+				<p>
+					The class also defines custom metadata commands — <code>\docversion</code>, <code>\docdate</code>, <code>\authorname</code> —
+					so every document carries consistent version tracking without manual header edits.
+				</p>
+
+				<h3>Building the PDF</h3>
+				<p>The build uses <strong>latexmk</strong> with a project-local config file:</p>
+<pre><code># Build PDF
+latexmk -r conf/latexmkrc main.tex
+
+# Clean build artifacts
+latexmk -r conf/latexmkrc -C main.tex
+</code></pre>
+				<p>
+					<code>conf/latexmkrc</code> sets XeLaTeX as the engine and routes all output to the <code>out/</code> directory.
+					The compiled PDF appears at <code>out/main.pdf</code>. Build artifacts (<code>.aux</code>, <code>.log</code>, <code>.toc</code>)
+					are gitignored so the repository stays clean.
+				</p>
+
+				<h3>How I Work with Claude on LaTeX</h3>
+				<p>
+					The repository includes a <code>CLAUDE.md</code> file that gives Claude the context it needs to produce correct, compilable LaTeX every time.
+					Without this, AI-generated LaTeX often uses the wrong engine, missing packages, or incompatible commands.
+				</p>
+				<p>Key rules in <code>CLAUDE.md</code>:</p>
+				<ul>
+					<li>Always target <strong>XeLaTeX</strong> — pdflatex will fail because fontspec is required for Thai</li>
+					<li>Use <code>\[ ... \]</code> or <code>align</code> environments for display math, not <code>$$</code></li>
+					<li>Escape special LaTeX characters when they appear as literal text</li>
+					<li>Prefer semantic markup: <code>\emph{}</code> over <code>\textit{}</code></li>
+					<li>Place <code>\microtypecontext{spacing=nonadjacent}</code> in the preamble when using microtype with Thai fonts</li>
+					<li>Use <code>\sloppy</code> / <code>\fussy</code> in sections to control Thai text line-breaking</li>
+				</ul>
+
+				<h3>Practical Workflow</h3>
+				<p>My day-to-day flow when writing a section with Claude:</p>
+				<ol>
+					<li><strong>Open a section file</strong> — e.g., <code>sections/d_technology.tex</code></li>
+					<li><strong>Describe the content</strong> to Claude in plain language — what the section covers, what diagrams exist in <code>figures/</code></li>
+					<li><strong>Claude drafts the LaTeX</strong> — using the class's custom commands, correct Thai font handling, and proper table/figure environments</li>
+					<li><strong>Build and review</strong> — <code>latexmk -r conf/latexmkrc main.tex</code> and open <code>out/main.pdf</code></li>
+					<li><strong>Iterate</strong> — paste compilation errors back to Claude for targeted fixes</li>
+				</ol>
+				<p>
+					The modular section structure is key here. Claude only needs to see one <code>.tex</code> file at a time,
+					which keeps the context focused and the output accurate.
+				</p>
+
+				<h3>Gotchas Worth Knowing</h3>
+				<ul>
+					<li>
+						<strong>XeLaTeX is mandatory.</strong> Running pdflatex will immediately fail on <code>\usepackage{fontspec}</code>.
+						Always confirm the engine in your build config.
+					</li>
+					<li>
+						<strong>TH Sarabun New must be installed.</strong> On macOS/Linux, install it as a system font before building.
+						CI environments often need an explicit font installation step.
+					</li>
+					<li>
+						<strong>microtype + Thai needs a config line.</strong> Add <code>\microtypecontext{spacing=nonadjacent}</code>
+						to suppress warnings and prevent spacing conflicts with Thai characters.
+					</li>
+					<li>
+						<strong>Line-breaking Thai text is tricky.</strong> Use <code>\sloppy</code> generously in sections with dense Thai prose
+						to avoid overfull hbox warnings.
+					</li>
+				</ul>
+
+				<h3>Why This Approach Works</h3>
+				<p>
+					Pairing LaTeX's precision with Claude's natural language interface removes the friction of remembering every command and environment.
+					I describe what I need in Thai or English, Claude generates correct LaTeX against a well-defined template, and I compile immediately to verify.
+					The <code>CLAUDE.md</code> file acts as a standing contract between me and the AI — no repeated explanations, no wrong engine, no missing packages.
+				</p>
+				<p>
+					The template is open on GitHub at <a href="https://github.com/nuboat/template-doc" target="_blank">nuboat/template-doc</a>.
+					Clone it, add your own sections, and point Claude at your <code>CLAUDE.md</code> — you will be producing professional Thai-language PDFs in minutes.
+				</p>
+
+				<p><em>Note: This blog post was written with Claude Code using the template-doc repository as source material.</em></p>
+			</section>
+
+			<div class="inner">
+				<p class="copyright">
+					&copy; peerapat.cc
+				</p>
+			</div>
+		</div>
+
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://github.com/nuboat" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					<li><a href="mailto:nuboat@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>Design: <a href="https://html5up.net/strata">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+	</body>
+</html>
