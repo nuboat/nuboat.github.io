@@ -1,12 +1,25 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>Peerapat</title>
+		<title>Peerapat A - Blogs</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
+		<meta name="description" content="Peerapat A's technical blog covering AWS Lambda, Java, Microservices, Cloud Computing, DevOps, and Software Engineering best practices." />
+		<meta name="keywords" content="blog, AWS Lambda, Java, Lambda functions, Java 11, AWS, Cloud Computing, Microservices, DevOps, programming, software engineering" />
+		<link rel="stylesheet" href="./assets/css/main.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-		<!-- Google tag (gtag.js) -->
+		<link rel="canonical" href="https://nuboat.github.io/blog.html" />
+		<link rel="author" href="https://github.com/nuboat" />
+		<link rel="publisher" href="https://plus.google.com/108281006840250346652" />
+		<meta name="author" content="Peerapat A" />
+		<meta property="og:title" content="Peerapat A - Blog" />
+		<meta property="og:description" content="Technical blog with insights on AWS Lambda, Java development, cloud architecture, and software engineering." />
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://nuboat.github.io/blog.html" />
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Peerapat A - Blog" />
+		<meta name="twitter:description" content="Technical blog with insights on AWS Lambda, Java development, cloud architecture, and software engineering." />
+		<meta name="twitter:creator" content="@nuboat" />
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
@@ -24,170 +37,31 @@
 				Director of Professional Service
 				<br>Solution Architecture
 				<br>Lecturer @ KMIT'L
-				<br>PhD Candidate @ Mahidol
+				<br>PhD Student @ Mahidol
 				<hr><a href="index.html"">Home</a><span style="padding: 0px 8px 0px 8px;">|</span>
 					<a href="profile.html">Profile</a><span style="padding: 0px 8px 0px 8px;">|</span>
-					<a href="blog.html">Blog</a> 
 			</div>
 		</header>
 
 		<div id="main">
 			<section id="one">
-				<header class="major">
-					<img src="./images/ollama.png" alt="Geek Cat" style="display: block; margin: 0 auto 2em auto; width: 100%;" />
-					<h2>Using Ollama with Opencode</h2>
-				</header>
-				<p>Today I'm showcasing how to integrate <strong>Ollama</strong> with <strong>Opencode</strong> to run local AI models seamlessly.</p>
-				
-				<h3>What is Ollama?</h3>
-				<p>Ollama is a tool that makes running large language models (LLMs) on your local machine easy. It supports models like Llama 2, Mistral, and many others with simple commands.</p>
-				
-				<h3>What is Opencode?</h3>
-				<p>Opencode is an AI-powered coding assistant that helps developers write, debug, and optimize code faster. When combined with Ollama, it can run locally without sending your code to external servers.</p>
-				
-				<h3>Understanding AI Agent Context</h3>
-				<p>AI coding assistants like Opencode rely on context files to understand your project structure and coding style. These files contain instructions and information that guide the AI's behavior.</p>
-				
-				<h4>"AGENTS.md"</h4>
-				<p>The "AGENTS.md" file defines system prompts for AI agents. It typically includes:</p>
-				<ul>
-					<li><strong>Project goals and architecture</strong> - What the codebase is designed to accomplish</li>
-					<li><strong>Technical stack</strong> -Languages, frameworks, and tools used</li>
-					<li><strong>Development patterns</strong> - Coding standards, naming conventions, and best practices</li>
-					<li><strong>Security guidelines</strong> - How to handle sensitive data, authentication, and authorization</li>
-				</ul>
-				
-				<h4>"CLAUDE.md"</h4>
-				<p>The "CLAUDE.md" file (named after Claude AI) provides similar context for AI assistants. It often includes:</p>
-				<ul>
-					<li><strong>Project overview</strong> - High-level description of the system</li>
-					<li><strong>Key directories and their purposes</strong> - File organization structure</li>
-					<li><strong>Common tasks and workflows</strong> - How to build, test, and deploy</li>
-					<li><strong>Example commands and configurations</strong> - Quick reference for common operations</li>
-				</ul>
-				
-				<h4>Why Context Files Matter</h4>
-				<p>Without proper context files, AI assistants may:</p>
-				<ul>
-					<li>Use incorrect patterns or conventions</li>
-					<li>Introduce security issues</li>
-					<li>Generate code that doesn't fit the project architecture</li>
-					<li>miss important project-specific details</li>
-				</ul>
-				
-				<h4>Priority Conditions for "AGENTS.md" and "CLAUDE.md" in Opencode</h4>
-				<p>Opencode follows a specific priority order when loading context files to avoid conflicts and ensure predictable behavior:</p>
-				
-				<p><strong>Priority 1: "AGENTS.md"</strong></p>
-				<p>Opencode always checks for "AGENTS.md" first. If this file exists, it takes precedence over all other context files. This file is designed to override system-level settings and provide project-specific instructions.</p>
-				
-				<p><strong>Priority 2: "CLAUDE.md"</strong></p>
-				<p>If "AGENTS.md" is not found, Opencode falls back to "CLAUDE.md". This file serves as the default context provider for AI assistants and is inspired by Claude's context-loading behavior.</p>
-				
-				<p><strong>Priority 3: Project Root README.md</strong></p>
-				<p>As a final fallback, Opencode may use the README.md file from your project root if neither context file exists.</p>
-				
-				<p><strong>Key Points:</strong></p>
-				<ul>
-					<li>"AGENTS.md" completely overrides "CLAUDE.md" when both are present</li>
-					<li>Context files must be in the project root directory to be detected automatically</li>
-					<li>Use "AGENTS.md" for strict, project-specific guidelines that must be enforced</li>
-					<li>Use "CLAUDE.md" for general project documentation and workflow guidance</li>
-					<li>Neither file supports nested configurations - only the root-level file is used</li>
-				</ul>
-				
-				<h3>Quick Setup Guide</h3>
-				<ol>
-					<li><strong>Install Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
-					<li><strong>Download a model</strong>: ollama run qwen3-coder-next:q8_0</li>
-					<li><strong>Start Ollama server</strong>: ollama serve</li>
-					<li><strong>Configure Opencode</strong> to use your local Ollama endpoint</li>
-				</ol>
-<pre><code>$ vi ~/.config/opencode/opencode.json
-{
-  "$schema": "https://opencode.ai/config.json",
-  "provider": {
-    "ollama": {
-      "models": {
-        "qwen3-coder-next:q8_0": {
-          "_launch": true,
-          "name": "qwen3-coder-next"
-        }
-      },
-      "name": "Ollama",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
-        "baseURL": "http://127.0.0.1:11434/v1"
-      }
-    }
-  }
-}</pre></code>
-				<h3>Model Info</h3>
-<pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
-  Model
-    architecture        qwen3next    
-    parameters          79.7B        
-    context length      262144       
-    embedding length    2048         
-    quantization        Q8_0         
-    requires            0.15.5       
-
-  Capabilities
-    completion    
-    tools         
-
-  Parameters
-    temperature    1       
-    top_k          40      
-    top_p          0.95    
-
-  License
-    Apache License               
-    Version 2.0, January 2004    
-    ...                          
-
-root@spark-7dd8:~# ollama list
-NAME                     ID              SIZE     MODIFIED     
-qwen3-coder-next:q8_0    3f68e12b44ee    84 GB    20 hours ago    
-gemma4:31b               6316f0629137    19 GB    46 hours ago 
-
-root@spark-7dd8:~# nvidia-smi -l
-Tue Apr  7 07:33:28 2026       
-+-----------------------------------------------------------------------------------------+
-| NVIDIA-SMI 580.142                Driver Version: 580.142        CUDA Version: 13.0     |
-+-----------------------------------------+------------------------+----------------------+
-| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
-|                                         |                        |               MIG M. |
-|=========================================+========================+======================|
-|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |
-| N/A   53C    P0             12W /  N/A  | Not Supported          |     98%      Default |
-|                                         |                        |                  N/A |
-+-----------------------------------------+------------------------+----------------------+
-
-+-----------------------------------------------------------------------------------------+
-| Processes:                                                                              |
-|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
-|        ID   ID                                                               Usage      |
-|=========================================================================================|
-|    0   N/A  N/A            2663      G   /usr/lib/xorg/Xorg                      126MiB |
-|    0   N/A  N/A            3318      G   /usr/bin/gnome-shell                     18MiB |
-|    0   N/A  N/A           69548      C   /usr/local/bin/ollama                 89698MiB |
-+-----------------------------------------------------------------------------------------+
-</code></pre>
-				
-				<h3>Benefits of Local AI</h3>
-				<ul>
-					<li>✅ <strong>Say Hi !!</strong> - You never lost 4% of token limit when say "Hi !"</li>
-					<li>✅ Privacy - Your code never leaves your machine</li>
-					<li>✅ No API costs - Run models for free</li>
-					<li>✅ Offline capability - Work without internet</li>
-					<li>✅ Full control - Choose any model you want</li>
-				</ul>
-				
-				<h3>My Experience</h3>
-				<p>Using Ollama with Opencode has been a game-changer for my development workflow. The local AI assistant helps me write better code faster while keeping everything private and on my terms.</p>
-				<p><em>Note: This page was written using Opencode with the qwen3-coder-next:q8_0 model running locally via Ollama!</em></p>
+				<div class="row">
+					<article class="col-6 col-12-xsmall work-item">
+						<a href="blogs/lambda_java.html" class="image fit thumb"><img src="./images/aws_lambda.png" alt="AWS Lambda with Java"></a>
+						<h3>พัฒนา AWS Lambda Web Services ด้วยภาษา Java</h3>
+						<p>Learn how to build and deploy AWS Lambda functions using Java 11. This guide covers setting up execution roles, creating Lambda functions, and implementing HTTP event handlers with API Gateway v2. Perfect for developers looking to leverage serverless computing with Java.</p>
+					</article>
+					<article class="col-6 col-12-xsmall work-item">
+						<a href="blogs/ollama_opencode.html" class="image fit thumb"><img src="./images/ollama.png" alt="Ollama with Opencode"></a>
+						<h3>เรียกใช้ Ollama ผ่าน OpenCode</h3>
+						<p>Running local AI models seamlessly with Ollama and Opencode. Learn how to set up qwen3-coder-next:q8_0 for private, offline AI coding assistance directly from your terminal. Features 79.7B parameter model with terminal-style output styling.</p>
+					</article>
+					<article class="col-6 col-12-xsmall work-item">
+						<a href="blogs/latex.html" class="image fit thumb"><img src="./images/LaTeX.png" alt="Working on LaTeX with Claude"></a>
+						<h3>สร้างเอกสารด้วย LaTeX ผ่าน Claude AI</h3>
+						<p>How to use Claude AI to build and maintain professional LaTeX documents — including a custom Thai-language document class, XeLaTeX workflow, modular section structure, and a CLAUDE.md contract that keeps AI-generated LaTeX compilable every time.</p>
+					</article>
+				</div>
 			</section>
 			
 			<div class="inner">
@@ -204,16 +78,16 @@ Tue Apr  7 07:33:28 2026
 					<li><a href="mailto:nuboat@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
 				</ul>
 				<ul class="copyright">
-					<li>Design: <a href="https://html5up.net/strata">HTML5 UP</a></li>
+					Design: <a href="https://html5up.net/strata">HTML5 UP</a>
 				</ul>
 			</div>
 		</footer>
 
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.poptrox.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="./assets/js/jquery.min.js"></script>
+		<script src="./assets/js/jquery.poptrox.min.js"></script>
+		<script src="./assets/js/browser.min.js"></script>
+		<script src="./assets/js/breakpoints.min.js"></script>
+		<script src="./assets/js/util.js"></script>
+		<script src="./assets/js/main.js"></script>
 	</body>
 </html>
