@@ -11,6 +11,10 @@ You can copy and paste this directly into your repository.
 **Role:** You are assisting with the maintenance and expansion of a static HTML/CSS/JS website. 
 **Purpose:** This repository serves as a personal resume portfolio and a simple blog. 
 **Architecture:** It is a purely static site with no build steps, bundlers, or frameworks (No React, Vue, etc.). All routing is handled via direct file paths.
+**Tone:** Semi-formal, polite but not overly stiff.
+**Vocabulary:** Use common, everyday language. Avoid academic jargon, technical terms, or overly complex words.
+**Length:** Concise and straight to the point. No rambling or unnecessary fluff.
+**Format:** Optimize for immediate readability. Use short paragraphs and bullet points to summarize key 
 
 ## 📂 Project Structure
 Below is the directory structure. Please adhere to this organization when creating or modifying files.

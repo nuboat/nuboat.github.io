@@ -1,0 +1,178 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - ลดค่าใช้จ่าย AWS ด้วย EC2 Instance Saving Plan</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="A practical guide to cutting AWS EC2 costs with Instance Savings Plans — how they work, how to pick the right one, and what real savings look like." />
+		<meta name="keywords" content="AWS, EC2, Savings Plans, FinOps, cloud cost, Reserved Instances, Compute Savings Plans" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-TKCX2DN0ZT');
+		</script>
+	</head>
+
+	<body class="is-preload">
+
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<h2>ลดค่าใช้จ่าย AWS ด้วย EC2 Instance Savings Plans</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A</em></p>
+				</header>
+
+				<p>
+					AWS bills have a habit of growing quietly. One of the easiest ways to push them back down —
+					without changing a single line of code — is an <strong>EC2 Instance Savings Plan</strong>.
+					Here is what it is, how to pick the right one, and what real savings look like.
+				</p>
+
+				<h3>What is a Savings Plan?</h3>
+				<p>
+					A Savings Plan is a deal between you and AWS: you promise to spend a fixed amount per hour for 1 or 3 years,
+					and AWS gives you a discount on everything that matches.
+					No capacity reservations, no complex configuration — just a spending commitment.
+				</p>
+				<p>There are three types:</p>
+				<ul>
+					<li><strong>EC2 Instance Savings Plan</strong> — biggest discount (~40–60%), but locked to one instance family in one region.</li>
+					<li><strong>Compute Savings Plan</strong> — smaller discount, but works across any instance family, region, Fargate, and Lambda.</li>
+					<li><strong>SageMaker Savings Plan</strong> — for ML training and inference workloads only.</li>
+				</ul>
+				<p>
+					For teams with stable EC2 usage in a specific region, the <strong>EC2 Instance Savings Plan</strong> gives the best return.
+				</p>
+
+				<h3>How It Works</h3>
+				<p>
+					You pick an instance family (e.g. <code>c7g</code>) and a region. Within that family,
+					you can freely change instance size, OS, and tenancy — the discount follows.
+					What it does not cover: switching families (e.g. <code>c7g</code> → <code>m7i</code>) or moving to a different region.
+				</p>
+				<p>
+					The screenshot below shows real AWS pricing for the <code>c7g</code> family in Asia Pacific (Thailand).
+					Every size gets a <strong>48% discount</strong> off On-Demand under a Savings Plan.
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan.png" alt="EC2 Instance Savings Plan rates for c7g family in Asia Pacific (Thailand) — 48% off On-Demand" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					A <code>c7g.xlarge</code> drops from <strong>$0.1416/hr</strong> On-Demand to <strong>$0.0733/hr</strong> under the plan.
+					Run it 24/7 for a year and that is ~$560 saved on a single instance. Multiply across a fleet and the numbers get meaningful fast.
+				</p>
+
+				<h3>Choosing a Payment Option</h3>
+				<p>Each plan comes in three payment flavours:</p>
+				<ul>
+					<li><strong>All Upfront</strong> — pay the full amount today. Deepest discount.</li>
+					<li><strong>Partial Upfront</strong> — half now, half spread monthly. Middle ground.</li>
+					<li><strong>No Upfront</strong> — monthly payments only. Lowest discount, zero cash outlay today.</li>
+				</ul>
+				<p>
+					If your workload is stable and the budget allows it, All Upfront on a 3-year term delivers the best return.
+					If you are unsure, start with No Upfront on a 1-year term — you can always buy more later.
+					You <em>cannot</em> cancel or reduce a plan once purchased.
+				</p>
+
+				<h3>How Much to Commit</h3>
+				<p>
+					The most common mistake is over-committing. If you buy more than you use, the unused portion is simply wasted.
+					The safe approach is to commit to your <strong>minimum steady usage</strong> — the amount that is always running,
+					even on quiet nights and weekends.
+				</p>
+				<p>A simple sizing process:</p>
+				<ol>
+					<li>Open <strong>Cost Explorer → Savings Plans → Recommendations</strong>.</li>
+					<li>Set lookback to 30 days, term to 1 year, payment to No Upfront.</li>
+					<li>Take the recommended commitment and buy at 70–80% of it.</li>
+					<li>Review coverage and utilization after 30 days, then top up if needed.</li>
+				</ol>
+				<p>
+					Starting conservative keeps utilization high. You can always layer on more commitment as you gain confidence.
+				</p>
+
+				<h3>Purchasing a Plan</h3>
+				<p>
+					Once you know how much to commit, the purchase takes only a few clicks in the AWS console.
+					Navigate to <strong>Cost Explorer → Savings Plans → Purchase Savings Plans</strong>,
+					select <em>EC2 Instance Savings Plans</em>, choose your instance family, region, term, and payment option,
+					then enter the hourly commitment amount.
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan_buy.png" alt="AWS console — purchasing an EC2 Instance Savings Plan" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					Review the estimated monthly savings shown on the confirmation screen before clicking <strong>Purchase</strong>.
+					The plan becomes active within minutes and starts applying discounts to matching usage immediately.
+					Remember: the commitment cannot be cancelled or reduced, so double-check the hourly amount before confirming.
+				</p>
+
+				<h3>Two Numbers to Watch</h3>
+				<p>Once your plan is active, track these weekly in Cost Explorer:</p>
+				<ul>
+					<li>
+						<strong>Coverage</strong> — what share of your EC2 spend is protected by a Savings Plan.
+						Aim for 80–90%. Below 70% means you are leaving savings on the table.
+					</li>
+					<li>
+						<strong>Utilization</strong> — what share of your committed spend is actually being used.
+						Aim for above 95%. Below 80% means you over-bought.
+					</li>
+				</ul>
+
+				<h3>When to Skip It</h3>
+				<ul>
+					<li><strong>New workloads</strong> — wait for 30–60 days of usage data before committing.</li>
+					<li><strong>Planning to switch instance families</strong> — use a Compute Savings Plan instead so the discount travels with you.</li>
+					<li><strong>Batch or ML jobs</strong> — Spot Instances give 60–90% off and are almost always the better call here.</li>
+					<li><strong>Dev/test that shuts down at night</strong> — schedule the stop first, then see if the remaining baseline is worth committing to.</li>
+				</ul>
+
+				<h3>Bottom Line</h3>
+				<p>
+					EC2 Instance Savings Plans are one of the lowest-effort cost reductions available on AWS.
+					No architecture changes, no migrations — just an analysis and a purchasing decision.
+					Commit to your floor, watch your coverage and utilization, and layer on more as usage stabilizes.
+					Done right, it is realistic to cut your EC2 bill by 40–60% on steady workloads.
+				</p>
+
+				<p><em>Pricing shown is for Asia Pacific (Thailand) as of mid-2026. Always verify current rates in the AWS Pricing Calculator before purchasing.</em></p>
+			</section>
+
+			<div class="inner">
+				<p class="copyright">
+					&copy; peerapat.cc
+				</p>
+			</div>
+		</div>
+
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://github.com/nuboat" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					<li><a href="mailto:nuboat@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>Design: <a href="https://html5up.net/strata">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+	</body>
+</html>
