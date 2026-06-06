@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - สร้าง Security Test อัตโนมัติด้วย AI Skill</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="How to build a reusable Claude Code skill that generates OWASP Top 10 security tests for Play Framework controllers using PlaySpec and FakeRequest." />
+		<meta name="keywords" content="Claude Code, AI skill, OWASP Top 10, Play Framework, PlaySpec, FakeRequest, ScalaTest, security testing, SDET" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-TKCX2DN0ZT');
+		</script>
+	</head>
+
+	<body class="is-preload">
+
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<h2>สร้าง Security Test อัตโนมัติด้วย AI Skill</h2>
+					<p><em>June 2026 &nbsp;·&nbsp; Peerapat A</em></p>
+				</header>
+
+				<p>
+					Writing security tests is tedious, repetitive, and easy to skip when a deadline is close.
+					But it is also exactly the kind of work an AI assistant is good at — well-defined patterns,
+					repeated across many endpoints. Instead of asking Claude the same thing every time,
+					you can capture that knowledge once as a <strong>skill</strong> and reuse it forever.
+				</p>
+				<p>
+					This post walks through a custom Claude Code skill that turns any Play Framework controller
+					into a full <strong>OWASP Top 10</strong> security test suite using <code>PlaySpec</code> and <code>FakeRequest</code>.
+				</p>
+
+				<h3>What is a Skill?</h3>
+				<p>
+					A skill is a reusable instruction set you give to an AI agent. It is a Markdown file with a small
+					frontmatter header and a body of instructions. When you invoke it, the agent loads those instructions
+					as expert context — so it behaves like a specialist instead of a generalist.
+				</p>
+				<p>The frontmatter has three useful fields:</p>
+				<ul>
+					<li><strong>name</strong> — the identifier you invoke the skill by.</li>
+					<li><strong>description</strong> — a one-line summary the agent uses to decide when the skill is relevant.</li>
+					<li><strong>argument-hint</strong> — tells the user what input to provide (here, a controller or route).</li>
+				</ul>
+
+				<h3>The Skill Definition</h3>
+				<p>
+					Here is the full skill. It tells the agent to act as a security-focused SDET and produce
+					integration tests against the OWASP Top 10 — not generic unit tests.
+				</p>
+<pre><code>---
+name: owasp-playspec-tester
+description: "Generates Scala Play Framework security tests using
+  PlaySpec and FakeRequest based on OWASP Top 10 vulnerabilities."
+argument-hint: "Specify the target Play controller or endpoint route
+  to generate tests for."
+---
+
+# OWASP Play Framework Security Tester
+
+You are an expert Security Software Development Engineer in Test (SDET).
+Your task is to generate automated security integration tests for Play
+Framework applications using PlaySpec, FakeRequest, and ScalaTest.
+
+## Instructions
+When the user provides a controller, model, or route, generate a
+PlaySpec test class that verifies the application's resilience against
+OWASP Top 10 2025 vulnerabilities.</code></pre>
+
+				<h3>The Test Coverage It Enforces</h3>
+				<p>
+					The heart of the skill is a checklist of attack classes. Every generated suite must cover all four,
+					so nothing gets quietly skipped:
+				</p>
+				<ul>
+					<li>
+						<strong>Injection (SQL/NoSQL/Command)</strong> — sends payloads like <code>' OR 1=1 --</code> and
+						asserts the response is <code>400 BAD_REQUEST</code> or <code>401 UNAUTHORIZED</code>,
+						never a leaky <code>500 INTERNAL_SERVER_ERROR</code>.
+					</li>
+					<li>
+						<strong>Cross-Site Scripting (XSS)</strong> — injects <code>&lt;script&gt;alert(1)&lt;/script&gt;</code>
+						into JSON or form bodies and asserts the raw payload is not reflected back unescaped.
+					</li>
+					<li>
+						<strong>Security Misconfiguration</strong> — checks that responses carry secure headers
+						(<code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>, <code>Content-Security-Policy</code>).
+					</li>
+					<li>
+						<strong>Broken Access Control</strong> — hits restricted endpoints with no valid session or JWT
+						and asserts <code>401 UNAUTHORIZED</code> or <code>403 FORBIDDEN</code>.
+					</li>
+				</ul>
+
+				<h3>Code Guidelines</h3>
+				<p>The skill also pins down <em>how</em> the tests are written, so the output is consistent and runnable:</p>
+				<ul>
+					<li>Seed test data in a <code>def initial(): Unit</code> to simulate records in the database.</li>
+					<li>Use <code>play.api.test.FakeRequest</code> to simulate malicious traffic.</li>
+					<li>Use <code>play.api.test.Helpers._</code> for routing and assertions
+						(<code>status(result)</code>, <code>contentAsString(result)</code>).</li>
+					<li>Produce valid Scala in ScalaTest BDD style:
+						<code>"Endpoint" should { "reject..." in { ... } }</code>.</li>
+				</ul>
+
+				<h3>What the Output Looks Like</h3>
+				<p>
+					Point the skill at a controller and it produces a ready-to-run spec. A trimmed example:
+				</p>
+<pre><code>class UserControllerSecuritySpec extends PlaySpec with GuiceOneAppPerSuite {
+
+  def initial(): Unit = {
+    // seed a known user to attack against
+  }
+
+  "UserController" should {
+
+    "reject SQL injection in the login field" in {
+      val payload = Json.obj("username" -> "' OR 1=1 --", "password" -> "x")
+      val request = FakeRequest(POST, "/login").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      status(result) must (be(BAD_REQUEST) or be(UNAUTHORIZED))
+      status(result) mustNot be(INTERNAL_SERVER_ERROR)
+    }
+
+    "escape XSS payloads in the profile name" in {
+      val payload = Json.obj("name" -> "&lt;script&gt;alert(1)&lt;/script&gt;")
+      val request = FakeRequest(POST, "/profile").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      contentAsString(result) mustNot include("&lt;script&gt;")
+    }
+
+    "return secure headers on the home page" in {
+      val result = route(app, FakeRequest(GET, "/")).get
+
+      header("X-Frame-Options", result) mustBe defined
+      header("X-Content-Type-Options", result) mustBe defined
+      header("Content-Security-Policy", result) mustBe defined
+    }
+
+    "block access to admin without a token" in {
+      val result = route(app, FakeRequest(GET, "/admin")).get
+
+      status(result) must (be(UNAUTHORIZED) or be(FORBIDDEN))
+    }
+  }
+}</code></pre>
+
+				<h3>Why Capture It as a Skill</h3>
+				<ul>
+					<li>✅ <strong>Consistency</strong> — every endpoint gets the same four attack classes, every time.</li>
+					<li>✅ <strong>Speed</strong> — no re-explaining the requirements on each new controller.</li>
+					<li>✅ <strong>Shared standard</strong> — the whole team invokes the same security baseline.</li>
+					<li>✅ <strong>Living documentation</strong> — the skill file <em>is</em> your security testing policy.</li>
+				</ul>
+
+				<h3>Bottom Line</h3>
+				<p>
+					Security testing does not have to be the task everyone avoids. By encoding the OWASP Top 10
+					into a small, reusable skill, you turn a chore into a one-line command — and make
+					"did we test for injection?" a question with a reliable answer.
+				</p>
+				<p><em>Generated tests are a starting point, not a guarantee. Always review them and pair with manual security review for high-risk endpoints.</em></p>
+			</section>
+
+			<div class="inner">
+				<p class="copyright">
+					&copy; peerapat.cc
+				</p>
+			</div>
+		</div>
+
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://github.com/nuboat" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					<li><a href="mailto:nuboat@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>Design: <a href="https://html5up.net/strata">HTML5 UP</a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+	</body>
+</html>
