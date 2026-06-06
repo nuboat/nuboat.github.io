@@ -1,0 +1,347 @@
+/* =========================================================================
+   PEERAPAT.CC — Corporate Identity Layer  ·  "Deep Signal"
+   Palette derived from color-palette.pdf
+   Loaded AFTER main.css (HTML5 UP Strata) to apply the brand system.
+   ========================================================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@500;600;700&family=IBM+Plex+Sans+Thai:wght@300;400;500;600&display=swap");
+
+:root {
+	/* Highlights / Headline */
+	--ci-blue:        #006098;  /* highlight — primary brand blue   */
+	--ci-navy:        #002856;  /* headline  — deepest brand navy    */
+	/* Collateral */
+	--ci-cyan:        #05ACE1;  /* signal / interactive accent       */
+	--ci-green:       #5B7953;
+	--ci-sage:        #919C7A;
+	--ci-sand:        #F7D88E;
+	--ci-red:         #9E1A3B;
+
+	/* Derived neutrals */
+	--ci-ink:         #1b2733;  /* body text on light                */
+	--ci-muted:       #5c6b7a;
+	--ci-line:        #e3e8ee;
+	--ci-canvas:      #f6f8fb;
+	--ci-paper:       #ffffff;
+
+	--ci-display: "Bai Jamjuree", "IBM Plex Sans Thai", sans-serif;
+	--ci-body:    "IBM Plex Sans Thai", "Bai Jamjuree", system-ui, sans-serif;
+
+	--ci-shadow:  0 1px 2px rgba(0,40,86,.04), 0 12px 32px -12px rgba(0,40,86,.18);
+}
+
+/* ---- The brand signature: collateral spectrum at the very top edge ---- */
+body::before {
+	content: "";
+	position: fixed;
+	top: 0; left: 0; right: 0;
+	height: 4px;
+	z-index: 10000;
+	background: linear-gradient(90deg,
+		var(--ci-cyan)  0%,  var(--ci-cyan)  20%,
+		var(--ci-green) 20%, var(--ci-green) 40%,
+		var(--ci-sage)  40%, var(--ci-sage)  60%,
+		var(--ci-sand)  60%, var(--ci-sand)  80%,
+		var(--ci-red)   80%, var(--ci-red)  100%);
+}
+
+/* =========================== Base typography ============================ */
+body, input, select, textarea {
+	font-family: var(--ci-body);
+	color: var(--ci-ink);
+	letter-spacing: 0;
+}
+body { background: var(--ci-canvas); }
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--ci-display);
+	color: var(--ci-navy);
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+a {
+	color: var(--ci-blue);
+	text-decoration: none;
+	border-bottom-color: rgba(5,172,225,.0);
+	transition: color .2s ease, border-color .2s ease, background-size .3s ease;
+}
+a:hover { color: var(--ci-cyan) !important; }
+
+::selection { background: var(--ci-cyan); color: #fff; }
+
+/* =============================== Sidebar ================================ */
+#header {
+	background-color: var(--ci-navy);
+	background-image:
+		radial-gradient(120% 60% at 50% -10%, rgba(5,172,225,.28) 0%, rgba(5,172,225,0) 60%),
+		linear-gradient(180deg, var(--ci-navy) 0%, #003d6b 55%, var(--ci-blue) 100%);
+	box-shadow: inset -1px 0 0 rgba(255,255,255,.06), 4px 0 24px -16px rgba(0,0,0,.6);
+	color: rgba(255,255,255,.78);
+	position: fixed;
+}
+/* cyan signal strip down the inner edge of the rail */
+#header::after {
+	content: "";
+	position: absolute;
+	top: 0; right: 0; bottom: 0;
+	width: 3px;
+	background: linear-gradient(180deg, var(--ci-cyan), rgba(5,172,225,0) 70%);
+}
+
+#header strong, #header b { color: #fff; }
+#header a {
+	color: var(--ci-sand);
+	border-bottom-color: transparent;
+}
+#header a:hover { color: var(--ci-cyan) !important; }
+
+/* avatar / vcard images: refined cyan ring + soft halo */
+#header img {
+	border-radius: 14px;
+	box-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 16px 40px -18px rgba(0,0,0,.7);
+	outline: 2px solid transparent;
+	transition: outline-color .35s ease, transform .35s ease, box-shadow .35s ease;
+}
+#header img:hover {
+	outline-color: var(--ci-cyan);
+	transform: translateY(-3px);
+	box-shadow: 0 0 0 1px rgba(5,172,225,.4), 0 22px 50px -16px rgba(0,0,0,.75);
+}
+
+/* dividers in the rail become subtle brand hairlines */
+#header hr {
+	border: 0;
+	height: 1px;
+	background: linear-gradient(90deg, rgba(255,255,255,0), rgba(5,172,225,.55), rgba(255,255,255,0));
+	margin: 1.25em 0;
+}
+
+/* role/title text in the rail */
+#header > .inner {
+	font-size: 0.95em;
+	line-height: 1.85;
+	letter-spacing: .01em;
+}
+#header h3 { color: #fff; letter-spacing: -0.01em; }
+
+/* =============================== Content =============================== */
+#main { background: var(--ci-canvas); }
+
+#main > section { border-top-color: var(--ci-line); }
+
+/* Section headings get a cyan tick — a small brand cue */
+#main h2 {
+	position: relative;
+	padding-left: 0.85rem;
+}
+#main h2::before {
+	content: "";
+	position: absolute;
+	left: 0; top: .18em; bottom: .18em;
+	width: 4px;
+	border-radius: 2px;
+	background: linear-gradient(180deg, var(--ci-cyan), var(--ci-blue));
+}
+
+/* refined underline-on-hover for in-content links */
+#main a:not(.button):not(.icon) {
+	background-image: linear-gradient(var(--ci-cyan), var(--ci-cyan));
+	background-position: 0 100%;
+	background-repeat: no-repeat;
+	background-size: 0% 2px;
+	border-bottom: 0;
+	padding-bottom: 1px;
+}
+#main a:not(.button):not(.icon):hover { background-size: 100% 2px; }
+
+/* =========================== Blog cards (index) ======================== */
+.work-item {
+	background: var(--ci-paper);
+	border: 1px solid var(--ci-line);
+	border-radius: 16px;
+	overflow: hidden;
+	box-shadow: var(--ci-shadow);
+	transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease;
+	display: flex;
+	flex-direction: column;
+}
+.work-item:hover {
+	transform: translateY(-6px);
+	border-color: rgba(5,172,225,.5);
+	box-shadow: 0 1px 2px rgba(0,40,86,.05), 0 28px 50px -20px rgba(0,40,86,.35);
+}
+.work-item .image.fit.thumb {
+	position: relative;
+	margin: 0;
+	border-radius: 0;
+}
+/* spectrum hairline under each thumbnail */
+.work-item .image.fit.thumb::after {
+	content: "";
+	position: absolute;
+	left: 0; right: 0; bottom: 0;
+	height: 3px;
+	background: linear-gradient(90deg,
+		var(--ci-cyan), var(--ci-green), var(--ci-sage), var(--ci-sand), var(--ci-red));
+	transform: scaleX(0);
+	transform-origin: left;
+	transition: transform .45s cubic-bezier(.2,.7,.2,1);
+}
+.work-item:hover .image.fit.thumb::after { transform: scaleX(1); }
+.work-item .image.fit.thumb img { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
+.work-item:hover .image.fit.thumb img { transform: scale(1.05); }
+
+.work-item h3 {
+	color: var(--ci-navy);
+	margin: 1rem 1.25rem 0.5rem;
+	line-height: 1.3;
+	font-weight: 600;
+}
+.work-item p {
+	color: var(--ci-muted);
+	margin: 0 1.25rem 1.5rem;
+	font-size: 0.92em;
+	line-height: 1.65;
+}
+
+/* ===================== Blog index — comfortable spacing ================= */
+/* Give the reading column real breathing room and a wider, airier grid.   */
+.page-blog #main {
+	max-width: 70em;
+	padding: 5.5em 4.5em 5em 3em;
+}
+.page-blog #one { margin-top: 0; padding-top: 0; }
+
+/* Replace the template's padding-gutters with a clean, even gap.          */
+.page-blog #one .row {
+	gap: 2.25rem;
+	margin: 0;
+}
+.page-blog #one .row > * { padding: 0; }
+.page-blog #one .work-item.col-6 {
+	width: calc(50% - 1.125rem);
+	margin: 0;
+}
+
+/* extra air inside each card */
+.page-blog .work-item h3 { margin: 1.35rem 1.5rem 0.6rem; }
+.page-blog .work-item p  { margin: 0 1.5rem 1.75rem; }
+.page-blog .work-item .image.fit.thumb { height: 220px; }
+
+/* page-load: cards rise & fade in, gently staggered                       */
+@keyframes ci-rise {
+	from { opacity: 0; transform: translateY(22px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+.page-blog .work-item {
+	opacity: 0;
+	animation: ci-rise .7s cubic-bezier(.2,.7,.2,1) forwards;
+}
+.page-blog .work-item:nth-child(1) { animation-delay: .05s; }
+.page-blog .work-item:nth-child(2) { animation-delay: .14s; }
+.page-blog .work-item:nth-child(3) { animation-delay: .23s; }
+.page-blog .work-item:nth-child(4) { animation-delay: .32s; }
+.page-blog .work-item:nth-child(5) { animation-delay: .41s; }
+
+.page-blog .copyright {
+	margin-top: 3.5em;
+	padding-top: 1.5em;
+	border-top: 1px solid var(--ci-line);
+}
+
+/* comfortable single-column stack on narrower screens */
+@media screen and (max-width: 980px) {
+	.page-blog #main { padding: 4em 2em 4em 2em; max-width: none; }
+	.page-blog #one .row { gap: 1.75rem; }
+	.page-blog #one .work-item.col-6 { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.page-blog .work-item { opacity: 1; animation: none; }
+}
+
+/* =============================== Buttons =============================== */
+input[type="submit"], input[type="reset"], input[type="button"],
+button, .button {
+	font-family: var(--ci-display);
+	font-weight: 600;
+	letter-spacing: .02em;
+	border-radius: 10px;
+	border: solid 2px var(--ci-blue) !important;
+	color: var(--ci-blue) !important;
+	background-color: transparent;
+}
+input[type="submit"]:hover, .button:hover, button:hover {
+	border-color: var(--ci-cyan) !important;
+	color: var(--ci-cyan) !important;
+	background-color: rgba(5,172,225,.08);
+}
+.button.primary, input[type="submit"].primary {
+	background-color: var(--ci-blue) !important;
+	border-color: var(--ci-blue) !important;
+	color: #fff !important;
+}
+.button.primary:hover, input[type="submit"].primary:hover {
+	background-color: var(--ci-cyan) !important;
+	border-color: var(--ci-cyan) !important;
+}
+
+/* ===================== Code, quotes & rules (blogs) ==================== */
+code {
+	background: var(--ci-navy) !important;
+	color: var(--ci-cyan) !important;
+	border-radius: 8px;
+	border: 1px solid rgba(5,172,225,.25);
+}
+pre code { display: block; }
+
+blockquote {
+	border-left: solid 4px var(--ci-cyan);
+	background: rgba(5,172,225,.06);
+	border-radius: 0 8px 8px 0;
+	color: var(--ci-ink);
+	padding: 0.75em 1.25em;
+}
+
+hr { border-bottom-color: var(--ci-line); }
+
+/* tables in profile/blogs */
+table thead th { color: var(--ci-navy); border-bottom: solid 2px var(--ci-blue); }
+table tbody tr { border-color: var(--ci-line); }
+
+/* =============================== Footer =============================== */
+#footer .icons a { color: rgba(255,255,255,.7); }
+#footer .icons a:hover { color: var(--ci-cyan) !important; }
+.copyright, #footer .copyright a { color: var(--ci-muted); }
+
+/* focus visibility for accessibility */
+a:focus-visible, button:focus-visible, .button:focus-visible {
+	outline: 3px solid rgba(5,172,225,.55);
+	outline-offset: 2px;
+	border-radius: 6px;
+}
+
+/* custom scrollbar tuned to the brand */
+* { scrollbar-color: var(--ci-blue) var(--ci-canvas); }
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: var(--ci-canvas); }
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(var(--ci-blue), var(--ci-navy));
+	border: 3px solid var(--ci-canvas);
+	border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--ci-cyan); }
+
+/* honour reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+	* { transition: none !important; }
+}
+
+/* =============== Print: keep CV clean & ink-friendly =============== */
+@media print {
+	body::before, #header::after { display: none; }
+	body, #main { background: #fff; }
+	a, #main a:not(.button):not(.icon) { color: var(--ci-navy); background: none; }
+	h1, h2, h3, h4 { color: var(--ci-navy); }
+}
