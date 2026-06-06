@@ -271,13 +271,28 @@ a:hover { color: var(--ci-cyan) !important; }
 }
 
 /* ===================== Code, quotes & rules (blogs) ==================== */
+/* Inline code — compact, token-like chip (overrides main.css block defaults) */
 code {
 	background: var(--ci-navy) !important;
 	color: var(--ci-cyan) !important;
-	border-radius: 8px;
 	border: 1px solid rgba(5,172,225,.25);
+	border-radius: 6px;
+	padding: 0.1em 0.4em;
+	margin: 0;
+	font-size: 0.85em;
+	line-height: inherit;
+	overflow-wrap: break-word;
 }
-pre code { display: block; }
+
+/* Block code — full-width scrollable panel */
+pre code {
+	display: block;
+	padding: 1em 1.25em;
+	margin: 0;
+	border-radius: 8px;
+	font-size: 0.8em;
+	overflow-wrap: normal;
+}
 
 blockquote {
 	border-left: solid 4px var(--ci-cyan);
