@@ -166,6 +166,23 @@ latexmk -r conf/latexmkrc -C main.tex
 				<p><em>Note: This blog post was written with Claude Code using the template-doc repository as source material.</em></p>
 			</section>
 
+			<section id="comments">
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function () {
+						this.page.url = window.location.href.split('#')[0].split('?')[0];
+						this.page.identifier = window.location.pathname;
+					};
+					(function() {
+						var d = document, s = d.createElement('script');
+						s.src = 'https://norbor.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			</section>
+
 			<div class="inner">
 				<p class="copyright">
 					&copy; peerapat.cc
