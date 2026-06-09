@@ -1,0 +1,126 @@
+/* =========================================================================
+   PEERAPAT.CC — Cookie Consent  ·  "Terminal Prompt"
+   A monospace, ASCII-framed consent banner with Accept / Reject.
+   ========================================================================= */
+
+.cc-terminal {
+	position: fixed;
+	left: 1.25rem;
+	bottom: 1.25rem;
+	z-index: 11000;
+	width: min(420px, calc(100vw - 2.5rem));
+	background: #05070a;
+	color: #29f37c;
+	border: 1px solid #1d6b3f;
+	border-radius: 10px;
+	box-shadow: 0 0 0 1px rgba(41,243,124,.12), 0 24px 60px -20px rgba(0,0,0,.85);
+	font-family: "SFMono-Regular", "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
+	font-size: 12.5px;
+	line-height: 1.55;
+	overflow: hidden;
+	animation: cc-rise .45s cubic-bezier(.2,.7,.2,1) both;
+}
+
+@keyframes cc-rise {
+	from { opacity: 0; transform: translateY(18px); }
+	to   { opacity: 1; transform: translateY(0); }
+}
+
+/* title bar with traffic-light dots */
+.cc-bar {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	padding: 8px 12px;
+	background: #0b0f14;
+	border-bottom: 1px solid #14241a;
+	color: #5c6b7a;
+	font-size: 11px;
+	letter-spacing: .02em;
+}
+.cc-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+.cc-dot.r { background: #ff5f56; }
+.cc-dot.y { background: #ffbd2e; }
+.cc-dot.g { background: #27c93f; }
+.cc-title { margin-left: 8px; }
+
+.cc-body {
+	padding: 12px 14px 14px;
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.cc-body pre {
+	margin: 0 0 2px;
+	padding: 0;
+	background: none;
+	border: 0;
+	color: #29f37c;
+	font: inherit;
+	line-height: 1.2;
+	overflow: hidden;
+}
+
+.cc-line { display: block; }
+.cc-prompt { color: #05ACE1; }      /* cyan brand accent */
+.cc-comment { color: #5c6b7a; }
+.cc-msg { color: #cfe9d8; }
+.cc-link { color: #ffbd2e; border-bottom: 1px dotted #ffbd2e; }
+.cc-link:hover { color: #ffd75e !important; }
+
+/* blinking cursor */
+.cc-cursor {
+	display: inline-block;
+	width: 8px;
+	height: 1em;
+	background: #29f37c;
+	vertical-align: text-bottom;
+	margin-left: 2px;
+	animation: cc-blink 1s steps(2, start) infinite;
+}
+@keyframes cc-blink { to { visibility: hidden; } }
+
+.cc-actions {
+	display: flex;
+	gap: 10px;
+	margin-top: 12px;
+}
+
+.cc-btn {
+	flex: 1;
+	appearance: none;
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 12px;
+	font-weight: 700;
+	letter-spacing: .03em;
+	padding: 8px 10px;
+	border-radius: 6px;
+	background: transparent;
+	transition: background .18s ease, color .18s ease, box-shadow .18s ease;
+}
+.cc-btn-accept {
+	color: #05070a;
+	background: #29f37c;
+	border: 1px solid #29f37c;
+}
+.cc-btn-accept:hover { background: #4dff95; box-shadow: 0 0 16px -2px rgba(41,243,124,.6); }
+.cc-btn-reject {
+	color: #ff7a7a;
+	border: 1px solid #6b1d1d;
+}
+.cc-btn-reject:hover { background: rgba(255,95,86,.12); color: #ff9b9b; }
+
+.cc-btn:focus-visible {
+	outline: 2px solid #05ACE1;
+	outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.cc-terminal { animation: none; }
+	.cc-cursor { animation: none; }
+}
+
+@media print {
+	.cc-terminal { display: none !important; }
+}
