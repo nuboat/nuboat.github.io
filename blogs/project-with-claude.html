@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - บริหารโปรเจกต์ด้วย Claude ผ่าน AGENTS และ Work Process</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="How to run a software project with Claude by writing an AGENTS.md as the project constitution and encoding your team's work process as reusable Skills." />
+		<meta name="keywords" content="Claude Code, AGENTS.md, SKILL, AI agent, work process, software development, workflow automation, agentic coding" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/ci.css" />
+		<link rel="stylesheet" href="../assets/css/cookie-consent.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('consent', 'default', { analytics_storage: 'denied' });
+			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
+			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
+			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
+		</script>
+	</head>
+
+	<body class="is-preload">
+
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<h2>บริหารโปรเจกต์ด้วย Claude ผ่าน AGENTS และ Work Process</h2>
+					<p><em>June 2026 &nbsp;·&nbsp; Peerapat A</em></p>
+				</header>
+
+				<p>
+					Most people start using an AI agent the same way: they open a chat, paste some code,
+					and explain everything from scratch — the stack, the conventions, the way the team likes
+					to work. Then they do it again the next day. And the next. The agent is capable, but it has
+					no memory of <em>your project</em> and no idea how <em>your team</em> actually works.
+				</p>
+				<p>
+					Running a project with Claude well comes down to two artifacts that solve exactly those two gaps:
+				</p>
+				<ul>
+					<li><strong>AGENTS.md</strong> — the <em>context</em>: who we are, what we are building, and the rules of the house.</li>
+					<li><strong>Skills</strong> — the <em>process</em>: the repeatable steps the team follows to get work done.</li>
+				</ul>
+				<p>
+					Think of it as hiring a very fast engineer. AGENTS.md is the onboarding doc you hand them on day one.
+					Skills are the runbooks they reach for when doing a specific job. This post walks through both,
+					using a normal <strong>software development</strong> workflow as the example.
+				</p>
+
+				<h3>AGENTS.md — the Project Constitution</h3>
+				<p>
+					<code>AGENTS.md</code> is a plain Markdown file at the root of your repository. Agents read it
+					automatically and treat it as standing context for every task in that project. It is not a place
+					for documentation that lives elsewhere — it is the short list of things the agent would otherwise
+					get wrong: your stack, your commands, your conventions, and your hard rules.
+				</p>
+				<p>Keep it tight. A good AGENTS.md for a software project answers four questions:</p>
+				<ul>
+					<li><strong>What is this?</strong> — one paragraph on the product and the architecture.</li>
+					<li><strong>How do I run it?</strong> — the exact build, test, and lint commands.</li>
+					<li><strong>What are the conventions?</strong> — language, style, naming, folder layout.</li>
+					<li><strong>What must never happen?</strong> — the non-negotiable rules.</li>
+				</ul>
+
+				<p>Here is a realistic example for a backend service:</p>
+<pre><code># AGENTS.md
+
+## Project
+Order service for an e-commerce platform. Scala + Play Framework,
+PostgreSQL via Slick, deployed to AWS ECS. REST API consumed by a
+React front end.
+
+## Commands
+- Build:   sbt compile
+- Test:    sbt test
+- Lint:    sbt scalafmtCheckAll
+- Run:     sbt run   (port 9000)
+
+## Conventions
+- Controllers stay thin; business logic lives in services.
+- One file per public class. Package by feature, not by layer.
+- Every new endpoint ships with a PlaySpec integration test.
+- Use Option, never null. No throwing for control flow.
+
+## Rules
+- Never commit secrets; config comes from environment variables.
+- Do not edit files under db/migrations that are already applied.
+- Open a feature branch; never push straight to main.
+- If a test fails, stop and report — do not delete or skip it.</code></pre>
+
+				<p>
+					Notice what is <em>not</em> here: no tutorial on Scala, no copy of the README. The agent already
+					knows the language. AGENTS.md only carries the things specific to <em>this</em> project that change
+					its behaviour. The shorter and sharper it is, the more reliably it gets followed.
+				</p>
+
+				<h3>Skills — the Work Process</h3>
+				<p>
+					AGENTS.md tells the agent <em>where it is</em>. A <strong>Skill</strong> tells it <em>how to do a
+					specific job</em>. A skill is a Markdown file with a small frontmatter header and a body of
+					step-by-step instructions. When you invoke it, the agent loads that process and follows it like a
+					checklist — so a task runs the same way whether it is Monday morning or Friday at 5pm, whether it is
+					you driving or a teammate.
+				</p>
+				<p>
+					The trick to managing a project is to stop thinking in one-off prompts and start thinking in
+					<em>processes</em>. Every recurring activity in your team — building a feature, reviewing a PR,
+					cutting a release — is a process you already follow informally. Write it down once as a skill,
+					and the agent executes it consistently forever.
+				</p>
+
+				<h3>Example: A Feature-Development Skill</h3>
+				<p>
+					Take the most common workflow on any dev team: turning a ticket into merged code. Most teams have an
+					unwritten version of this in their heads. Here it is made explicit:
+				</p>
+<pre><code>---
+name: feature-dev
+description: "Implements a feature ticket end to end: branch, code,
+  test, and prepare a pull request following team conventions."
+argument-hint: "Provide the ticket ID and a short description of the
+  feature to build."
+---
+
+# Feature Development Workflow
+
+You are a senior engineer on this project. Follow the team's process
+exactly. Do not skip steps and do not push to main.
+
+## Steps
+1. Restate the ticket in your own words and list acceptance criteria.
+   Ask for clarification if any criterion is ambiguous.
+2. Create a branch named `feature/&lt;ticket-id&gt;-&lt;slug&gt;`.
+3. Locate the relevant service and controller before writing code.
+   Reuse existing patterns; do not introduce new libraries.
+4. Implement the change. Keep controllers thin — logic goes in services.
+5. Write a PlaySpec integration test covering every acceptance criterion,
+   including at least one failure case.
+6. Run `sbt scalafmtCheckAll` and `sbt test`. If anything fails, fix it
+   before continuing.
+7. Summarise the change: what, why, files touched, and how it was tested.
+   Prepare a PR description from that summary.
+
+## Definition of Done
+- All acceptance criteria are covered by a passing test.
+- Lint and the full test suite are green.
+- No secrets, no edits to applied migrations, no direct push to main.</code></pre>
+
+				<p>
+					This single file encodes branch naming, the thin-controller rule, the testing standard, and a
+					definition of done. Invoke it with a ticket and the agent produces work that already matches how
+					your team operates — instead of generic code you then have to reshape.
+				</p>
+
+				<h3>Composing Skills into a Pipeline</h3>
+				<p>
+					One skill is useful; a small library of them turns the agent into a teammate that knows your whole
+					delivery process. A typical software project ends up with a handful:
+				</p>
+				<ul>
+					<li><strong>feature-dev</strong> — ticket → branch → code → tests → PR (above).</li>
+					<li><strong>code-review</strong> — read a diff and flag bugs, missing tests, and convention breaks.</li>
+					<li><strong>bugfix</strong> — reproduce with a failing test first, then fix until it passes.</li>
+					<li><strong>release</strong> — bump version, generate the changelog, tag, and draft release notes.</li>
+				</ul>
+				<p>
+					Each skill is a stage in your pipeline. Because every stage reads the same AGENTS.md, they all share
+					one definition of "correct" — the conventions and rules live in exactly one place. Update a rule in
+					AGENTS.md and every skill inherits it on the next run.
+				</p>
+
+				<h3>How It Works in Practice</h3>
+				<p>A day of project work then looks like this:</p>
+<pre><code>$ claude
+
+&gt; /feature-dev PROJ-218 "add idempotency key to POST /orders"
+
+  ✓ Restated ticket, listed 4 acceptance criteria
+  ✓ Branch feature/PROJ-218-idempotency-key
+  ✓ Reused OrderService; added IdempotencyStore
+  ✓ Wrote OrdersControllerSpec (4 cases + duplicate-key case)
+  ✓ scalafmt clean · 38 tests passed
+  ✓ PR description ready
+
+&gt; /code-review
+
+  ⚠ Missing test: concurrent requests with the same key
+  ✓ Conventions OK · no secrets · migration untouched</code></pre>
+				<p>
+					You stayed at the level of <em>intent</em> — "add an idempotency key" — and the agent handled the
+					mechanics the way your team would. The review skill even caught a gap the feature skill missed,
+					because the two processes encode different responsibilities.
+				</p>
+
+				<h3>Why This Beats Prompting</h3>
+				<ul>
+					<li>✅ <strong>Consistency</strong> — the process runs the same way for everyone, every time.</li>
+					<li>✅ <strong>Onboarding</strong> — a new hire (human or agent) is productive by reading two files.</li>
+					<li>✅ <strong>Single source of truth</strong> — rules live in AGENTS.md, not in scattered chat history.</li>
+					<li>✅ <strong>Living documentation</strong> — your AGENTS.md and skills <em>are</em> how the team works,
+						kept honest because they are executed daily.</li>
+					<li>✅ <strong>Scales with the team</strong> — commit them to the repo and the whole process is version-controlled.</li>
+				</ul>
+
+				<h3>Bottom Line</h3>
+				<p>
+					You do not manage a project with an AI agent by prompting harder. You manage it by writing down two
+					things: <strong>who we are</strong> (AGENTS.md) and <strong>how we work</strong> (Skills). Once those
+					exist in the repo, every task starts with the agent already knowing your stack, your standards, and
+					your process — and you get to spend your attention on intent instead of instructions.
+				</p>
+				<p><em>Start small: write the AGENTS.md today, then turn your single most repeated workflow into a skill. Add the next one when you notice yourself explaining the same process twice.</em></p>
+			</section>
+
+			<section id="comments">
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function () {
+						this.page.url = window.location.href.split('#')[0].split('?')[0];
+						this.page.identifier = window.location.pathname;
+					};
+					(function() {
+						var d = document, s = d.createElement('script');
+						s.src = 'https://norbor.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			</section>
+
+			<div class="inner">
+				<p class="copyright">
+					&copy; peerapat.cc
+				</p>
+			</div>
+		</div>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+		<script src="../assets/js/cookie-consent.js"></script>
+	</body>
+</html>
