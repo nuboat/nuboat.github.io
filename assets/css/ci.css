@@ -273,7 +273,7 @@ a:hover { color: var(--ci-cyan) !important; }
 /* ===================== Category tiles (home index) ===================== */
 /* Compact horizontal tiles — thumbnail left, text right — so the handful  */
 /* of top-level categories all sit comfortably on one screen.             */
-.page-home #main { max-width: 52em; }
+.page-home #main { max-width: 72em; }
 
 /* stack the tiles in a single, evenly-spaced column */
 .page-home #one .row {
@@ -281,7 +281,7 @@ a:hover { color: var(--ci-cyan) !important; }
 	gap: 1.5rem;
 	margin: 0;
 }
-.page-home #one .row > * { padding: 0; width: 100%; }
+.page-home #one .row > * { padding: 0; width: 840px; max-width: 100%; }
 
 .category-item {
 	background: var(--ci-paper);
@@ -291,7 +291,7 @@ a:hover { color: var(--ci-cyan) !important; }
 	box-shadow: var(--ci-shadow);
 	display: flex;
 	align-items: stretch;
-	min-height: 124px;
+	height: 160px;
 	transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease;
 }
 .category-item:hover {
@@ -303,8 +303,8 @@ a:hover { color: var(--ci-cyan) !important; }
 /* left thumbnail */
 .category-item .category-thumb {
 	position: relative;
-	flex: 0 0 30%;
-	max-width: 240px;
+	flex: 0 0 40%;
+	max-width: 320px;
 	overflow: hidden;
 	display: block;
 	border-bottom: 0;
