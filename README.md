@@ -22,16 +22,21 @@ Below is the directory structure. Please adhere to this organization when creati
 ```text
 ROOT/
 │
-├── index.html       # Main entry point. Contains the personal resume/portfolio.
+├── index.html       # Home entry point, Contains the category of article.
+├── profile.html     # Profile Page, Contains the personal resume/portfolio.
+├── coding.html      # Coding entry point, Contains the list of article.
+├── agenticai.html   # Agentic AI entry point, Contains the list of article.
+├── english.html     # English entry point, Contains the list of article.
+├── coding/          # Coding Article
+|    └── [article name].html # Individual static HTML article posts.
+├── agenticai/       # Agentic AI Article
+|    └── [article name].html # Individual static HTML article posts.
+├── english/         # English Article
+|    └── [article name].html # Individual static HTML article posts.
 ├── assets/          # Global styles, scripts, and fonts.
 │   ├── css/         # CSS stylesheets (e.g., style.css)
 │   └── js/          # Vanilla JavaScript files (e.g., main.js)
-├── images/          # All static image assets.
-│   ├── resume/      # Profile pictures, company logos, etc.
-│   └── blog/        # Images specific to blog posts.
-└── blogs/           # Contains individual blog posts.
-    ├── index.html   # (Optional) The blog listing page.
-    └── post-1.html  # Individual static HTML blog posts.
+└── images/          # All static image assets.
 ```
 
 ## 📄 File & Directory Guidelines
