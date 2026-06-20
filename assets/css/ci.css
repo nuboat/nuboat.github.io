@@ -291,7 +291,7 @@ a:hover { color: var(--ci-cyan) !important; }
 	box-shadow: var(--ci-shadow);
 	display: flex;
 	align-items: stretch;
-	min-height: 116px;
+	min-height: 124px;
 	transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s ease, border-color .3s ease;
 }
 .category-item:hover {
@@ -304,7 +304,7 @@ a:hover { color: var(--ci-cyan) !important; }
 .category-item .category-thumb {
 	position: relative;
 	flex: 0 0 30%;
-	max-width: 220px;
+	max-width: 240px;
 	overflow: hidden;
 	display: block;
 	border-bottom: 0;
