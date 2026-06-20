@@ -27,6 +27,9 @@ ROOT/
 ├── coding.html      # Coding entry point, Contains the list of article.
 ├── agenticai.html   # Agentic AI entry point, Contains the list of article.
 ├── english.html     # English entry point, Contains the list of article.
+├── general.html     # General topic, Contains the list of article.
+├── general/         # Coding Article
+|    └── [article name].html # Individual static HTML article posts.
 ├── coding/          # Coding Article
 |    └── [article name].html # Individual static HTML article posts.
 ├── agenticai/       # Agentic AI Article
