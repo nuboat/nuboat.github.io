@@ -40,7 +40,7 @@
 				</p>
 				<p>
 					This post walks through a custom Claude Code skill that turns any Play Framework controller
-					into a full <strong>OWASP Top 10</strong> security test suite using <code>PlaySpec</code> and <code>FakeRequest</code>.
+					into a full <strong>OWASP Top 10</strong> security test suite using <highlight>PlaySpec</highlight> and <highlight>FakeRequest</highlight>.
 				</p>
 
 				<h3>What is a Skill?</h3>
@@ -87,33 +87,33 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 				</p>
 				<ul>
 					<li>
-						<strong>Injection (SQL/NoSQL/Command)</strong> — sends payloads like <code>' OR 1=1 --</code> and
-						asserts the response is <code>400 BAD_REQUEST</code> or <code>401 UNAUTHORIZED</code>,
-						never a leaky <code>500 INTERNAL_SERVER_ERROR</code>.
+						<strong>Injection (SQL/NoSQL/Command)</strong> — sends payloads like <highlight>' OR 1=1 --</highlight> and
+						asserts the response is <highlight>400 BAD_REQUEST</highlight> or <highlight>401 UNAUTHORIZED</highlight>,
+						never a leaky <highlight>500 INTERNAL_SERVER_ERROR</highlight>.
 					</li>
 					<li>
-						<strong>Cross-Site Scripting (XSS)</strong> — injects <code>&lt;script&gt;alert(1)&lt;/script&gt;</code>
+						<strong>Cross-Site Scripting (XSS)</strong> — injects <highlight>&lt;script&gt;alert(1)&lt;/script&gt;</highlight>
 						into JSON or form bodies and asserts the raw payload is not reflected back unescaped.
 					</li>
 					<li>
 						<strong>Security Misconfiguration</strong> — checks that responses carry secure headers
-						(<code>X-Frame-Options</code>, <code>X-Content-Type-Options</code>, <code>Content-Security-Policy</code>).
+						(<highlight>X-Frame-Options</highlight>, <highlight>X-Content-Type-Options</highlight>, <highlight>Content-Security-Policy</highlight>).
 					</li>
 					<li>
 						<strong>Broken Access Control</strong> — hits restricted endpoints with no valid session or JWT
-						and asserts <code>401 UNAUTHORIZED</code> or <code>403 FORBIDDEN</code>.
+						and asserts <highlight>401 UNAUTHORIZED</highlight> or <highlight>403 FORBIDDEN</highlight>.
 					</li>
 				</ul>
 
 				<h3>Code Guidelines</h3>
 				<p>The skill also pins down <em>how</em> the tests are written, so the output is consistent and runnable:</p>
 				<ul>
-					<li>Seed test data in a <code>def initial(): Unit</code> to simulate records in the database.</li>
-					<li>Use <code>play.api.test.FakeRequest</code> to simulate malicious traffic.</li>
-					<li>Use <code>play.api.test.Helpers._</code> for routing and assertions
-						(<code>status(result)</code>, <code>contentAsString(result)</code>).</li>
+					<li>Seed test data in a <highlight>def initial(): Unit</highlight> to simulate records in the database.</li>
+					<li>Use <highlight>play.api.test.FakeRequest</highlight> to simulate malicious traffic.</li>
+					<li>Use <highlight>play.api.test.Helpers._</highlight> for routing and assertions
+						(<highlight>status(result)</highlight>, <highlight>contentAsString(result)</highlight>).</li>
 					<li>Produce valid Scala in ScalaTest BDD style:
-						<code>"Endpoint" should { "reject..." in { ... } }</code>.</li>
+						<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>.</li>
 				</ul>
 
 				<h3>What the Output Looks Like</h3>

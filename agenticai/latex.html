@@ -41,7 +41,7 @@
 				<h3>The Problem with Thai in LaTeX</h3>
 				<p>
 					Standard LaTeX (pdflatex) cannot render Thai script. You need <strong>XeLaTeX</strong>, which supports Unicode and OpenType fonts natively.
-					The template is built around the <strong>TH Sarabun New</strong> font — a clean, readable Thai typeface — loaded via <code>fontspec</code>.
+					The template is built around the <strong>TH Sarabun New</strong> font — a clean, readable Thai typeface — loaded via <highlight>fontspec</highlight>.
 					Getting Thai hyphenation, line-breaking, and mixed Thai-English spacing right took real iteration, and that is where having Claude as a pair was invaluable.
 				</p>
 
@@ -69,13 +69,13 @@
 └── assets/               # Watermark and other assets
 </code></pre>
 				<p>
-					Each section is an independent <code>.tex</code> file included via <code>\input{}</code> in <code>main.tex</code>.
+					Each section is an independent <highlight>.tex</highlight> file included via <highlight>\input{}</highlight> in <highlight>main.tex</highlight>.
 					This makes it easy to draft one section at a time with Claude without touching the whole document.
 				</p>
 
 				<h3>The Custom Class: easreport.cls</h3>
 				<p>
-					The heart of the template is <code>easreport.cls</code> — a custom document class that extends the standard <code>article</code> class.
+					The heart of the template is <highlight>easreport.cls</highlight> — a custom document class that extends the standard <highlight>article</highlight> class.
 					It bundles everything needed for professional Thai-language technical reports:
 				</p>
 				<ul>
@@ -89,7 +89,7 @@
 					<li><strong>hyphenat + ragged2e</strong> — hyphenation control for mixed Thai-English content</li>
 				</ul>
 				<p>
-					The class also defines custom metadata commands — <code>\docversion</code>, <code>\docdate</code>, <code>\authorname</code> —
+					The class also defines custom metadata commands — <highlight>\docversion</highlight>, <highlight>\docdate</highlight>, <highlight>\authorname</highlight> —
 					so every document carries consistent version tracking without manual header edits.
 				</p>
 
@@ -102,44 +102,44 @@ latexmk -r conf/latexmkrc main.tex
 latexmk -r conf/latexmkrc -C main.tex
 </code></pre>
 				<p>
-					<code>conf/latexmkrc</code> sets XeLaTeX as the engine and routes all output to the <code>out/</code> directory.
-					The compiled PDF appears at <code>out/main.pdf</code>. Build artifacts (<code>.aux</code>, <code>.log</code>, <code>.toc</code>)
+					<highlight>conf/latexmkrc</highlight> sets XeLaTeX as the engine and routes all output to the <highlight>out/</highlight> directory.
+					The compiled PDF appears at <highlight>out/main.pdf</highlight>. Build artifacts (<highlight>.aux</highlight>, <highlight>.log</highlight>, <highlight>.toc</highlight>)
 					are gitignored so the repository stays clean.
 				</p>
 
 				<h3>How I Work with Claude on LaTeX</h3>
 				<p>
-					The repository includes a <code>CLAUDE.md</code> file that gives Claude the context it needs to produce correct, compilable LaTeX every time.
+					The repository includes a <highlight>CLAUDE.md</highlight> file that gives Claude the context it needs to produce correct, compilable LaTeX every time.
 					Without this, AI-generated LaTeX often uses the wrong engine, missing packages, or incompatible commands.
 				</p>
-				<p>Key rules in <code>CLAUDE.md</code>:</p>
+				<p>Key rules in <highlight>CLAUDE.md</highlight>:</p>
 				<ul>
 					<li>Always target <strong>XeLaTeX</strong> — pdflatex will fail because fontspec is required for Thai</li>
-					<li>Use <code>\[ ... \]</code> or <code>align</code> environments for display math, not <code>$$</code></li>
+					<li>Use <highlight>\[ ... \]</highlight> or <highlight>align</highlight> environments for display math, not <highlight>$$</highlight></li>
 					<li>Escape special LaTeX characters when they appear as literal text</li>
-					<li>Prefer semantic markup: <code>\emph{}</code> over <code>\textit{}</code></li>
-					<li>Place <code>\microtypecontext{spacing=nonadjacent}</code> in the preamble when using microtype with Thai fonts</li>
-					<li>Use <code>\sloppy</code> / <code>\fussy</code> in sections to control Thai text line-breaking</li>
+					<li>Prefer semantic markup: <highlight>\emph{}</highlight> over <highlight>\textit{}</highlight></li>
+					<li>Place <highlight>\microtypecontext{spacing=nonadjacent}</highlight> in the preamble when using microtype with Thai fonts</li>
+					<li>Use <highlight>\sloppy</highlight> / <highlight>\fussy</highlight> in sections to control Thai text line-breaking</li>
 				</ul>
 
 				<h3>Practical Workflow</h3>
 				<p>My day-to-day flow when writing a section with Claude:</p>
 				<ol>
-					<li><strong>Open a section file</strong> — e.g., <code>sections/d_technology.tex</code></li>
-					<li><strong>Describe the content</strong> to Claude in plain language — what the section covers, what diagrams exist in <code>figures/</code></li>
+					<li><strong>Open a section file</strong> — e.g., <highlight>sections/d_technology.tex</highlight></li>
+					<li><strong>Describe the content</strong> to Claude in plain language — what the section covers, what diagrams exist in <highlight>figures/</highlight></li>
 					<li><strong>Claude drafts the LaTeX</strong> — using the class's custom commands, correct Thai font handling, and proper table/figure environments</li>
-					<li><strong>Build and review</strong> — <code>latexmk -r conf/latexmkrc main.tex</code> and open <code>out/main.pdf</code></li>
+					<li><strong>Build and review</strong> — <highlight>latexmk -r conf/latexmkrc main.tex</highlight> and open <highlight>out/main.pdf</highlight></li>
 					<li><strong>Iterate</strong> — paste compilation errors back to Claude for targeted fixes</li>
 				</ol>
 				<p>
-					The modular section structure is key here. Claude only needs to see one <code>.tex</code> file at a time,
+					The modular section structure is key here. Claude only needs to see one <highlight>.tex</highlight> file at a time,
 					which keeps the context focused and the output accurate.
 				</p>
 
 				<h3>Gotchas Worth Knowing</h3>
 				<ul>
 					<li>
-						<strong>XeLaTeX is mandatory.</strong> Running pdflatex will immediately fail on <code>\usepackage{fontspec}</code>.
+						<strong>XeLaTeX is mandatory.</strong> Running pdflatex will immediately fail on <highlight>\usepackage{fontspec}</highlight>.
 						Always confirm the engine in your build config.
 					</li>
 					<li>
@@ -147,11 +147,11 @@ latexmk -r conf/latexmkrc -C main.tex
 						CI environments often need an explicit font installation step.
 					</li>
 					<li>
-						<strong>microtype + Thai needs a config line.</strong> Add <code>\microtypecontext{spacing=nonadjacent}</code>
+						<strong>microtype + Thai needs a config line.</strong> Add <highlight>\microtypecontext{spacing=nonadjacent}</highlight>
 						to suppress warnings and prevent spacing conflicts with Thai characters.
 					</li>
 					<li>
-						<strong>Line-breaking Thai text is tricky.</strong> Use <code>\sloppy</code> generously in sections with dense Thai prose
+						<strong>Line-breaking Thai text is tricky.</strong> Use <highlight>\sloppy</highlight> generously in sections with dense Thai prose
 						to avoid overfull hbox warnings.
 					</li>
 				</ul>
@@ -160,11 +160,11 @@ latexmk -r conf/latexmkrc -C main.tex
 				<p>
 					Pairing LaTeX's precision with Claude's natural language interface removes the friction of remembering every command and environment.
 					I describe what I need in Thai or English, Claude generates correct LaTeX against a well-defined template, and I compile immediately to verify.
-					The <code>CLAUDE.md</code> file acts as a standing contract between me and the AI — no repeated explanations, no wrong engine, no missing packages.
+					The <highlight>CLAUDE.md</highlight> file acts as a standing contract between me and the AI — no repeated explanations, no wrong engine, no missing packages.
 				</p>
 				<p>
 					The template is open on GitHub at <a href="https://github.com/nuboat/template-doc" target="_blank">nuboat/template-doc</a>.
-					Clone it, add your own sections, and point Claude at your <code>CLAUDE.md</code> — you will be producing professional Thai-language PDFs in minutes.
+					Clone it, add your own sections, and point Claude at your <highlight>CLAUDE.md</highlight> — you will be producing professional Thai-language PDFs in minutes.
 				</p>
 
 				<p><em>Note: This blog post was written with Claude Code using the template-doc repository as source material.</em></p>
