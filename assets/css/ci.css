@@ -479,6 +479,17 @@ a:hover { color: var(--ci-cyan) !important; }
 	transform: scale(1.25);
 }
 
+/* inline highlight — draws the eye to key terms (brand sand wash) */
+highlight {
+	font-family: var(--ci-display);
+	font-weight: 600;
+	color: var(--ci-blue) !important;
+	background: linear-gradient(180deg, transparent 55%, var(--ci-sand) 55%);
+	padding: 0 .15em;
+	border-radius: 3px;
+	white-space: nowrap;
+}
+
 /* ===================== Code, quotes & rules (blogs) ==================== */
 /* Inline code — compact, token-like chip (overrides main.css block defaults) */
 code {
