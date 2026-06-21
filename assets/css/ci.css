@@ -218,7 +218,7 @@ a:hover { color: var(--ci-cyan) !important; }
 /* Give the reading column real breathing room and a wider, airier grid.   */
 .page-blog #main {
 	max-width: 70em;
-	padding: 5.5em 4.5em 5em 3em;
+	/* padding: 5.5em 4.5em 5em 3em; */
 }
 .page-blog #one { margin-top: 0; padding-top: 0; }
 
@@ -383,6 +383,100 @@ a:hover { color: var(--ci-cyan) !important; }
 
 @media (prefers-reduced-motion: reduce) {
 	.page-home .category-item { opacity: 1; animation: none; }
+}
+
+/* ===================== Carousel (pub.html) ===================== */
+.carousel {
+	position: relative;
+	max-width: 300px;
+	margin: 0 auto 1.5em;
+}
+.carousel-track {
+	display: flex;
+	gap: 0;
+	overflow-x: auto;
+	scroll-snap-type: x mandatory;
+	scroll-behavior: smooth;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	border-radius: 16px;
+	background: var(--ci-paper);
+	border: 1px solid var(--ci-line);
+	box-shadow: var(--ci-shadow);
+	scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-slide {
+	flex: 0 0 100%;
+	scroll-snap-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: .6rem;
+	padding: 1.5rem;
+}
+.carousel-slide img {
+	width: 100%;
+	max-width: 240px;
+	height: auto;
+	border-radius: 8px;
+}
+.carousel-caption {
+	font-family: var(--ci-display);
+	color: var(--ci-navy);
+	font-weight: 600;
+	font-size: .95em;
+}
+.carousel-slide pre { width: 100%; margin: 0; }
+.carousel-slide pre code {
+	font-size: .6em;
+	white-space: pre-wrap;
+	overflow-wrap: anywhere;
+}
+/* prev / next controls */
+.carousel-nav {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+	width: 38px;
+	height: 38px;
+	border: 0;
+	border-radius: 999px;
+	cursor: pointer;
+	background: var(--ci-navy);
+	color: #fff;
+	font-size: 1rem;
+	line-height: 38px;
+	box-shadow: var(--ci-shadow);
+	transition: background .2s ease, opacity .2s ease;
+}
+.carousel-nav:hover { background: var(--ci-cyan); }
+.carousel-nav.prev { left: -10px; }
+.carousel-nav.next { right: -10px; }
+.carousel-nav:disabled { opacity: .35; cursor: default; }
+.carousel-nav:disabled:hover { background: var(--ci-navy); }
+/* dot indicators */
+.carousel-dots {
+	display: flex;
+	justify-content: center;
+	gap: .5rem;
+	margin-top: .9rem;
+}
+.carousel-dot {
+	width: 9px;
+	height: 9px;
+	padding: 0;
+	border: 0;
+	border-radius: 999px;
+	cursor: pointer;
+	background: var(--ci-line);
+	transition: background .2s ease, transform .2s ease;
+}
+.carousel-dot.is-active {
+	background: var(--ci-cyan);
+	transform: scale(1.25);
 }
 
 /* ===================== Code, quotes & rules (blogs) ==================== */
