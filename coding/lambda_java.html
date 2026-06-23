@@ -19,15 +19,176 @@
 			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
+			<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			/* On smaller screens where the layout collapses to a single column, we revert to horizontal layout */
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 
 		<div id="main">
 
 			<section id="one">
+								<script>
+				function switchLanguage(lang) {
+					const langs = ['en', 'th', 'zh', 'ja', 'de'];
+					langs.forEach(l => {
+						const section = document.getElementById('lang-' + l);
+						if (section) {
+							if (l === lang) {
+								section.classList.add('active');
+								section.style.display = 'block';
+							} else {
+								section.classList.remove('active');
+								section.style.display = 'none';
+							}
+						}
+						
+						const icon = document.getElementById('lang-icon-' + l);
+						if (icon) {
+							if (l === lang) {
+								icon.classList.add('active');
+							} else {
+								icon.classList.remove('active');
+							}
+						}
+					});
+					window.location.hash = 'lang-' + lang;
+				}
+				window.addEventListener('DOMContentLoaded', () => {
+					const hash = window.location.hash.replace('#lang-', '');
+					if (['en', 'th', 'zh', 'ja', 'de'].includes(hash)) {
+						switchLanguage(hash);
+					} else {
+						switchLanguage('en');
+					}
+				});
+				</script>
+				<div class="lang-switcher">
+					<a href="#lang-en" id="lang-icon-en" class="lang-icon" title="English" onclick="switchLanguage('en'); return false;">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+
+					<a href="#lang-th" id="lang-icon-th" class="lang-icon" title="ภาษาไทย" onclick="switchLanguage('th'); return false;">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					
+					<a href="#lang-zh" id="lang-icon-zh" class="lang-icon" title="中文" onclick="switchLanguage('zh'); return false;">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					
+					<a href="#lang-ja" id="lang-icon-ja" class="lang-icon" title="日本語" onclick="switchLanguage('ja'); return false;">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+					
+					<a href="#lang-de" id="lang-icon-de" class="lang-icon" title="Deutsch" onclick="switchLanguage('de'); return false;">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
+
+				<div id="lang-en" class="lang-section" style="padding-top: 2em; margin-bottom: 4em;">
 				<header class="major">
-					<h2>พัฒนา Web Services บน AWS Lambda ด้วยภาษา Java</h2>
-					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+					<h2>Developing Web Services on AWS Lambda with Java</h2>
+					<p><a href="../coding.html">Coding</a> > <em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp;</em></p>
 				</header>
 
 				<h3>1. To create an execution role</h3>
@@ -56,6 +217,143 @@
 					<li>Choose Save changes.</li>
 					<li>To invoke the function, choose Test.</li>
 				</ul>
+				</div>
+
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+				<header class="major">
+					<h2>พัฒนา Web Services บน AWS Lambda ด้วยภาษา Java</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+				</header>
+
+				<h3>1. การสร้าง execution role</h3>
+				<ul>
+					<li>เปิดหน้า roles ใน IAM console</li>
+					<li>เลือก Create role</li>
+					<li>สร้าง role โดยกำหนด properties ดังนี้</li>
+					<li>Trusted entity – Lambda</li>
+					<li>Permissions – AWSLambdaBasicExecutionRole</li>
+					<li>Role name – lambda-role</li>
+				</ul>
+				<p>Policy AWSLambdaBasicExecutionRole มี permissions ที่ function ต้องการเพื่อใช้ในการเขียน logs ลงใน CloudWatch Logs คุณสามารถเพิ่ม permissions ให้กับ role ได้ในภายหลัง หรือเปลี่ยนไปใช้ role อื่นที่สร้างขึ้นสำหรับ function เดียวโดยเฉพาะ</p>
+				
+				<h3>2. การสร้าง Java function</h3>
+				<ul>
+					<li>เปิด Lambda console</li>
+					<li>เลือก Create function</li>
+					<li>Configure การตั้งค่าต่อไปนี้:</li>
+					<li>Name – my-function</li>
+					<li>Runtime – Java 11</li>
+					<li>Role – Choose an existing role</li>
+					<li>Existing role – lambda-role</li>
+					<li>เลือก Create function</li>
+					<li>เพื่อ configure test event ให้เลือก Test</li>
+					<li>สำหรับ Event name ให้ใส่ test</li>
+					<li>เลือก Save changes</li>
+					<li>หากต้องการ invoke function ให้เลือก Test</li>
+				</ul>
+				</div>
+
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+				<header class="major">
+					<h2>使用 Java 在 AWS Lambda 上开发 Web Services</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+				</header>
+
+				<h3>1. 创建 execution role</h3>
+				<ul>
+					<li>在 IAM console 中打开 roles 页面。</li>
+					<li>选择 Create role。</li>
+					<li>使用以下 properties 创建 role。</li>
+					<li>Trusted entity – Lambda。</li>
+					<li>Permissions – AWSLambdaBasicExecutionRole。</li>
+					<li>Role name – lambda-role。</li>
+				</ul>
+				<p>AWSLambdaBasicExecutionRole policy 具有 function 将 logs 写入 CloudWatch Logs 所需的 permissions。你可以在之后向 role 添加 permissions，或将其替换为特定于单个 function 的其他 role。</p>
+				
+				<h3>2. 创建 Java function</h3>
+				<ul>
+					<li>打开 Lambda console。</li>
+					<li>选择 Create function。</li>
+					<li>Configure 以下设置：</li>
+					<li>Name – my-function。</li>
+					<li>Runtime – Java 11。</li>
+					<li>Role – Choose an existing role。</li>
+					<li>Existing role – lambda-role。</li>
+					<li>选择 Create function。</li>
+					<li>要 configure test event，请选择 Test。</li>
+					<li>对于 Event name，输入 test。</li>
+					<li>选择 Save changes。</li>
+					<li>要 invoke 你的 function，请选择 Test。</li>
+				</ul>
+				</div>
+
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+				<header class="major">
+					<h2>Java を使用した AWS Lambda 上の Web Services 開発</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+				</header>
+
+				<h3>1. execution role の作成</h3>
+				<ul>
+					<li>IAM console で roles ページを開きます。</li>
+					<li>Create role を選択します。</li>
+					<li>次の properties で role を作成します。</li>
+					<li>Trusted entity – Lambda。</li>
+					<li>Permissions – AWSLambdaBasicExecutionRole。</li>
+					<li>Role name – lambda-role。</li>
+				</ul>
+				<p>AWSLambdaBasicExecutionRole policy には、function が CloudWatch Logs に logs を書き込むために必要な permissions が含まれています。後で role に permissions を追加したり、単一の function 固有の別の role に入れ替えたりすることができます。</p>
+				
+				<h3>2. Java function の作成</h3>
+				<ul>
+					<li>Lambda console を開きます。</li>
+					<li>Create function を選択します。</li>
+					<li>次の設定を configure します：</li>
+					<li>Name – my-function。</li>
+					<li>Runtime – Java 11。</li>
+					<li>Role – Choose an existing role。</li>
+					<li>Existing role – lambda-role。</li>
+					<li>Create function を選択します。</li>
+					<li>test event を configure するには、Test を選択します。</li>
+					<li>Event name に test と入力します。</li>
+					<li>Save changes を選択します。</li>
+					<li>function を invoke するには、Test を選択します。</li>
+				</ul>
+				</div>
+
+				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+				<header class="major">
+					<h2>Entwicklung von Web Services auf AWS Lambda mit Java</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+				</header>
+
+				<h3>1. Erstellen einer execution role</h3>
+				<ul>
+					<li>Öffnen Sie die roles-Seite in der IAM console.</li>
+					<li>Wählen Sie Create role.</li>
+					<li>Erstellen Sie eine role mit den folgenden properties:</li>
+					<li>Trusted entity – Lambda.</li>
+					<li>Permissions – AWSLambdaBasicExecutionRole.</li>
+					<li>Role name – lambda-role.</li>
+				</ul>
+				<p>Die AWSLambdaBasicExecutionRole policy enthält die permissions, die die function benötigt, um logs in CloudWatch Logs zu schreiben. Sie können der role später permissions hinzufügen oder sie gegen eine andere role austauschen, die spezifisch für eine einzelne function ist.</p>
+				
+				<h3>2. Erstellen einer Java function</h3>
+				<ul>
+					<li>Öffnen Sie die Lambda console.</li>
+					<li>Wählen Sie Create function.</li>
+					<li>Configure die folgenden Einstellungen:</li>
+					<li>Name – my-function.</li>
+					<li>Runtime – Java 11.</li>
+					<li>Role – Choose an existing role.</li>
+					<li>Existing role – lambda-role.</li>
+					<li>Wählen Sie Create function.</li>
+					<li>Um ein test event zu configure, wählen Sie Test.</li>
+					<li>Geben Sie für den Event name test ein.</li>
+					<li>Wählen Sie Save changes.</li>
+					<li>Um die function zu invoke, wählen Sie Test.</li>
+				</ul>
+				</div>
 			</section>
 
 			<section id="two">

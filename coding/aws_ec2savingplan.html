@@ -21,15 +21,175 @@
 			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
+			<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			/* On smaller screens where the layout collapses to a single column, we revert to horizontal layout */
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+		</style>
 	</head>
 
 	<body class="is-preload">
 
 		<div id="main">
 			<section id="one">
+												<script>
+				function switchLanguage(lang) {
+					const langs = ['en', 'th', 'zh', 'ja', 'de'];
+					langs.forEach(l => {
+						const section = document.getElementById('lang-' + l);
+						if (section) {
+							if (l === lang) {
+								section.classList.add('active');
+								section.style.display = 'block';
+							} else {
+								section.classList.remove('active');
+								section.style.display = 'none';
+							}
+						}
+						
+						const icon = document.getElementById('lang-icon-' + l);
+						if (icon) {
+							if (l === lang) {
+								icon.classList.add('active');
+							} else {
+								icon.classList.remove('active');
+							}
+						}
+					});
+					window.location.hash = 'lang-' + lang;
+				}
+				window.addEventListener('DOMContentLoaded', () => {
+					const hash = window.location.hash.replace('#lang-', '');
+					if (['en', 'th', 'zh', 'ja', 'de'].includes(hash)) {
+						switchLanguage(hash);
+					} else {
+						switchLanguage('en');
+					}
+				});
+				</script>
+				<div class="lang-switcher">
+					<a href="#lang-en" id="lang-icon-en" class="lang-icon" title="English" onclick="switchLanguage('en'); return false;">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+
+					<a href="#lang-th" id="lang-icon-th" class="lang-icon" title="ภาษาไทย" onclick="switchLanguage('th'); return false;">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					
+					<a href="#lang-zh" id="lang-icon-zh" class="lang-icon" title="中文" onclick="switchLanguage('zh'); return false;">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					
+					<a href="#lang-ja" id="lang-icon-ja" class="lang-icon" title="日本語" onclick="switchLanguage('ja'); return false;">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+					
+					<a href="#lang-de" id="lang-icon-de" class="lang-icon" title="Deutsch" onclick="switchLanguage('de'); return false;">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
+				<div id="lang-en" class="lang-section" style="padding-top: 2em; margin-bottom: 4em;">
 				<header class="major">
-					<h2>ลดค่าใช้จ่าย AWS ด้วย EC2 Instance Savings Plans</h2>
-					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+					<h2>Cut AWS Costs with EC2 Instance Savings Plans</h2>
+					<p><a href="../coding.html">Coding</a> > <em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp;</em></p>
 				</header>
 
 				<p>
@@ -152,6 +312,514 @@
 				</p>
 
 				<p><em>Pricing shown is for Asia Pacific (Thailand) as of mid-2026. Always verify current rates in the AWS Pricing Calculator before purchasing.</em></p>
+				</div>
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+				<header class="major">
+					<h2>ลดค่าใช้จ่าย AWS ด้วย EC2 Instance Savings Plans</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+				</header>
+
+				<p>
+					บิล AWS มักจะเพิ่มขึ้นอย่างเงียบๆ หนึ่งในวิธีที่ง่ายที่สุดในการลดค่าใช้จ่ายลง —
+					โดยไม่ต้องเปลี่ยน code แม้แต่บรรทัดเดียว — คือการใช้ <strong>EC2 Instance Savings Plan</strong>
+					นี่คือคำอธิบายว่ามันคืออะไร วิธีเลือกสิ่งที่ใช่ และตัวเลขการลดค่าใช้จ่ายที่แท้จริง
+				</p>
+
+				<h3>Savings Plan คืออะไร?</h3>
+				<p>
+					Savings Plan คือข้อตกลงระหว่างคุณกับ AWS: คุณสัญญาว่าจะจ่ายเงินจำนวนคงที่ต่อชั่วโมงเป็นเวลา 1 หรือ 3 ปี
+					และ AWS จะให้ discount สำหรับทุกสิ่งที่ตรงตามเงื่อนไข
+					ไม่มีการทำ capacity reservations ไม่มีการตั้งค่า configuration ที่ซับซ้อน — มีเพียงแค่ spending commitment
+				</p>
+				<p>มีอยู่ 3 ประเภท:</p>
+				<ul>
+					<li><strong>EC2 Instance Savings Plan</strong> — ให้ discount สูงสุด (~40–60%) แต่จะถูกล็อคกับ instance family เดียวใน region เดียว</li>
+					<li><strong>Compute Savings Plan</strong> — ให้ discount น้อยกว่า แต่ใช้งานข้าม instance family, region, Fargate และ Lambda ได้</li>
+					<li><strong>SageMaker Savings Plan</strong> — สำหรับ ML training และ inference workloads เท่านั้น</li>
+				</ul>
+				<p>
+					สำหรับทีมที่มีการใช้งาน EC2 อย่างคงที่ใน region เฉพาะ <strong>EC2 Instance Savings Plan</strong> จะให้ผลตอบแทนที่ดีที่สุด
+				</p>
+
+				<h3>วิธีการทำงาน</h3>
+				<p>
+					คุณเลือก instance family (เช่น <highlight>c7g</highlight>) และ region ภายใน family นั้น
+					คุณสามารถเปลี่ยน instance size, OS, และ tenancy ได้อย่างอิสระ — ส่วนลดจะตามไปด้วย
+					สิ่งที่ไม่ครอบคลุม: การเปลี่ยน family (เช่น <highlight>c7g</highlight> → <highlight>m7i</highlight>) หรือย้ายไปยัง region อื่น
+				</p>
+				<p>
+					รูปภาพด้านล่างแสดง pricing ของ AWS สำหรับ <highlight>c7g</highlight> family ใน Asia Pacific (Thailand)
+					ทุกขนาดจะได้รับ <strong>48% discount</strong> จาก On-Demand ภายใต้ Savings Plan
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan.png" alt="EC2 Instance Savings Plan rates for c7g family in Asia Pacific (Thailand) — 48% off On-Demand" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					<highlight>c7g.xlarge</highlight> ลดลงจาก <strong>$0.1416/hr</strong> แบบ On-Demand เป็น <strong>$0.0733/hr</strong> ภายใต้ plan
+					รันแบบ 24/7 เป็นเวลา 1 ปี และนั่นคือการประหยัด ~$560 บน instance เดียว คูณด้วยจำนวนใน fleet และตัวเลขจะเพิ่มขึ้นอย่างรวดเร็ว
+				</p>
+
+				<h3>การเลือก Payment Option</h3>
+				<p>แต่ละ plan จะมีรูปแบบการชำระเงิน 3 แบบ:</p>
+				<ul>
+					<li><strong>All Upfront</strong> — จ่ายเต็มจำนวนวันนี้ ให้ discount สูงสุด</li>
+					<li><strong>Partial Upfront</strong> — จ่ายครึ่งหนึ่งตอนนี้ และที่เหลือจ่ายรายเดือน เป็นทางเลือกกลางๆ</li>
+					<li><strong>No Upfront</strong> — จ่ายรายเดือนเท่านั้น ให้ discount ต่ำสุด ไม่ต้องจ่ายเงินก้อนวันนี้</li>
+				</ul>
+				<p>
+					หาก workload ของคุณคงที่และงบประมาณเอื้ออำนวย การเลือก All Upfront บนระยะเวลา 3 ปีจะให้ผลตอบแทนดีที่สุด
+					หากคุณไม่แน่ใจ เริ่มด้วย No Upfront บนระยะเวลา 1 ปี — คุณสามารถซื้อเพิ่มได้เสมอในภายหลัง
+					คุณ <em>ไม่สามารถ</em> ยกเลิกหรือลด plan ได้เมื่อทำการซื้อแล้ว
+				</p>
+
+				<h3>ควร Commit เท่าไหร่</h3>
+				<p>
+					ข้อผิดพลาดที่พบบ่อยที่สุดคือการ over-committing ถ้าคุณซื้อมากกว่าที่คุณใช้ ส่วนที่ไม่ได้ใช้ก็จะสูญเปล่า
+					วิธีที่ปลอดภัยคือ commit เท่ากับ <strong>minimum steady usage</strong> — ปริมาณที่รันอยู่เสมอ
+					แม้ในคืนที่เงียบสงบหรือวันหยุดสุดสัปดาห์
+				</p>
+				<p>กระบวนการ sizing ง่ายๆ:</p>
+				<ol>
+					<li>ไปที่ <strong>Cost Explorer → Savings Plans → Recommendations</strong></li>
+					<li>ตั้งค่า lookback เป็น 30 วัน, term เป็น 1 ปี, payment เป็น No Upfront</li>
+					<li>นำ commitment ที่แนะนำและซื้อที่ประมาณ 70–80% ของค่านั้น</li>
+					<li>ตรวจสอบ coverage และ utilization หลังจากผ่านไป 30 วัน แล้วค่อยเพิ่มหากจำเป็น</li>
+				</ol>
+				<p>
+					การเริ่มแบบ conservative จะช่วยให้ utilization สูง คุณสามารถเพิ่ม commitment ได้เมื่อมีความมั่นใจมากขึ้น
+				</p>
+
+				<h3>การซื้อ Plan</h3>
+				<p>
+					เมื่อคุณรู้ว่าต้อง commit เท่าไหร่ การซื้อใช้เวลาคลิกไม่กี่ครั้งใน AWS console
+					ไปที่ <strong>Cost Explorer → Savings Plans → Purchase Savings Plans</strong>
+					เลือก <em>EC2 Instance Savings Plans</em>, เลือก instance family, region, term, และ payment option
+					จากนั้นป้อน hourly commitment amount
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan_buy.png" alt="AWS console — purchasing an EC2 Instance Savings Plan" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					ตรวจสอบ monthly savings โดยประมาณในหน้าต่างยืนยันก่อนคลิก <strong>Purchase</strong>
+					plan จะ active ภายในไม่กี่นาทีและเริ่ม apply ส่วนลดกับการใช้งานที่ตรงเงื่อนไขทันที
+					จำไว้: commitment ไม่สามารถยกเลิกหรือลดได้ ดังนั้นตรวจสอบ hourly amount ให้ดีก่อนยืนยัน
+				</p>
+
+				<h3>ตัวเลข 2 ค่าที่ต้องเฝ้าดู</h3>
+				<p>เมื่อ plan ของคุณ active แล้ว ติดตามค่าเหล่านี้รายสัปดาห์ใน Cost Explorer:</p>
+				<ul>
+					<li>
+						<strong>Coverage</strong> — สัดส่วนค่าใช้จ่าย EC2 ของคุณที่ครอบคลุมโดย Savings Plan
+						ตั้งเป้าไว้ที่ 80–90% หากต่ำกว่า 70% หมายความว่าคุณกำลังพลาดโอกาสลดค่าใช้จ่าย
+					</li>
+					<li>
+						<strong>Utilization</strong> — สัดส่วน commitment ของคุณที่ใช้งานจริง
+						ตั้งเป้าไว้สูงกว่า 95% หากต่ำกว่า 80% หมายความว่าคุณซื้อมากเกินไป
+					</li>
+				</ul>
+
+				<h3>เมื่อไหร่ที่ควรข้ามมันไป</h3>
+				<ul>
+					<li><strong>New workloads</strong> — รอให้มีข้อมูล usage 30–60 วันก่อน commit</li>
+					<li><strong>วางแผนที่จะเปลี่ยน instance families</strong> — ใช้ Compute Savings Plan แทนเพื่อให้ส่วนลดตามไปด้วย</li>
+					<li><strong>Batch หรือ ML jobs</strong> — Spot Instances ให้ส่วนลด 60–90% และมักจะเป็นทางเลือกที่ดีกว่า</li>
+					<li><strong>Dev/test ที่หยุดทำงานตอนกลางคืน</strong> — schedule การหยุดก่อน จากนั้นดูว่า baseline ที่เหลือคุ้มค่าที่จะ commit หรือไม่</li>
+				</ul>
+
+				<h3>บทสรุป</h3>
+				<p>
+					EC2 Instance Savings Plans เป็นหนึ่งในวิธีลดค่าใช้จ่ายบน AWS ที่ใช้ความพยายามน้อยที่สุด
+					ไม่ต้องเปลี่ยน architecture ไม่ต้อง migrations — มีแค่การวิเคราะห์และการตัดสินใจซื้อ
+					Commit ส่วนขั้นต่ำของคุณ เฝ้าดู coverage และ utilization และซื้อเพิ่มเมื่อ usage มีความเสถียร
+					หากทำถูกวิธี คุณสามารถลดบิล EC2 ได้ถึง 40–60% สำหรับ steady workloads
+				</p>
+
+				<p><em>Pricing ที่แสดงเป็นของ Asia Pacific (Thailand) เมื่อช่วงกลางปี 2026 โปรดตรวจสอบ rates ปัจจุบันใน AWS Pricing Calculator เสมอก่อนซื้อ</em></p>
+				</div>
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+				<header class="major">
+					<h2>通过 EC2 Instance Savings Plans 降低 AWS 成本</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+				</header>
+
+				<p>
+					AWS 账单往往会不知不觉地上涨。降低成本最简单的方法之一 —
+					无需更改任何一行 code — 就是使用 <strong>EC2 Instance Savings Plan</strong>。
+					以下是它的原理、如何选择合适的 plan，以及实际的节省效果。
+				</p>
+
+				<h3>什么是 Savings Plan？</h3>
+				<p>
+					Savings Plan 是你和 AWS 之间的一项协议：你承诺在 1 年或 3 年内每小时固定花费一定金额，
+					而 AWS 则为你符合条件的所有资源提供 discount。
+					无需 capacity reservations，无需复杂的 configuration — 只是一个 spending commitment。
+				</p>
+				<p>它分为三种类型：</p>
+				<ul>
+					<li><strong>EC2 Instance Savings Plan</strong> — 提供最大的 discount（约 40–60%），但锁定在一个 region 中的单一 instance family。</li>
+					<li><strong>Compute Savings Plan</strong> — discount 较小，但可以跨任何 instance family、region、Fargate 和 Lambda 使用。</li>
+					<li><strong>SageMaker Savings Plan</strong> — 仅适用于 ML training 和 inference workloads。</li>
+				</ul>
+				<p>
+					对于在特定 region 拥有稳定 EC2 usage 的团队，<strong>EC2 Instance Savings Plan</strong> 提供了最佳回报。
+				</p>
+
+				<h3>工作原理</h3>
+				<p>
+					你选择一个 instance family（例如 <highlight>c7g</highlight>）和一个 region。在该 family 内部，
+					你可以自由更改 instance size、OS 和 tenancy — discount 依然适用。
+					不涵盖的情况：切换 family（例如 <highlight>c7g</highlight> → <highlight>m7i</highlight>）或移动到其他 region。
+				</p>
+				<p>
+					下方截图显示了 Asia Pacific (Thailand) 中 <highlight>c7g</highlight> family 的真实 AWS 定价。
+					在 Savings Plan 下，每种尺寸的 On-Demand 价格都会获得 <strong>48% discount</strong>。
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan.png" alt="EC2 Instance Savings Plan rates for c7g family in Asia Pacific (Thailand) — 48% off On-Demand" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					一个 <highlight>c7g.xlarge</highlight> 的 On-Demand 价格从 <strong>$0.1416/hr</strong> 降至 plan 下的 <strong>$0.0733/hr</strong>。
+					如果 24/7 运行一年，单个 instance 即可节省约 $560。乘以整个 fleet 的数量，这个数字将变得非常可观。
+				</p>
+
+				<h3>选择 Payment Option</h3>
+				<p>每个 plan 提供三种付款方式：</p>
+				<ul>
+					<li><strong>All Upfront</strong> — 立即支付全款。提供最大 discount。</li>
+					<li><strong>Partial Upfront</strong> — 现在支付一半，另一半按月分期。折中选项。</li>
+					<li><strong>No Upfront</strong> — 仅按月付款。discount 最低，今天无需支付任何现金。</li>
+				</ul>
+				<p>
+					如果你的 workload 稳定且预算允许，选择 3 年期的 All Upfront 会带来最佳回报。
+					如果不确定，可以从 1 年期的 No Upfront 开始 — 你以后随时可以购买更多。
+					一旦购买，你<em>无法</em>取消或减少 plan。
+				</p>
+
+				<h3>Commit 多少金额</h3>
+				<p>
+					最常见的错误是 over-committing。如果你购买的金额超过了使用量，未使用的部分就会白白浪费。
+					安全的做法是 commit 到你的 <strong>minimum steady usage</strong> — 即使在安静的夜晚和周末也始终运行的量。
+				</p>
+				<p>一个简单的估算过程：</p>
+				<ol>
+					<li>打开 <strong>Cost Explorer → Savings Plans → Recommendations</strong>。</li>
+					<li>将 lookback 设置为 30 天，term 设置为 1 年，payment 设置为 No Upfront。</li>
+					<li>采用建议的 commitment 并在其 70–80% 的范围内购买。</li>
+					<li>30 天后查看 coverage 和 utilization，然后在需要时充值。</li>
+				</ol>
+				<p>
+					保守起步可保持较高的 utilization。随着信心的增加，你可以随时追加 commitment。
+				</p>
+
+				<h3>购买 Plan</h3>
+				<p>
+					一旦你知道需要 commit 多少，在 AWS console 中只需点击几下即可完成购买。
+					导航至 <strong>Cost Explorer → Savings Plans → Purchase Savings Plans</strong>，
+					选择 <em>EC2 Instance Savings Plans</em>，选择你的 instance family、region、term 和 payment option，
+					然后输入 hourly commitment 金额。
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan_buy.png" alt="AWS console — purchasing an EC2 Instance Savings Plan" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					在点击 <strong>Purchase</strong> 之前，请在确认屏幕上查看估计的 monthly savings。
+					该 plan 会在几分钟内激活，并立即开始对符合条件的 usage 应用折扣。
+					请记住：commitment 无法取消或减少，因此在确认前务必仔细检查 hourly amount。
+				</p>
+
+				<h3>需要关注的两个指标</h3>
+				<p>plan 激活后，每周在 Cost Explorer 中跟踪以下数据：</p>
+				<ul>
+					<li>
+						<strong>Coverage</strong> — 受 Savings Plan 保护的 EC2 支出比例。
+						目标设定为 80–90%。低于 70% 意味着你错失了节省机会。
+					</li>
+					<li>
+						<strong>Utilization</strong> — 你实际使用的 committed 支出比例。
+						目标设定为高于 95%。低于 80% 意味着你买得太多了。
+					</li>
+				</ul>
+
+				<h3>何时应该跳过</h3>
+				<ul>
+					<li><strong>New workloads</strong> — 至少等待 30–60 天的 usage 数据再进行 commit。</li>
+					<li><strong>计划切换 instance families</strong> — 使用 Compute Savings Plan 代替，以便 discount 随之转移。</li>
+					<li><strong>Batch 或 ML jobs</strong> — Spot Instances 可提供 60–90% 的折扣，通常是更好的选择。</li>
+					<li><strong>在夜间关闭的 Dev/test</strong> — 先安排停止时间，然后查看剩余的 baseline 是否值得 commit。</li>
+				</ul>
+
+				<h3>总结</h3>
+				<p>
+					EC2 Instance Savings Plans 是 AWS 上最省力的成本降低方法之一。
+					没有 architecture 变更，没有 migrations — 只需要分析和购买决策。
+					Commit 你的最低限度，关注你的 coverage 和 utilization，并随着 usage 的稳定逐步增加购买量。
+					如果执行得当，对于稳定的 workloads，切实地将 EC2 账单削减 40–60% 是可行的。
+				</p>
+
+				<p><em>所示价格为 2026 年中期的 Asia Pacific (Thailand) 价格。购买前请务必在 AWS Pricing Calculator 中核实当前费率。</em></p>
+				</div>
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+				<header class="major">
+					<h2>EC2 Instance Savings Plans で AWS コストを削減する</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+				</header>
+
+				<p>
+					AWS の請求額は静かに増え続ける傾向があります。コードを 1 行も変更することなく、
+					コストを削減する最も簡単な方法の 1 つが <strong>EC2 Instance Savings Plan</strong> です。
+					その仕組み、適切な plan の選び方、実際の節約効果について説明します。
+				</p>
+
+				<h3>Savings Plan とは？</h3>
+				<p>
+					Savings Plan はあなたと AWS の間の契約です。1 年または 3 年間、1 時間あたり固定額の支出を約束することで、
+					AWS は条件に一致するすべての使用量に対して discount を提供します。
+					capacity reservations も複雑な configuration も不要です。必要なのは spending commitment だけです。
+				</p>
+				<p>3 つの種類があります：</p>
+				<ul>
+					<li><strong>EC2 Instance Savings Plan</strong> — 最大の discount (約 40–60%) を提供しますが、特定の region の 1 つの instance family に固定されます。</li>
+					<li><strong>Compute Savings Plan</strong> — discount は小さくなりますが、任意の instance family、region、Fargate、Lambda にまたがって適用されます。</li>
+					<li><strong>SageMaker Savings Plan</strong> — ML training と inference workloads 専用です。</li>
+				</ul>
+				<p>
+					特定の region で安定した EC2 usage があるチームにとっては、<strong>EC2 Instance Savings Plan</strong> が最大のリターンをもたらします。
+				</p>
+
+				<h3>仕組み</h3>
+				<p>
+					instance family (例: <highlight>c7g</highlight>) と region を選択します。その family 内であれば、
+					instance size、OS、tenancy を自由に変更でき、discount は引き続き適用されます。
+					適用されないこと：family の切り替え (例: <highlight>c7g</highlight> → <highlight>m7i</highlight>) や、他の region への移動。
+				</p>
+				<p>
+					以下のスクリーンショットは、Asia Pacific (Thailand) の <highlight>c7g</highlight> family の実際の AWS 料金を示しています。
+					Savings Plan を使用すると、すべてのサイズで On-Demand 料金から <strong>48% discount</strong> が得られます。
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan.png" alt="EC2 Instance Savings Plan rates for c7g family in Asia Pacific (Thailand) — 48% off On-Demand" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					<highlight>c7g.xlarge</highlight> の場合、On-Demand の <strong>$0.1416/hr</strong> から plan の <strong>$0.0733/hr</strong> に下がります。
+					これを 24/7 で 1 年間実行すると、1 つの instance だけで約 $560 の節約になります。fleet 全体に掛けると、その数字はすぐに大きな意味を持ちます。
+				</p>
+
+				<h3>Payment Option の選択</h3>
+				<p>各 plan には 3 つの支払い方法があります：</p>
+				<ul>
+					<li><strong>All Upfront</strong> — 全額を今すぐ支払います。最大の discount です。</li>
+					<li><strong>Partial Upfront</strong> — 半分を今支払い、残りを月割りで支払います。中間の選択肢です。</li>
+					<li><strong>No Upfront</strong> — 毎月の支払いのみです。discount は最小ですが、今日の現金支出はゼロです。</li>
+				</ul>
+				<p>
+					workload が安定しており、予算が許すなら、3 年期間の All Upfront が最高のリターンをもたらします。
+					確信が持てない場合は、1 年期間の No Upfront から始めてください。後でいつでも追加購入できます。
+					一度購入した plan は、キャンセルしたり減らしたりすることは<em>できません</em>。
+				</p>
+
+				<h3>Commit する金額</h3>
+				<p>
+					最もよくある間違いは over-committing です。使用量より多く購入すると、未使用部分は単に無駄になります。
+					安全なアプローチは、<strong>minimum steady usage</strong> — 静かな夜や週末でも常に実行されている量に commit することです。
+				</p>
+				<p>簡単なサイジングのプロセス：</p>
+				<ol>
+					<li><strong>Cost Explorer → Savings Plans → Recommendations</strong> を開きます。</li>
+					<li>lookback を 30 日間、term を 1 年、payment を No Upfront に設定します。</li>
+					<li>推奨される commitment 額を取得し、その 70–80% の金額で購入します。</li>
+					<li>30 日後に coverage と utilization を確認し、必要に応じて追加購入します。</li>
+				</ol>
+				<p>
+					保守的に始めることで、utilization を高く保つことができます。確信が持てるようになったら、いつでも commitment を追加できます。
+				</p>
+
+				<h3>Plan の購入</h3>
+				<p>
+					commit する金額がわかれば、AWS console で数回のクリックで購入が完了します。
+					<strong>Cost Explorer → Savings Plans → Purchase Savings Plans</strong> に移動し、
+					<em>EC2 Instance Savings Plans</em> を選択し、instance family、region、term、payment option を選択して、
+					hourly commitment 額を入力します。
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan_buy.png" alt="AWS console — purchasing an EC2 Instance Savings Plan" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					<strong>Purchase</strong> をクリックする前に、確認画面に表示される推定 monthly savings を確認してください。
+					plan は数分以内に有効になり、条件に一致する usage に対して直ちに discount が適用され始めます。
+					注意：commitment はキャンセルしたり減らしたりできないため、確認前に hourly amount を再確認してください。
+				</p>
+
+				<h3>監視すべき 2 つの指標</h3>
+				<p>plan が有効になったら、Cost Explorer で毎週これらを追跡してください：</p>
+				<ul>
+					<li>
+						<strong>Coverage</strong> — Savings Plan で保護されている EC2 支出の割合。
+						80–90% を目指してください。70% を下回る場合は、節約の機会を逃しています。
+					</li>
+					<li>
+						<strong>Utilization</strong> — 実際に使用されている committed 支出の割合。
+						95% 以上を目指してください。80% を下回る場合は、買いすぎを意味します。
+					</li>
+				</ul>
+
+				<h3>スキップすべき場合</h3>
+				<ul>
+					<li><strong>New workloads</strong> — commit する前に、30–60 日分の usage データが蓄積されるのを待ちます。</li>
+					<li><strong>instance families の切り替えを計画している場合</strong> — 代わりに Compute Savings Plan を使用し、discount が移行できるようにします。</li>
+					<li><strong>Batch または ML jobs</strong> — Spot Instances で 60–90% の割引が得られるため、ほぼ常にこちらのほうが良い選択です。</li>
+					<li><strong>夜間にシャットダウンする Dev/test</strong> — 停止の schedule を先に設定し、残りの baseline が commit する価値があるかどうかを確認します。</li>
+				</ul>
+
+				<h3>結論</h3>
+				<p>
+					EC2 Instance Savings Plans は、AWS で最も少ない労力で実現できるコスト削減の 1 つです。
+					architecture の変更も migrations も不要で、分析と購入の決定だけです。
+					最低限のレベルに commit し、coverage と utilization を監視し、usage が安定してきたらさらに追加します。
+					正しく行えば、安定した workloads の EC2 請求額を 40–60% 削減することは現実的です。
+				</p>
+
+				<p><em>表示されている料金は、2026 年中旬の Asia Pacific (Thailand) のものです。購入する前に、必ず AWS Pricing Calculator で最新の料金を確認してください。</em></p>
+				</div>
+				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+				<header class="major">
+					<h2>AWS-Kosten senken mit EC2 Instance Savings Plans</h2>
+					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../coding.html">&larr; Coding</a></em></p>
+				</header>
+
+				<p>
+					AWS-Rechnungen haben die Angewohnheit, unbemerkt zu wachsen. Eine der einfachsten Methoden, sie wieder zu senken —
+					ohne eine einzige Zeile Code zu ändern — ist ein <strong>EC2 Instance Savings Plan</strong>.
+					Hier erfahren Sie, was das ist, wie Sie den richtigen auswählen und wie echte Einsparungen aussehen.
+				</p>
+
+				<h3>Was ist ein Savings Plan?</h3>
+				<p>
+					Ein Savings Plan ist ein Deal zwischen Ihnen und AWS: Sie verpflichten sich, für 1 oder 3 Jahre einen festen Betrag pro Stunde auszugeben,
+					und AWS gewährt Ihnen einen discount auf alles, was dazu passt.
+					Keine capacity reservations, keine komplexe configuration — nur ein spending commitment.
+				</p>
+				<p>Es gibt drei Typen:</p>
+				<ul>
+					<li><strong>EC2 Instance Savings Plan</strong> — höchster discount (~40–60%), aber an eine instance family in einer region gebunden.</li>
+					<li><strong>Compute Savings Plan</strong> — geringerer discount, funktioniert aber über jede instance family, region, Fargate und Lambda hinweg.</li>
+					<li><strong>SageMaker Savings Plan</strong> — nur für ML training und inference workloads.</li>
+				</ul>
+				<p>
+					Für Teams mit stabiler EC2 usage in einer bestimmten region bietet der <strong>EC2 Instance Savings Plan</strong> den besten Ertrag.
+				</p>
+
+				<h3>Wie es funktioniert</h3>
+				<p>
+					Sie wählen eine instance family (z. B. <highlight>c7g</highlight>) und eine region. Innerhalb dieser family
+					können Sie instance size, OS und tenancy frei ändern — der discount bleibt bestehen.
+					Was nicht abgedeckt ist: Wechsel der family (z. B. <highlight>c7g</highlight> → <highlight>m7i</highlight>) oder Umzug in eine andere region.
+				</p>
+				<p>
+					Der folgende Screenshot zeigt die realen AWS-Preise für die <highlight>c7g</highlight> family in Asia Pacific (Thailand).
+					Jede Größe erhält unter einem Savings Plan einen <strong>48% discount</strong> auf On-Demand.
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan.png" alt="EC2 Instance Savings Plan rates for c7g family in Asia Pacific (Thailand) — 48% off On-Demand" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					Eine <highlight>c7g.xlarge</highlight> fällt von <strong>$0.1416/hr</strong> On-Demand auf <strong>$0.0733/hr</strong> im Rahmen des plans.
+					Betreiben Sie sie ein Jahr lang 24/7 und Sie sparen ~$560 bei einer einzigen instance. Multiplizieren Sie das mit einer ganzen fleet, und die Zahlen werden schnell bedeutsam.
+				</p>
+
+				<h3>Auswahl einer Payment Option</h3>
+				<p>Jeder plan ist in drei Zahlungsvarianten erhältlich:</p>
+				<ul>
+					<li><strong>All Upfront</strong> — den vollen Betrag heute zahlen. Höchster discount.</li>
+					<li><strong>Partial Upfront</strong> — die Hälfte jetzt, die andere Hälfte monatlich verteilt. Der Mittelweg.</li>
+					<li><strong>No Upfront</strong> — nur monatliche Zahlungen. Geringster discount, keine sofortigen Barausgaben heute.</li>
+				</ul>
+				<p>
+					Wenn Ihre workload stabil ist und das Budget es zulässt, liefert All Upfront bei einer Laufzeit von 3 Jahren den besten Ertrag.
+					Wenn Sie sich unsicher sind, beginnen Sie mit No Upfront bei einer Laufzeit von 1 Jahr — Sie können später jederzeit mehr kaufen.
+					Sie können einen plan nach dem Kauf <em>nicht</em> stornieren oder reduzieren.
+				</p>
+
+				<h3>Wie viel man committen sollte</h3>
+				<p>
+					Der häufigste Fehler ist over-committing. Wenn Sie mehr kaufen als Sie nutzen, verfällt der ungenutzte Teil einfach.
+					Der sichere Ansatz ist, sich auf Ihre <strong>minimum steady usage</strong> zu committen — die Menge, die immer läuft,
+					selbst in ruhigen Nächten und an Wochenenden.
+				</p>
+				<p>Ein einfacher Sizing-Prozess:</p>
+				<ol>
+					<li>Öffnen Sie <strong>Cost Explorer → Savings Plans → Recommendations</strong>.</li>
+					<li>Setzen Sie lookback auf 30 Tage, term auf 1 Jahr, payment auf No Upfront.</li>
+					<li>Nehmen Sie das empfohlene commitment und kaufen Sie zu 70–80% davon.</li>
+					<li>Überprüfen Sie nach 30 Tagen coverage und utilization, laden Sie dann bei Bedarf auf.</li>
+				</ol>
+				<p>
+					Ein konservativer Start hält die utilization hoch. Sie können jederzeit weiteres commitment hinzufügen, wenn Sie mehr Vertrauen gewinnen.
+				</p>
+
+				<h3>Kauf eines Plans</h3>
+				<p>
+					Sobald Sie wissen, wie viel Sie committen möchten, erfordert der Kauf nur wenige Klicks in der AWS console.
+					Navigieren Sie zu <strong>Cost Explorer → Savings Plans → Purchase Savings Plans</strong>,
+					wählen Sie <em>EC2 Instance Savings Plans</em>, wählen Sie Ihre instance family, region, term und payment option,
+					und geben Sie dann den stündlichen commitment Betrag ein.
+				</p>
+
+				<p>
+					<img src="../images/ec2instancesavingplan_buy.png" alt="AWS console — purchasing an EC2 Instance Savings Plan" style="max-width:100%; border-radius:6px;" />
+				</p>
+
+				<p>
+					Überprüfen Sie die geschätzten monthly savings auf dem Bestätigungsbildschirm, bevor Sie auf <strong>Purchase</strong> klicken.
+					Der plan wird innerhalb von Minuten aktiv und wendet discounts sofort auf passende usage an.
+					Denken Sie daran: Das commitment kann nicht storniert oder reduziert werden, prüfen Sie also den hourly amount noch einmal vor der Bestätigung.
+				</p>
+
+				<h3>Zwei Kennzahlen, die Sie beobachten sollten</h3>
+				<p>Sobald Ihr plan aktiv ist, verfolgen Sie diese wöchentlich im Cost Explorer:</p>
+				<ul>
+					<li>
+						<strong>Coverage</strong> — welcher Anteil Ihrer EC2-Ausgaben durch einen Savings Plan geschützt ist.
+						Streben Sie 80–90% an. Unter 70% bedeutet, dass Sie Einsparungen liegen lassen.
+					</li>
+					<li>
+						<strong>Utilization</strong> — welcher Anteil Ihrer committed Ausgaben tatsächlich genutzt wird.
+						Streben Sie über 95% an. Unter 80% bedeutet, dass Sie zu viel gekauft haben.
+					</li>
+				</ul>
+
+				<h3>Wann man darauf verzichten sollte</h3>
+				<ul>
+					<li><strong>New workloads</strong> — warten Sie auf 30–60 Tage usage Daten, bevor Sie committen.</li>
+					<li><strong>Geplanter Wechsel von instance families</strong> — verwenden Sie stattdessen einen Compute Savings Plan, damit der discount mitgeht.</li>
+					<li><strong>Batch oder ML jobs</strong> — Spot Instances bieten 60–90% Rabatt und sind hier fast immer die bessere Wahl.</li>
+					<li><strong>Dev/test, das nachts abgeschaltet wird</strong> — planen Sie zuerst den Stopp und prüfen Sie dann, ob sich die verbleibende baseline für ein commitment lohnt.</li>
+				</ul>
+
+				<h3>Fazit</h3>
+				<p>
+					EC2 Instance Savings Plans sind eine der aufwandsärmsten Kostenreduzierungen, die auf AWS verfügbar sind.
+					Keine architecture Änderungen, keine migrations — nur eine Analyse und eine Kaufentscheidung.
+					Committen Sie sich auf Ihren Mindestbedarf, beobachten Sie Ihre coverage und utilization, und stocken Sie auf, wenn sich die usage stabilisiert.
+					Richtig gemacht, ist es realistisch, Ihre EC2-Rechnung bei stabilen workloads um 40–60% zu senken.
+				</p>
+
+				<p><em>Die angezeigten Preise gelten für Asia Pacific (Thailand) Stand Mitte 2026. Überprüfen Sie aktuelle Raten immer im AWS Pricing Calculator vor dem Kauf.</em></p>
+				</div>
+
 			</section>
 
 			<section id="comments">

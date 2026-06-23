@@ -1,26 +1,10 @@
-<!DOCTYPE HTML>
-<html lang="en">
-	<head>
-		<title>Peerapat A - สร้างเอกสารด้วย LaTeX ผ่าน Claude AI</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="How I use Claude AI to write and structure LaTeX documents — from building a custom Thai-language document class to enterprise architecture reports." />
-		<meta name="keywords" content="LaTeX, Claude AI, XeLaTeX, Thai font, easreport, document template, TOGAF, enterprise architecture" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets/css/ci.css" />
-		<link rel="stylesheet" href="../assets/css/cookie-consent.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-		<!-- Google tag (gtag.js) -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
-		<script>
-			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
-			gtag('consent', 'default', { analytics_storage: 'denied' });
-			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
-			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
-			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
-		</script>
+import re
+
+def update_html(file_path):
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    css_block = """
 		<style>
 			.lang-switcher {
 				position: fixed;
@@ -119,16 +103,60 @@
 				}
 			}
 		</style>
-	</head>
+	</head>"""
+    
+    js_block = """		<script src="../assets/js/cookie-consent.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const langIcons = document.querySelectorAll('.lang-icon');
+				const langSections = document.querySelectorAll('.lang-section');
 
-	<body class="is-preload">
+				function activateLanguage(hash) {
+					// Remove active class from all icons and sections
+					langIcons.forEach(i => i.classList.remove('active'));
+					langSections.forEach(s => s.classList.remove('active'));
 
-		<div id="main">
-			<section id="one">
-				<header class="major">
-					<h2>สร้างเอกสารด้วย LaTeX ผ่าน Claude AI</h2>
-					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../agenticai.html">&larr; Agentic AI</a></em></p>
-				</header>
+					// Find target icon and section
+					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === hash) || langIcons[0];
+					const targetHash = targetIcon.getAttribute('href');
+					const targetSection = document.querySelector(targetHash);
+
+					// Activate them
+					if (targetIcon) targetIcon.classList.add('active');
+					if (targetSection) targetSection.classList.add('active');
+				}
+
+				// Update active icon on click
+				langIcons.forEach(icon => {
+					icon.addEventListener('click', function(e) {
+						e.preventDefault(); // Prevent jump since it acts like a tab now
+						const hash = this.getAttribute('href');
+						history.pushState(null, null, hash);
+						activateLanguage(hash);
+					});
+				});
+
+				// Set initial active state from URL hash if present, else default to first
+				activateLanguage(window.location.hash || langIcons[0].getAttribute('href'));
+			});
+		</script>
+	</body>
+</html>"""
+
+    # Add style
+    content = content.replace("	</head>", css_block)
+    
+    # Add JS
+    content = content.replace("		<script src=\"../assets/js/cookie-consent.js\"></script>\n	</body>\n</html>\n", js_block + "\n")
+
+    # Extract original text and replace with translated blocks
+    header_end = content.find("</header>") + len("</header>")
+    comments_start = content.find('<section id="comments">')
+
+    header_content = content[:header_end]
+    comments_content = content[comments_start:]
+
+    lang_switcher = """
 
 				<div class="lang-switcher">
 					<a href="#lang-en" class="lang-icon active" title="English">
@@ -155,7 +183,9 @@
 						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
 						<span class="lang-code">DE</span>
 					</a>
-				</div>
+				</div>"""
+
+    lang_en = """
 
 				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
 					<p>
@@ -294,7 +324,9 @@ latexmk -r conf/latexmkrc -C main.tex
 					</p>
 
 					<p><em>Note: This blog post was written with Claude Code using the template-doc repository as source material.</em></p>
-				</div>
+				</div>"""
+
+    lang_th = """
 
 				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
 					<p>
@@ -418,7 +450,9 @@ latexmk -r conf/latexmkrc -C main.tex
 					</p>
 
 					<p><em>Note: บทความบน blog นี้ ถูกเขียนร่วมกับ Claude Code โดยได้อ้างอิง source material มาจาก template-doc repository</em></p>
-				</div>
+				</div>"""
+
+    lang_zh = """
 
 				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
 					<p>
@@ -557,7 +591,9 @@ latexmk -r conf/latexmkrc -C main.tex
 					</p>
 
 					<p><em>Note: 这篇 blog post 是在 Claude Code 的帮助下，使用 template-doc repository 作为 source material 编写的。</em></p>
-				</div>
+				</div>"""
+
+    lang_ja = """
 
 				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
 					<p>
@@ -695,7 +731,9 @@ latexmk -r conf/latexmkrc -C main.tex
 					</p>
 
 					<p><em>Note: この blog post は、template-doc repository を source material として使用し、Claude Code で執筆されました。</em></p>
-				</div>
+				</div>"""
+
+    lang_de = """
 
 				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
 					<p>
@@ -834,73 +872,12 @@ latexmk -r conf/latexmkrc -C main.tex
 					</p>
 
 					<p><em>Note: Dieser Blog-Beitrag wurde mit Claude Code geschrieben, wobei das template-doc repository als source material verwendet wurde.</em></p>
-				</div>
-			</section>
+				</div>"""
 
-			<section id="comments">
-				<div id="disqus_thread"></div>
-				<script>
-					var disqus_config = function () {
-						this.page.url = window.location.href.split('#')[0].split('?')[0];
-						this.page.identifier = window.location.pathname;
-					};
-					(function() {
-						var d = document, s = d.createElement('script');
-						s.src = 'https://norbor.disqus.com/embed.js';
-						s.setAttribute('data-timestamp', +new Date());
-						(d.head || d.body).appendChild(s);
-					})();
-				</script>
-				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-			</section>
+    new_content = header_content + lang_switcher + lang_en + lang_th + lang_zh + lang_ja + lang_de + "\n\n\t\t\t" + comments_content
 
-			<div class="inner">
-				<p class="copyright">
-					&copy; peerapat.cc
-				</p>
-			</div>
-		</div>
+    with open(file_path, 'w', encoding='utf-8') as f:
+        f.write(new_content)
 
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/jquery.poptrox.min.js"></script>
-		<script src="../assets/js/browser.min.js"></script>
-		<script src="../assets/js/breakpoints.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
-		<script src="../assets/js/cookie-consent.js"></script>
-		<script>
-			document.addEventListener('DOMContentLoaded', () => {
-				const langIcons = document.querySelectorAll('.lang-icon');
-				const langSections = document.querySelectorAll('.lang-section');
-
-				function activateLanguage(hash) {
-					// Remove active class from all icons and sections
-					langIcons.forEach(i => i.classList.remove('active'));
-					langSections.forEach(s => s.classList.remove('active'));
-
-					// Find target icon and section
-					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === hash) || langIcons[0];
-					const targetHash = targetIcon.getAttribute('href');
-					const targetSection = document.querySelector(targetHash);
-
-					// Activate them
-					if (targetIcon) targetIcon.classList.add('active');
-					if (targetSection) targetSection.classList.add('active');
-				}
-
-				// Update active icon on click
-				langIcons.forEach(icon => {
-					icon.addEventListener('click', function(e) {
-						e.preventDefault(); // Prevent jump since it acts like a tab now
-						const hash = this.getAttribute('href');
-						history.pushState(null, null, hash);
-						activateLanguage(hash);
-					});
-				});
-
-				// Set initial active state from URL hash if present, else default to first
-				activateLanguage(window.location.hash || langIcons[0].getAttribute('href'));
-			});
-		</script>
-	</body>
-</html>
+if __name__ == "__main__":
+    update_html('/Users/norbor/Github/nuboat.github.io/agenticai/latex.html')

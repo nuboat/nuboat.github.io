@@ -21,6 +21,104 @@
 			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
+		<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			/* On smaller screens where the layout collapses to a single column, we revert to horizontal layout */
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+		</style>
 	</head>
 
 	<body class="is-preload">
@@ -32,35 +130,63 @@
 					<p><em>June 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../agenticai.html">&larr; Agentic AI</a></em></p>
 				</header>
 
-				<p>
-					Writing security tests is tedious, repetitive, and easy to skip when a deadline is close.
-					But it is also exactly the kind of work an AI assistant is good at — well-defined patterns,
-					repeated across many endpoints. Instead of asking Claude the same thing every time,
-					you can capture that knowledge once as a <strong>skill</strong> and reuse it forever.
-				</p>
-				<p>
-					This post walks through a custom Claude Code skill that turns any Play Framework controller
-					into a full <strong>OWASP Top 10</strong> security test suite using <highlight>PlaySpec</highlight> and <highlight>FakeRequest</highlight>.
-				</p>
+				<div class="lang-switcher">
+					<a href="#lang-en" class="lang-icon active" title="English">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
 
-				<h3>What is a Skill?</h3>
-				<p>
-					A skill is a reusable instruction set you give to an AI agent. It is a Markdown file with a small
-					frontmatter header and a body of instructions. When you invoke it, the agent loads those instructions
-					as expert context — so it behaves like a specialist instead of a generalist.
-				</p>
-				<p>The frontmatter has three useful fields:</p>
-				<ul>
-					<li><strong>name</strong> — the identifier you invoke the skill by.</li>
-					<li><strong>description</strong> — a one-line summary the agent uses to decide when the skill is relevant.</li>
-					<li><strong>argument-hint</strong> — tells the user what input to provide (here, a controller or route).</li>
-				</ul>
+					<a href="#lang-th" class="lang-icon" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					
+					<a href="#lang-zh" class="lang-icon" title="中文">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					
+					<a href="#lang-ja" class="lang-icon" title="日本語">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+					
+					<a href="#lang-de" class="lang-icon" title="Deutsch">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
 
-				<h3>The Skill Definition</h3>
-				<p>
-					Here is the full skill. It tells the agent to act as a security-focused SDET and produce
-					integration tests against the OWASP Top 10 — not generic unit tests.
-				</p>
+				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
+					<p>
+						Writing security tests is tedious, repetitive, and easy to skip when a deadline is close.
+						But it is also exactly the kind of work an AI assistant is good at — well-defined patterns,
+						repeated across many endpoints. Instead of asking Claude the same thing every time,
+						you can capture that knowledge once as a <strong>skill</strong> and reuse it forever.
+					</p>
+					<p>
+						This post walks through a custom Claude Code skill that turns any Play Framework controller
+						into a full <strong>OWASP Top 10</strong> security test suite using <highlight>PlaySpec</highlight> and <highlight>FakeRequest</highlight>.
+					</p>
+
+					<h3>What is a Skill?</h3>
+					<p>
+						A skill is a reusable instruction set you give to an AI agent. It is a Markdown file with a small
+						frontmatter header and a body of instructions. When you invoke it, the agent loads those instructions
+						as expert context — so it behaves like a specialist instead of a generalist.
+					</p>
+					<p>The frontmatter has three useful fields:</p>
+					<ul>
+						<li><strong>name</strong> — the identifier you invoke the skill by.</li>
+						<li><strong>description</strong> — a one-line summary the agent uses to decide when the skill is relevant.</li>
+						<li><strong>argument-hint</strong> — tells the user what input to provide (here, a controller or route).</li>
+					</ul>
+
+					<h3>The Skill Definition</h3>
+					<p>
+						Here is the full skill. It tells the agent to act as a security-focused SDET and produce
+						integration tests against the OWASP Top 10 — not generic unit tests.
+					</p>
 <pre><code>---
 name: owasp-playspec-tester
 description: "Generates Scala Play Framework security tests using
@@ -80,46 +206,46 @@ When the user provides a controller, model, or route, generate a
 PlaySpec test class that verifies the application's resilience against
 OWASP Top 10 2025 vulnerabilities.</code></pre>
 
-				<h3>The Test Coverage It Enforces</h3>
-				<p>
-					The heart of the skill is a checklist of attack classes. Every generated suite must cover all four,
-					so nothing gets quietly skipped:
-				</p>
-				<ul>
-					<li>
-						<strong>Injection (SQL/NoSQL/Command)</strong> — sends payloads like <highlight>' OR 1=1 --</highlight> and
-						asserts the response is <highlight>400 BAD_REQUEST</highlight> or <highlight>401 UNAUTHORIZED</highlight>,
-						never a leaky <highlight>500 INTERNAL_SERVER_ERROR</highlight>.
-					</li>
-					<li>
-						<strong>Cross-Site Scripting (XSS)</strong> — injects <highlight>&lt;script&gt;alert(1)&lt;/script&gt;</highlight>
-						into JSON or form bodies and asserts the raw payload is not reflected back unescaped.
-					</li>
-					<li>
-						<strong>Security Misconfiguration</strong> — checks that responses carry secure headers
-						(<highlight>X-Frame-Options</highlight>, <highlight>X-Content-Type-Options</highlight>, <highlight>Content-Security-Policy</highlight>).
-					</li>
-					<li>
-						<strong>Broken Access Control</strong> — hits restricted endpoints with no valid session or JWT
-						and asserts <highlight>401 UNAUTHORIZED</highlight> or <highlight>403 FORBIDDEN</highlight>.
-					</li>
-				</ul>
+					<h3>The Test Coverage It Enforces</h3>
+					<p>
+						The heart of the skill is a checklist of attack classes. Every generated suite must cover all four,
+						so nothing gets quietly skipped:
+					</p>
+					<ul>
+						<li>
+							<strong>Injection (SQL/NoSQL/Command)</strong> — sends payloads like <highlight>' OR 1=1 --</highlight> and
+							asserts the response is <highlight>400 BAD_REQUEST</highlight> or <highlight>401 UNAUTHORIZED</highlight>,
+							never a leaky <highlight>500 INTERNAL_SERVER_ERROR</highlight>.
+						</li>
+						<li>
+							<strong>Cross-Site Scripting (XSS)</strong> — injects <highlight>&lt;script&gt;alert(1)&lt;/script&gt;</highlight>
+							into JSON or form bodies and asserts the raw payload is not reflected back unescaped.
+						</li>
+						<li>
+							<strong>Security Misconfiguration</strong> — checks that responses carry secure headers
+							(<highlight>X-Frame-Options</highlight>, <highlight>X-Content-Type-Options</highlight>, <highlight>Content-Security-Policy</highlight>).
+						</li>
+						<li>
+							<strong>Broken Access Control</strong> — hits restricted endpoints with no valid session or JWT
+							and asserts <highlight>401 UNAUTHORIZED</highlight> or <highlight>403 FORBIDDEN</highlight>.
+						</li>
+					</ul>
 
-				<h3>Code Guidelines</h3>
-				<p>The skill also pins down <em>how</em> the tests are written, so the output is consistent and runnable:</p>
-				<ul>
-					<li>Seed test data in a <highlight>def initial(): Unit</highlight> to simulate records in the database.</li>
-					<li>Use <highlight>play.api.test.FakeRequest</highlight> to simulate malicious traffic.</li>
-					<li>Use <highlight>play.api.test.Helpers._</highlight> for routing and assertions
-						(<highlight>status(result)</highlight>, <highlight>contentAsString(result)</highlight>).</li>
-					<li>Produce valid Scala in ScalaTest BDD style:
-						<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>.</li>
-				</ul>
+					<h3>Code Guidelines</h3>
+					<p>The skill also pins down <em>how</em> the tests are written, so the output is consistent and runnable:</p>
+					<ul>
+						<li>Seed test data in a <highlight>def initial(): Unit</highlight> to simulate records in the database.</li>
+						<li>Use <highlight>play.api.test.FakeRequest</highlight> to simulate malicious traffic.</li>
+						<li>Use <highlight>play.api.test.Helpers._</highlight> for routing and assertions
+							(<highlight>status(result)</highlight>, <highlight>contentAsString(result)</highlight>).</li>
+						<li>Produce valid Scala in ScalaTest BDD style:
+							<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>.</li>
+					</ul>
 
-				<h3>What the Output Looks Like</h3>
-				<p>
-					Point the skill at a controller and it produces a ready-to-run spec. A trimmed example:
-				</p>
+					<h3>What the Output Looks Like</h3>
+					<p>
+						Point the skill at a controller and it produces a ready-to-run spec. A trimmed example:
+					</p>
 <pre><code>class UserControllerSecuritySpec extends PlaySpec with GuiceOneAppPerSuite {
 
   def initial(): Unit = {
@@ -161,21 +287,596 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
   }
 }</code></pre>
 
-				<h3>Why Capture It as a Skill</h3>
-				<ul>
-					<li>✅ <strong>Consistency</strong> — every endpoint gets the same four attack classes, every time.</li>
-					<li>✅ <strong>Speed</strong> — no re-explaining the requirements on each new controller.</li>
-					<li>✅ <strong>Shared standard</strong> — the whole team invokes the same security baseline.</li>
-					<li>✅ <strong>Living documentation</strong> — the skill file <em>is</em> your security testing policy.</li>
-				</ul>
+					<h3>Why Capture It as a Skill</h3>
+					<ul>
+						<li>✅ <strong>Consistency</strong> — every endpoint gets the same four attack classes, every time.</li>
+						<li>✅ <strong>Speed</strong> — no re-explaining the requirements on each new controller.</li>
+						<li>✅ <strong>Shared standard</strong> — the whole team invokes the same security baseline.</li>
+						<li>✅ <strong>Living documentation</strong> — the skill file <em>is</em> your security testing policy.</li>
+					</ul>
 
-				<h3>Bottom Line</h3>
-				<p>
-					Security testing does not have to be the task everyone avoids. By encoding the OWASP Top 10
-					into a small, reusable skill, you turn a chore into a one-line command — and make
-					"did we test for injection?" a question with a reliable answer.
-				</p>
-				<p><em>Generated tests are a starting point, not a guarantee. Always review them and pair with manual security review for high-risk endpoints.</em></p>
+					<h3>Bottom Line</h3>
+					<p>
+						Security testing does not have to be the task everyone avoids. By encoding the OWASP Top 10
+						into a small, reusable skill, you turn a chore into a one-line command — and make
+						"did we test for injection?" a question with a reliable answer.
+					</p>
+					<p><em>Generated tests are a starting point, not a guarantee. Always review them and pair with manual security review for high-risk endpoints.</em></p>
+				</div>
+
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<p>
+						การเขียน security tests เป็นงานที่น่าเบื่อ ซ้ำซาก และมักจะถูกข้ามไปง่ายๆ เมื่อใกล้ถึง deadline 
+						แต่นี่ก็คืองานประเภทที่ AI assistant ถนัดที่สุด — ด้วยรูปแบบที่ชัดเจนและทำซ้ำในหลายๆ endpoints
+						แทนที่จะต้องสั่ง Claude แบบเดิมๆ ทุกครั้ง คุณสามารถรวบรวมความรู้นั้นไว้ครั้งเดียวในรูปแบบของ <strong>skill</strong> และนำกลับมาใช้ใหม่ได้ตลอดไป
+					</p>
+					<p>
+						บทความนี้จะพาไปดูการสร้าง custom Claude Code skill ที่จะเปลี่ยน Play Framework controller ใดๆ 
+						ให้เป็น security test suite แบบเต็มรูปแบบตามมาตรฐาน <strong>OWASP Top 10</strong> โดยใช้ <highlight>PlaySpec</highlight> และ <highlight>FakeRequest</highlight>
+					</p>
+
+					<h3>What is a Skill?</h3>
+					<p>
+						skill คือชุดคำสั่งที่สามารถนำกลับมาใช้ใหม่ได้ ซึ่งคุณกำหนดให้กับ AI agent มันเป็นไฟล์ Markdown ที่มี
+						frontmatter header เล็กๆ และส่วนของเนื้อหาคำสั่ง เมื่อคุณ invoke มัน ตัว agent จะโหลดคำสั่งเหล่านั้น
+						เป็น expert context — ทำให้มันทำงานได้เหมือนผู้เชี่ยวชาญเฉพาะทางแทนที่จะเป็นแบบทั่วไป
+					</p>
+					<p>frontmatter มีฟิลด์ที่มีประโยชน์ 3 อย่าง:</p>
+					<ul>
+						<li><strong>name</strong> — ตัวระบุ (identifier) ที่คุณใช้ invoke skill</li>
+						<li><strong>description</strong> — คำอธิบายสั้นๆ บรรทัดเดียวที่ agent ใช้ตัดสินใจว่า skill นี้เกี่ยวข้องเมื่อใด</li>
+						<li><strong>argument-hint</strong> — บอกผู้ใช้ว่าต้องระบุ input อะไร (ในที่นี้คือ controller หรือ route)</li>
+					</ul>
+
+					<h3>The Skill Definition</h3>
+					<p>
+						นี่คือ skill แบบเต็มรูปแบบ มันจะสั่งให้ agent ทำหน้าที่เป็น SDET ด้าน security และสร้าง
+						integration tests เพื่อป้องกัน OWASP Top 10 — ไม่ใช่แค่ unit tests ธรรมดา
+					</p>
+<pre><code>---
+name: owasp-playspec-tester
+description: "Generates Scala Play Framework security tests using
+  PlaySpec and FakeRequest based on OWASP Top 10 vulnerabilities."
+argument-hint: "Specify the target Play controller or endpoint route
+  to generate tests for."
+---
+
+# OWASP Play Framework Security Tester
+
+You are an expert Security Software Development Engineer in Test (SDET).
+Your task is to generate automated security integration tests for Play
+Framework applications using PlaySpec, FakeRequest, and ScalaTest.
+
+## Instructions
+When the user provides a controller, model, or route, generate a
+PlaySpec test class that verifies the application's resilience against
+OWASP Top 10 2025 vulnerabilities.</code></pre>
+
+					<h3>The Test Coverage It Enforces</h3>
+					<p>
+						หัวใจสำคัญของ skill นี้คือ checklist ของ attack classes โดยทุกๆ suite ที่ถูกสร้างขึ้นจะต้องครอบคลุมทั้ง 4 อย่างนี้ เพื่อไม่ให้มีอะไรถูกข้ามไปอย่างเงียบๆ:
+					</p>
+					<ul>
+						<li>
+							<strong>Injection (SQL/NoSQL/Command)</strong> — ส่ง payloads อย่างเช่น <highlight>' OR 1=1 --</highlight> และ
+							ตรวจสอบว่า response ที่ได้คือ <highlight>400 BAD_REQUEST</highlight> หรือ <highlight>401 UNAUTHORIZED</highlight>,
+							โดยต้องไม่เป็น <highlight>500 INTERNAL_SERVER_ERROR</highlight> ที่อาจทำให้ข้อมูลรั่วไหล
+						</li>
+						<li>
+							<strong>Cross-Site Scripting (XSS)</strong> — inject ค่าอย่าง <highlight>&lt;script&gt;alert(1)&lt;/script&gt;</highlight>
+							เข้าไปใน JSON หรือ form bodies และตรวจสอบว่า raw payload ต้องไม่ถูกสะท้อนกลับมาโดยไม่ได้ทำการ escape
+						</li>
+						<li>
+							<strong>Security Misconfiguration</strong> — ตรวจสอบว่า responses มี secure headers
+							(<highlight>X-Frame-Options</highlight>, <highlight>X-Content-Type-Options</highlight>, <highlight>Content-Security-Policy</highlight>)
+						</li>
+						<li>
+							<strong>Broken Access Control</strong> — ยิงไปยัง restricted endpoints โดยไม่มี session หรือ JWT ที่ถูกต้อง
+							และตรวจสอบว่าได้ <highlight>401 UNAUTHORIZED</highlight> หรือ <highlight>403 FORBIDDEN</highlight>
+						</li>
+					</ul>
+
+					<h3>Code Guidelines</h3>
+					<p>skill นี้ยังกำหนด <em>วิธีการ</em> เขียน tests ด้วย เพื่อให้ output มีความสม่ำเสมอและสามารถรันได้จริง:</p>
+					<ul>
+						<li>สร้าง seed test data ใน <highlight>def initial(): Unit</highlight> เพื่อจำลองข้อมูลใน database</li>
+						<li>ใช้ <highlight>play.api.test.FakeRequest</highlight> เพื่อจำลอง malicious traffic</li>
+						<li>ใช้ <highlight>play.api.test.Helpers._</highlight> สำหรับ routing และ assertions
+							(<highlight>status(result)</highlight>, <highlight>contentAsString(result)</highlight>)</li>
+						<li>สร้างโค้ด Scala ที่ถูกต้องในรูปแบบของ ScalaTest BDD style:
+							<highlight>"Endpoint" should { "reject..." in { ... } }</highlight></li>
+					</ul>
+
+					<h3>What the Output Looks Like</h3>
+					<p>
+						เมื่อเรียกใช้ skill นี้กับ controller มันจะสร้าง spec ที่พร้อมรันให้ทันที ตัวอย่างเช่น:
+					</p>
+<pre><code>class UserControllerSecuritySpec extends PlaySpec with GuiceOneAppPerSuite {
+
+  def initial(): Unit = {
+    // seed a known user to attack against
+  }
+
+  "UserController" should {
+
+    "reject SQL injection in the login field" in {
+      val payload = Json.obj("username" -> "' OR 1=1 --", "password" -> "x")
+      val request = FakeRequest(POST, "/login").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      status(result) must (be(BAD_REQUEST) or be(UNAUTHORIZED))
+      status(result) mustNot be(INTERNAL_SERVER_ERROR)
+    }
+
+    "escape XSS payloads in the profile name" in {
+      val payload = Json.obj("name" -> "&lt;script&gt;alert(1)&lt;/script&gt;")
+      val request = FakeRequest(POST, "/profile").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      contentAsString(result) mustNot include("&lt;script&gt;")
+    }
+
+    "return secure headers on the home page" in {
+      val result = route(app, FakeRequest(GET, "/")).get
+
+      header("X-Frame-Options", result) mustBe defined
+      header("X-Content-Type-Options", result) mustBe defined
+      header("Content-Security-Policy", result) mustBe defined
+    }
+
+    "block access to admin without a token" in {
+      val result = route(app, FakeRequest(GET, "/admin")).get
+
+      status(result) must (be(UNAUTHORIZED) or be(FORBIDDEN))
+    }
+  }
+}</code></pre>
+
+					<h3>Why Capture It as a Skill</h3>
+					<ul>
+						<li>✅ <strong>Consistency</strong> — ทุก endpoint จะได้รับการทดสอบด้วย attack classes ทั้งสี่แบบเหมือนกันทุกครั้ง</li>
+						<li>✅ <strong>Speed</strong> — ไม่ต้องมานั่งอธิบาย requirements ใหม่ในทุกๆ controller</li>
+						<li>✅ <strong>Shared standard</strong> — ทั้งทีมจะ invoke มาตรฐาน security baseline แบบเดียวกัน</li>
+						<li>✅ <strong>Living documentation</strong> — ไฟล์ skill <em>ก็คือ</em> security testing policy ของคุณนั่นเอง</li>
+					</ul>
+
+					<h3>Bottom Line</h3>
+					<p>
+						Security testing ไม่จำเป็นต้องเป็นงานที่ทุกคนอยากจะหลีกเลี่ยงเสมอไป ด้วยการเปลี่ยน OWASP Top 10
+						ให้อยู่ในรูปแบบของ skill เล็กๆ ที่สามารถนำมาใช้ซ้ำได้ คุณกำลังเปลี่ยนงานที่น่าเบื่อให้กลายเป็น command แค่บรรทัดเดียว — และทำให้
+						คำถามที่ว่า "เราทดสอบ injection หรือยัง?" เป็นคำถามที่มีคำตอบที่เชื่อถือได้อย่างแท้จริง
+					</p>
+					<p><em>Generated tests เป็นเพียงจุดเริ่มต้น ไม่ใช่การรับประกันที่สมบูรณ์ ควรทำการ review ควบคู่ไปกับการทำ manual security review สำหรับ endpoints ที่มีความเสี่ยงสูงเสมอ</em></p>
+				</div>
+
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<p>
+						编写 security tests 是一项繁琐、重复且在接近 deadline 时很容易被跳过的工作。
+						但这正是 AI assistant 擅长的工作类型——具有明确模式，并在许多 endpoints 中重复出现。
+						你可以将这种知识作为 <strong>skill</strong> 记录一次并永远重复使用，而不是每次都向 Claude 提出相同的要求。
+					</p>
+					<p>
+						本文将介绍一个自定义的 Claude Code skill，它能使用 <highlight>PlaySpec</highlight> 和 <highlight>FakeRequest</highlight> 将任何 Play Framework controller 变成完整的 <strong>OWASP Top 10</strong> security test suite。
+					</p>
+
+					<h3>What is a Skill?</h3>
+					<p>
+						skill 是你提供给 AI agent 的可重用的指令集。它是一个 Markdown 文件，包含一个小的 frontmatter header 和一段指令正文。
+						当你 invoke 它时，agent 会将这些指令作为 expert context 加载——因此它的表现就像一个专家而不是通才。
+					</p>
+					<p>frontmatter 有三个有用的字段：</p>
+					<ul>
+						<li><strong>name</strong> — 你用来 invoke 该 skill 的 identifier。</li>
+						<li><strong>description</strong> — 一行摘要，agent 用它来决定该 skill 何时相关。</li>
+						<li><strong>argument-hint</strong> — 告诉用户需要提供什么 input（在这里是 controller 或 route）。</li>
+					</ul>
+
+					<h3>The Skill Definition</h3>
+					<p>
+						以下是完整的 skill。它告诉 agent 充当专注于安全性的 SDET，并生成针对 OWASP Top 10 的 integration tests，而不是普通的 unit tests。
+					</p>
+<pre><code>---
+name: owasp-playspec-tester
+description: "Generates Scala Play Framework security tests using
+  PlaySpec and FakeRequest based on OWASP Top 10 vulnerabilities."
+argument-hint: "Specify the target Play controller or endpoint route
+  to generate tests for."
+---
+
+# OWASP Play Framework Security Tester
+
+You are an expert Security Software Development Engineer in Test (SDET).
+Your task is to generate automated security integration tests for Play
+Framework applications using PlaySpec, FakeRequest, and ScalaTest.
+
+## Instructions
+When the user provides a controller, model, or route, generate a
+PlaySpec test class that verifies the application's resilience against
+OWASP Top 10 2025 vulnerabilities.</code></pre>
+
+					<h3>The Test Coverage It Enforces</h3>
+					<p>
+						该 skill 的核心是一个 attack classes 清单。每个生成的 suite 必须涵盖所有四个类别，这样就不会有任何内容被悄悄跳过：
+					</p>
+					<ul>
+						<li>
+							<strong>Injection (SQL/NoSQL/Command)</strong> — 发送类似 <highlight>' OR 1=1 --</highlight> 的 payloads，并
+							断言 response 为 <highlight>400 BAD_REQUEST</highlight> 或 <highlight>401 UNAUTHORIZED</highlight>，
+							绝不返回可能泄露信息的 <highlight>500 INTERNAL_SERVER_ERROR</highlight>。
+						</li>
+						<li>
+							<strong>Cross-Site Scripting (XSS)</strong> — 将 <highlight>&lt;script&gt;alert(1)&lt;/script&gt;</highlight> inject
+							到 JSON 或 form bodies 中，并断言原始 payload 不会被未经 escape 原样反射回来。
+						</li>
+						<li>
+							<strong>Security Misconfiguration</strong> — 检查 responses 是否带有 secure headers
+							(<highlight>X-Frame-Options</highlight>, <highlight>X-Content-Type-Options</highlight>, <highlight>Content-Security-Policy</highlight>)。
+						</li>
+						<li>
+							<strong>Broken Access Control</strong> — 在没有有效 session 或 JWT 的情况下访问 restricted endpoints，并
+							断言返回 <highlight>401 UNAUTHORIZED</highlight> 或 <highlight>403 FORBIDDEN</highlight>。
+						</li>
+					</ul>
+
+					<h3>Code Guidelines</h3>
+					<p>该 skill 还规定了 <em>如何</em> 编写 tests，因此 output 是一致且可运行的：</p>
+					<ul>
+						<li>在 <highlight>def initial(): Unit</highlight> 中生成 seed test data，以模拟 database 中的记录。</li>
+						<li>使用 <highlight>play.api.test.FakeRequest</highlight> 模拟恶意流量。</li>
+						<li>使用 <highlight>play.api.test.Helpers._</highlight> 进行 routing 和 assertions
+							(<highlight>status(result)</highlight>, <highlight>contentAsString(result)</highlight>)。</li>
+						<li>以 ScalaTest BDD style 生成有效的 Scala 代码：
+							<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>。</li>
+					</ul>
+
+					<h3>What the Output Looks Like</h3>
+					<p>
+						将该 skill 指向一个 controller，它就会生成一个随时可运行的 spec。一个简化的示例：
+					</p>
+<pre><code>class UserControllerSecuritySpec extends PlaySpec with GuiceOneAppPerSuite {
+
+  def initial(): Unit = {
+    // seed a known user to attack against
+  }
+
+  "UserController" should {
+
+    "reject SQL injection in the login field" in {
+      val payload = Json.obj("username" -> "' OR 1=1 --", "password" -> "x")
+      val request = FakeRequest(POST, "/login").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      status(result) must (be(BAD_REQUEST) or be(UNAUTHORIZED))
+      status(result) mustNot be(INTERNAL_SERVER_ERROR)
+    }
+
+    "escape XSS payloads in the profile name" in {
+      val payload = Json.obj("name" -> "&lt;script&gt;alert(1)&lt;/script&gt;")
+      val request = FakeRequest(POST, "/profile").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      contentAsString(result) mustNot include("&lt;script&gt;")
+    }
+
+    "return secure headers on the home page" in {
+      val result = route(app, FakeRequest(GET, "/")).get
+
+      header("X-Frame-Options", result) mustBe defined
+      header("X-Content-Type-Options", result) mustBe defined
+      header("Content-Security-Policy", result) mustBe defined
+    }
+
+    "block access to admin without a token" in {
+      val result = route(app, FakeRequest(GET, "/admin")).get
+
+      status(result) must (be(UNAUTHORIZED) or be(FORBIDDEN))
+    }
+  }
+}</code></pre>
+
+					<h3>Why Capture It as a Skill</h3>
+					<ul>
+						<li>✅ <strong>Consistency</strong> — 每次每个 endpoint 都会获得相同的四种 attack classes。</li>
+						<li>✅ <strong>Speed</strong> — 无需在每个新的 controller 上重新解释 requirements。</li>
+						<li>✅ <strong>Shared standard</strong> — 整个团队 invoke 相同的 security baseline。</li>
+						<li>✅ <strong>Living documentation</strong> — skill 文件<em>就是</em>你的 security testing policy。</li>
+					</ul>
+
+					<h3>Bottom Line</h3>
+					<p>
+						Security testing 不必是每个人都想逃避的任务。通过将 OWASP Top 10
+						编码为一个小的、可重用的 skill，你将繁琐的工作变成了一行命令——并使
+						“我们测试过 injection 了吗？”这个问题有了一个可靠的答案。
+					</p>
+					<p><em>生成的 tests 只是一个起点，而不是完美保证。始终应对它们进行 review，并与针对高风险 endpoints 的 manual security review 相结合。</em></p>
+				</div>
+
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<p>
+						security tests の作成は退屈で反復的であり、deadline が近いと簡単にスキップされがちです。
+						しかし、これこそがまさに AI assistant が得意とする仕事です — 明確なパターンがあり、
+						多くの endpoints にわたって繰り返されます。Claude に毎回同じことを頼むのではなく、
+						その知識を一度 <strong>skill</strong> として取り込み、永遠に再利用することができます。
+					</p>
+					<p>
+						この記事では、<highlight>PlaySpec</highlight> と <highlight>FakeRequest</highlight> を使用して、Play Framework controller を完全な <strong>OWASP Top 10</strong> security test suite に変換するカスタム Claude Code skill について解説します。
+					</p>
+
+					<h3>What is a Skill?</h3>
+					<p>
+						skill とは、AI agent に与える再利用可能な指示セットのことです。これは、小さな frontmatter header と指示の本文を含む Markdown ファイルです。
+						それを invoke すると、agent はそれらの指示を expert context として読み込みます — そのため、汎用的なものではなく、専門家のように振る舞います。
+					</p>
+					<p>frontmatter には3つの便利なフィールドがあります：</p>
+					<ul>
+						<li><strong>name</strong> — skill を invoke するための identifier。</li>
+						<li><strong>description</strong> — agent がその skill がいつ関連するかを判断するために使用する1行の要約。</li>
+						<li><strong>argument-hint</strong> — ユーザーにどのような input を提供すべきか（ここでは controller または route）を伝えます。</li>
+					</ul>
+
+					<h3>The Skill Definition</h3>
+					<p>
+						これが完全な skill です。これは、一般的な unit tests ではなく、OWASP Top 10 に対する integration tests を生成する、セキュリティに特化した SDET として機能するよう agent に指示します。
+					</p>
+<pre><code>---
+name: owasp-playspec-tester
+description: "Generates Scala Play Framework security tests using
+  PlaySpec and FakeRequest based on OWASP Top 10 vulnerabilities."
+argument-hint: "Specify the target Play controller or endpoint route
+  to generate tests for."
+---
+
+# OWASP Play Framework Security Tester
+
+You are an expert Security Software Development Engineer in Test (SDET).
+Your task is to generate automated security integration tests for Play
+Framework applications using PlaySpec, FakeRequest, and ScalaTest.
+
+## Instructions
+When the user provides a controller, model, or route, generate a
+PlaySpec test class that verifies the application's resilience against
+OWASP Top 10 2025 vulnerabilities.</code></pre>
+
+					<h3>The Test Coverage It Enforces</h3>
+					<p>
+						この skill の核心は、attack classes のチェックリストです。生成されたすべての suite は、何も静かにスキップされないように、これら4つすべてをカバーする必要があります：
+					</p>
+					<ul>
+						<li>
+							<strong>Injection (SQL/NoSQL/Command)</strong> — <highlight>' OR 1=1 --</highlight> のような payloads を送信し、
+							response が <highlight>400 BAD_REQUEST</highlight> または <highlight>401 UNAUTHORIZED</highlight> であることをアサートします。
+							決して情報の漏洩に繋がる <highlight>500 INTERNAL_SERVER_ERROR</highlight> であってはなりません。
+						</li>
+						<li>
+							<strong>Cross-Site Scripting (XSS)</strong> — <highlight>&lt;script&gt;alert(1)&lt;/script&gt;</highlight> を JSON または form bodies に inject し、
+							元の payload が escape されずにそのまま反射されないことをアサートします。
+						</li>
+						<li>
+							<strong>Security Misconfiguration</strong> — responses が secure headers (<highlight>X-Frame-Options</highlight>, <highlight>X-Content-Type-Options</highlight>, <highlight>Content-Security-Policy</highlight>) を含んでいるかをチェックします。
+						</li>
+						<li>
+							<strong>Broken Access Control</strong> — 有効な session や JWT なしで restricted endpoints にアクセスし、
+							<highlight>401 UNAUTHORIZED</highlight> または <highlight>403 FORBIDDEN</highlight> をアサートします。
+						</li>
+					</ul>
+
+					<h3>Code Guidelines</h3>
+					<p>この skill はまた、tests が <em>どのように</em> 書かれるべきかをも定義しているため、output は一貫しており実行可能です：</p>
+					<ul>
+						<li>database のレコードをシミュレートするために、<highlight>def initial(): Unit</highlight> 内に seed test data を設定します。</li>
+						<li>悪意のあるトラフィックをシミュレートするために <highlight>play.api.test.FakeRequest</highlight> を使用します。</li>
+						<li>routing と assertions (<highlight>status(result)</highlight>, <highlight>contentAsString(result)</highlight>) のために <highlight>play.api.test.Helpers._</highlight> を使用します。</li>
+						<li>ScalaTest BDD style で有効な Scala コードを生成します：<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>。</li>
+					</ul>
+
+					<h3>What the Output Looks Like</h3>
+					<p>
+						この skill を controller に向けると、すぐに実行可能な spec が生成されます。以下は簡略化された例です：
+					</p>
+<pre><code>class UserControllerSecuritySpec extends PlaySpec with GuiceOneAppPerSuite {
+
+  def initial(): Unit = {
+    // seed a known user to attack against
+  }
+
+  "UserController" should {
+
+    "reject SQL injection in the login field" in {
+      val payload = Json.obj("username" -> "' OR 1=1 --", "password" -> "x")
+      val request = FakeRequest(POST, "/login").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      status(result) must (be(BAD_REQUEST) or be(UNAUTHORIZED))
+      status(result) mustNot be(INTERNAL_SERVER_ERROR)
+    }
+
+    "escape XSS payloads in the profile name" in {
+      val payload = Json.obj("name" -> "&lt;script&gt;alert(1)&lt;/script&gt;")
+      val request = FakeRequest(POST, "/profile").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      contentAsString(result) mustNot include("&lt;script&gt;")
+    }
+
+    "return secure headers on the home page" in {
+      val result = route(app, FakeRequest(GET, "/")).get
+
+      header("X-Frame-Options", result) mustBe defined
+      header("X-Content-Type-Options", result) mustBe defined
+      header("Content-Security-Policy", result) mustBe defined
+    }
+
+    "block access to admin without a token" in {
+      val result = route(app, FakeRequest(GET, "/admin")).get
+
+      status(result) must (be(UNAUTHORIZED) or be(FORBIDDEN))
+    }
+  }
+}</code></pre>
+
+					<h3>Why Capture It as a Skill</h3>
+					<ul>
+						<li>✅ <strong>Consistency</strong> — すべての endpoint が常に同じ4つの attack classes でテストされます。</li>
+						<li>✅ <strong>Speed</strong> — 新しい controller のたびに requirements を再度説明する必要がありません。</li>
+						<li>✅ <strong>Shared standard</strong> — チーム全体が同じ security baseline を invoke します。</li>
+						<li>✅ <strong>Living documentation</strong> — skill ファイル自体が、あなたの security testing policy <em>そのもの</em>になります。</li>
+					</ul>
+
+					<h3>Bottom Line</h3>
+					<p>
+						Security testing は、誰もが避けたがる作業である必要はありません。OWASP Top 10 を
+						再利用可能な小さな skill にエンコードすることで、面倒な作業を1行のコマンドに変えることができます。
+						そして、「injection のテストはしたか？」という質問に、信頼できる答えを出せるようにします。
+					</p>
+					<p><em>生成された tests は出発点であり、完璧な保証ではありません。常にそれらを review し、高リスクな endpoints については manual security review と組み合わせてください。</em></p>
+				</div>
+
+				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<p>
+						Das Schreiben von security tests ist mühsam, repetitiv und wird leicht übersprungen, wenn eine deadline näher rückt.
+						Aber es ist auch genau die Art von Arbeit, in der ein AI assistant gut ist — klar definierte Muster,
+						die über viele endpoints hinweg wiederholt werden. Anstatt Claude jedes Mal dasselbe zu fragen,
+						können Sie dieses Wissen einmal als <strong>skill</strong> erfassen und für immer wiederverwenden.
+					</p>
+					<p>
+						Dieser Beitrag zeigt einen benutzerdefinierten Claude Code skill, der jeden Play Framework controller
+						mithilfe von <highlight>PlaySpec</highlight> und <highlight>FakeRequest</highlight> in eine vollständige <strong>OWASP Top 10</strong> security test suite verwandelt.
+					</p>
+
+					<h3>What is a Skill?</h3>
+					<p>
+						Ein skill ist ein wiederverwendbares Anweisungsset, das Sie einem AI agent geben. Es ist eine Markdown-Datei mit einem kleinen
+						frontmatter header und einem Anweisungsteil. Wenn Sie es invoke, lädt der agent diese Anweisungen
+						als expert context — so verhält er sich wie ein Spezialist anstelle eines Generalisten.
+					</p>
+					<p>Der frontmatter hat drei nützliche Felder:</p>
+					<ul>
+						<li><strong>name</strong> — der identifier, mit dem Sie den skill invoke.</li>
+						<li><strong>description</strong> — eine einzeilige Zusammenfassung, die der agent verwendet, um zu entscheiden, wann der skill relevant ist.</li>
+						<li><strong>argument-hint</strong> — sagt dem Benutzer, welcher input bereitzustellen ist (hier ein controller oder eine route).</li>
+					</ul>
+
+					<h3>The Skill Definition</h3>
+					<p>
+						Hier ist der vollständige skill. Er weist den agent an, als sicherheitsorientierter SDET zu agieren und
+						integration tests gegen die OWASP Top 10 zu generieren — keine generischen unit tests.
+					</p>
+<pre><code>---
+name: owasp-playspec-tester
+description: "Generates Scala Play Framework security tests using
+  PlaySpec and FakeRequest based on OWASP Top 10 vulnerabilities."
+argument-hint: "Specify the target Play controller or endpoint route
+  to generate tests for."
+---
+
+# OWASP Play Framework Security Tester
+
+You are an expert Security Software Development Engineer in Test (SDET).
+Your task is to generate automated security integration tests for Play
+Framework applications using PlaySpec, FakeRequest, and ScalaTest.
+
+## Instructions
+When the user provides a controller, model, or route, generate a
+PlaySpec test class that verifies the application's resilience against
+OWASP Top 10 2025 vulnerabilities.</code></pre>
+
+					<h3>The Test Coverage It Enforces</h3>
+					<p>
+						Das Herzstück des skills ist eine Checkliste von attack classes. Jede generierte suite muss alle vier abdecken,
+						sodass nichts stillschweigend übersprungen wird:
+					</p>
+					<ul>
+						<li>
+							<strong>Injection (SQL/NoSQL/Command)</strong> — sendet payloads wie <highlight>' OR 1=1 --</highlight> und
+							stellt sicher, dass die response <highlight>400 BAD_REQUEST</highlight> oder <highlight>401 UNAUTHORIZED</highlight> ist,
+							und niemals ein undichter <highlight>500 INTERNAL_SERVER_ERROR</highlight>.
+						</li>
+						<li>
+							<strong>Cross-Site Scripting (XSS)</strong> — injects <highlight>&lt;script&gt;alert(1)&lt;/script&gt;</highlight>
+							in JSON oder form bodies und stellt sicher, dass der ursprüngliche payload nicht un-escaped zurückgeworfen wird.
+						</li>
+						<li>
+							<strong>Security Misconfiguration</strong> — prüft, ob responses secure headers
+							(<highlight>X-Frame-Options</highlight>, <highlight>X-Content-Type-Options</highlight>, <highlight>Content-Security-Policy</highlight>) enthalten.
+						</li>
+						<li>
+							<strong>Broken Access Control</strong> — greift auf restricted endpoints ohne gültige session oder JWT zu
+							und stellt sicher, dass ein <highlight>401 UNAUTHORIZED</highlight> oder <highlight>403 FORBIDDEN</highlight> erfolgt.
+						</li>
+					</ul>
+
+					<h3>Code Guidelines</h3>
+					<p>Der skill legt auch fest, <em>wie</em> die tests geschrieben werden, sodass der output konsistent und ausführbar ist:</p>
+					<ul>
+						<li>Generieren Sie seed test data in einer <highlight>def initial(): Unit</highlight>, um Datensätze in der database zu simulieren.</li>
+						<li>Verwenden Sie <highlight>play.api.test.FakeRequest</highlight>, um bösartigen Traffic zu simulieren.</li>
+						<li>Verwenden Sie <highlight>play.api.test.Helpers._</highlight> für routing und assertions
+							(<highlight>status(result)</highlight>, <highlight>contentAsString(result)</highlight>).</li>
+						<li>Produzieren Sie gültiges Scala im ScalaTest BDD style:
+							<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>.</li>
+					</ul>
+
+					<h3>What the Output Looks Like</h3>
+					<p>
+						Wenden Sie den skill auf einen controller an, und er erzeugt eine sofort ausführbare spec. Ein gekürztes Beispiel:
+					</p>
+<pre><code>class UserControllerSecuritySpec extends PlaySpec with GuiceOneAppPerSuite {
+
+  def initial(): Unit = {
+    // seed a known user to attack against
+  }
+
+  "UserController" should {
+
+    "reject SQL injection in the login field" in {
+      val payload = Json.obj("username" -> "' OR 1=1 --", "password" -> "x")
+      val request = FakeRequest(POST, "/login").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      status(result) must (be(BAD_REQUEST) or be(UNAUTHORIZED))
+      status(result) mustNot be(INTERNAL_SERVER_ERROR)
+    }
+
+    "escape XSS payloads in the profile name" in {
+      val payload = Json.obj("name" -> "&lt;script&gt;alert(1)&lt;/script&gt;")
+      val request = FakeRequest(POST, "/profile").withJsonBody(payload)
+      val result  = route(app, request).get
+
+      contentAsString(result) mustNot include("&lt;script&gt;")
+    }
+
+    "return secure headers on the home page" in {
+      val result = route(app, FakeRequest(GET, "/")).get
+
+      header("X-Frame-Options", result) mustBe defined
+      header("X-Content-Type-Options", result) mustBe defined
+      header("Content-Security-Policy", result) mustBe defined
+    }
+
+    "block access to admin without a token" in {
+      val result = route(app, FakeRequest(GET, "/admin")).get
+
+      status(result) must (be(UNAUTHORIZED) or be(FORBIDDEN))
+    }
+  }
+}</code></pre>
+
+					<h3>Why Capture It as a Skill</h3>
+					<ul>
+						<li>✅ <strong>Consistency</strong> — jeder endpoint erhält jedes Mal dieselben vier attack classes.</li>
+						<li>✅ <strong>Speed</strong> — kein erneutes Erklären der requirements für jeden neuen controller.</li>
+						<li>✅ <strong>Shared standard</strong> — das gesamte Team invoke dieselbe security baseline.</li>
+						<li>✅ <strong>Living documentation</strong> — die skill-Datei <em>ist</em> Ihre security testing policy.</li>
+					</ul>
+
+					<h3>Bottom Line</h3>
+					<p>
+						Security testing muss nicht die Aufgabe sein, die jeder meidet. Indem Sie die OWASP Top 10
+						in einen kleinen, wiederverwendbaren skill codieren, verwandeln Sie eine lästige Pflicht in einen einzeiligen Befehl — und machen
+						die Frage "Haben wir auf injection getestet?" zu einer Frage mit einer zuverlässigen Antwort.
+					</p>
+					<p><em>Generierte tests sind ein Ausgangspunkt, keine Garantie. Unterziehen Sie diese immer einem review und kombinieren Sie sie mit einem manual security review für riskante endpoints.</em></p>
+				</div>
 			</section>
 
 			<section id="comments">
@@ -209,5 +910,39 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 		<script src="../assets/js/util.js"></script>
 		<script src="../assets/js/main.js"></script>
 		<script src="../assets/js/cookie-consent.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const langIcons = document.querySelectorAll('.lang-icon');
+				const langSections = document.querySelectorAll('.lang-section');
+
+				function activateLanguage(hash) {
+					// Remove active class from all icons and sections
+					langIcons.forEach(i => i.classList.remove('active'));
+					langSections.forEach(s => s.classList.remove('active'));
+
+					// Find target icon and section
+					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === hash) || langIcons[0];
+					const targetHash = targetIcon.getAttribute('href');
+					const targetSection = document.querySelector(targetHash);
+
+					// Activate them
+					if (targetIcon) targetIcon.classList.add('active');
+					if (targetSection) targetSection.classList.add('active');
+				}
+
+				// Update active icon on click
+				langIcons.forEach(icon => {
+					icon.addEventListener('click', function(e) {
+						e.preventDefault(); // Prevent jump since it acts like a tab now
+						const hash = this.getAttribute('href');
+						history.pushState(null, null, hash);
+						activateLanguage(hash);
+					});
+				});
+
+				// Set initial active state from URL hash if present, else default to first
+				activateLanguage(window.location.hash || langIcons[0].getAttribute('href'));
+			});
+		</script>
 	</body>
 </html>

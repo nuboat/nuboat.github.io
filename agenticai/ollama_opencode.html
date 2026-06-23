@@ -19,6 +19,104 @@
 			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
+		<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			/* On smaller screens where the layout collapses to a single column, we revert to horizontal layout */
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+		</style>
 	</head>
 
 	<body class="is-preload">
@@ -30,72 +128,100 @@
 					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../agenticai.html">&larr; Agentic AI</a></em></p>
 				</header>
 
-				<p>Today I'm showcasing how to integrate <strong>Ollama</strong> with <strong>Opencode</strong> to run local AI models seamlessly.</p>
+				<div class="lang-switcher">
+					<a href="#lang-en" class="lang-icon active" title="English">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+
+					<a href="#lang-th" class="lang-icon" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					
+					<a href="#lang-zh" class="lang-icon" title="中文">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					
+					<a href="#lang-ja" class="lang-icon" title="日本語">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+					
+					<a href="#lang-de" class="lang-icon" title="Deutsch">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
+
+				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
+					<p>Today I'm showcasing how to integrate <strong>Ollama</strong> with <strong>Opencode</strong> to run local AI models seamlessly.</p>
 				
-				<h3>What is Ollama?</h3>
-				<p>Ollama is a tool that makes running large language models (LLMs) on your local machine easy. It supports models like Llama 2, Mistral, and many others with simple commands.</p>
-				
-				<h3>What is Opencode?</h3>
-				<p>Opencode is an AI-powered coding assistant that helps developers write, debug, and optimize code faster. When combined with Ollama, it can run locally without sending your code to external servers.</p>
-				
-				<h3>Understanding AI Agent Context</h3>
-				<p>AI coding assistants like Opencode rely on context files to understand your project structure and coding style. These files contain instructions and information that guide the AI's behavior.</p>
-				
-				<h4>"AGENTS.md"</h4>
-				<p>The "AGENTS.md" file defines system prompts for AI agents. It typically includes:</p>
-				<ul>
-					<li><strong>Project goals and architecture</strong> - What the codebase is designed to accomplish</li>
-					<li><strong>Technical stack</strong> -Languages, frameworks, and tools used</li>
-					<li><strong>Development patterns</strong> - Coding standards, naming conventions, and best practices</li>
-					<li><strong>Security guidelines</strong> - How to handle sensitive data, authentication, and authorization</li>
-				</ul>
-				
-				<h4>"CLAUDE.md"</h4>
-				<p>The "CLAUDE.md" file (named after Claude AI) provides similar context for AI assistants. It often includes:</p>
-				<ul>
-					<li><strong>Project overview</strong> - High-level description of the system</li>
-					<li><strong>Key directories and their purposes</strong> - File organization structure</li>
-					<li><strong>Common tasks and workflows</strong> - How to build, test, and deploy</li>
-					<li><strong>Example commands and configurations</strong> - Quick reference for common operations</li>
-				</ul>
-				
-				<h4>Why Context Files Matter</h4>
-				<p>Without proper context files, AI assistants may:</p>
-				<ul>
-					<li>Use incorrect patterns or conventions</li>
-					<li>Introduce security issues</li>
-					<li>Generate code that doesn't fit the project architecture</li>
-					<li>miss important project-specific details</li>
-				</ul>
-				
-				<h4>Priority Conditions for "AGENTS.md" and "CLAUDE.md" in Opencode</h4>
-				<p>Opencode follows a specific priority order when loading context files to avoid conflicts and ensure predictable behavior:</p>
-				
-				<p><strong>Priority 1: "AGENTS.md"</strong></p>
-				<p>Opencode always checks for "AGENTS.md" first. If this file exists, it takes precedence over all other context files. This file is designed to override system-level settings and provide project-specific instructions.</p>
-				
-				<p><strong>Priority 2: "CLAUDE.md"</strong></p>
-				<p>If "AGENTS.md" is not found, Opencode falls back to "CLAUDE.md". This file serves as the default context provider for AI assistants and is inspired by Claude's context-loading behavior.</p>
-				
-				<p><strong>Priority 3: Project Root README.md</strong></p>
-				<p>As a final fallback, Opencode may use the README.md file from your project root if neither context file exists.</p>
-				
-				<p><strong>Key Points:</strong></p>
-				<ul>
-					<li>"AGENTS.md" completely overrides "CLAUDE.md" when both are present</li>
-					<li>Context files must be in the project root directory to be detected automatically</li>
-					<li>Use "AGENTS.md" for strict, project-specific guidelines that must be enforced</li>
-					<li>Use "CLAUDE.md" for general project documentation and workflow guidance</li>
-					<li>Neither file supports nested configurations - only the root-level file is used</li>
-				</ul>
-				
-				<h3>Quick Setup Guide</h3>
-				<ol>
-					<li><strong>Install Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
-					<li><strong>Download a model</strong>: ollama run qwen3-coder-next:q8_0</li>
-					<li><strong>Start Ollama server</strong>: ollama serve</li>
-					<li><strong>Configure Opencode</strong> to use your local Ollama endpoint</li>
-				</ol>
+					<h3>What is Ollama?</h3>
+					<p>Ollama is a tool that makes running large language models (LLMs) on your local machine easy. It supports models like Llama 2, Mistral, and many others with simple commands.</p>
+					
+					<h3>What is Opencode?</h3>
+					<p>Opencode is an AI-powered coding assistant that helps developers write, debug, and optimize code faster. When combined with Ollama, it can run locally without sending your code to external servers.</p>
+					
+					<h3>Understanding AI Agent Context</h3>
+					<p>AI coding assistants like Opencode rely on context files to understand your project structure and coding style. These files contain instructions and information that guide the AI's behavior.</p>
+					
+					<h4>"AGENTS.md"</h4>
+					<p>The "AGENTS.md" file defines system prompts for AI agents. It typically includes:</p>
+					<ul>
+						<li><strong>Project goals and architecture</strong> - What the codebase is designed to accomplish</li>
+						<li><strong>Technical stack</strong> - Languages, frameworks, and tools used</li>
+						<li><strong>Development patterns</strong> - Coding standards, naming conventions, and best practices</li>
+						<li><strong>Security guidelines</strong> - How to handle sensitive data, authentication, and authorization</li>
+					</ul>
+					
+					<h4>"CLAUDE.md"</h4>
+					<p>The "CLAUDE.md" file (named after Claude AI) provides similar context for AI assistants. It often includes:</p>
+					<ul>
+						<li><strong>Project overview</strong> - High-level description of the system</li>
+						<li><strong>Key directories and their purposes</strong> - File organization structure</li>
+						<li><strong>Common tasks and workflows</strong> - How to build, test, and deploy</li>
+						<li><strong>Example commands and configurations</strong> - Quick reference for common operations</li>
+					</ul>
+					
+					<h4>Why Context Files Matter</h4>
+					<p>Without proper context files, AI assistants may:</p>
+					<ul>
+						<li>Use incorrect patterns or conventions</li>
+						<li>Introduce security issues</li>
+						<li>Generate code that doesn't fit the project architecture</li>
+						<li>miss important project-specific details</li>
+					</ul>
+					
+					<h4>Priority Conditions for "AGENTS.md" and "CLAUDE.md" in Opencode</h4>
+					<p>Opencode follows a specific priority order when loading context files to avoid conflicts and ensure predictable behavior:</p>
+					
+					<p><strong>Priority 1: "AGENTS.md"</strong></p>
+					<p>Opencode always checks for "AGENTS.md" first. If this file exists, it takes precedence over all other context files. This file is designed to override system-level settings and provide project-specific instructions.</p>
+					
+					<p><strong>Priority 2: "CLAUDE.md"</strong></p>
+					<p>If "AGENTS.md" is not found, Opencode falls back to "CLAUDE.md". This file serves as the default context provider for AI assistants and is inspired by Claude's context-loading behavior.</p>
+					
+					<p><strong>Priority 3: Project Root README.md</strong></p>
+					<p>As a final fallback, Opencode may use the README.md file from your project root if neither context file exists.</p>
+					
+					<p><strong>Key Points:</strong></p>
+					<ul>
+						<li>"AGENTS.md" completely overrides "CLAUDE.md" when both are present</li>
+						<li>Context files must be in the project root directory to be detected automatically</li>
+						<li>Use "AGENTS.md" for strict, project-specific guidelines that must be enforced</li>
+						<li>Use "CLAUDE.md" for general project documentation and workflow guidance</li>
+						<li>Neither file supports nested configurations - only the root-level file is used</li>
+					</ul>
+					
+					<h3>Quick Setup Guide</h3>
+					<ol>
+						<li><strong>Install Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
+						<li><strong>Download a model</strong>: ollama run qwen3-coder-next:q8_0</li>
+						<li><strong>Start Ollama server</strong>: ollama serve</li>
+						<li><strong>Configure Opencode</strong> to use your local Ollama endpoint</li>
+					</ol>
 <pre><code>$ vi ~/.config/opencode/opencode.json
 {
   "$schema": "https://opencode.ai/config.json",
@@ -114,8 +240,8 @@
       }
     }
   }
-}</pre></code>
-				<h3>Model Info</h3>
+}</code></pre>
+					<h3>Model Info</h3>
 <pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
   Model
     architecture        qwen3next    
@@ -168,19 +294,636 @@ Tue Apr  7 07:33:28 2026
 |    0   N/A  N/A           69548      C   /usr/local/bin/ollama                 89698MiB |
 +-----------------------------------------------------------------------------------------+
 </code></pre>
+					
+					<h3>Benefits of Local AI</h3>
+					<ul>
+						<li>✅ <strong>Say Hi !!</strong> - You never lost 4% of token limit when say "Hi !"</li>
+						<li>✅ Privacy - Your code never leaves your machine</li>
+						<li>✅ No API costs - Run models for free</li>
+						<li>✅ Offline capability - Work without internet</li>
+						<li>✅ Full control - Choose any model you want</li>
+					</ul>
+					
+					<h3>My Experience</h3>
+					<p>Using Ollama with Opencode has been a game-changer for my development workflow. The local AI assistant helps me write better code faster while keeping everything private and on my terms.</p>
+					<p><em>Note: This page was written using Opencode with the qwen3-coder-next:q8_0 model running locally via Ollama!</em></p>
+				</div>
+
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<p>วันนี้ผมจะมาโชว์วิธีการนำ <strong>Ollama</strong> มาใช้ร่วมกับ <strong>Opencode</strong> เพื่อรัน AI models บนเครื่องตัวเองได้อย่างราบรื่นครับ</p>
 				
-				<h3>Benefits of Local AI</h3>
-				<ul>
-					<li>✅ <strong>Say Hi !!</strong> - You never lost 4% of token limit when say "Hi !"</li>
-					<li>✅ Privacy - Your code never leaves your machine</li>
-					<li>✅ No API costs - Run models for free</li>
-					<li>✅ Offline capability - Work without internet</li>
-					<li>✅ Full control - Choose any model you want</li>
-				</ul>
+					<h3>Ollama คืออะไร?</h3>
+					<p>Ollama เป็นเครื่องมือที่ทำให้การรัน large language models (LLMs) บนเครื่อง local ของเราเป็นเรื่องง่าย รองรับ models อย่าง Llama 2, Mistral, และอื่นๆ อีกมากมายด้วยคำสั่งง่ายๆ</p>
+					
+					<h3>Opencode คืออะไร?</h3>
+					<p>Opencode คือ AI-powered coding assistant ที่ช่วย developers ในการเขียน, debug, และ optimize โค้ดได้เร็วขึ้น เมื่อใช้ร่วมกับ Ollama ก็สามารถรันแบบ local ได้โดยไม่ต้องส่งโค้ดของเราไปยังเซิร์ฟเวอร์ภายนอก</p>
+					
+					<h3>ความเข้าใจเกี่ยวกับ AI Agent Context</h3>
+					<p>AI coding assistants อย่าง Opencode จำเป็นต้องพึ่งพา context files เพื่อทำความเข้าใจ project structure และ coding style ของเรา ไฟล์เหล่านี้ประกอบด้วยคำสั่งและข้อมูลที่ใช้ชี้แนะพฤติกรรมของ AI</p>
+					
+					<h4>"AGENTS.md"</h4>
+					<p>ไฟล์ "AGENTS.md" จะเป็นตัวกำหนด system prompts สำหรับ AI agents ซึ่งโดยปกติจะประกอบด้วย:</p>
+					<ul>
+						<li><strong>Project goals และ architecture</strong> - โค้ดชุดนี้ถูกออกแบบมาเพื่อจุดประสงค์อะไร</li>
+						<li><strong>Technical stack</strong> - ภาษา, frameworks, และ tools ที่ใช้</li>
+						<li><strong>Development patterns</strong> - Coding standards, naming conventions, และ best practices</li>
+						<li><strong>Security guidelines</strong> - วิธีการจัดการข้อมูลที่ละเอียดอ่อน, authentication, และ authorization</li>
+					</ul>
+					
+					<h4>"CLAUDE.md"</h4>
+					<p>ไฟล์ "CLAUDE.md" (ตั้งชื่อตาม Claude AI) จะให้ context ในลักษณะที่คล้ายกันสำหรับ AI assistants ซึ่งมักจะประกอบด้วย:</p>
+					<ul>
+						<li><strong>Project overview</strong> - คำอธิบายแบบ high-level ของระบบ</li>
+						<li><strong>Key directories และจุดประสงค์ของมัน</strong> - โครงสร้างการจัดเก็บไฟล์</li>
+						<li><strong>Common tasks และ workflows</strong> - วิธีการ build, test, และ deploy</li>
+						<li><strong>Example commands และ configurations</strong> - แหล่งอ้างอิงรวดเร็วสำหรับการทำงานทั่วไป</li>
+					</ul>
+					
+					<h4>ทำไม Context Files ถึงสำคัญ</h4>
+					<p>ถ้าไม่มี context files ที่เหมาะสม AI assistants อาจจะ:</p>
+					<ul>
+						<li>ใช้รูปแบบหรือ conventions ที่ผิด</li>
+						<li>ก่อให้เกิดปัญหาด้าน security</li>
+						<li>สร้างโค้ดที่ไม่สอดคล้องกับ project architecture</li>
+						<li>พลาดรายละเอียดสำคัญที่มีเฉพาะเจาะจงในแต่ละ project</li>
+					</ul>
+					
+					<h4>Priority Conditions สำหรับ "AGENTS.md" และ "CLAUDE.md" ใน Opencode</h4>
+					<p>Opencode ทำตามลำดับความสำคัญ (priority order) ที่เฉพาะเจาะจงในการโหลด context files เพื่อหลีกเลี่ยงข้อขัดแย้งและให้แน่ใจว่าพฤติกรรมจะเป็นไปตามที่คาดการณ์ไว้:</p>
+					
+					<p><strong>Priority 1: "AGENTS.md"</strong></p>
+					<p>Opencode จะตรวจสอบหา "AGENTS.md" เป็นอันดับแรกเสมอ หากพบไฟล์นี้ มันจะมีความสำคัญเหนือ context files อื่นๆ ทั้งหมด ไฟล์นี้ถูกออกแบบมาให้ทำหน้าที่ override การตั้งค่าระดับ system และให้คำแนะนำที่เฉพาะเจาะจงกับ project</p>
+					
+					<p><strong>Priority 2: "CLAUDE.md"</strong></p>
+					<p>หากหา "AGENTS.md" ไม่พบ Opencode จะไปใช้ "CLAUDE.md" แทน ไฟล์นี้ทำหน้าที่เป็น context provider เริ่มต้นสำหรับ AI assistants และได้รับแรงบันดาลใจจากพฤติกรรมการโหลด context ของ Claude</p>
+					
+					<p><strong>Priority 3: Project Root README.md</strong></p>
+					<p>ในท้ายที่สุด หากไม่มี context file ทั้งสองตัว Opencode อาจเลือกใช้ไฟล์ README.md จาก project root ของคุณแทน</p>
+					
+					<p><strong>Key Points:</strong></p>
+					<ul>
+						<li>"AGENTS.md" จะ override "CLAUDE.md" โดยสมบูรณ์หากมีไฟล์ทั้งสอง</li>
+						<li>Context files จะต้องอยู่ใน project root directory เพื่อให้ถูกตรวจจับได้โดยอัตโนมัติ</li>
+						<li>ใช้ "AGENTS.md" สำหรับ guidelines ที่เข้มงวดและเฉพาะเจาะจงกับ project ซึ่งต้องถูกบังคับใช้</li>
+						<li>ใช้ "CLAUDE.md" สำหรับ project documentation ทั่วไป และคำแนะนำด้าน workflow</li>
+						<li>ไฟล์ทั้งสองไม่รองรับ configurations แบบ nested - มีเพียงไฟล์ในระดับ root เท่านั้นที่จะถูกนำมาใช้</li>
+					</ul>
+					
+					<h3>Quick Setup Guide</h3>
+					<ol>
+						<li><strong>ติดตั้ง Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
+						<li><strong>ดาวน์โหลด model</strong>: ollama run qwen3-coder-next:q8_0</li>
+						<li><strong>เริ่มเซิร์ฟเวอร์ Ollama</strong>: ollama serve</li>
+						<li><strong>Configure Opencode</strong> ให้ใช้ Ollama endpoint ในเครื่องตัวเอง</li>
+					</ol>
+<pre><code>$ vi ~/.config/opencode/opencode.json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "models": {
+        "qwen3-coder-next:q8_0": {
+          "_launch": true,
+          "name": "qwen3-coder-next"
+        }
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      }
+    }
+  }
+}</code></pre>
+					<h3>Model Info</h3>
+<pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
+  Model
+    architecture        qwen3next    
+    parameters          79.7B        
+    context length      262144       
+    embedding length    2048         
+    quantization        Q8_0         
+    requires            0.15.5       
+
+  Capabilities
+    completion    
+    tools         
+
+  Parameters
+    temperature    1       
+    top_k          40      
+    top_p          0.95    
+
+  License
+    Apache License               
+    Version 2.0, January 2004    
+    ...                          
+
+root@spark-7dd8:~# ollama list
+NAME                     ID              SIZE     MODIFIED     
+qwen3-coder-next:q8_0    3f68e12b44ee    84 GB    20 hours ago    
+gemma4:31b               6316f0629137    19 GB    46 hours ago 
+
+root@spark-7dd8:~# nvidia-smi -l
+Tue Apr  7 07:33:28 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.142                Driver Version: 580.142        CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |
+| N/A   53C    P0             12W /  N/A  | Not Supported          |     98%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            2663      G   /usr/lib/xorg/Xorg                      126MiB |
+|    0   N/A  N/A            3318      G   /usr/bin/gnome-shell                     18MiB |
+|    0   N/A  N/A           69548      C   /usr/local/bin/ollama                 89698MiB |
++-----------------------------------------------------------------------------------------+
+</code></pre>
+					
+					<h3>Benefits of Local AI</h3>
+					<ul>
+						<li>✅ <strong>Say Hi !!</strong> - คุณจะไม่ต้องเสีย token limit ถึง 4% ไปกับการแค่พิมพ์ว่า "Hi !" อีกต่อไป</li>
+						<li>✅ Privacy - โค้ดของคุณจะไม่มีวันออกจากเครื่องของคุณ</li>
+						<li>✅ No API costs - รัน models ได้ฟรี</li>
+						<li>✅ Offline capability - ทำงานได้แม้ไม่มีอินเทอร์เน็ต</li>
+						<li>✅ Full control - เลือกใช้ model ใดก็ได้ตามที่คุณต้องการ</li>
+					</ul>
+					
+					<h3>My Experience</h3>
+					<p>การนำ Ollama มาใช้งานร่วมกับ Opencode ได้เข้ามาเปลี่ยน workflow การทำงานของผมไปอย่างสิ้นเชิง AI assistant แบบ local ตัวนี้ช่วยให้ผมเขียนโค้ดได้ดีขึ้นและเร็วขึ้น โดยที่ยังรักษาความเป็นส่วนตัวและอยู่ภายใต้เงื่อนไขที่ผมควบคุมได้ทั้งหมด</p>
+					<p><em>Note: หน้าเว็บนี้ถูกเขียนขึ้นโดยใช้ Opencode กับ qwen3-coder-next:q8_0 model ซึ่งกำลังรันแบบ local ผ่าน Ollama!</em></p>
+				</div>
+
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<p>今天，我将展示如何将 <strong>Ollama</strong> 与 <strong>Opencode</strong> 集成，以无缝地运行本地的 AI models。</p>
 				
-				<h3>My Experience</h3>
-				<p>Using Ollama with Opencode has been a game-changer for my development workflow. The local AI assistant helps me write better code faster while keeping everything private and on my terms.</p>
-				<p><em>Note: This page was written using Opencode with the qwen3-coder-next:q8_0 model running locally via Ollama!</em></p>
+					<h3>什么是 Ollama？</h3>
+					<p>Ollama 是一个可以轻松地在本地机器上运行 large language models (LLMs) 的工具。它通过简单的命令支持 Llama 2、Mistral 以及许多其他 models。</p>
+					
+					<h3>什么是 Opencode？</h3>
+					<p>Opencode 是一个由 AI 驱动的 coding assistant，可帮助 developers 更快地编写、调试和 optimize 代码。当与 Ollama 结合使用时，它可以在本地运行，而无需将你的代码发送到外部服务器。</p>
+					
+					<h3>了解 AI Agent Context</h3>
+					<p>像 Opencode 这样的 AI coding assistants 依赖于 context files 来理解你的 project structure 和 coding style。这些文件包含用于指导 AI 行为的指令和信息。</p>
+					
+					<h4>"AGENTS.md"</h4>
+					<p>“AGENTS.md” 文件为 AI agents 定义了 system prompts。它通常包括：</p>
+					<ul>
+						<li><strong>Project goals 和 architecture</strong> - 这个 codebase 旨在实现什么</li>
+						<li><strong>Technical stack</strong> - 所使用的语言、frameworks 和 tools</li>
+						<li><strong>Development patterns</strong> - Coding standards、naming conventions 和 best practices</li>
+						<li><strong>Security guidelines</strong> - 如何处理敏感数据、authentication 和 authorization</li>
+					</ul>
+					
+					<h4>"CLAUDE.md"</h4>
+					<p>“CLAUDE.md” 文件（以 Claude AI 命名）为 AI assistants 提供了类似的 context。它通常包括：</p>
+					<ul>
+						<li><strong>Project overview</strong> - 系统的 high-level 描述</li>
+						<li><strong>Key directories 及其用途</strong> - 文件组织结构</li>
+						<li><strong>Common tasks 和 workflows</strong> - 如何 build、test 和 deploy</li>
+						<li><strong>Example commands 和 configurations</strong> - 常见操作的快速参考</li>
+					</ul>
+					
+					<h4>为什么 Context Files 如此重要</h4>
+					<p>如果没有合适的 context files，AI assistants 可能会：</p>
+					<ul>
+						<li>使用不正确的 patterns 或 conventions</li>
+						<li>引入 security 问题</li>
+						<li>生成不符合 project architecture 的代码</li>
+						<li>遗漏特定于 project 的重要细节</li>
+					</ul>
+					
+					<h4>Opencode 中 "AGENTS.md" 和 "CLAUDE.md" 的 Priority Conditions</h4>
+					<p>Opencode 在加载 context files 时遵循特定的优先顺序（priority order），以避免冲突并确保可预测的行为：</p>
+					
+					<p><strong>Priority 1: "AGENTS.md"</strong></p>
+					<p>Opencode 总是首先检查 “AGENTS.md”。如果此文件存在，它优先于所有其他 context files。此文件旨在覆盖系统级设置（override system-level settings）并提供特定于 project 的说明。</p>
+					
+					<p><strong>Priority 2: "CLAUDE.md"</strong></p>
+					<p>如果未找到 “AGENTS.md”，Opencode 将退回（fall back）使用 “CLAUDE.md”。该文件作为 AI assistants 的默认 context provider，其灵感来自 Claude 的上下文加载行为。</p>
+					
+					<p><strong>Priority 3: Project Root README.md</strong></p>
+					<p>作为最后的手段，如果这两个 context files 都不存在，Opencode 可能会使用 project root 中的 README.md 文件。</p>
+					
+					<p><strong>Key Points:</strong></p>
+					<ul>
+						<li>当两者都存在时，“AGENTS.md” 将完全覆盖 “CLAUDE.md”</li>
+						<li>Context files 必须位于 project root directory 才能被自动检测到</li>
+						<li>使用 “AGENTS.md” 来制定必须严格执行的 project 专属指导方针</li>
+						<li>使用 “CLAUDE.md” 作为一般的 project documentation 和 workflow guidance</li>
+						<li>这两个文件都不支持嵌套的 configurations（nested configurations） - 仅使用根级别的文件</li>
+					</ul>
+					
+					<h3>Quick Setup Guide</h3>
+					<ol>
+						<li><strong>安装 Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
+						<li><strong>下载 model</strong>: ollama run qwen3-coder-next:q8_0</li>
+						<li><strong>启动 Ollama 服务器</strong>: ollama serve</li>
+						<li><strong>Configure Opencode</strong> 以使用本地的 Ollama endpoint</li>
+					</ol>
+<pre><code>$ vi ~/.config/opencode/opencode.json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "models": {
+        "qwen3-coder-next:q8_0": {
+          "_launch": true,
+          "name": "qwen3-coder-next"
+        }
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      }
+    }
+  }
+}</code></pre>
+					<h3>Model Info</h3>
+<pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
+  Model
+    architecture        qwen3next    
+    parameters          79.7B        
+    context length      262144       
+    embedding length    2048         
+    quantization        Q8_0         
+    requires            0.15.5       
+
+  Capabilities
+    completion    
+    tools         
+
+  Parameters
+    temperature    1       
+    top_k          40      
+    top_p          0.95    
+
+  License
+    Apache License               
+    Version 2.0, January 2004    
+    ...                          
+
+root@spark-7dd8:~# ollama list
+NAME                     ID              SIZE     MODIFIED     
+qwen3-coder-next:q8_0    3f68e12b44ee    84 GB    20 hours ago    
+gemma4:31b               6316f0629137    19 GB    46 hours ago 
+
+root@spark-7dd8:~# nvidia-smi -l
+Tue Apr  7 07:33:28 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.142                Driver Version: 580.142        CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |
+| N/A   53C    P0             12W /  N/A  | Not Supported          |     98%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            2663      G   /usr/lib/xorg/Xorg                      126MiB |
+|    0   N/A  N/A            3318      G   /usr/bin/gnome-shell                     18MiB |
+|    0   N/A  N/A           69548      C   /usr/local/bin/ollama                 89698MiB |
++-----------------------------------------------------------------------------------------+
+</code></pre>
+					
+					<h3>Benefits of Local AI</h3>
+					<ul>
+						<li>✅ <strong>Say Hi !!</strong> - 你再也不会因为说一句“Hi !”而损失 4% 的 token limit 了</li>
+						<li>✅ Privacy - 你的代码永远不会离开你的机器</li>
+						<li>✅ No API costs - 免费运行 models</li>
+						<li>✅ Offline capability - 无需互联网即可工作</li>
+						<li>✅ Full control - 选择任何你想要的 model</li>
+					</ul>
+					
+					<h3>My Experience</h3>
+					<p>将 Ollama 与 Opencode 结合使用彻底改变了我的 development workflow。这个本地的 AI assistant 帮助我更快地编写出更好的代码，同时保留了所有的隐私权，一切尽在我的掌控之中。</p>
+					<p><em>Note: 此页面是使用 Opencode 以及通过 Ollama 在本地运行的 qwen3-coder-next:q8_0 model 编写的！</em></p>
+				</div>
+
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<p>今日は、<strong>Ollama</strong> を <strong>Opencode</strong> と統合し、ローカルの AI models をシームレスに実行する方法を紹介します。</p>
+				
+					<h3>Ollama とは？</h3>
+					<p>Ollama は、ローカルマシン上で large language models (LLMs) を簡単に実行するためのツールです。Llama 2、Mistral、その他の多くの models をシンプルなコマンドでサポートしています。</p>
+					
+					<h3>Opencode とは？</h3>
+					<p>Opencode は、developers がコードをより早く記述、デバッグ、そして optimize するのを支援する AI-powered の coding assistant です。Ollama と組み合わせることで、外部サーバーにコードを送信することなく、ローカルで実行できるようになります。</p>
+					
+					<h3>AI Agent Context について</h3>
+					<p>Opencode のような AI coding assistants は、project structure や coding style を理解するために context files に依存しています。これらのファイルには、AI の挙動を導くための指示や情報が含まれています。</p>
+					
+					<h4>"AGENTS.md"</h4>
+					<p>「AGENTS.md」ファイルは、AI agents のための system prompts を定義します。これには通常、以下の内容が含まれます：</p>
+					<ul>
+						<li><strong>Project goals と architecture</strong> - その codebase が何を達成するために設計されているか</li>
+						<li><strong>Technical stack</strong> - 使用されている言語、frameworks、および tools</li>
+						<li><strong>Development patterns</strong> - Coding standards、naming conventions、および best practices</li>
+						<li><strong>Security guidelines</strong> - 機密データ、authentication、および authorization の処理方法</li>
+					</ul>
+					
+					<h4>"CLAUDE.md"</h4>
+					<p>「CLAUDE.md」ファイル（Claude AI にちなんで名付けられました）は、AI assistants に同様の context を提供します。これにはしばしば以下の内容が含まれます：</p>
+					<ul>
+						<li><strong>Project overview</strong> - システムの high-level な説明</li>
+						<li><strong>Key directories とその目的</strong> - ファイルの構成構造</li>
+						<li><strong>Common tasks と workflows</strong> - build、test、deploy の方法</li>
+						<li><strong>Example commands と configurations</strong> - 一般的な操作のためのクイックリファレンス</li>
+					</ul>
+					
+					<h4>Context Files が重要な理由</h4>
+					<p>適切な context files がないと、AI assistants は以下のような問題を起こす可能性があります：</p>
+					<ul>
+						<li>間違った patterns や conventions を使用する</li>
+						<li>security の問題を引き起こす</li>
+						<li>project architecture に適合しないコードを生成する</li>
+						<li>project 固有の重要な詳細を見落とす</li>
+					</ul>
+					
+					<h4>Opencode における "AGENTS.md" と "CLAUDE.md" の Priority Conditions</h4>
+					<p>Opencode は、競合を避け、予測可能な挙動を保証するために、context files をロードする際に特定の優先順位 (priority order) に従います：</p>
+					
+					<p><strong>Priority 1: "AGENTS.md"</strong></p>
+					<p>Opencode は常に最初に「AGENTS.md」をチェックします。このファイルが存在する場合、他のすべての context files よりも優先されます。このファイルは、システムレベルの設定を override し、project 固有の指示を提供するために設計されています。</p>
+					
+					<p><strong>Priority 2: "CLAUDE.md"</strong></p>
+					<p>「AGENTS.md」が見つからない場合、Opencode は「CLAUDE.md」にフォールバック (fall back) します。このファイルは AI assistants のデフォルトの context provider として機能し、Claude のコンテキストロード挙動からインスピレーションを得ています。</p>
+					
+					<p><strong>Priority 3: Project Root README.md</strong></p>
+					<p>最後のフォールバックとして、どちらの context file も存在しない場合、Opencode は project root の README.md ファイルを使用することがあります。</p>
+					
+					<p><strong>Key Points:</strong></p>
+					<ul>
+						<li>両方が存在する場合、「AGENTS.md」は「CLAUDE.md」を完全に override します</li>
+						<li>自動的に検出されるためには、Context files は project root directory に配置する必要があります</li>
+						<li>強制されるべき厳密で project 固有の guidelines には「AGENTS.md」を使用します</li>
+						<li>一般的な project documentation や workflow guidance には「CLAUDE.md」を使用します</li>
+						<li>どちらのファイルも nested configurations（ネストされた設定）をサポートしていません - root レベルのファイルのみが使用されます</li>
+					</ul>
+					
+					<h3>Quick Setup Guide</h3>
+					<ol>
+						<li><strong>Ollama のインストール</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
+						<li><strong>model のダウンロード</strong>: ollama run qwen3-coder-next:q8_0</li>
+						<li><strong>Ollama サーバーの起動</strong>: ollama serve</li>
+						<li><strong>Configure Opencode</strong>: ローカルの Ollama endpoint を使用するように Opencode を設定する</li>
+					</ol>
+<pre><code>$ vi ~/.config/opencode/opencode.json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "models": {
+        "qwen3-coder-next:q8_0": {
+          "_launch": true,
+          "name": "qwen3-coder-next"
+        }
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      }
+    }
+  }
+}</code></pre>
+					<h3>Model Info</h3>
+<pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
+  Model
+    architecture        qwen3next    
+    parameters          79.7B        
+    context length      262144       
+    embedding length    2048         
+    quantization        Q8_0         
+    requires            0.15.5       
+
+  Capabilities
+    completion    
+    tools         
+
+  Parameters
+    temperature    1       
+    top_k          40      
+    top_p          0.95    
+
+  License
+    Apache License               
+    Version 2.0, January 2004    
+    ...                          
+
+root@spark-7dd8:~# ollama list
+NAME                     ID              SIZE     MODIFIED     
+qwen3-coder-next:q8_0    3f68e12b44ee    84 GB    20 hours ago    
+gemma4:31b               6316f0629137    19 GB    46 hours ago 
+
+root@spark-7dd8:~# nvidia-smi -l
+Tue Apr  7 07:33:28 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.142                Driver Version: 580.142        CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |
+| N/A   53C    P0             12W /  N/A  | Not Supported          |     98%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            2663      G   /usr/lib/xorg/Xorg                      126MiB |
+|    0   N/A  N/A            3318      G   /usr/bin/gnome-shell                     18MiB |
+|    0   N/A  N/A           69548      C   /usr/local/bin/ollama                 89698MiB |
++-----------------------------------------------------------------------------------------+
+</code></pre>
+					
+					<h3>Benefits of Local AI</h3>
+					<ul>
+						<li>✅ <strong>Say Hi !!</strong> - 「Hi !」と言うだけで 4% の token limit を失うことはもうありません</li>
+						<li>✅ Privacy - コードがあなたのマシンから出ることはありません</li>
+						<li>✅ No API costs - 無料で models を実行できます</li>
+						<li>✅ Offline capability - インターネットなしで作業できます</li>
+						<li>✅ Full control - 好きな model を自由に選択できます</li>
+					</ul>
+					
+					<h3>My Experience</h3>
+					<p>Ollama を Opencode とともに使用することは、私の development workflow にとってゲームチェンジャーとなりました。このローカルの AI assistant のおかげで、すべてをプライベートに、自分の思い通りに保ちながら、より良いコードをより速く書くことができるようになりました。</p>
+					<p><em>Note: このページは、Ollama 経由でローカルで実行されている qwen3-coder-next:q8_0 model とともに Opencode を使用して作成されました！</em></p>
+				</div>
+
+				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<p>Heute zeige ich, wie man <strong>Ollama</strong> mit <strong>Opencode</strong> integriert, um lokale AI models nahtlos auszuführen.</p>
+				
+					<h3>Was ist Ollama?</h3>
+					<p>Ollama ist ein Tool, das die Ausführung von large language models (LLMs) auf Ihrem lokalen Rechner einfach macht. Es unterstützt Models wie Llama 2, Mistral und viele andere mit einfachen Befehlen.</p>
+					
+					<h3>Was ist Opencode?</h3>
+					<p>Opencode ist ein AI-powered coding assistant, der Developern hilft, Code schneller zu schreiben, zu debuggen und zu optimize. In Kombination mit Ollama kann es lokal ausgeführt werden, ohne dass Ihr Code an externe Server gesendet wird.</p>
+					
+					<h3>AI Agent Context Verstehen</h3>
+					<p>AI coding assistants wie Opencode sind auf Context files angewiesen, um Ihre project structure und Ihren coding style zu verstehen. Diese Dateien enthalten Anweisungen und Informationen, die das Verhalten der AI steuern.</p>
+					
+					<h4>"AGENTS.md"</h4>
+					<p>Die Datei "AGENTS.md" definiert System prompts für AI agents. Sie enthält typischerweise:</p>
+					<ul>
+						<li><strong>Project goals und architecture</strong> - Was die codebase erreichen soll</li>
+						<li><strong>Technical stack</strong> - Verwendete Sprachen, Frameworks und Tools</li>
+						<li><strong>Development patterns</strong> - Coding standards, Naming conventions und Best practices</li>
+						<li><strong>Security guidelines</strong> - Wie mit sensiblen Daten, Authentication und Authorization umgegangen wird</li>
+					</ul>
+					
+					<h4>"CLAUDE.md"</h4>
+					<p>Die Datei "CLAUDE.md" (benannt nach Claude AI) bietet einen ähnlichen Context für AI assistants. Sie enthält oft:</p>
+					<ul>
+						<li><strong>Project overview</strong> - High-level Beschreibung des Systems</li>
+						<li><strong>Key directories und ihre Zwecke</strong> - Dateiorganisationsstruktur</li>
+						<li><strong>Common tasks und workflows</strong> - Wie man build, test und deploy durchführt</li>
+						<li><strong>Example commands und configurations</strong> - Kurze Referenz für häufige Operationen</li>
+					</ul>
+					
+					<h4>Warum Context Files Wichtig Sind</h4>
+					<p>Ohne geeignete Context files könnten AI assistants:</p>
+					<ul>
+						<li>Falsche Patterns oder Conventions verwenden</li>
+						<li>Security-Probleme einführen</li>
+						<li>Code generieren, der nicht zur project architecture passt</li>
+						<li>Wichtige projektspezifische Details übersehen</li>
+					</ul>
+					
+					<h4>Priority Conditions für "AGENTS.md" und "CLAUDE.md" in Opencode</h4>
+					<p>Opencode folgt einer spezifischen priority order beim Laden von Context files, um Konflikte zu vermeiden und ein vorhersehbares Verhalten sicherzustellen:</p>
+					
+					<p><strong>Priority 1: "AGENTS.md"</strong></p>
+					<p>Opencode sucht immer zuerst nach "AGENTS.md". Wenn diese Datei existiert, hat sie Vorrang vor allen anderen Context files. Diese Datei ist so konzipiert, dass sie system-level Einstellungen überschreibt (override) und projektspezifische Anweisungen liefert.</p>
+					
+					<p><strong>Priority 2: "CLAUDE.md"</strong></p>
+					<p>Wenn "AGENTS.md" nicht gefunden wird, greift Opencode auf "CLAUDE.md" zurück (fall back). Diese Datei dient als Standard-Context provider für AI assistants und ist vom Context-Ladeverhalten von Claude inspiriert.</p>
+					
+					<p><strong>Priority 3: Project Root README.md</strong></p>
+					<p>Als letztes Fallback kann Opencode die Datei README.md aus dem project root verwenden, wenn keine der Context files existiert.</p>
+					
+					<p><strong>Key Points:</strong></p>
+					<ul>
+						<li>"AGENTS.md" überschreibt "CLAUDE.md" vollständig (override), wenn beide vorhanden sind</li>
+						<li>Context files müssen sich im project root directory befinden, um automatisch erkannt zu werden</li>
+						<li>Verwenden Sie "AGENTS.md" für strikte, projektspezifische Guidelines, die durchgesetzt werden müssen</li>
+						<li>Verwenden Sie "CLAUDE.md" für allgemeine project documentation und workflow guidance</li>
+						<li>Beide Dateien unterstützen keine verschachtelten Konfigurationen (nested configurations) - nur die Datei auf Root-Ebene wird verwendet</li>
+					</ul>
+					
+					<h3>Quick Setup Guide</h3>
+					<ol>
+						<li><strong>Installieren von Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
+						<li><strong>Download eines models</strong>: ollama run qwen3-coder-next:q8_0</li>
+						<li><strong>Starten des Ollama-Servers</strong>: ollama serve</li>
+						<li><strong>Configure Opencode</strong> für die Verwendung Ihres lokalen Ollama-Endpoints</li>
+					</ol>
+<pre><code>$ vi ~/.config/opencode/opencode.json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "ollama": {
+      "models": {
+        "qwen3-coder-next:q8_0": {
+          "_launch": true,
+          "name": "qwen3-coder-next"
+        }
+      },
+      "name": "Ollama",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "http://127.0.0.1:11434/v1"
+      }
+    }
+  }
+}</code></pre>
+					<h3>Model Info</h3>
+<pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
+  Model
+    architecture        qwen3next    
+    parameters          79.7B        
+    context length      262144       
+    embedding length    2048         
+    quantization        Q8_0         
+    requires            0.15.5       
+
+  Capabilities
+    completion    
+    tools         
+
+  Parameters
+    temperature    1       
+    top_k          40      
+    top_p          0.95    
+
+  License
+    Apache License               
+    Version 2.0, January 2004    
+    ...                          
+
+root@spark-7dd8:~# ollama list
+NAME                     ID              SIZE     MODIFIED     
+qwen3-coder-next:q8_0    3f68e12b44ee    84 GB    20 hours ago    
+gemma4:31b               6316f0629137    19 GB    46 hours ago 
+
+root@spark-7dd8:~# nvidia-smi -l
+Tue Apr  7 07:33:28 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 580.142                Driver Version: 580.142        CUDA Version: 13.0     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GB10                    On  |   0000000F:01:00.0  On |                  N/A |
+| N/A   53C    P0             12W /  N/A  | Not Supported          |     98%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|    0   N/A  N/A            2663      G   /usr/lib/xorg/Xorg                      126MiB |
+|    0   N/A  N/A            3318      G   /usr/bin/gnome-shell                     18MiB |
+|    0   N/A  N/A           69548      C   /usr/local/bin/ollama                 89698MiB |
++-----------------------------------------------------------------------------------------+
+</code></pre>
+					
+					<h3>Benefits of Local AI</h3>
+					<ul>
+						<li>✅ <strong>Say Hi !!</strong> - Sie verlieren nie wieder 4% des Token-Limits, nur weil Sie "Hi !" sagen</li>
+						<li>✅ Privacy - Ihr Code verlässt niemals Ihren Rechner</li>
+						<li>✅ No API costs - Führen Sie Models kostenlos aus</li>
+						<li>✅ Offline capability - Arbeiten Sie ohne Internet</li>
+						<li>✅ Full control - Wählen Sie jedes gewünschte Model</li>
+					</ul>
+					
+					<h3>My Experience</h3>
+					<p>Die Verwendung von Ollama zusammen mit Opencode war ein Game-Changer für meinen Development workflow. Der lokale AI assistant hilft mir, besseren Code schneller zu schreiben, während alles privat und unter meiner Kontrolle bleibt.</p>
+					<p><em>Note: Diese Seite wurde mit Opencode und dem lokal über Ollama ausgeführten qwen3-coder-next:q8_0 Model geschrieben!</em></p>
+				</div>
 			</section>
 			
 			<section id="comments">
@@ -214,5 +957,39 @@ Tue Apr  7 07:33:28 2026
 		<script src="../assets/js/util.js"></script>
 		<script src="../assets/js/main.js"></script>
 		<script src="../assets/js/cookie-consent.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const langIcons = document.querySelectorAll('.lang-icon');
+				const langSections = document.querySelectorAll('.lang-section');
+
+				function activateLanguage(hash) {
+					// Remove active class from all icons and sections
+					langIcons.forEach(i => i.classList.remove('active'));
+					langSections.forEach(s => s.classList.remove('active'));
+
+					// Find target icon and section
+					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === hash) || langIcons[0];
+					const targetHash = targetIcon.getAttribute('href');
+					const targetSection = document.querySelector(targetHash);
+
+					// Activate them
+					if (targetIcon) targetIcon.classList.add('active');
+					if (targetSection) targetSection.classList.add('active');
+				}
+
+				// Update active icon on click
+				langIcons.forEach(icon => {
+					icon.addEventListener('click', function(e) {
+						e.preventDefault(); // Prevent jump since it acts like a tab now
+						const hash = this.getAttribute('href');
+						history.pushState(null, null, hash);
+						activateLanguage(hash);
+					});
+				});
+
+				// Set initial active state from URL hash if present, else default to first
+				activateLanguage(window.location.hash || langIcons[0].getAttribute('href'));
+			});
+		</script>
 	</body>
 </html>

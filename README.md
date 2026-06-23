@@ -61,8 +61,8 @@ ROOT/
 
 * **When asked to update the resume:** Only modify `index.html`. Ensure semantic HTML tags (like `<section>`, `<article>`, `<header>`) are maintained.
 * **When asked to create a new blog post:**
-    1. Copy `template-article.html` to the appropriate directory (e.g., `general/`, `coding/`) and rename it for your new post.
-    2. Follow the Multilingual Rule from `AGENTS.md` and populate the `[Content in ...]` placeholders for all 4 languages.
+    1. Copy `template.html` (or an existing article like `general/touch-typing.html` to easily inherit the modern language switcher design) to the appropriate directory (e.g., `general/`, `coding/`) and rename it for your new post.
+    2. Follow the Multilingual Rule from `AGENTS.md`, ensuring you use the exact HTML/CSS/JS structure for the floating `.lang-switcher` and `.lang-section` containers as found in `general/touch-typing.html`, and populate the content for all 5 languages.
     3. Update the category listing page (if it exists) to include a link to the new post.
 * **When writing code:** Prioritize modern, vanilla HTML5, CSS3, and ES6+ JavaScript. Ensure the design remains responsive for mobile devices.
 ```
