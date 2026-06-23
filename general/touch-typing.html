@@ -21,6 +21,92 @@
 			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
+		<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			/* On smaller screens where the layout collapses to a single column, we revert to horizontal layout */
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+		</style>
 	</head>
 
 	<body class="is-preload">
@@ -29,8 +115,27 @@
 			<section id="one">
 				<header class="major">
 					<h2>Touch Typing เรื่องเล่าจากปลายนิ้ว ถึงแป้นเกษมณี</h2>
-					<p><em>June 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../general.html">&larr; General</a></em></p>
+					<p><a href="../general.html">General</a> > <em>June 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp;</em></p>
 				</header>
+
+				<div class="lang-switcher">
+					<a href="#lang-th" class="lang-icon active" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					<a href="#lang-en" class="lang-icon" title="English">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+					<a href="#lang-zh" class="lang-icon" title="中文">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					<a href="#lang-ja" class="lang-icon" title="日本語">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+				</div>
 
 				<p>
 					Cincinnati, July 25, 1888. Two men sit down at typewriters with $500 on the line —
