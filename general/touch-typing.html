@@ -85,6 +85,18 @@
 				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
 			}
 
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
 			/* On smaller screens where the layout collapses to a single column, we revert to horizontal layout */
 			@media screen and (max-width: 980px) {
 				.lang-switcher {
@@ -119,192 +131,194 @@
 				</header>
 
 				<div class="lang-switcher">
-					<a href="#lang-th" class="lang-icon active" title="ภาษาไทย">
-						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
-						<span class="lang-code">TH</span>
-					</a>
 					<a href="#lang-en" class="lang-icon" title="English">
 						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
 						<span class="lang-code">EN</span>
 					</a>
+
+					<a href="#lang-th" class="lang-icon active" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					
 					<a href="#lang-zh" class="lang-icon" title="中文">
 						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
 						<span class="lang-code">ZH</span>
 					</a>
+					
 					<a href="#lang-ja" class="lang-icon" title="日本語">
 						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
 						<span class="lang-code">JA</span>
 					</a>
 				</div>
 
-				<p>
-					Cincinnati, July 25, 1888. Two men sit down at typewriters with $500 on the line —
-					serious money in those days. Louis Traub types the way everyone types: four fingers,
-					eyes darting between the page and the keys. His opponent, a court stenographer from
-					Salt Lake City named <strong>Frank Edward McGurrin</strong>, does something the audience
-					has never seen. He places all ten fingers on the keyboard, fixes his eyes on the text
-					to copy, and <em>never looks down</em>.
-				</p>
-				<p>
-					McGurrin wins decisively. The newspapers run the story, typing schools change their
-					curriculum, and the strange skill of typing blind — what we now call
-					<strong>touch typing</strong> — goes from a party trick to the professional standard.
-					More than 130 years later, most of us spend hours a day at a keyboard,
-					yet many still type the way Traub did. This is the story of the skill that won that bet,
-					how you can learn it, and how it made its way onto the Thai keyboard.
-				</p>
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em;">
+					<h3>Touch Typing เรื่องเล่าจากปลายนิ้ว ถึงแป้นเกษมณี</h3>
+					<p>ซินซินแนติ, 25 กรกฎาคม 1888 ชายสองคนนั่งลงหน้าเครื่องพิมพ์ดีดโดยมีเงินเดิมพัน 500 ดอลลาร์ — ซึ่งถือเป็นเงินก้อนใหญ่ในสมัยนั้น Louis Traub พิมพ์ด้วยวิธีที่ทุกคนใช้กัน: ใช้สี่นิ้ว สายตาสลับมองไปมาระหว่างหน้ากระดาษกับแป้นพิมพ์ ในขณะที่คู่แข่งของเขา <strong>Frank Edward McGurrin</strong> นักชวเลขศาลจากซอลต์เลกซิตี ได้ทำสิ่งที่ผู้ชมไม่เคยเห็นมาก่อน เขาวางทั้งสิบนิ้วลงบนแป้นพิมพ์ สายตาจดจ่ออยู่กับข้อความที่ต้องคัดลอก และ<em>ไม่เคยก้มมองแป้นพิมพ์เลย</em></p>
+					<p>McGurrin ชนะอย่างขาดลอย หนังสือพิมพ์ตีพิมพ์เรื่องราวนี้ โรงเรียนสอนพิมพ์ดีดเปลี่ยนหลักสูตรใหม่ และทักษะแปลกๆ ในการพิมพ์สัมผัส — ซึ่งปัจจุบันเราเรียกว่า <strong>touch typing</strong> — ได้เปลี่ยนจากมายากลในงานปาร์ตี้ กลายมาเป็นมาตรฐานระดับมืออาชีพ กว่า 130 ปีต่อมา พวกเราส่วนใหญ่ใช้เวลาหลายชั่วโมงต่อวันหน้าแป้นพิมพ์ แต่หลายคนก็ยังคงพิมพ์ด้วยวิธีเดียวกับ Traub นี่คือเรื่องราวของทักษะที่ชนะเดิมพันในวันนั้น วิธีที่คุณสามารถเรียนรู้มัน และวิธีที่ทักษะนี้เข้ามาอยู่ในคีย์บอร์ดภาษาไทย</p>
+					<h3>Touch Typing คืออะไร?</h3>
+					<p>Touch typing หมายถึงการพิมพ์โดยใช้ทั้งสิบนิ้วโดยไม่ต้องมองแป้นพิมพ์ นิ้วแต่ละนิ้วจะรับผิดชอบโซนของปุ่มที่กำหนดไว้ตายตัว และมือของคุณจะกลับมาที่ตำแหน่งพื้นฐานที่เรียกว่า <strong>home row</strong> เสมอ — <highlight>ASDF</highlight> สำหรับมือซ้าย และ <highlight>JKL;</highlight> สำหรับมือขวา (สังเกตตุ่มเล็กๆ บนปุ่ม <highlight>F</highlight> และ <highlight>J</highlight>; มันมีไว้เพื่อให้คุณหา home row เจอได้โดยไม่ต้องมอง)</p>
+					<p>การเปลี่ยนแปลงที่แท้จริงไม่ได้อยู่ที่นิ้ว แต่อยู่ที่สมอง นักพิมพ์แบบ hunt-and-peck จะทำงานวนลูปอยู่ตลอดเวลา: <em>คิด → หาปุ่ม → มอง → กด → ตรวจสอบ</em> ในขณะที่ touch typist ได้ผลักขั้นตอน "หาปุ่ม" ลงไปอยู่ใน muscle memory (ความจำของกล้ามเนื้อ) ซึ่งเป็นส่วนเดียวกับที่ใช้ในการทรงตัวบนจักรยานและการจับคอร์ดกีตาร์ ผลลัพธ์ที่ได้คือ:</p>
+					<ul>
+						<li><strong>ความเร็ว (Speed)</strong> — touch typist มักจะพิมพ์ได้เร็วถึง 60–100+ WPM (คำต่อนาที) เทียบกับ 20–30 WPM ของการจิ้มดีด</li>
+						<li><strong>สมาธิ (Focus)</strong> — สายตาของคุณจะอยู่ที่หน้าจอเสมอ และความคิดของคุณจะจดจ่ออยู่กับไอเดีย ไม่ใช่ที่แป้นพิมพ์</li>
+						<li><strong>ความแม่นยำ (Accuracy)</strong> — ข้อผิดพลาดจะถูกจับได้ทันที เพราะคุณเห็นตัวอักษรปรากฏขึ้นขณะที่คุณพิมพ์</li>
+						<li><strong>การยศาสตร์ (Ergonomics)</strong> — ไม่ต้องก้มๆ เงยๆ คอระหว่างแป้นพิมพ์กับหน้าจอตลอดทั้งวันอีกต่อไป</li>
+					</ul>
+					<h3>วิธีฝึก Touch Typing</h3>
+					<p>นี่คือความจริงที่น่าอึดอัดที่ McGurrin เข้าใจ: ในช่วงสองสัปดาห์แรก touch typing จะทำให้คุณพิมพ์ได้<em>ช้าลง</em> คุณกำลังเอาทักษะระดับปานกลางที่คุณมีอยู่แล้ว ไปแลกกับทักษะที่ยอดเยี่ยมที่คุณยังไม่มี คนส่วนใหญ่มักจะล้มเลิกในช่วงรอยต่อนี้ แต่คนที่พยายามผ่านมันไปได้ จะไม่มีวันกลับไปพิมพ์แบบเดิมอีกเลย วิธีการฝึกคือ:</p>
+					<ul>
+						<li><strong>1. ยึดมั่นใน home row</strong> วางนิ้วไว้ที่ <highlight>ASDF JKL;</highlight> และนิ้วหัวแม่มือบน Space bar ทุกการกดปุ่มต้องเริ่มต้นและจบลงที่นี่</li>
+						<li><strong>2. เคารพโซนของนิ้ว</strong> แต่ละปุ่มเป็นของนิ้วใดนิ้วหนึ่งโดยเฉพาะ นิ้วชี้รับผิดชอบนิ้วละสองคอลัมน์ นิ้วก้อยรับหน้าที่ที่ <highlight>Q</highlight>, <highlight>A</highlight>, <highlight>Z</highlight>, <highlight>P</highlight> และ Enter</li>
+						<li><strong>3. ห้ามก้มมองเด็ดขาด</strong> เอาผ้าขนหนูมาคลุมมือไว้เลยถ้าจำเป็น การมองคือพฤติกรรมที่คุณกำลังพยายามทำลาย — ทุกครั้งที่แอบดู เวลาจะถูกรีเซ็ตใหม่</li>
+						<li><strong>4. ความแม่นยำมาก่อนความเร็ว</strong> ความเร็วคือผลพลอยได้ของความแม่นยำ ไม่มีทางเป็นไปในทางกลับกัน ตั้งเป้าหมายความแม่นยำที่ 95%+ ในทุกความเร็ว แล้ว WPM จะตามมาเอง</li>
+						<li><strong>5. ฝึกทีละนิดแต่ทำทุกวัน</strong> 15 ถึง 20 นาทีต่อวัน ดีกว่าการอัดฝึก 2 ชั่วโมงในช่วงวันหยุดสุดสัปดาห์ เครื่องมือฟรีอย่าง <a href="https://www.keybr.com" target="_blank">keybr.com</a>, <a href="https://monkeytype.com" target="_blank">Monkeytype</a>, และ <a href="https://www.typing.com" target="_blank">typing.com</a> ช่วยเปลี่ยนการฝึกที่น่าเบื่อให้กลายเป็นเกมได้</li>
+					</ul>
+					<p>ไทม์ไลน์ตามความเป็นจริง: หลังจากสองสัปดาห์ คุณจะพิมพ์ได้เร็วเท่ากับตอนที่คุณจิ้มดีด หลังจากสองเดือน ความเร็วของคุณจะเพิ่มขึ้นเป็นสองเท่า หลังจากนั้น แป้นพิมพ์จะหายไป — ความคิดของคุณจะไหลลื่นไปสู่หน้าจอโดยไม่มีอะไรมาขวางกั้น</p>
+					<h3>ประวัติศาสตร์ Thai Touch Typing</h3>
+					<p>ในขณะที่ McGurrin รับเงิน 500 ดอลลาร์ของเขา อีกซีกโลกหนึ่งในสยามกำลังเผชิญกับปัญหาที่ต่างออกไป: ไม่มีเครื่องพิมพ์ดีดเครื่องไหนที่สามารถพิมพ์ภาษาไทยได้เลย อักษรไทยมีพยัญชนะ 44 ตัว สระอีกหลายสิบตัว และยังมีวรรณยุกต์ที่ซ้อนกันอยู่<em>ด้านบน</em>และ<em>ด้านล่าง</em>ของบรรทัด — ซึ่งมีจำนวนสัญลักษณ์มากกว่าที่เครื่องจักรของชาติตะวันตกจะรองรับได้</p>
+					<p>ในปี 1892 <strong>Edwin Hunter McFarland</strong> ลูกชายของมิชชันนารีชาวอเมริกันและเลขานุการของเจ้าชายสยาม ได้แก้ปัญหานี้โดยการดัดแปลงเครื่อง Smith Premier — ซึ่งเป็นเครื่องพิมพ์ดีดที่มีแป้นพิมพ์คู่ขนาดใหญ่และไม่มีปุ่ม Shift ถึงอย่างนั้น ปุ่มก็ยังคงไม่พอ พยัญชนะสองตัวต้องถูกตัดออก นั่นคือ <strong>ฃ (kho khuat)</strong> และ <strong>ฅ (kho khon)</strong> ซึ่งในที่สุดทั้งสองตัวนี้ก็หลุดออกจากการใช้งานในชีวิตประจำวัน — เรียกได้ว่าเป็นเพียงสองตัวอักษรในประวัติศาสตร์ที่ต้องเกษียณตัวเองเนื่องจากข้อจำกัดทางฮาร์ดแวร์ เมื่อ Edwin เสียชีวิตในปี 1895 น้องชายของเขา <strong>Dr. George B. McFarland</strong> (ต่อมาเป็นที่รู้จักในสยามในนาม พระอาจวิทยาคม) ได้สานต่องานนี้ โดยเปิดร้านในกรุงเทพฯ ที่นำเครื่องพิมพ์ดีดภาษาไทยไปตั้งในสถานที่ราชการทั่วประเทศ</p>
+					<p>แต่ตัว layout เองยังคงใช้งานยาก — ตัวอักษรถูกวางไว้ในจุดที่มีที่ว่าง ไม่ใช่จุดที่นิ้วสามารถพิมพ์ได้เร็ว การแก้ไขเกิดขึ้นในปี 1931 เมื่อ <strong>คุณสุวรรณประเสริฐ เกษมณี</strong> ได้จัดเรียงปุ่มใหม่โดยอิงจากความถี่ของตัวอักษรไทย โดยวางตัวอักษรที่ใช้บ่อยที่สุดไว้ใต้นิ้วที่แข็งแรงที่สุด การออกแบบของเขา หรือ <strong>Kedmanee layout</strong> นั้นดีกว่ามากจนกลายมาเป็นมาตรฐานของชาติ — และเกือบจะแน่นอนว่านี่คือแป้นพิมพ์ภาษาไทยที่คุณใช้อยู่ในปัจจุบัน หลังจากผ่านไปเกือบศตวรรษ</p>
+					<p>เรื่องราวนี้ยังมีจุดหักมุมอีกครั้ง ในปี 1965 <strong>คุณสฤษดิ์ ปัตตะโชติ</strong> ได้ทำการวิเคราะห์เชิงสถิติที่ลึกซึ้งยิ่งขึ้นและสร้าง <strong>Pattachote layout</strong> ขึ้นมา ซึ่งกระจายภาระการทำงานระหว่างมือทั้งสองข้างได้สมดุลกว่ามาก งานวิจัยในขณะนั้นแสดงให้เห็นว่ามันเร็วกว่าอย่างเห็นได้ชัดและเหนื่อยน้อยกว่า แต่นั่นก็ไม่มีความหมายอะไร ถึงตอนนั้น นักพิมพ์ดีด โรงเรียน และเครื่องจักรทั้งรุ่นได้มาตรฐานที่ Kedmanee ไปแล้ว และไม่มีใครอยากเรียนรู้ใหม่ หากเรื่องนี้ฟังดูคุ้นๆ ก็ควรจะเป็นเช่นนั้น — เพราะมันคือเรื่องราวเดียวกับ QWERTY และ Dvorak layout ในโลกตะวันตก layout ที่ดีที่สุดไม่ได้ชนะเสมอไป; แต่สิ่งที่ทุกคนรู้จักอยู่แล้วต่างหากที่ชนะ</p>
+					<h3>Learn Thai Touch Typing — ฝึกพิมพ์สัมผัสภาษาไทย</h3>
+					<p>เกือบร้อยปีหลังจากที่อาจารย์เกษมณีออกแบบแป้นพิมพ์ของท่าน มรดกชิ้นนั้นก็ยังอยู่ใต้ปลายนิ้วของเราทุกวันนี้ และวิธีฝึกใช้มันก็ยังเหมือนเดิมไม่เปลี่ยน เริ่มจาก <strong>home row</strong> ของภาษาไทย — มือซ้ายวางที่ <highlight>ฟ ห ก ด</highlight> มือขวาวางที่ <highlight>่ า ส ว</highlight> โดยนิ้วชี้ทั้งสองข้างอยู่บนปุ่มที่มีปุ่มนูน (ตำแหน่งเดียวกับ <highlight>F</highlight> และ <highlight>J</highlight>) นี่ไม่ใช่เรื่องบังเอิญ — อาจารย์เกษมณีจงใจวางตัวอักษรที่ใช้บ่อยที่สุดไว้ใต้นิ้วที่แข็งแรงที่สุด ดังนั้นแค่วางมือถูกตำแหน่ง ก็ได้เปรียบไปครึ่งทางแล้ว</p>
+					<ul>
+						<li><strong>1. ท่อง home row ให้ขึ้นใจ</strong> — "ฟหกด ่าสว" คือคาถาบทแรกของนักเรียนพิมพ์ดีดไทยทุกรุ่น ตั้งแต่ยุคเครื่องพิมพ์ดีดจนถึงยุคคีย์บอร์ด พิมพ์วนซ้ำจนนิ้วกลับมาหาตำแหน่งนี้ได้เองโดยไม่ต้องมอง</li>
+						<li><strong>2. ขยายทีละแถว</strong> — จาก home row ค่อยขยับขึ้นแถวบน (เ ้ ่ า ส ว) และลงแถวล่าง ฝึกทีละกลุ่มตัวอักษร อย่ารีบเรียนทั้งแป้นพร้อมกัน นิ้วไหนรับผิดชอบปุ่มไหนต้องคงที่เสมอ</li>
+						<li><strong>3. อย่ากลัวปุ่ม Shift</strong> — ภาษาไทยมีตัวอักษรมากกว่าปุ่ม อักษรที่ใช้น้อย เช่น ฤ ฆ ฏ ฌ ถูกย้ายไปชั้น Shift ตามหลักความถี่ของอาจารย์เกษมณี ใช้นิ้วก้อยข้างตรงข้ามกดค้าง แล้วใช้นิ้วประจำปุ่มกดตัวอักษรตามปกติ</li>
+						<li><strong>4. สระและวรรณยุกต์พิมพ์ตามลำดับเสียง</strong> — สระบน สระล่าง และวรรณยุกต์ ให้พิมพ์หลังพยัญชนะเสมอ เช่น "ที่" = ท + ี + ่ ฝึกจนเป็นจังหวะเดียวกัน แล้วคำที่ซับซ้อนที่สุดก็จะไหลออกมาเอง</li>
+						<li><strong>5. วัดผลด้วยประโยคทดสอบ</strong> — ลองพิมพ์ pangram คลาสสิก "เป็นมนุษย์สุดประเสริฐเลิศคุณค่า กว่าบรรดาฝูงสัตว์เดรัจฉาน" ซึ่งครบทุกกลุ่มนิ้ว แล้วฝึกต่อเนื่องวันละ 15–20 นาที ผ่านเครื่องมือฟรีอย่าง <a href="https://monkeytype.com" target="_blank">Monkeytype</a> (เลือกภาษา Thai) หรือ <a href="https://www.typingstudy.com/th" target="_blank">TypingStudy</a></li>
+					</ul>
+					<p>เส้นทางการฝึกภาษาไทยก็เหมือนภาษาอังกฤษ — สองสัปดาห์แรกจะช้าลงและหงุดหงิด แต่ขอให้นึกถึงนักพิมพ์ดีดรุ่นปี 1931 ที่ต้องเรียน layout ใหม่ทั้งแป้นบนเครื่องจักรกลไก เรามีหน้าจอ มีโปรแกรมฝึก และมีแป้นที่ถูกออกแบบมาให้นิ้วเราอยู่แล้ว เหลือแค่อย่างเดียวที่เครื่องมือไหนก็ทำแทนไม่ได้ คือการไม่ก้มมองแป้น</p>
+					<h3>Bottom Line</h3>
+					<p>Touch typing คือ "life hack" อายุกว่า 130 ปีที่ยังคงให้ดอกเบี้ยทบต้นจนถึงทุกวันนี้: การฝึกฝนอย่างตั้งใจเพียงไม่กี่สัปดาห์ แลกกับการพิมพ์ที่เร็วขึ้นและผ่อนคลายขึ้นไปตลอดชีวิต McGurrin ได้พิสูจน์ให้เห็นบนเวทีในซินซินแนติ; Ketmanee ได้ออกแบบมันลงในคีย์บอร์ดภาษาไทย; คำถามเดียวที่เหลืออยู่คือ นิ้วของคุณได้เรียนรู้มันแล้วหรือยัง วางนิ้วลงบน home row — ฟหกด่าสว หากคุณพิมพ์ภาษาไทย — และเลิกก้มมองได้แล้ว</p>
+				</div>
 
-				<h3>What is Touch Typing?</h3>
-				<p>
-					Touch typing means typing using all ten fingers, without looking at the keyboard.
-					Each finger is responsible for a fixed zone of keys, and your hands always return to
-					a base position called the <strong>home row</strong> — <highlight>ASDF</highlight> for the left hand,
-					<highlight>JKL;</highlight> for the right (notice the small bumps on <highlight>F</highlight> and <highlight>J</highlight>;
-					they exist so you can find home without looking).
-				</p>
-				<p>
-					The real shift is not in the fingers but in the head. A hunt-and-peck typist runs a
-					constant loop: <em>think → find key → look → press → check</em>. A touch typist has pushed
-					the "find key" step down into muscle memory, the same place that holds bicycle balance
-					and guitar chords. The result:
-				</p>
-				<ul>
-					<li><strong>Speed</strong> — touch typists commonly reach 60–100+ words per minute, versus 20–30 for hunt-and-peck.</li>
-					<li><strong>Focus</strong> — your eyes stay on the screen and your mind stays on the idea, not on the keyboard.</li>
-					<li><strong>Accuracy</strong> — errors are caught instantly because you see them appear as you type.</li>
-					<li><strong>Ergonomics</strong> — no more bobbing your neck up and down between keyboard and screen all day.</li>
-				</ul>
+				<div id="lang-en" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h3>Touch Typing: The Story from Fingertips to the Kedmanee Keyboard</h3>
+					<p>Cincinnati, July 25, 1888. Two men sit down at typewriters with $500 on the line — serious money in those days. Louis Traub types the way everyone types: four fingers, eyes darting between the page and the keys. His opponent, a court stenographer from Salt Lake City named <strong>Frank Edward McGurrin</strong>, does something the audience has never seen. He places all ten fingers on the keyboard, fixes his eyes on the text to copy, and <em>never looks down</em>.</p>
+					<p>McGurrin wins decisively. The newspapers run the story, typing schools change their curriculum, and the strange skill of typing blind — what we now call <strong>touch typing</strong> — goes from a party trick to the professional standard. More than 130 years later, most of us spend hours a day at a keyboard, yet many still type the way Traub did. This is the story of the skill that won that bet, how you can learn it, and how it made its way onto the Thai keyboard.</p>
+					<h3>What is Touch Typing?</h3>
+					<p>Touch typing means typing using all ten fingers, without looking at the keyboard. Each finger is responsible for a fixed zone of keys, and your hands always return to a base position called the <strong>home row</strong> — <highlight>ASDF</highlight> for the left hand, <highlight>JKL;</highlight> for the right (notice the small bumps on <highlight>F</highlight> and <highlight>J</highlight>; they exist so you can find home without looking).</p>
+					<p>The real shift is not in the fingers but in the head. A hunt-and-peck typist runs a constant loop: <em>think → find key → look → press → check</em>. A touch typist has pushed the "find key" step down into muscle memory, the same place that holds bicycle balance and guitar chords. The result:</p>
+					<ul>
+						<li><strong>Speed</strong> — touch typists commonly reach 60–100+ words per minute, versus 20–30 for hunt-and-peck.</li>
+						<li><strong>Focus</strong> — your eyes stay on the screen and your mind stays on the idea, not on the keyboard.</li>
+						<li><strong>Accuracy</strong> — errors are caught instantly because you see them appear as you type.</li>
+						<li><strong>Ergonomics</strong> — no more bobbing your neck up and down between keyboard and screen all day.</li>
+					</ul>
+					<h3>How to Learn It</h3>
+					<p>Here is the uncomfortable truth McGurrin understood: for the first two weeks, touch typing makes you <em>slower</em>. You are trading a mediocre skill you already have for an excellent one you do not have yet. Most people quit inside that gap. The ones who push through never go back. The method:</p>
+					<ul>
+						<li><strong>1. Commit to the home row.</strong> Fingers on <highlight>ASDF JKL;</highlight>, thumbs on the space bar. Every keystroke starts and ends here.</li>
+						<li><strong>2. Respect the finger zones.</strong> Each key belongs to exactly one finger. The index fingers cover two columns each; the pinkies earn their keep on <highlight>Q</highlight>, <highlight>A</highlight>, <highlight>Z</highlight>, <highlight>P</highlight>, and Enter.</li>
+						<li><strong>3. Never look down.</strong> Cover your hands with a towel if you must. Looking is the habit you are trying to break — every glance resets the clock.</li>
+						<li><strong>4. Accuracy before speed.</strong> Speed is a side effect of accuracy, never the other way around. Aim for 95%+ accuracy at any speed; the WPM will follow.</li>
+						<li><strong>5. Practice small and daily.</strong> Fifteen to twenty minutes a day beats a two-hour weekend session. Free tools like <a href="https://www.keybr.com" target="_blank">keybr.com</a>, <a href="https://monkeytype.com" target="_blank">Monkeytype</a>, and <a href="https://www.typing.com" target="_blank">typing.com</a> turn the drills into a game.</li>
+					</ul>
+					<p>A realistic timeline: after two weeks you match your old hunt-and-peck speed. After two months you have doubled it. After that, the keyboard simply disappears — thoughts flow onto the screen with nothing in between.</p>
+					<h3>Thai Touch Typing History</h3>
+					<p>While McGurrin was collecting his $500, on the other side of the world Siam had a different problem: no typewriter could write Thai at all. The Thai script has 44 consonants, dozens of vowels, and tone marks that stack <em>above</em> and <em>below</em> the line — far more symbols than any Western machine was built to hold.</p>
+					<p>In 1892, <strong>Edwin Hunter McFarland</strong>, son of an American missionary and secretary to a Siamese prince, solved it by adapting the Smith Premier — a typewriter with a huge double keyboard and no Shift key. Even then, the keys ran out. Two consonants had to be left off: <strong>ฃ (kho khuat)</strong> and <strong>ฅ (kho khon)</strong>. Both eventually fell out of everyday use — arguably the only two letters in history retired by a hardware constraint. When Edwin died in 1895, his brother <strong>Dr. George B. McFarland</strong> (later known in Siam as Phra Ach Witthayakhom) carried the work on, opening a shop in Bangkok that put Thai typewriters into government offices across the country.</p>
+					<p>But the layout itself was still clumsy — letters placed where they fit, not where fingers could fly. The fix came in 1931, when <strong>Suwanprasert Ketmanee</strong> rearranged the keys based on the frequency of Thai letters, putting the most common characters under the strongest fingers. His design, the <strong>Kedmanee layout</strong>, was so much better that it became the national standard — and it is almost certainly what your Thai keyboard uses right now, nearly a century later.</p>
+					<p>The story has one more twist. In 1965, <strong>Sarit Pattachote</strong> ran a deeper statistical analysis and produced the <strong>Pattachote layout</strong>, which balanced the workload between both hands far more evenly. Research at the time showed it was measurably faster and less tiring. It did not matter. By then a whole generation of typists, schools, and machines had standardized on Kedmanee, and nobody wanted to relearn. If that sounds familiar, it should — it is exactly the story of QWERTY and the Dvorak layout in the West. The best layout does not win; the one everyone already knows does.</p>
+					<h3>Learn Thai Touch Typing</h3>
+					<p>Almost a hundred years after Ajarn Kedmanee designed his keyboard layout, that legacy remains beneath our fingertips today. And the way to practice it hasn't changed. Start from the <strong>home row</strong> of the Thai language — left hand rests on <highlight>ฟ ห ก ด</highlight>, right hand on <highlight>่ า ส ว</highlight>, with both index fingers on the bumped keys (the same positions as <highlight>F</highlight> and <highlight>J</highlight>). This is no coincidence — Ajarn Kedmanee intentionally placed the most frequently used characters under the strongest fingers. So just by placing your hands correctly, you are already halfway there.</p>
+					<ul>
+						<li><strong>1. Memorize the home row</strong> — "ฟหกด ่าสว" is the first incantation for every generation of Thai typing students. Type it repeatedly until your fingers naturally return to this position without looking.</li>
+						<li><strong>2. Expand row by row</strong> — From the home row, move up to the top row (เ ้ ่ า ส ว) and down to the bottom row. Practice one group of letters at a time. Don't rush to learn the whole keyboard at once. The finger responsible for each key must remain strictly the same.</li>
+						<li><strong>3. Don't be afraid of the Shift key</strong> — The Thai language has more characters than keys. Less frequently used characters like ฤ ฆ ฏ ฌ were moved to the Shift layer based on Ajarn Kedmanee's frequency analysis. Hold Shift with the opposite pinky finger, and press the character key with the assigned finger as usual.</li>
+						<li><strong>4. Type vowels and tone marks in phonetic order</strong> — Upper vowels, lower vowels, and tone marks should always be typed after the consonant. For example, "ที่" = ท + ี + ่. Practice until it becomes a single rhythm, and even the most complex words will flow out naturally.</li>
+						<li><strong>5. Measure progress with test sentences</strong> — Try typing the classic pangram "เป็นมนุษย์สุดประเสริฐเลิศคุณค่า กว่าบรรดาฝูงสัตว์เดรัจฉาน", which covers all finger groups. Practice consistently for 15–20 minutes a day using free tools like <a href="https://monkeytype.com" target="_blank">Monkeytype</a> (select Thai language) or <a href="https://www.typingstudy.com/th" target="_blank">TypingStudy</a>.</li>
+					</ul>
+					<p>The path to learning Thai typing is like English — the first two weeks will be slower and frustrating. But remember the typists of 1931 who had to learn a completely new layout on mechanical machines. We have screens, practice programs, and a keyboard designed specifically for our fingers. There is only one thing no tool can do for you: not looking down at the keyboard.</p>
+					<h3>Bottom Line</h3>
+					<p>Touch typing is a 130-year-old "life hack" that still pays compound interest: a few weeks of deliberate practice for a lifetime of faster, calmer writing. McGurrin proved it on a stage in Cincinnati; Ketmanee engineered it into the Thai keyboard; the only question left is whether your fingers have learned it yet. Put them on the home row — ฟหกด่าสว if you are typing Thai — and stop looking down.</p>
+				</div>
 
-				<h3>How to Learn It</h3>
-				<p>
-					Here is the uncomfortable truth McGurrin understood: for the first two weeks,
-					touch typing makes you <em>slower</em>. You are trading a mediocre skill you already
-					have for an excellent one you do not have yet. Most people quit inside that gap.
-					The ones who push through never go back. The method:
-				</p>
-				<ul>
-					<li>
-						<strong>1. Commit to the home row.</strong> Fingers on <highlight>ASDF JKL;</highlight>,
-						thumbs on the space bar. Every keystroke starts and ends here.
-					</li>
-					<li>
-						<strong>2. Respect the finger zones.</strong> Each key belongs to exactly one finger.
-						The index fingers cover two columns each; the pinkies earn their keep on
-						<highlight>Q</highlight>, <highlight>A</highlight>, <highlight>Z</highlight>, <highlight>P</highlight>, and Enter.
-					</li>
-					<li>
-						<strong>3. Never look down.</strong> Cover your hands with a towel if you must.
-						Looking is the habit you are trying to break — every glance resets the clock.
-					</li>
-					<li>
-						<strong>4. Accuracy before speed.</strong> Speed is a side effect of accuracy,
-						never the other way around. Aim for 95%+ accuracy at any speed; the WPM will follow.
-					</li>
-					<li>
-						<strong>5. Practice small and daily.</strong> Fifteen to twenty minutes a day beats
-						a two-hour weekend session. Free tools like
-						<a href="https://www.keybr.com" target="_blank">keybr.com</a>,
-						<a href="https://monkeytype.com" target="_blank">Monkeytype</a>, and
-						<a href="https://www.typing.com" target="_blank">typing.com</a>
-						turn the drills into a game.
-					</li>
-				</ul>
-				<p>
-					A realistic timeline: after two weeks you match your old hunt-and-peck speed.
-					After two months you have doubled it. After that, the keyboard simply disappears —
-					thoughts flow onto the screen with nothing in between.
-				</p>
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h3>Touch Typing：从指尖到 Kedmanee 键盘的故事</h3>
+					<p>1888 年 7 月 25 日，辛辛那提。两名男子坐在打字机前，赌注是 500 美元——在当时这是一大笔钱。Louis Traub 采用了所有人惯用的打字方式：四根手指，视线在纸张和键盘之间来回扫视。而他的对手，来自盐湖城的法庭速记员 <strong>Frank Edward McGurrin</strong>，却展现了观众前所未见的技艺。他将十根手指全部放在键盘上，眼睛盯着要抄写的文本，<em>始终没有低头看键盘</em>。</p>
+					<p>McGurrin 赢得了决定性的胜利。报纸报道了这件事，打字学校更改了课程，而这种盲打的奇特技能——也就是我们现在所说的 <strong>touch typing</strong>——从一种派对把戏变成了专业标准。130 多年后的今天，我们大多数人每天在键盘前度过数小时，但许多人仍然像 Traub 那样打字。这就是赢得那场赌局的技能的故事、你该如何学习它，以及它是如何进入泰文键盘的。</p>
+					<h3>什么是 Touch Typing？</h3>
+					<p>Touch typing 意味着使用全部十根手指打字，且不看键盘。每根手指负责固定的按键区域，你的双手始终会回到被称为 <strong>home row</strong> 的基础位置——左手放在 <highlight>ASDF</highlight>，右手放在 <highlight>JKL;</highlight>（注意 <highlight>F</highlight> 和 <highlight>J</highlight> 上的小凸起；它们的存在是为了让你不用看也能找到 home row）。</p>
+					<p>真正的转变不在于手指，而在于大脑。习惯 hunt-and-peck 的打字员会不断重复一个循环：<em>思考 → 找键 → 看 → 按 → 检查</em>。而 touch typist 已经将“找键”这一步深深印入了 muscle memory，这与保持骑车平衡和弹奏吉他和弦的记忆区域相同。结果就是：</p>
+					<ul>
+						<li><strong>速度 (Speed)</strong> — touch typist 通常能达到 60–100+ WPM（每分钟字数），而 hunt-and-peck 只有 20–30。</li>
+						<li><strong>专注 (Focus)</strong> — 你的眼睛可以一直看着屏幕，你的思绪集中在想法上，而不是键盘上。</li>
+						<li><strong>准确性 (Accuracy)</strong> — 错误会被立刻发现，因为你在打字时能直接看到它们出现。</li>
+						<li><strong>人体工程学 (Ergonomics)</strong> — 再也不用整天在键盘和屏幕之间上下点头了。</li>
+					</ul>
+					<h3>如何学习 Touch Typing</h3>
+					<p>McGurrin 所理解的一个令人不舒服的真相是：在最初的两周里，touch typing 会让你变得<em>更慢</em>。你正在用你已经掌握的平庸技能，去交换一个你尚未掌握的卓越技能。大多数人都在这个过渡期放弃了。而那些坚持下来的人再也没有回头。练习方法如下：</p>
+					<ul>
+						<li><strong>1. 坚守 home row。</strong> 手指放在 <highlight>ASDF JKL;</highlight> 上，拇指放在空格键上。每一次敲击都从这里开始，并在这里结束。</li>
+						<li><strong>2. 遵守手指分区。</strong> 每个键完全属于一根手指。食指各自负责两列；小指负责 <highlight>Q</highlight>、<highlight>A</highlight>、<highlight>Z</highlight>、<highlight>P</highlight> 和 Enter 键。</li>
+						<li><strong>3. 永远不要低头看。</strong> 如果必须的话，用毛巾盖住你的手。看键盘是你试图打破的习惯——每一次瞥视都会让你的进度倒退。</li>
+						<li><strong>4. 准确度优先于速度。</strong> 速度是准确度的副产品，绝非反过来。在任何速度下都要追求 95%+ 的准确率；WPM 自然会提升。</li>
+						<li><strong>5. 坚持每天少量练习。</strong> 每天 15 到 20 分钟胜过周末两小时的突击。像 <a href="https://www.keybr.com" target="_blank">keybr.com</a>、<a href="https://monkeytype.com" target="_blank">Monkeytype</a> 和 <a href="https://www.typing.com" target="_blank">typing.com</a> 这样的免费工具能把枯燥的练习变成游戏。</li>
+					</ul>
+					<p>一个现实的时间表：两周后，你就能恢复以前 hunt-and-peck 的速度。两个月后，你的速度就能翻倍。之后，键盘仿佛消失了——你的想法会毫无阻碍地流淌到屏幕上。</p>
+					<h3>泰文 Touch Typing 的历史</h3>
+					<p>当 McGurrin 赢得他的 500 美元时，在地球另一端的暹罗面临着一个不同的问题：没有任何打字机能打出泰文。泰文有 44 个辅音、几十个元音，而且声调符号还会堆叠在字母的<em>上方</em>和<em>下方</em>——这比任何西方机器设计的容量要多得多。</p>
+					<p>1892 年，美国传教士的儿子、暹罗王子的秘书 <strong>Edwin Hunter McFarland</strong> 解决了这个问题。他改造了 Smith Premier——一种拥有巨大双键盘且没有 Shift 键的打字机。即使如此，按键还是不够用。有两个辅音不得不被舍弃：<strong>ฃ (kho khuat)</strong> 和 <strong>ฅ (kho khon)</strong>。这两个字母最终退出了日常使用——这可以说是历史上仅有的两个因为硬件限制而被淘汰的字母。Edwin 于 1895 年去世后，他的兄弟 <strong>George B. McFarland 博士</strong>（后来在暹罗被称为 Phra Ach Witthayakhom）继续了他的工作，在曼谷开了一家店，将泰文打字机推广到了全国的政府办公室。</p>
+					<p>但这个 layout 本身依然很笨拙——字母只是被放置在能放得下的地方，而不是手指最容易按到的地方。改变发生在 1931 年，当时 <strong>Suwanprasert Ketmanee</strong> 根据泰文字母的出现频率重新排列了按键，将最常用的字符放在了最强壮的手指下。他的设计，也就是 <strong>Kedmanee layout</strong>，非常出色，以至于成为了国家标准——近一个世纪后的今天，你的泰文键盘几乎可以肯定使用的就是它。</p>
+					<p>这个故事还有一个转折。1965 年，<strong>Sarit Pattachote</strong> 进行了更深入的统计分析，并创造了 <strong>Pattachote layout</strong>，它更加均匀地平衡了双手的负荷。当时的研究表明，它的速度明显更快，也更不容易疲劳。但这已经无关紧要了。那时，整整一代的打字员、学校和机器都已经标准化使用 Kedmanee，没有人愿意重新学习。如果这听起来很熟悉，它应该很熟悉——这正是西方世界 QWERTY 和 Dvorak layout 的故事。最好的 layout 并不总是赢家；大家已经习惯的那个才是。</p>
+					<h3>学习泰文 Touch Typing</h3>
+					<p>在 Ajarn Kedmanee 设计出他的键盘 layout 近一百年后，那份遗产今天依然存在于我们的指尖之下。而且练习的方法也从未改变。从泰文的 <strong>home row</strong> 开始——左手放在 <highlight>ฟ ห ก ด</highlight>，右手放在 <highlight>่ า ส ว</highlight>，两根食指放在有凸起的按键上（与 <highlight>F</highlight> 和 <highlight>J</highlight> 的位置相同）。这绝非巧合——Ajarn Kedmanee 故意将最常用的字符放在了最强壮的手指下。因此，只要把手放对位置，你就已经成功了一半。</p>
+					<ul>
+						<li><strong>1. 熟记 home row</strong> — "ฟหกด ่าสว" 是每一代泰文打字学生的第一句口诀。反复练习，直到你的手指能够不看键盘自然地回到这个位置。</li>
+						<li><strong>2. 逐排扩展</strong> — 从 home row 开始，向上移动到顶排 (เ ้ ่ า ส ว) 和底排。一次只练习一组字母。不要急于一次学会整个键盘。负责每个键的手指必须严格保持不变。</li>
+						<li><strong>3. 不要害怕 Shift 键</strong> — 泰文的字符比按键多。像 ฤ ฆ ฏ ฌ 这样不常用的字符，根据 Ajarn Kedmanee 的频率分析被移到了 Shift 层。用另一只手的小指按住 Shift，然后像往常一样用指定的按键手指按下字符键。</li>
+						<li><strong>4. 按照语音顺序输入元音和声调</strong> — 上元音、下元音和声调符号应始终在辅音之后输入。例如，"ที่" = ท + ี + ่。练习直到它成为一个单一的节奏，即使是最复杂的词也会自然流畅地打出来。</li>
+						<li><strong>5. 用测试句子衡量进度</strong> — 尝试输入经典的 pangram "เป็นมนุษย์สุดประเสริฐเลิศคุณค่า กว่าบรรดาฝูงสัตว์เดรัจฉาน"，它涵盖了所有的手指组。每天使用 <a href="https://monkeytype.com" target="_blank">Monkeytype</a>（选择泰文）或 <a href="https://www.typingstudy.com/th" target="_blank">TypingStudy</a> 等免费工具坚持练习 15–20 分钟。</li>
+					</ul>
+					<p>学习泰文打字的道路和英文一样——前两周会变慢并让人感到沮丧。但请记住 1931 年的打字员们，他们必须在机械机器上学习一个全新的 layout。我们有屏幕、练习程序，还有一个专门为我们的手指设计的键盘。只有一件事是任何工具都无法代替你做的：不要低头看键盘。</p>
+					<h3>Bottom Line</h3>
+					<p>Touch typing 是一个有 130 年历史的“life hack”，它至今仍在产生复利：几周的刻意练习，换来一生更快、更从容的书写体验。McGurrin 在辛辛那提的舞台上证明了这一点；Ketmanee 将其工程化到了泰文键盘中；剩下的唯一问题是你的手指是否已经学会了它。把它们放在 home row 上——如果你打泰文就是 ฟหกด่าสว——并且不要再低头看了。</p>
+				</div>
 
-				<h3>Thai Touch Typing History</h3>
-				<p>
-					While McGurrin was collecting his $500, on the other side of the world Siam had a
-					different problem: no typewriter could write Thai at all. The Thai script has
-					44 consonants, dozens of vowels, and tone marks that stack <em>above</em> and
-					<em>below</em> the line — far more symbols than any Western machine was built to hold.
-				</p>
-				<p>
-					In 1892, <strong>Edwin Hunter McFarland</strong>, son of an American missionary and
-					secretary to a Siamese prince, solved it by adapting the Smith Premier — a typewriter
-					with a huge double keyboard and no shift key. Even then, the keys ran out.
-					Two consonants had to be left off: <strong>ฃ (kho khuat)</strong> and
-					<strong>ฅ (kho khon)</strong>. Both eventually fell out of everyday use —
-					arguably the only two letters in history retired by a hardware constraint.
-					When Edwin died in 1895, his brother <strong>Dr. George B. McFarland</strong>
-					(later known in Siam as Phra Ach Witthayakhom) carried the work on, opening a shop in
-					Bangkok that put Thai typewriters into government offices across the country.
-				</p>
-				<p>
-					But the layout itself was still clumsy — letters placed where they fit, not where
-					fingers could fly. The fix came in 1931, when <strong>Suwanprasert Ketmanee</strong>
-					(สุวรรณประเสริฐ เกษมณี) rearranged the keys based on the frequency of Thai letters,
-					putting the most common characters under the strongest fingers. His design,
-					<strong>แป้นเกษมณี (the Kedmanee layout)</strong>, was so much better that it became
-					the national standard — and it is almost certainly what your Thai keyboard
-					uses right now, nearly a century later.
-				</p>
-				<p>
-					The story has one more twist. In 1965, <strong>Sarit Pattachote</strong>
-					(สฤษดิ์ ปัตตะโชติ) ran a deeper statistical analysis and produced
-					<strong>แป้นปัตตะโชติ (the Pattachote layout)</strong>, which balanced the workload
-					between both hands far more evenly. Research at the time showed it was measurably
-					faster and less tiring. It did not matter. By then a whole generation of typists,
-					schools, and machines had standardized on Kedmanee, and nobody wanted to relearn.
-					If that sounds familiar, it should — it is exactly the story of QWERTY and the
-					Dvorak layout in the West. The best layout does not win; the one everyone
-					already knows does.
-				</p>
-
-				<h3>Learn Thai Touch Typing — ฝึกพิมพ์สัมผัสภาษาไทย</h3>
-				<p>
-					เกือบร้อยปีหลังจากที่อาจารย์เกษมณีออกแบบแป้นพิมพ์ของท่าน มรดกชิ้นนั้นก็ยังอยู่ใต้ปลายนิ้วของเราทุกวันนี้
-					และวิธีฝึกใช้มันก็ยังเหมือนเดิมไม่เปลี่ยน เริ่มจาก <strong>แป้นเหย้า (home row)</strong> ของภาษาไทย —
-					มือซ้ายวางที่ <highlight>ฟ ห ก ด</highlight> มือขวาวางที่ <highlight>่ า ส ว</highlight>
-					โดยนิ้วชี้ทั้งสองข้างอยู่บนปุ่มที่มีปุ่มนูน (ตำแหน่งเดียวกับ <highlight>F</highlight> และ <highlight>J</highlight>)
-					นี่ไม่ใช่เรื่องบังเอิญ — อาจารย์เกษมณีจงใจวางตัวอักษรที่ใช้บ่อยที่สุดไว้ใต้นิ้วที่แข็งแรงที่สุด
-					ดังนั้นแค่วางมือถูกตำแหน่ง ก็ได้เปรียบไปครึ่งทางแล้ว
-				</p>
-				<ul>
-					<li>
-						<strong>1. ท่องแป้นเหย้าให้ขึ้นใจ</strong> — "ฟหกด ่าสว" คือคาถาบทแรกของนักเรียนพิมพ์ดีดไทยทุกรุ่น
-						ตั้งแต่ยุคเครื่องพิมพ์ดีดจนถึงยุคคีย์บอร์ด พิมพ์วนซ้ำจนนิ้วกลับมาหาตำแหน่งนี้ได้เองโดยไม่ต้องมอง
-					</li>
-					<li>
-						<strong>2. ขยายทีละแถว</strong> — จากแป้นเหย้าค่อยขยับขึ้นแถวบน (เ ้ ่ า ส ว) และลงแถวล่าง
-						ฝึกทีละกลุ่มตัวอักษร อย่ารีบเรียนทั้งแป้นพร้อมกัน นิ้วไหนรับผิดชอบปุ่มไหนต้องคงที่เสมอ
-					</li>
-					<li>
-						<strong>3. อย่ากลัวปุ่ม Shift</strong> — ภาษาไทยมีตัวอักษรมากกว่าปุ่ม อักษรที่ใช้น้อย เช่น ฤ ฆ ฏ ฌ
-						ถูกย้ายไปชั้น Shift ตามหลักความถี่ของอาจารย์เกษมณี ใช้นิ้วก้อยข้างตรงข้ามกดค้าง
-						แล้วใช้นิ้วประจำปุ่มกดตัวอักษรตามปกติ
-					</li>
-					<li>
-						<strong>4. สระและวรรณยุกต์พิมพ์ตามลำดับเสียง</strong> — สระบน สระล่าง และวรรณยุกต์
-						ให้พิมพ์หลังพยัญชนะเสมอ เช่น "ที่" = ท + ี + ่ ฝึกจนเป็นจังหวะเดียวกัน
-						แล้วคำที่ซับซ้อนที่สุดก็จะไหลออกมาเอง
-					</li>
-					<li>
-						<strong>5. วัดผลด้วยประโยคทดสอบ</strong> — ลองพิมพ์พังแกรมคลาสสิก
-						"เป็นมนุษย์สุดประเสริฐเลิศคุณค่า กว่าบรรดาฝูงสัตว์เดรัจฉาน"
-						ซึ่งครบทุกกลุ่มนิ้ว แล้วฝึกต่อเนื่องวันละ 15–20 นาที ผ่านเครื่องมือฟรีอย่าง
-						<a href="https://monkeytype.com" target="_blank">Monkeytype</a> (เลือกภาษา Thai) หรือ
-						<a href="https://www.typingstudy.com/th" target="_blank">TypingStudy</a>
-					</li>
-				</ul>
-				<p>
-					เส้นทางการฝึกภาษาไทยก็เหมือนภาษาอังกฤษ — สองสัปดาห์แรกจะช้าลงและหงุดหงิด
-					แต่ขอให้นึกถึงนักพิมพ์ดีดรุ่นปี 2474 ที่ต้องเรียนแป้นใหม่ทั้งแป้นบนเครื่องจักรกลไก
-					เรามีหน้าจอ มีโปรแกรมฝึก และมีแป้นที่ถูกออกแบบมาให้นิ้วเราอยู่แล้ว
-					เหลือแค่อย่างเดียวที่เครื่องมือไหนก็ทำแทนไม่ได้ คือการไม่ก้มมองแป้น
-				</p>
-
-				<h3>Bottom Line</h3>
-				<p>
-					Touch typing is a 130-year-old "life hack" that still pays compound interest:
-					a few weeks of deliberate practice for a lifetime of faster, calmer writing.
-					McGurrin proved it on a stage in Cincinnati; Ketmanee engineered it into the Thai
-					keyboard; the only question left is whether your fingers have learned it yet.
-					Put them on the home row — ฟหกด่าสว if you are typing Thai — and stop looking down.
-				</p>
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h3>Touch Typing：指先から Kedmanee キーボードまでの物語</h3>
+					<p>1888年7月25日、シンシナティ。2人の男が500ドルの賭け金（当時としては大金）をかけてタイプライターの前に座りました。Louis Traub は、誰もがするような方法でタイプしました：4本の指を使い、視線を紙とキーボードの間で行き来させます。一方の対戦相手、ソルトレイクシティの法廷速記官である <strong>Frank Edward McGurrin</strong> は、観衆が今まで見たことのない技を披露しました。彼は10本すべての指をキーボードに置き、視線をコピーするテキストに固定したまま、<em>一度も下を見ませんでした</em>。</p>
+					<p>McGurrin は決定的な勝利を収めました。新聞がこのニュースを報じ、タイピング学校はカリキュラムを変更し、ブラインドタッチという奇妙なスキル——現在私たちが <strong>touch typing</strong> と呼ぶもの——は、パーティーの余興からプロフェッショナルな標準へと変わりました。130年以上経った今、私たちのほとんどは毎日何時間もキーボードに向かっていますが、多くの人は未だに Traub のようにタイプしています。これは、あの賭けに勝ったスキルの物語であり、それをどのように習得するか、そしてそれがどのようにしてタイ語のキーボードに組み込まれたかについての物語です。</p>
+					<h3>Touch Typing とは何か？</h3>
+					<p>Touch typing とは、キーボードを見ずに10本すべての指を使ってタイプすることを意味します。各指は決められたキーのゾーンを担当し、手は常に <strong>home row</strong> と呼ばれる基本位置に戻ります——左手は <highlight>ASDF</highlight>、右手は <highlight>JKL;</highlight> です（<highlight>F</highlight> と <highlight>J</highlight> にある小さな突起に注目してください。これらは見なくても home row を見つけられるように存在します）。</p>
+					<p>本当の変化は指ではなく、頭の中で起こります。hunt-and-peck のタイピストは、<em>考える → キーを探す → 見る → 押す → 確認する</em>というループを常に繰り返しています。一方、touch typist は「キーを探す」ステップを muscle memory に押し込んでいます。これは、自転車のバランスやギターのコードを記憶するのと同じ場所です。その結果、以下のようになります：</p>
+					<ul>
+						<li><strong>速度 (Speed)</strong> — touch typist は通常、60–100+ WPM に達しますが、hunt-and-peck は20–30にとどまります。</li>
+						<li><strong>集中力 (Focus)</strong> — 目は画面に向けられたままで、意識はキーボードではなくアイデアに集中します。</li>
+						<li><strong>正確性 (Accuracy)</strong> — タイプした文字が画面に現れるのを直接見るため、ミスに即座に気づきます。</li>
+						<li><strong>人間工学 (Ergonomics)</strong> — 一日中キーボードと画面の間で首を上下に動かす必要がなくなります。</li>
+					</ul>
+					<h3>どのように学ぶか</h3>
+					<p>McGurrin が理解していた不都合な真実はこれです：最初の2週間、touch typing をするとタイピングが<em>遅く</em>なります。すでに持っている平凡なスキルを、まだ持っていない優れたスキルと交換しているのです。ほとんどの人は、このギャップの間に諦めてしまいます。しかし、そこを乗り越えた人は決して元には戻りません。その方法は以下の通りです：</p>
+					<ul>
+						<li><strong>1. home row を死守する。</strong> 指は <highlight>ASDF JKL;</highlight> に、親指はスペースキーに。すべてのキーストロークはここから始まり、ここで終わります。</li>
+						<li><strong>2. 指のゾーンを守る。</strong> 各キーは正確に1本の指に属しています。人差し指はそれぞれ2列を担当し、小指は <highlight>Q</highlight>、<highlight>A</highlight>、<highlight>Z</highlight>、<highlight>P</highlight>、および Enter キーを担当します。</li>
+						<li><strong>3. 決して下を見ない。</strong> 必要ならタオルで手を隠してください。見下ろすことはあなたが壊そうとしている習慣です——一度見るたびに、進歩がリセットされます。</li>
+						<li><strong>4. 速度より正確性。</strong> 速度は正確性の副産物であり、その逆はありえません。どんな速度であっても95%以上の正確性を目指してください。WPM は後からついてきます。</li>
+						<li><strong>5. 少しずつ毎日練習する。</strong> 週末に2時間まとめてやるよりも、1日15〜20分練習する方が効果的です。<a href="https://www.keybr.com" target="_blank">keybr.com</a>、<a href="https://monkeytype.com" target="_blank">Monkeytype</a>、<a href="https://www.typing.com" target="_blank">typing.com</a> のような無料ツールを使えば、ドリルのような練習もゲーム感覚で楽しめます。</li>
+					</ul>
+					<p>現実的なタイムライン：2週間後には、以前の hunt-and-peck の速度に追いつきます。2ヶ月後にはその速度が2倍になります。その後、キーボードの存在は消え去り——思考が何の障壁もなく画面に流れ込むようになります。</p>
+					<h3>タイ語 Touch Typing の歴史</h3>
+					<p>McGurrin が500ドルを受け取っていた頃、地球の反対側にあるシャム（現在のタイ）では別の問題に直面していました。タイ語を打てるタイプライターが一つもなかったのです。タイ文字には44の子音、数十の母音があり、さらに声調記号が行の<em>上</em>と<em>下</em>に重なります——これは、西洋の機械が想定していたよりもはるかに多い記号数でした。</p>
+					<p>1892年、アメリカ人宣教師の息子であり、シャム王子の秘書であった <strong>Edwin Hunter McFarland</strong> は、Smith Premier という、Shift キーがない巨大なダブルキーボードのタイプライターを改造することでこの問題を解決しました。それでもキーは足りませんでした。2つの子音、<strong>ฃ (kho khuat)</strong> と <strong>ฅ (kho khon)</strong> は除外せざるを得ませんでした。これらは最終的に日常的な使用から姿を消しました——おそらくハードウェアの制約によって引退した歴史上唯一の2つの文字でしょう。1895年に Edwin が亡くなった後、彼の兄弟である <strong>George B. McFarland 博士</strong>（後にシャムで Phra Ach Witthayakhom として知られる）がその作業を引き継ぎ、バンコクに店を開いて、タイ全土の政府機関にタイ語タイプライターを導入しました。</p>
+					<p>しかし、その layout 自体は依然として不格好でした——文字は指が動きやすい場所ではなく、単に収まる場所に配置されていました。解決策がもたらされたのは1931年です。<strong>Suwanprasert Ketmanee</strong> が、タイ文字の出現頻度に基づいてキーを再配置し、最もよく使われる文字を最も強い指の下に配置したのです。彼の設計である <strong>Kedmanee layout</strong> は非常に優れていたため、国家標準となりました——そしてほぼ1世紀経った現在、あなたのタイ語キーボードで使用されているのもほぼ間違いなくこれです。</p>
+					<p>この物語にはもう一つの展開があります。1965年、<strong>Sarit Pattachote</strong> はより深い統計分析を行い、両手の作業負荷をはるかに均等に分散させる <strong>Pattachote layout</strong> を作成しました。当時の研究では、これの方が明らかに速く、疲れにくいことが証明されていました。しかし、それは問題になりませんでした。その頃には、タイピスト、学校、機械の全世代が Kedmanee で標準化されており、誰も再学習したくなかったのです。もしこの話が聞き覚えがあるなら、その通りです——これはまさに西洋における QWERTY と Dvorak layout の物語と同じです。最高の layout が勝つのではなく、誰もがすでに知っているものが勝つのです。</p>
+					<h3>タイ語 Touch Typing を学ぶ</h3>
+					<p>Ajarn Kedmanee がキーボード layout を設計してから100年近く経った今でも、その遺産は今日私たちの指先に残っています。そして、その練習方法も変わっていません。タイ語の <strong>home row</strong> から始めます——左手は <highlight>ฟ ห ก ด</highlight>、右手は <highlight>่ า ส ว</highlight> に置き、両手の人差し指を突起のあるキー（<highlight>F</highlight> と <highlight>J</highlight> と同じ位置）に置きます。これは偶然ではありません——Ajarn Kedmanee は意図的に、最もよく使われる文字を最も強い指の下に配置しました。したがって、手を正しい位置に置くだけで、すでに半分は成功しているのです。</p>
+					<ul>
+						<li><strong>1. home row を暗記する</strong> — 「ฟหกด ่าสว」は、タイ語のタイピングを学ぶすべての世代にとって最初の呪文です。見なくても指が自然にこの位置に戻ってくるまで、繰り返しタイプしてください。</li>
+						<li><strong>2. 1列ずつ拡張する</strong> — home row から、上の列 (เ ้ ่ า ส ว) と下の列へと移動します。一度に1つの文字グループを練習してください。キーボード全体を一度に学ぼうと焦らないでください。各キーを担当する指は、厳密に同じでなければなりません。</li>
+						<li><strong>3. Shift キーを恐れない</strong> — タイ語にはキーの数より多くの文字があります。ฤ ฆ ฏ ฌ などのあまり使われない文字は、Ajarn Kedmanee の頻度分析に基づいて Shift レイヤーに移されました。反対側の小指で Shift を押しながら、通常通り割り当てられた指で文字キーを押します。</li>
+						<li><strong>4. 母音と声調記号を音声順にタイプする</strong> — 上の母音、下の母音、および声調記号は、常に子音の後にタイプする必要があります。例えば、「ที่」= ท + ี + ่ です。これが一つのリズムになるまで練習すれば、最も複雑な単語でも自然に流れ出てくるようになります。</li>
+						<li><strong>5. テスト用センテンスで進捗を測る</strong> — すべての指のグループを網羅する古典的な pangram 「เป็นมนุษย์สุดประเสริฐเลิศคุณค่า กว่าบรรดาฝูงสัตว์เดรัจฉาน」をタイプしてみてください。<a href="https://monkeytype.com" target="_blank">Monkeytype</a>（タイ語を選択）や <a href="https://www.typingstudy.com/th" target="_blank">TypingStudy</a> などの無料ツールを使用して、1日15〜20分間、継続的に練習してください。</li>
+					</ul>
+					<p>タイ語のタイピングを学ぶ道のりは英語と同じです——最初の2週間は遅くなり、イライラするでしょう。しかし、機械式のマシンで全く新しい layout を学ばなければならなかった1931年のタイピストたちのことを思い出してください。私たちには画面があり、練習プログラムがあり、そして私たちの指のために特別に設計されたキーボードがあります。どんなツールにも代わってあげられないことが一つだけあります：キーボードを見下ろさないことです。</p>
+					<h3>Bottom Line</h3>
+					<p>Touch typing は130年前の「life hack」ですが、今でも複利を生み出し続けています。数週間の意識的な練習が、一生涯のより速く、より落ち着いた執筆をもたらすのです。McGurrin はシンシナティのステージでそれを証明し、Ketmanee はそれをタイ語キーボードに組み込みました。残る唯一の疑問は、あなたの指がそれをすでに習得しているかどうかです。指を home row に置き——タイ語を打つなら ฟหกด่าสว——下を見るのはやめましょう。</p>
+				</div>
 			</section>
 
 			<section id="comments">
@@ -338,5 +352,39 @@
 		<script src="../assets/js/util.js"></script>
 		<script src="../assets/js/main.js"></script>
 		<script src="../assets/js/cookie-consent.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const langIcons = document.querySelectorAll('.lang-icon');
+				const langSections = document.querySelectorAll('.lang-section');
+
+				function activateLanguage(hash) {
+					// Remove active class from all icons and sections
+					langIcons.forEach(i => i.classList.remove('active'));
+					langSections.forEach(s => s.classList.remove('active'));
+
+					// Find target icon and section
+					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === hash) || langIcons[0];
+					const targetHash = targetIcon.getAttribute('href');
+					const targetSection = document.querySelector(targetHash);
+
+					// Activate them
+					if (targetIcon) targetIcon.classList.add('active');
+					if (targetSection) targetSection.classList.add('active');
+				}
+
+				// Update active icon on click
+				langIcons.forEach(icon => {
+					icon.addEventListener('click', function(e) {
+						e.preventDefault(); // Prevent jump since it acts like a tab now
+						const hash = this.getAttribute('href');
+						history.pushState(null, null, hash);
+						activateLanguage(hash);
+					});
+				});
+
+				// Set initial active state from URL hash if present, else default to first
+				activateLanguage(window.location.hash || langIcons[0].getAttribute('href'));
+			});
+		</script>
 	</body>
 </html>
