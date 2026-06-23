@@ -60,9 +60,10 @@ ROOT/
 ## 🛠️ Instructions for AI Agent Tasks
 
 * **When asked to update the resume:** Only modify `index.html`. Ensure semantic HTML tags (like `<section>`, `<article>`, `<header>`) are maintained.
-* **When asked to create a new blog post:** 1. Create a new `.html` file in the `blogs/` directory.
-    2. Use the existing CSS from `assets/css/` to ensure visual consistency.
-    3. Update the blog listing (if it exists) to include a link to the new post.
+* **When asked to create a new blog post:**
+    1. Copy `template-article.html` to the appropriate directory (e.g., `general/`, `coding/`) and rename it for your new post.
+    2. Follow the Multilingual Rule from `AGENTS.md` and populate the `[Content in ...]` placeholders for all 4 languages.
+    3. Update the category listing page (if it exists) to include a link to the new post.
 * **When writing code:** Prioritize modern, vanilla HTML5, CSS3, and ES6+ JavaScript. Ensure the design remains responsive for mobile devices.
 ```
 
