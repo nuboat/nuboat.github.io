@@ -119,6 +119,15 @@
 				}
 			}
 		</style>
+			<script>
+			// Dark mode init
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
 	</head>
 	<body class="is-preload">
 
@@ -189,6 +198,8 @@
 
 				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em; display: block;">
 				<header class="major">
+					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon"></a>
+
 					<h1>Developing Web Services on AWS Lambda with Java</h1>
 					<p><a href="../coding.html">Coding</a> > <em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp;</em></p>
 				</header>
@@ -446,5 +457,30 @@ public class BahtTextHTTP
 		<script src="../assets/js/util.js"></script>
 		<script src="../assets/js/main.js"></script>
 		<script src="../assets/js/cookie-consent.js"></script>
+			<script>
+			// Theme toggle logic
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				// Update icon based on current theme
+				const updateIcon = () => {
+					if (document.documentElement.getAttribute('data-theme') === 'dark') {
+						themeToggle.classList.remove('fa-moon');
+						themeToggle.classList.add('fa-sun');
+					} else {
+						themeToggle.classList.remove('fa-sun');
+						themeToggle.classList.add('fa-moon');
+					}
+				};
+				updateIcon();
+
+				themeToggle.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					updateIcon();
+				});
+			}
+		</script>
 	</body>
 </html>
