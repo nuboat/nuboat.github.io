@@ -135,7 +135,7 @@ a:hover { color: var(--ci-cyan) !important; }
 	position: relative;
 	padding-left: 0.85rem;
 }
-#main h2::before {
+#major h2::before {
 	content: "";
 	position: absolute;
 	left: 0; top: .18em; bottom: .18em;
@@ -201,7 +201,7 @@ a:hover { color: var(--ci-cyan) !important; }
 .work-item .image.fit.thumb img { transition: transform .5s cubic-bezier(.2,.7,.2,1); }
 .work-item:hover .image.fit.thumb img { transform: scale(1.05); }
 
-.work-item h3 {
+.work-item h2, .work-item h3 {
 	color: var(--ci-navy);
 	margin: 1rem 1.25rem 0.5rem;
 	line-height: 1.3;
@@ -234,7 +234,7 @@ a:hover { color: var(--ci-cyan) !important; }
 }
 
 /* extra air inside each card */
-.page-blog .work-item h3 { margin: 1.35rem 1.5rem 0.6rem; }
+.page-blog .work-item h2, .page-blog .work-item h3 { margin: 1.35rem 1.5rem 0.6rem; }
 .page-blog .work-item p  { margin: 0 1.5rem 1.75rem; }
 .page-blog .work-item .image.fit.thumb { height: 220px; }
 
@@ -342,7 +342,7 @@ a:hover { color: var(--ci-cyan) !important; }
 	flex-direction: column;
 	justify-content: center;
 }
-.category-item .category-body h3 {
+.category-item .category-body h2, .category-item .category-body h3 {
 	margin: 0 0 .4rem;
 	font-size: 1.3em;
 	line-height: 1.25;
