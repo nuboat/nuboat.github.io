@@ -23,11 +23,33 @@
 	--ci-line:        #e3e8ee;
 	--ci-canvas:      #f6f8fb;
 	--ci-paper:       #ffffff;
+	--ci-headline:    var(--ci-navy);
 
 	--ci-display: "Bai Jamjuree", "IBM Plex Sans Thai", sans-serif;
 	--ci-body:    "IBM Plex Sans Thai", "Bai Jamjuree", system-ui, sans-serif;
 
 	--ci-shadow:  0 1px 2px rgba(0,40,86,.04), 0 12px 32px -12px rgba(0,40,86,.18);
+}
+
+[data-theme="dark"] {
+	/* Base brand colors preserved / slightly adjusted for dark mode */
+	--ci-blue:        #006098;
+	--ci-navy:        #00162e; /* Darker navy for main background */
+	--ci-cyan:        #05ACE1;
+	--ci-green:       #5B7953;
+	--ci-sage:        #919C7A;
+	--ci-sand:        #F7D88E;
+	--ci-red:         #9E1A3B;
+	
+	/* Derived neutrals compiled from the palette */
+	--ci-ink:         #e3e8ee;
+	--ci-headline:    var(--ci-sand); /* Sand makes an excellent dark-mode headline color */
+	--ci-muted:       var(--ci-sage); /* Sage for muted text */
+	--ci-line:        #003d6b; /* Blue shade for dividers */
+	--ci-canvas:      var(--ci-navy); /* Deepest navy for canvas */
+	--ci-paper:       #002856; /* Standard brand navy for cards */
+
+	--ci-shadow:  0 1px 2px rgba(0,0,0,.3), 0 12px 32px -12px rgba(0,0,0,.6);
 }
 
 /* ---- The brand signature: collateral spectrum at the very top edge ---- */
@@ -55,9 +77,14 @@ body { background: var(--ci-canvas); }
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: var(--ci-display);
-	color: var(--ci-navy);
+	color: var(--ci-headline);
 	font-weight: 600;
 	letter-spacing: -0.01em;
+}
+
+strong, b {
+	color: var(--ci-headline);
+	font-weight: 600;
 }
 
 a {
@@ -202,7 +229,7 @@ a:hover { color: var(--ci-cyan) !important; }
 .work-item:hover .image.fit.thumb img { transform: scale(1.05); }
 
 .work-item h2, .work-item h3 {
-	color: var(--ci-navy);
+	color: var(--ci-headline);
 	margin: 1rem 1.25rem 0.5rem;
 	line-height: 1.3;
 	font-weight: 600;
@@ -424,7 +451,7 @@ a:hover { color: var(--ci-cyan) !important; }
 }
 .carousel-caption {
 	font-family: var(--ci-display);
-	color: var(--ci-navy);
+	color: var(--ci-headline);
 	font-weight: 600;
 	font-size: .95em;
 }
@@ -525,7 +552,7 @@ blockquote {
 hr { border-bottom-color: var(--ci-line); }
 
 /* tables in profile/blogs */
-table thead th { color: var(--ci-navy); border-bottom: solid 2px var(--ci-blue); }
+table thead th { color: var(--ci-headline); border-bottom: solid 2px var(--ci-blue); }
 table tbody tr { border-color: var(--ci-line); }
 
 /* =============================== Footer =============================== */
