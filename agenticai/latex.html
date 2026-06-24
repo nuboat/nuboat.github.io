@@ -126,7 +126,7 @@
 		<div id="main">
 			<section id="one">
 				<header class="major">
-					<h2>สร้างเอกสารด้วย LaTeX ผ่าน Claude AI</h2>
+					<h1>สร้างเอกสารด้วย LaTeX ผ่าน Claude AI</h1>
 					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../agenticai.html">&larr; Agentic AI</a></em></p>
 				</header>
 
@@ -158,20 +158,22 @@
 				</div>
 
 				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
+					<h2>Writing LaTeX Documents with Claude AI</h2>
+					<p><strong>Bottom Line Up Front:</strong> XeLaTeX is required to render Thai fonts (like TH Sarabun New) properly. By combining a custom document class with Claude AI and a clear CLAUDE.md instruction file, you can easily generate professional, reusable Thai enterprise reports.</p>
 					<p>
 						LaTeX is still my go-to for any serious document — especially when it needs to look professional, handle Thai text correctly, and be reusable across projects.
 						In this post I walk through how I built <a href="https://github.com/nuboat/template-doc" target="_blank"><strong>template-doc</strong></a>,
 						a custom LaTeX template for Thai-language enterprise reports, and how Claude became an essential part of that workflow.
 					</p>
 
-					<h3>The Problem with Thai in LaTeX</h3>
+					<h2>The Problem with Thai in LaTeX</h2>
 					<p>
 						Standard LaTeX (pdflatex) cannot render Thai script. You need <strong>XeLaTeX</strong>, which supports Unicode and OpenType fonts natively.
 						The template is built around the <strong>TH Sarabun New</strong> font — a clean, readable Thai typeface — loaded via <highlight>fontspec</highlight>.
 						Getting Thai hyphenation, line-breaking, and mixed Thai-English spacing right took real iteration, and that is where having Claude as a pair was invaluable.
 					</p>
 
-					<h3>Project Structure</h3>
+					<h2>Project Structure</h2>
 					<p>The repository follows a modular layout to keep large documents manageable:</p>
 <pre><code>template-doc/
 ├── main.tex              # Entry point — includes all sections
@@ -199,7 +201,7 @@
 						This makes it easy to draft one section at a time with Claude without touching the whole document.
 					</p>
 
-					<h3>The Custom Class: easreport.cls</h3>
+					<h2>The Custom Class: easreport.cls</h2>
 					<p>
 						The heart of the template is <highlight>easreport.cls</highlight> — a custom document class that extends the standard <highlight>article</highlight> class.
 						It bundles everything needed for professional Thai-language technical reports:
@@ -219,7 +221,7 @@
 						so every document carries consistent version tracking without manual header edits.
 					</p>
 
-					<h3>Building the PDF</h3>
+					<h2>Building the PDF</h2>
 					<p>The build uses <strong>latexmk</strong> with a project-local config file:</p>
 <pre><code># Build PDF
 latexmk -r conf/latexmkrc main.tex
@@ -233,7 +235,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						are gitignored so the repository stays clean.
 					</p>
 
-					<h3>How I Work with Claude on LaTeX</h3>
+					<h2>How I Work with Claude on LaTeX</h2>
 					<p>
 						The repository includes a <highlight>CLAUDE.md</highlight> file that gives Claude the context it needs to produce correct, compilable LaTeX every time.
 						Without this, AI-generated LaTeX often uses the wrong engine, missing packages, or incompatible commands.
@@ -248,7 +250,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						<li>Use <highlight>\sloppy</highlight> / <highlight>\fussy</highlight> in sections to control Thai text line-breaking</li>
 					</ul>
 
-					<h3>Practical Workflow</h3>
+					<h2>Practical Workflow</h2>
 					<p>My day-to-day flow when writing a section with Claude:</p>
 					<ol>
 						<li><strong>Open a section file</strong> — e.g., <highlight>sections/d_technology.tex</highlight></li>
@@ -262,7 +264,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						which keeps the context focused and the output accurate.
 					</p>
 
-					<h3>Gotchas Worth Knowing</h3>
+					<h2>Gotchas Worth Knowing</h2>
 					<ul>
 						<li>
 							<strong>XeLaTeX is mandatory.</strong> Running pdflatex will immediately fail on <highlight>\usepackage{fontspec}</highlight>.
@@ -282,7 +284,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						</li>
 					</ul>
 
-					<h3>Why This Approach Works</h3>
+					<h2>Why This Approach Works</h2>
 					<p>
 						Pairing LaTeX's precision with Claude's natural language interface removes the friction of remembering every command and environment.
 						I describe what I need in Thai or English, Claude generates correct LaTeX against a well-defined template, and I compile immediately to verify.
@@ -297,18 +299,20 @@ latexmk -r conf/latexmkrc -C main.tex
 				</div>
 
 				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>สร้างเอกสารด้วย LaTeX ผ่าน Claude AI</h2>
+					<p><strong>สรุปประเด็นสำคัญ (BLUF):</strong> การพิมพ์ภาษาไทยใน LaTeX ต้องใช้ XeLaTeX ควบคู่กับฟอนต์ TH Sarabun New การนำ custom document class มาทำงานร่วมกับ Claude AI และไฟล์ CLAUDE.md จะช่วยให้คุณสร้างรายงานระดับองค์กรภาษาไทยที่ดูเป็นมืออาชีพได้อย่างรวดเร็ว</p>
 					<p>
 						LaTeX ยังคงเป็นเครื่องมือคู่ใจของผมสำหรับ document ใดๆ ที่มีความสำคัญ — โดยเฉพาะเมื่อมันจำเป็นต้องดูมีความเป็น professional, สามารถจัดการกับภาษาไทยได้อย่างถูกต้อง, และสามารถนำกลับมาใช้ใหม่ (reusable) ข้าม projects ได้
 						ในบทความนี้ ผมจะพาทุกคนไปดูว่าผมสร้าง <a href="https://github.com/nuboat/template-doc" target="_blank"><strong>template-doc</strong></a> ขึ้นมาได้อย่างไร,
 						ซึ่งเป็น custom LaTeX template สำหรับ enterprise reports ภาษาไทย, และ Claude กลายมาเป็นส่วนสำคัญอย่างขาดไม่ได้ใน workflow นั้นได้อย่างไร
 					</p>
 
-					<h3>ปัญหาของการพิมพ์ภาษาไทยใน LaTeX</h3>
+					<h2>ปัญหาของการพิมพ์ภาษาไทยใน LaTeX</h2>
 					<p>
 						Standard LaTeX (pdflatex) ไม่สามารถ render ภาษาไทยได้ คุณจำเป็นต้องใช้ <strong>XeLaTeX</strong> ซึ่งรองรับ Unicode และ OpenType fonts ได้แบบ natively ตัว template ถูกสร้างขึ้นมาโดยอิงจาก font <strong>TH Sarabun New</strong> — ซึ่งเป็น typeface ภาษาไทยที่ดูสะอาดและอ่านง่าย — โดยทำการ load ผ่าน <highlight>fontspec</highlight> การจัดการเรื่อง hyphenation (การตัดคำ), line-breaking (การขึ้นบรรทัดใหม่) และ spacing ของการผสมระหว่างภาษาไทยและภาษาอังกฤษ ต้องอาศัยการทดลองทำซ้ำๆ และนี่คือจุดที่การมี Claude เป็นผู้ช่วยในการทำงานคู่กัน (pair) นั้นมีคุณค่าอย่างมาก
 					</p>
 
-					<h3>Project Structure</h3>
+					<h2>Project Structure</h2>
 					<p>Repository นี้ใช้การวางโครงสร้างแบบ modular เพื่อให้จัดการ documents ขนาดใหญ่ได้ง่าย:</p>
 <pre><code>template-doc/
 ├── main.tex              # Entry point — includes all sections
@@ -335,7 +339,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						แต่ละส่วนจะเป็นไฟล์ <highlight>.tex</highlight> ที่แยกเป็นอิสระต่อกัน และถูกรวมเข้ามาผ่าน <highlight>\input{}</highlight> ในไฟล์ <highlight>main.tex</highlight> ทำให้การร่างเอกสารทีละส่วนร่วมกับ Claude สามารถทำได้ง่ายโดยไม่ต้องไปยุ่งกับเนื้อหาส่วนอื่นของ document เลย
 					</p>
 
-					<h3>The Custom Class: easreport.cls</h3>
+					<h2>The Custom Class: easreport.cls</h2>
 					<p>
 						หัวใจสำคัญของ template นี้คือ <highlight>easreport.cls</highlight> — ซึ่งเป็น custom document class ที่ extends มาจาก standard <highlight>article</highlight> class มันรวบรวมทุกสิ่งที่จำเป็นสำหรับ technical reports ในภาษาไทยแบบมืออาชีพ:
 					</p>
@@ -353,7 +357,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						Class นี้ยังมีการกำหนด custom metadata commands ด้วย — <highlight>\docversion</highlight>, <highlight>\docdate</highlight>, <highlight>\authorname</highlight> — เพื่อให้ทุก document มีการระบุ version อย่างสม่ำเสมอโดยไม่ต้องแก้ไข header แบบ manual
 					</p>
 
-					<h3>Building the PDF</h3>
+					<h2>Building the PDF</h2>
 					<p>การ build จะใช้ <strong>latexmk</strong> ร่วมกับ project-local config file:</p>
 <pre><code># Build PDF
 latexmk -r conf/latexmkrc main.tex
@@ -365,7 +369,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						<highlight>conf/latexmkrc</highlight> จะตั้งค่าให้ XeLaTeX เป็น engine และกำหนดให้ output ทั้งหมดไปอยู่ที่ directory <highlight>out/</highlight> ไฟล์ PDF ที่ compile เสร็จจะปรากฏที่ <highlight>out/main.pdf</highlight> ส่วน build artifacts (<highlight>.aux</highlight>, <highlight>.log</highlight>, <highlight>.toc</highlight>) จะถูกทำ gitignore ไว้ เพื่อให้ repository สะอาด
 					</p>
 
-					<h3>วิธีที่ผมทำงานกับ Claude บน LaTeX</h3>
+					<h2>วิธีที่ผมทำงานกับ Claude บน LaTeX</h2>
 					<p>
 						Repository นี้จะมีไฟล์ <highlight>CLAUDE.md</highlight> ที่ให้บริบทกับ Claude ในการเขียน LaTeX ที่ถูกต้องและ compile ผ่านได้เสมอ หากไม่มีสิ่งนี้ AI-generated LaTeX มักจะเลือกใช้ engine ผิด, ขาดลืม packages, หรือใช้คำสั่งที่ไม่ compatible กัน
 					</p>
@@ -379,7 +383,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						<li>ใช้ <highlight>\sloppy</highlight> / <highlight>\fussy</highlight> ภายใน sections เพื่อควบคุมเรื่อง line-breaking สำหรับข้อความภาษาไทย</li>
 					</ul>
 
-					<h3>Practical Workflow</h3>
+					<h2>Practical Workflow</h2>
 					<p>Workflow แบบวันต่อวันเมื่อต้องเขียนแต่ละ section ร่วมกับ Claude:</p>
 					<ol>
 						<li><strong>เปิดไฟล์ section</strong> — เช่น, <highlight>sections/d_technology.tex</highlight></li>
@@ -392,7 +396,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						โครงสร้างแบบ modular section คือส่วนสำคัญอย่างยิ่ง Claude จะมองเห็นไฟล์ <highlight>.tex</highlight> แค่ทีละไฟล์ ซึ่งช่วยให้บริบทของมันโฟกัสอยู่แค่ส่วนนั้นๆ ส่งผลให้ได้ output ที่แม่นยำ
 					</p>
 
-					<h3>Gotchas ที่ควรรู้</h3>
+					<h2>Gotchas ที่ควรรู้</h2>
 					<ul>
 						<li>
 							<strong>XeLaTeX จำเป็นต้องใช้เสมอ</strong> การใช้ pdflatex จะทำให้การ compile ล้มเหลวทันทีที่ <highlight>\usepackage{fontspec}</highlight> อย่าลืมตรวจสอบ engine ภายใน build config ก่อนเสมอ
@@ -408,7 +412,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						</li>
 					</ul>
 
-					<h3>Why This Approach Works</h3>
+					<h2>Why This Approach Works</h2>
 					<p>
 						การรวมความแม่นยำของ LaTeX เข้ากับ interface ที่พูดคุยผ่านภาษาธรรมชาติของ Claude ช่วยขจัดความเหนื่อยล้าในการที่ต้องคอยจำทุก command และทุก environment ไปได้ ผมแค่อธิบายสิ่งที่ผมต้องการในภาษาไทยหรือภาษาอังกฤษ จากนั้น Claude ก็จะทำการ generate LaTeX อย่างถูกต้องตาม template ที่ได้ถูกออกแบบไว้ และผมก็สามารถ compile ดูผลได้ทันที
 						ไฟล์ <highlight>CLAUDE.md</highlight> ทำหน้าที่เปรียบเสมือน standing contract ระหว่างผมกับ AI — จึงไม่ต้องมานั่งอธิบายข้อตกลงใหม่ซ้ำๆ, ไม่มี engine ที่ผิดอีกต่อไป, และไม่มีปัญหาเรื่อง packages ที่หายไปเลย
@@ -421,20 +425,22 @@ latexmk -r conf/latexmkrc -C main.tex
 				</div>
 
 				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>使用 Claude AI 编写 LaTeX 文档</h2>
+					<p><strong>核心结论 (BLUF):</strong> 必须使用 XeLaTeX 才能正确渲染泰文。通过将自定义的 document class 与 Claude AI 以及清晰的 CLAUDE.md 指令文件结合使用，您可以轻松生成专业的泰文企业报告。</p>
 					<p>
 						LaTeX 仍然是我处理任何重要 document 的首选——尤其是当它需要看起来很 professional、能够正确处理泰文文本，并且可以在不同 projects 之间 reusable 时。
 						在这篇文章中，我将逐步介绍我是如何构建 <a href="https://github.com/nuboat/template-doc" target="_blank"><strong>template-doc</strong></a> 的，
 						这是一个用于泰文 enterprise reports 的 custom LaTeX template，以及 Claude 是如何成为该 workflow 中不可或缺的一部分的。
 					</p>
 
-					<h3>在 LaTeX 中处理泰文的 Problem</h3>
+					<h2>在 LaTeX 中处理泰文的 Problem</h2>
 					<p>
 						Standard LaTeX (pdflatex) 无法 render 泰文。你需要使用 <strong>XeLaTeX</strong>，它 natively 支持 Unicode 和 OpenType fonts。
 						该 template 是围绕 <strong>TH Sarabun New</strong> font 构建的——这是一种干净、易读的泰文 typeface——通过 <highlight>fontspec</highlight> 加载。
 						要正确处理泰文的 hyphenation、line-breaking，以及泰文和英文混合的 spacing 确实需要不断地 iteration，而这正是让 Claude 作为搭档 (pair) 显得极其有价值的地方。
 					</p>
 
-					<h3>Project Structure</h3>
+					<h2>Project Structure</h2>
 					<p>该 repository 采用了 modular 的布局，以便使大型 documents 易于管理：</p>
 <pre><code>template-doc/
 ├── main.tex              # Entry point — includes all sections
@@ -462,7 +468,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						这使得我们可以很容易地让 Claude 一次只起草一个 section，而不需要触及整个 document。
 					</p>
 
-					<h3>The Custom Class: easreport.cls</h3>
+					<h2>The Custom Class: easreport.cls</h2>
 					<p>
 						该 template 的核心是 <highlight>easreport.cls</highlight>——这是一个 custom document class，它扩展了 standard <highlight>article</highlight> class。
 						它捆绑了 professional 泰文 technical reports 所需的一切：
@@ -482,7 +488,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						因此，每个 document 都能保持一致的 version 跟踪，无需 manual 编辑 header。
 					</p>
 
-					<h3>Building the PDF</h3>
+					<h2>Building the PDF</h2>
 					<p>构建过程使用 <strong>latexmk</strong> 并配合 project-local 的 config 文件：</p>
 <pre><code># Build PDF
 latexmk -r conf/latexmkrc main.tex
@@ -496,7 +502,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						会被 gitignore 处理，以保持 repository 的整洁。
 					</p>
 
-					<h3>我如何与 Claude 在 LaTeX 上合作</h3>
+					<h2>我如何与 Claude 在 LaTeX 上合作</h2>
 					<p>
 						该 repository 包含一个 <highlight>CLAUDE.md</highlight> 文件，它为 Claude 提供了生成正确、可编译的 LaTeX 所需的上下文。
 						如果没有这个文件，AI-generated 的 LaTeX 经常会使用错误的 engine、遗漏 packages，或者使用不兼容的 commands。
@@ -511,7 +517,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						<li>在包含大量泰文的 sections 中使用 <highlight>\sloppy</highlight> / <highlight>\fussy</highlight> 来控制 line-breaking</li>
 					</ul>
 
-					<h3>Practical Workflow</h3>
+					<h2>Practical Workflow</h2>
 					<p>当我和 Claude 一起编写一个 section 时的 day-to-day workflow：</p>
 					<ol>
 						<li><strong>打开一个 section 文件</strong>——例如，<highlight>sections/d_technology.tex</highlight></li>
@@ -525,7 +531,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						这使它的上下文保持集中，输出也更加准确。
 					</p>
 
-					<h3>值得注意的 Gotchas</h3>
+					<h2>值得注意的 Gotchas</h2>
 					<ul>
 						<li>
 							<strong>XeLaTeX 是必须的。</strong> 如果运行 pdflatex，会立即在 <highlight>\usepackage{fontspec}</highlight> 处失败。
@@ -545,7 +551,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						</li>
 					</ul>
 
-					<h3>Why This Approach Works</h3>
+					<h2>Why This Approach Works</h2>
 					<p>
 						将 LaTeX 的精确性与 Claude 的自然语言 interface 结合起来，消除了记忆每一个 command 和 environment 的摩擦。
 						我只需要用泰文或英文描述我需要什么，Claude 就会根据一个定义良好的 template 生成正确的 LaTeX，然后我可以直接编译来验证。
@@ -560,19 +566,21 @@ latexmk -r conf/latexmkrc -C main.tex
 				</div>
 
 				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>Claude AI を使った LaTeX ドキュメントの作成</h2>
+					<p><strong>要点 (BLUF):</strong> タイ語フォントを正しくレンダリングするには XeLaTeX が必要です。カスタム document class と Claude AI、そして明確な CLAUDE.md を組み合わせることで、プロフェッショナルなタイ語の企業向けレポートを簡単に作成できます。</p>
 					<p>
 						LaTeX は、いまでも本格的な document を作成するための私の頼れるツールです。特に professional な見た目が必要な時や、タイ語のテキストを正しく処理し、複数の projects 間で reusable にする必要がある場合はそうです。
 						この記事では、私がタイ語の enterprise reports 用の custom LaTeX template である <a href="https://github.com/nuboat/template-doc" target="_blank"><strong>template-doc</strong></a> をどのように構築したか、そして Claude がその workflow においてどのように不可欠な存在となったかについて解説します。
 					</p>
 
-					<h3>LaTeX におけるタイ語の Problem</h3>
+					<h2>LaTeX におけるタイ語の Problem</h2>
 					<p>
 						Standard LaTeX (pdflatex) はタイ語を render できません。Unicode と OpenType fonts を natively にサポートする <strong>XeLaTeX</strong> が必要です。
 						この template は、すっきりと読みやすいタイ語の typeface である <strong>TH Sarabun New</strong> font をベースに構築されており、<highlight>fontspec</highlight> を通じてロードされます。
 						タイ語の hyphenation、line-breaking、そしてタイ語と英語が混在する spacing を正しく設定するには、実際の iteration が必要であり、そこで Claude をペアとして持つことが非常に貴重でした。
 					</p>
 
-					<h3>Project Structure</h3>
+					<h2>Project Structure</h2>
 					<p>この repository は、大規模な documents を管理しやすくするために、modular なレイアウトを採用しています：</p>
 <pre><code>template-doc/
 ├── main.tex              # Entry point — includes all sections
@@ -600,7 +608,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						これにより、document 全体に触れることなく、Claude と一度に1つの section だけをドラフトすることが容易になります。
 					</p>
 
-					<h3>The Custom Class: easreport.cls</h3>
+					<h2>The Custom Class: easreport.cls</h2>
 					<p>
 						この template の核心は <highlight>easreport.cls</highlight> です。これは standard <highlight>article</highlight> class を拡張した custom document class です。
 						professional なタイ語の technical reports に必要なすべてがバンドルされています：
@@ -620,7 +628,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						header を manual で編集することなく、すべての document で一貫した version トラッキングが可能です。
 					</p>
 
-					<h3>Building the PDF</h3>
+					<h2>Building the PDF</h2>
 					<p>ビルドには project-local の config ファイルとともに <strong>latexmk</strong> を使用します：</p>
 <pre><code># Build PDF
 latexmk -r conf/latexmkrc main.tex
@@ -634,7 +642,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						は gitignore されるため、repository はクリーンに保たれます。
 					</p>
 
-					<h3>LaTeX での Claude との働き方</h3>
+					<h2>LaTeX での Claude との働き方</h2>
 					<p>
 						この repository には <highlight>CLAUDE.md</highlight> ファイルが含まれており、正しくコンパイル可能な LaTeX を毎回生成するために必要なコンテキストを Claude に提供します。
 						これがないと、AI-generated の LaTeX は間違った engine を使用したり、packages が欠落していたり、互換性のない commands を使用したりすることがよくあります。
@@ -649,7 +657,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						<li>タイ語テキストの line-breaking を制御するには、sections 内で <highlight>\sloppy</highlight> / <highlight>\fussy</highlight> を使用する</li>
 					</ul>
 
-					<h3>Practical Workflow</h3>
+					<h2>Practical Workflow</h2>
 					<p>Claude と section を書くときの日々の workflow は次のとおりです：</p>
 					<ol>
 						<li><strong>section ファイルを開く</strong> — 例: <highlight>sections/d_technology.tex</highlight></li>
@@ -663,7 +671,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						コンテキストが集中し、出力が正確になります。
 					</p>
 
-					<h3>知っておくべき Gotchas</h3>
+					<h2>知っておくべき Gotchas</h2>
 					<ul>
 						<li>
 							<strong>XeLaTeX は必須です。</strong> pdflatex を実行すると、<highlight>\usepackage{fontspec}</highlight> で直ちに失敗します。
@@ -683,7 +691,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						</li>
 					</ul>
 
-					<h3>Why This Approach Works</h3>
+					<h2>Why This Approach Works</h2>
 					<p>
 						LaTeX の正確さと Claude の自然言語 interface を組み合わせることで、すべての command や environment を覚える摩擦がなくなります。
 						タイ語や英語で必要なものを説明するだけで、Claude が明確に定義された template に対して正しい LaTeX を生成し、私はすぐにコンパイルして確認できます。
@@ -698,20 +706,22 @@ latexmk -r conf/latexmkrc -C main.tex
 				</div>
 
 				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>LaTeX-Dokumente mit Claude AI schreiben</h2>
+					<p><strong>Zusammenfassung (BLUF):</strong> XeLaTeX ist erforderlich, um thailändische Schriftarten korrekt zu rendern. Durch die Kombination einer benutzerdefinierten Dokumentenklasse mit Claude AI und einer klaren CLAUDE.md-Datei können Sie problemlos professionelle thailändische Unternehmensberichte erstellen.</p>
 					<p>
 						LaTeX ist immer noch meine erste Wahl für jedes ernsthafte document – besonders dann, wenn es professional aussehen, thailändischen Text korrekt verarbeiten und über verschiedene projects hinweg reusable sein muss.
 						In diesem Beitrag zeige ich, wie ich <a href="https://github.com/nuboat/template-doc" target="_blank"><strong>template-doc</strong></a> entwickelt habe,
 						ein custom LaTeX template für thailändische enterprise reports, und wie Claude zu einem unverzichtbaren Teil dieses workflows wurde.
 					</p>
 
-					<h3>Das Problem mit Thai in LaTeX</h3>
+					<h2>Das Problem mit Thai in LaTeX</h2>
 					<p>
 						Standard LaTeX (pdflatex) kann die thailändische Schrift nicht rendern. Sie benötigen <strong>XeLaTeX</strong>, das Unicode und OpenType fonts natively unterstützt.
 						Das template baut auf der font <strong>TH Sarabun New</strong> auf – einem klaren, gut lesbaren thailändischen typeface – der über <highlight>fontspec</highlight> geladen wird.
 						Die richtige Einstellung von thailändischer hyphenation, line-breaking und dem spacing von gemischtem thailändisch-englischem Text erforderte einige iteration, und genau hier war Claude als Pair von unschätzbarem Wert.
 					</p>
 
-					<h3>Project Structure</h3>
+					<h2>Project Structure</h2>
 					<p>Das repository folgt einem modular aufgebauten Layout, um große documents verwaltbar zu halten:</p>
 <pre><code>template-doc/
 ├── main.tex              # Entry point — includes all sections
@@ -739,7 +749,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						Dies macht es einfach, mit Claude jeweils nur einen section zu entwerfen, ohne das gesamte document zu berühren.
 					</p>
 
-					<h3>The Custom Class: easreport.cls</h3>
+					<h2>The Custom Class: easreport.cls</h2>
 					<p>
 						Das Herzstück des template ist <highlight>easreport.cls</highlight> – eine custom document class, die die standard <highlight>article</highlight> class erweitert.
 						Sie bündelt alles, was für professional thailändische technical reports benötigt wird:
@@ -759,7 +769,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						sodass jedes document eine konsistente version Verfolgung hat, ohne manual den header bearbeiten zu müssen.
 					</p>
 
-					<h3>Building the PDF</h3>
+					<h2>Building the PDF</h2>
 					<p>Für den Build wird <strong>latexmk</strong> mit einer project-local config Datei verwendet:</p>
 <pre><code># Build PDF
 latexmk -r conf/latexmkrc main.tex
@@ -773,7 +783,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						werden auf gitignore gesetzt, damit das repository sauber bleibt.
 					</p>
 
-					<h3>Wie ich mit Claude an LaTeX arbeite</h3>
+					<h2>Wie ich mit Claude an LaTeX arbeite</h2>
 					<p>
 						Das repository enthält eine <highlight>CLAUDE.md</highlight> Datei, die Claude den Kontext gibt, den es braucht, um jedes Mal korrektes, kompilierbares LaTeX zu erzeugen.
 						Ohne dies verwendet AI-generated LaTeX oft die falsche engine, es fehlen packages, oder es werden inkompatible commands genutzt.
@@ -788,7 +798,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						<li>Nutzen Sie <highlight>\sloppy</highlight> / <highlight>\fussy</highlight> in sections, um das line-breaking von thailändischem Text zu kontrollieren</li>
 					</ul>
 
-					<h3>Practical Workflow</h3>
+					<h2>Practical Workflow</h2>
 					<p>Mein alltäglicher workflow, wenn ich einen section mit Claude schreibe:</p>
 					<ol>
 						<li><strong>Öffnen einer section Datei</strong> — z. B. <highlight>sections/d_technology.tex</highlight></li>
@@ -802,7 +812,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						was den Kontext fokussiert und die Ausgabe präzise hält.
 					</p>
 
-					<h3>Gotchas, die man kennen sollte</h3>
+					<h2>Gotchas, die man kennen sollte</h2>
 					<ul>
 						<li>
 							<strong>XeLaTeX ist zwingend erforderlich.</strong> Die Ausführung von pdflatex wird sofort bei <highlight>\usepackage{fontspec}</highlight> fehlschlagen.
@@ -822,7 +832,7 @@ latexmk -r conf/latexmkrc -C main.tex
 						</li>
 					</ul>
 
-					<h3>Why This Approach Works</h3>
+					<h2>Why This Approach Works</h2>
 					<p>
 						Die Kombination der Präzision von LaTeX mit der natürlichen Sprach-interface von Claude beseitigt die Reibung, sich jeden command und jedes environment merken zu müssen.
 						Ich beschreibe, was ich auf Thai oder Englisch brauche, Claude generiert korrektes LaTeX basierend auf einem klar definierten template, und ich kompiliere sofort zur Überprüfung.

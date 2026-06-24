@@ -126,7 +126,7 @@
 		<div id="main">
 			<section id="one">
 				<header class="major">
-					<h2>สร้าง Security Test อัตโนมัติด้วย owasp/skill</h2>
+					<h1>สร้าง Security Test อัตโนมัติด้วย owasp/skill</h1>
 					<p><em>June 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../agenticai.html">&larr; Agentic AI</a></em></p>
 				</header>
 
@@ -158,6 +158,8 @@
 				</div>
 
 				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
+					<h2>Automate Security Testing with an AI Skill</h2>
+					<p><strong>Bottom Line Up Front:</strong> You can build a reusable Claude Code skill to automatically generate OWASP Top 10 security tests using PlaySpec and FakeRequest. This ensures consistent security testing across your Play Framework controllers.</p>
 					<p>
 						Writing security tests is tedious, repetitive, and easy to skip when a deadline is close.
 						But it is also exactly the kind of work an AI assistant is good at — well-defined patterns,
@@ -169,7 +171,7 @@
 						into a full <strong>OWASP Top 10</strong> security test suite using <highlight>PlaySpec</highlight> and <highlight>FakeRequest</highlight>.
 					</p>
 
-					<h3>What is a Skill?</h3>
+					<h2>What is a Skill?</h2>
 					<p>
 						A skill is a reusable instruction set you give to an AI agent. It is a Markdown file with a small
 						frontmatter header and a body of instructions. When you invoke it, the agent loads those instructions
@@ -182,7 +184,7 @@
 						<li><strong>argument-hint</strong> — tells the user what input to provide (here, a controller or route).</li>
 					</ul>
 
-					<h3>The Skill Definition</h3>
+					<h2>The Skill Definition</h2>
 					<p>
 						Here is the full skill. It tells the agent to act as a security-focused SDET and produce
 						integration tests against the OWASP Top 10 — not generic unit tests.
@@ -206,7 +208,7 @@ When the user provides a controller, model, or route, generate a
 PlaySpec test class that verifies the application's resilience against
 OWASP Top 10 2025 vulnerabilities.</code></pre>
 
-					<h3>The Test Coverage It Enforces</h3>
+					<h2>The Test Coverage It Enforces</h2>
 					<p>
 						The heart of the skill is a checklist of attack classes. Every generated suite must cover all four,
 						so nothing gets quietly skipped:
@@ -231,7 +233,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						</li>
 					</ul>
 
-					<h3>Code Guidelines</h3>
+					<h2>Code Guidelines</h2>
 					<p>The skill also pins down <em>how</em> the tests are written, so the output is consistent and runnable:</p>
 					<ul>
 						<li>Seed test data in a <highlight>def initial(): Unit</highlight> to simulate records in the database.</li>
@@ -242,7 +244,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 							<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>.</li>
 					</ul>
 
-					<h3>What the Output Looks Like</h3>
+					<h2>What the Output Looks Like</h2>
 					<p>
 						Point the skill at a controller and it produces a ready-to-run spec. A trimmed example:
 					</p>
@@ -287,7 +289,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
   }
 }</code></pre>
 
-					<h3>Why Capture It as a Skill</h3>
+					<h2>Why Capture It as a Skill</h2>
 					<ul>
 						<li>✅ <strong>Consistency</strong> — every endpoint gets the same four attack classes, every time.</li>
 						<li>✅ <strong>Speed</strong> — no re-explaining the requirements on each new controller.</li>
@@ -295,7 +297,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li>✅ <strong>Living documentation</strong> — the skill file <em>is</em> your security testing policy.</li>
 					</ul>
 
-					<h3>Bottom Line</h3>
+					<h2>Bottom Line</h2>
 					<p>
 						Security testing does not have to be the task everyone avoids. By encoding the OWASP Top 10
 						into a small, reusable skill, you turn a chore into a one-line command — and make
@@ -305,6 +307,8 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 				</div>
 
 				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>สร้าง Security Test อัตโนมัติด้วย owasp/skill</h2>
+					<p><strong>สรุปประเด็นสำคัญ (BLUF):</strong> คุณสามารถสร้าง Claude Code skill เพื่อช่วยเขียนชุดทดสอบความปลอดภัยตามมาตรฐาน OWASP Top 10 อัตโนมัติด้วย PlaySpec และ FakeRequest ทำให้การทดสอบความปลอดภัยของ Play Framework controller มีมาตรฐานเดียวกัน</p>
 					<p>
 						การเขียน security tests เป็นงานที่น่าเบื่อ ซ้ำซาก และมักจะถูกข้ามไปง่ายๆ เมื่อใกล้ถึง deadline 
 						แต่นี่ก็คืองานประเภทที่ AI assistant ถนัดที่สุด — ด้วยรูปแบบที่ชัดเจนและทำซ้ำในหลายๆ endpoints
@@ -315,7 +319,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						ให้เป็น security test suite แบบเต็มรูปแบบตามมาตรฐาน <strong>OWASP Top 10</strong> โดยใช้ <highlight>PlaySpec</highlight> และ <highlight>FakeRequest</highlight>
 					</p>
 
-					<h3>What is a Skill?</h3>
+					<h2>What is a Skill?</h2>
 					<p>
 						skill คือชุดคำสั่งที่สามารถนำกลับมาใช้ใหม่ได้ ซึ่งคุณกำหนดให้กับ AI agent มันเป็นไฟล์ Markdown ที่มี
 						frontmatter header เล็กๆ และส่วนของเนื้อหาคำสั่ง เมื่อคุณ invoke มัน ตัว agent จะโหลดคำสั่งเหล่านั้น
@@ -328,7 +332,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li><strong>argument-hint</strong> — บอกผู้ใช้ว่าต้องระบุ input อะไร (ในที่นี้คือ controller หรือ route)</li>
 					</ul>
 
-					<h3>The Skill Definition</h3>
+					<h2>The Skill Definition</h2>
 					<p>
 						นี่คือ skill แบบเต็มรูปแบบ มันจะสั่งให้ agent ทำหน้าที่เป็น SDET ด้าน security และสร้าง
 						integration tests เพื่อป้องกัน OWASP Top 10 — ไม่ใช่แค่ unit tests ธรรมดา
@@ -352,7 +356,7 @@ When the user provides a controller, model, or route, generate a
 PlaySpec test class that verifies the application's resilience against
 OWASP Top 10 2025 vulnerabilities.</code></pre>
 
-					<h3>The Test Coverage It Enforces</h3>
+					<h2>The Test Coverage It Enforces</h2>
 					<p>
 						หัวใจสำคัญของ skill นี้คือ checklist ของ attack classes โดยทุกๆ suite ที่ถูกสร้างขึ้นจะต้องครอบคลุมทั้ง 4 อย่างนี้ เพื่อไม่ให้มีอะไรถูกข้ามไปอย่างเงียบๆ:
 					</p>
@@ -376,7 +380,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						</li>
 					</ul>
 
-					<h3>Code Guidelines</h3>
+					<h2>Code Guidelines</h2>
 					<p>skill นี้ยังกำหนด <em>วิธีการ</em> เขียน tests ด้วย เพื่อให้ output มีความสม่ำเสมอและสามารถรันได้จริง:</p>
 					<ul>
 						<li>สร้าง seed test data ใน <highlight>def initial(): Unit</highlight> เพื่อจำลองข้อมูลใน database</li>
@@ -387,7 +391,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 							<highlight>"Endpoint" should { "reject..." in { ... } }</highlight></li>
 					</ul>
 
-					<h3>What the Output Looks Like</h3>
+					<h2>What the Output Looks Like</h2>
 					<p>
 						เมื่อเรียกใช้ skill นี้กับ controller มันจะสร้าง spec ที่พร้อมรันให้ทันที ตัวอย่างเช่น:
 					</p>
@@ -432,7 +436,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
   }
 }</code></pre>
 
-					<h3>Why Capture It as a Skill</h3>
+					<h2>Why Capture It as a Skill</h2>
 					<ul>
 						<li>✅ <strong>Consistency</strong> — ทุก endpoint จะได้รับการทดสอบด้วย attack classes ทั้งสี่แบบเหมือนกันทุกครั้ง</li>
 						<li>✅ <strong>Speed</strong> — ไม่ต้องมานั่งอธิบาย requirements ใหม่ในทุกๆ controller</li>
@@ -440,7 +444,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li>✅ <strong>Living documentation</strong> — ไฟล์ skill <em>ก็คือ</em> security testing policy ของคุณนั่นเอง</li>
 					</ul>
 
-					<h3>Bottom Line</h3>
+					<h2>Bottom Line</h2>
 					<p>
 						Security testing ไม่จำเป็นต้องเป็นงานที่ทุกคนอยากจะหลีกเลี่ยงเสมอไป ด้วยการเปลี่ยน OWASP Top 10
 						ให้อยู่ในรูปแบบของ skill เล็กๆ ที่สามารถนำมาใช้ซ้ำได้ คุณกำลังเปลี่ยนงานที่น่าเบื่อให้กลายเป็น command แค่บรรทัดเดียว — และทำให้
@@ -450,6 +454,8 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 				</div>
 
 				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>通过 AI Skill 自动执行安全测试</h2>
+					<p><strong>核心结论 (BLUF):</strong> 您可以构建一个可重用的 Claude Code skill，使用 PlaySpec 和 FakeRequest 自动生成针对 OWASP Top 10 的安全测试。这确保了 Play Framework 控制器的一致性安全测试。</p>
 					<p>
 						编写 security tests 是一项繁琐、重复且在接近 deadline 时很容易被跳过的工作。
 						但这正是 AI assistant 擅长的工作类型——具有明确模式，并在许多 endpoints 中重复出现。
@@ -459,7 +465,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						本文将介绍一个自定义的 Claude Code skill，它能使用 <highlight>PlaySpec</highlight> 和 <highlight>FakeRequest</highlight> 将任何 Play Framework controller 变成完整的 <strong>OWASP Top 10</strong> security test suite。
 					</p>
 
-					<h3>What is a Skill?</h3>
+					<h2>What is a Skill?</h2>
 					<p>
 						skill 是你提供给 AI agent 的可重用的指令集。它是一个 Markdown 文件，包含一个小的 frontmatter header 和一段指令正文。
 						当你 invoke 它时，agent 会将这些指令作为 expert context 加载——因此它的表现就像一个专家而不是通才。
@@ -471,7 +477,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li><strong>argument-hint</strong> — 告诉用户需要提供什么 input（在这里是 controller 或 route）。</li>
 					</ul>
 
-					<h3>The Skill Definition</h3>
+					<h2>The Skill Definition</h2>
 					<p>
 						以下是完整的 skill。它告诉 agent 充当专注于安全性的 SDET，并生成针对 OWASP Top 10 的 integration tests，而不是普通的 unit tests。
 					</p>
@@ -494,7 +500,7 @@ When the user provides a controller, model, or route, generate a
 PlaySpec test class that verifies the application's resilience against
 OWASP Top 10 2025 vulnerabilities.</code></pre>
 
-					<h3>The Test Coverage It Enforces</h3>
+					<h2>The Test Coverage It Enforces</h2>
 					<p>
 						该 skill 的核心是一个 attack classes 清单。每个生成的 suite 必须涵盖所有四个类别，这样就不会有任何内容被悄悄跳过：
 					</p>
@@ -518,7 +524,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						</li>
 					</ul>
 
-					<h3>Code Guidelines</h3>
+					<h2>Code Guidelines</h2>
 					<p>该 skill 还规定了 <em>如何</em> 编写 tests，因此 output 是一致且可运行的：</p>
 					<ul>
 						<li>在 <highlight>def initial(): Unit</highlight> 中生成 seed test data，以模拟 database 中的记录。</li>
@@ -529,7 +535,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 							<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>。</li>
 					</ul>
 
-					<h3>What the Output Looks Like</h3>
+					<h2>What the Output Looks Like</h2>
 					<p>
 						将该 skill 指向一个 controller，它就会生成一个随时可运行的 spec。一个简化的示例：
 					</p>
@@ -574,7 +580,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
   }
 }</code></pre>
 
-					<h3>Why Capture It as a Skill</h3>
+					<h2>Why Capture It as a Skill</h2>
 					<ul>
 						<li>✅ <strong>Consistency</strong> — 每次每个 endpoint 都会获得相同的四种 attack classes。</li>
 						<li>✅ <strong>Speed</strong> — 无需在每个新的 controller 上重新解释 requirements。</li>
@@ -582,7 +588,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li>✅ <strong>Living documentation</strong> — skill 文件<em>就是</em>你的 security testing policy。</li>
 					</ul>
 
-					<h3>Bottom Line</h3>
+					<h2>Bottom Line</h2>
 					<p>
 						Security testing 不必是每个人都想逃避的任务。通过将 OWASP Top 10
 						编码为一个小的、可重用的 skill，你将繁琐的工作变成了一行命令——并使
@@ -592,6 +598,8 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 				</div>
 
 				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>AI Skill でセキュリティテストを自動化する</h2>
+					<p><strong>要点 (BLUF):</strong> PlaySpec と FakeRequest を使用して OWASP Top 10 のセキュリティテストを自動生成する、再利用可能な Claude Code skill を構築できます。これにより、Play Framework コントローラーのセキュリティテストの一貫性が保たれます。</p>
 					<p>
 						security tests の作成は退屈で反復的であり、deadline が近いと簡単にスキップされがちです。
 						しかし、これこそがまさに AI assistant が得意とする仕事です — 明確なパターンがあり、
@@ -602,7 +610,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						この記事では、<highlight>PlaySpec</highlight> と <highlight>FakeRequest</highlight> を使用して、Play Framework controller を完全な <strong>OWASP Top 10</strong> security test suite に変換するカスタム Claude Code skill について解説します。
 					</p>
 
-					<h3>What is a Skill?</h3>
+					<h2>What is a Skill?</h2>
 					<p>
 						skill とは、AI agent に与える再利用可能な指示セットのことです。これは、小さな frontmatter header と指示の本文を含む Markdown ファイルです。
 						それを invoke すると、agent はそれらの指示を expert context として読み込みます — そのため、汎用的なものではなく、専門家のように振る舞います。
@@ -614,7 +622,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li><strong>argument-hint</strong> — ユーザーにどのような input を提供すべきか（ここでは controller または route）を伝えます。</li>
 					</ul>
 
-					<h3>The Skill Definition</h3>
+					<h2>The Skill Definition</h2>
 					<p>
 						これが完全な skill です。これは、一般的な unit tests ではなく、OWASP Top 10 に対する integration tests を生成する、セキュリティに特化した SDET として機能するよう agent に指示します。
 					</p>
@@ -637,7 +645,7 @@ When the user provides a controller, model, or route, generate a
 PlaySpec test class that verifies the application's resilience against
 OWASP Top 10 2025 vulnerabilities.</code></pre>
 
-					<h3>The Test Coverage It Enforces</h3>
+					<h2>The Test Coverage It Enforces</h2>
 					<p>
 						この skill の核心は、attack classes のチェックリストです。生成されたすべての suite は、何も静かにスキップされないように、これら4つすべてをカバーする必要があります：
 					</p>
@@ -660,7 +668,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						</li>
 					</ul>
 
-					<h3>Code Guidelines</h3>
+					<h2>Code Guidelines</h2>
 					<p>この skill はまた、tests が <em>どのように</em> 書かれるべきかをも定義しているため、output は一貫しており実行可能です：</p>
 					<ul>
 						<li>database のレコードをシミュレートするために、<highlight>def initial(): Unit</highlight> 内に seed test data を設定します。</li>
@@ -669,7 +677,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li>ScalaTest BDD style で有効な Scala コードを生成します：<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>。</li>
 					</ul>
 
-					<h3>What the Output Looks Like</h3>
+					<h2>What the Output Looks Like</h2>
 					<p>
 						この skill を controller に向けると、すぐに実行可能な spec が生成されます。以下は簡略化された例です：
 					</p>
@@ -714,7 +722,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
   }
 }</code></pre>
 
-					<h3>Why Capture It as a Skill</h3>
+					<h2>Why Capture It as a Skill</h2>
 					<ul>
 						<li>✅ <strong>Consistency</strong> — すべての endpoint が常に同じ4つの attack classes でテストされます。</li>
 						<li>✅ <strong>Speed</strong> — 新しい controller のたびに requirements を再度説明する必要がありません。</li>
@@ -722,7 +730,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li>✅ <strong>Living documentation</strong> — skill ファイル自体が、あなたの security testing policy <em>そのもの</em>になります。</li>
 					</ul>
 
-					<h3>Bottom Line</h3>
+					<h2>Bottom Line</h2>
 					<p>
 						Security testing は、誰もが避けたがる作業である必要はありません。OWASP Top 10 を
 						再利用可能な小さな skill にエンコードすることで、面倒な作業を1行のコマンドに変えることができます。
@@ -732,6 +740,8 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 				</div>
 
 				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>Automatisieren Sie Sicherheitstests mit einem AI Skill</h2>
+					<p><strong>Zusammenfassung (BLUF):</strong> Sie können einen wiederverwendbaren Claude Code skill erstellen, um mithilfe von PlaySpec und FakeRequest automatisch OWASP Top 10-Sicherheitstests zu generieren. Dies gewährleistet konsistente Sicherheitstests für Ihre Play Framework-Controller.</p>
 					<p>
 						Das Schreiben von security tests ist mühsam, repetitiv und wird leicht übersprungen, wenn eine deadline näher rückt.
 						Aber es ist auch genau die Art von Arbeit, in der ein AI assistant gut ist — klar definierte Muster,
@@ -743,7 +753,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						mithilfe von <highlight>PlaySpec</highlight> und <highlight>FakeRequest</highlight> in eine vollständige <strong>OWASP Top 10</strong> security test suite verwandelt.
 					</p>
 
-					<h3>What is a Skill?</h3>
+					<h2>What is a Skill?</h2>
 					<p>
 						Ein skill ist ein wiederverwendbares Anweisungsset, das Sie einem AI agent geben. Es ist eine Markdown-Datei mit einem kleinen
 						frontmatter header und einem Anweisungsteil. Wenn Sie es invoke, lädt der agent diese Anweisungen
@@ -756,7 +766,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li><strong>argument-hint</strong> — sagt dem Benutzer, welcher input bereitzustellen ist (hier ein controller oder eine route).</li>
 					</ul>
 
-					<h3>The Skill Definition</h3>
+					<h2>The Skill Definition</h2>
 					<p>
 						Hier ist der vollständige skill. Er weist den agent an, als sicherheitsorientierter SDET zu agieren und
 						integration tests gegen die OWASP Top 10 zu generieren — keine generischen unit tests.
@@ -780,7 +790,7 @@ When the user provides a controller, model, or route, generate a
 PlaySpec test class that verifies the application's resilience against
 OWASP Top 10 2025 vulnerabilities.</code></pre>
 
-					<h3>The Test Coverage It Enforces</h3>
+					<h2>The Test Coverage It Enforces</h2>
 					<p>
 						Das Herzstück des skills ist eine Checkliste von attack classes. Jede generierte suite muss alle vier abdecken,
 						sodass nichts stillschweigend übersprungen wird:
@@ -805,7 +815,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						</li>
 					</ul>
 
-					<h3>Code Guidelines</h3>
+					<h2>Code Guidelines</h2>
 					<p>Der skill legt auch fest, <em>wie</em> die tests geschrieben werden, sodass der output konsistent und ausführbar ist:</p>
 					<ul>
 						<li>Generieren Sie seed test data in einer <highlight>def initial(): Unit</highlight>, um Datensätze in der database zu simulieren.</li>
@@ -816,7 +826,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 							<highlight>"Endpoint" should { "reject..." in { ... } }</highlight>.</li>
 					</ul>
 
-					<h3>What the Output Looks Like</h3>
+					<h2>What the Output Looks Like</h2>
 					<p>
 						Wenden Sie den skill auf einen controller an, und er erzeugt eine sofort ausführbare spec. Ein gekürztes Beispiel:
 					</p>
@@ -861,7 +871,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
   }
 }</code></pre>
 
-					<h3>Why Capture It as a Skill</h3>
+					<h2>Why Capture It as a Skill</h2>
 					<ul>
 						<li>✅ <strong>Consistency</strong> — jeder endpoint erhält jedes Mal dieselben vier attack classes.</li>
 						<li>✅ <strong>Speed</strong> — kein erneutes Erklären der requirements für jeden neuen controller.</li>
@@ -869,7 +879,7 @@ OWASP Top 10 2025 vulnerabilities.</code></pre>
 						<li>✅ <strong>Living documentation</strong> — die skill-Datei <em>ist</em> Ihre security testing policy.</li>
 					</ul>
 
-					<h3>Bottom Line</h3>
+					<h2>Bottom Line</h2>
 					<p>
 						Security testing muss nicht die Aufgabe sein, die jeder meidet. Indem Sie die OWASP Top 10
 						in einen kleinen, wiederverwendbaren skill codieren, verwandeln Sie eine lästige Pflicht in einen einzeiligen Befehl — und machen

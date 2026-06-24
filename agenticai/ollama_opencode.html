@@ -124,7 +124,7 @@
 		<div id="main">
 			<section id="one">
 				<header class="major">
-					<h2>เรียกใช้ Ollama ผ่าน OpenCode</h2>
+					<h1>เรียกใช้ Ollama ผ่าน OpenCode</h1>
 					<p><em>May 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp; <a href="../agenticai.html">&larr; Agentic AI</a></em></p>
 				</header>
 
@@ -156,15 +156,17 @@
 				</div>
 
 				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
+					<h2>Local Open WebUI for Secure Code Review</h2>
+					<p><strong>Bottom Line Up Front:</strong> You can set up a local, private AI environment for code reviews using Ollama and Open WebUI. This allows you to review sensitive source code securely without sending data to external cloud APIs.</p>
 					<p>Today I'm showcasing how to integrate <strong>Ollama</strong> with <strong>Opencode</strong> to run local AI models seamlessly.</p>
 				
-					<h3>What is Ollama?</h3>
+					<h2>What is Ollama?</h2>
 					<p>Ollama is a tool that makes running large language models (LLMs) on your local machine easy. It supports models like Llama 2, Mistral, and many others with simple commands.</p>
 					
-					<h3>What is Opencode?</h3>
+					<h2>What is Opencode?</h2>
 					<p>Opencode is an AI-powered coding assistant that helps developers write, debug, and optimize code faster. When combined with Ollama, it can run locally without sending your code to external servers.</p>
 					
-					<h3>Understanding AI Agent Context</h3>
+					<h2>Understanding AI Agent Context</h2>
 					<p>AI coding assistants like Opencode rely on context files to understand your project structure and coding style. These files contain instructions and information that guide the AI's behavior.</p>
 					
 					<h4>"AGENTS.md"</h4>
@@ -215,7 +217,7 @@
 						<li>Neither file supports nested configurations - only the root-level file is used</li>
 					</ul>
 					
-					<h3>Quick Setup Guide</h3>
+					<h2>Quick Setup Guide</h2>
 					<ol>
 						<li><strong>Install Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
 						<li><strong>Download a model</strong>: ollama run qwen3-coder-next:q8_0</li>
@@ -241,7 +243,7 @@
     }
   }
 }</code></pre>
-					<h3>Model Info</h3>
+					<h2>Model Info</h2>
 <pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
   Model
     architecture        qwen3next    
@@ -295,7 +297,7 @@ Tue Apr  7 07:33:28 2026
 +-----------------------------------------------------------------------------------------+
 </code></pre>
 					
-					<h3>Benefits of Local AI</h3>
+					<h2>Benefits of Local AI</h2>
 					<ul>
 						<li>✅ <strong>Say Hi !!</strong> - You never lost 4% of token limit when say "Hi !"</li>
 						<li>✅ Privacy - Your code never leaves your machine</li>
@@ -304,21 +306,23 @@ Tue Apr  7 07:33:28 2026
 						<li>✅ Full control - Choose any model you want</li>
 					</ul>
 					
-					<h3>My Experience</h3>
+					<h2>My Experience</h2>
 					<p>Using Ollama with Opencode has been a game-changer for my development workflow. The local AI assistant helps me write better code faster while keeping everything private and on my terms.</p>
 					<p><em>Note: This page was written using Opencode with the qwen3-coder-next:q8_0 model running locally via Ollama!</em></p>
 				</div>
 
 				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>Local Open WebUI สำหรับทำ Code Review</h2>
+					<p><strong>สรุปประเด็นสำคัญ (BLUF):</strong> คุณสามารถติดตั้ง Ollama และ Open WebUI เพื่อสร้าง AI สำหรับช่วยทำ Code Review ภายในเครื่องของคุณเอง ซึ่งช่วยให้คุณสามารถตรวจสอบโค้ดที่เป็นความลับได้อย่างปลอดภัยโดยไม่ต้องส่งข้อมูลออกสู่อินเทอร์เน็ต</p>
 					<p>วันนี้ผมจะมาโชว์วิธีการนำ <strong>Ollama</strong> มาใช้ร่วมกับ <strong>Opencode</strong> เพื่อรัน AI models บนเครื่องตัวเองได้อย่างราบรื่นครับ</p>
 				
-					<h3>Ollama คืออะไร?</h3>
+					<h2>Ollama คืออะไร?</h2>
 					<p>Ollama เป็นเครื่องมือที่ทำให้การรัน large language models (LLMs) บนเครื่อง local ของเราเป็นเรื่องง่าย รองรับ models อย่าง Llama 2, Mistral, และอื่นๆ อีกมากมายด้วยคำสั่งง่ายๆ</p>
 					
-					<h3>Opencode คืออะไร?</h3>
+					<h2>Opencode คืออะไร?</h2>
 					<p>Opencode คือ AI-powered coding assistant ที่ช่วย developers ในการเขียน, debug, และ optimize โค้ดได้เร็วขึ้น เมื่อใช้ร่วมกับ Ollama ก็สามารถรันแบบ local ได้โดยไม่ต้องส่งโค้ดของเราไปยังเซิร์ฟเวอร์ภายนอก</p>
 					
-					<h3>ความเข้าใจเกี่ยวกับ AI Agent Context</h3>
+					<h2>ความเข้าใจเกี่ยวกับ AI Agent Context</h2>
 					<p>AI coding assistants อย่าง Opencode จำเป็นต้องพึ่งพา context files เพื่อทำความเข้าใจ project structure และ coding style ของเรา ไฟล์เหล่านี้ประกอบด้วยคำสั่งและข้อมูลที่ใช้ชี้แนะพฤติกรรมของ AI</p>
 					
 					<h4>"AGENTS.md"</h4>
@@ -369,7 +373,7 @@ Tue Apr  7 07:33:28 2026
 						<li>ไฟล์ทั้งสองไม่รองรับ configurations แบบ nested - มีเพียงไฟล์ในระดับ root เท่านั้นที่จะถูกนำมาใช้</li>
 					</ul>
 					
-					<h3>Quick Setup Guide</h3>
+					<h2>Quick Setup Guide</h2>
 					<ol>
 						<li><strong>ติดตั้ง Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
 						<li><strong>ดาวน์โหลด model</strong>: ollama run qwen3-coder-next:q8_0</li>
@@ -395,7 +399,7 @@ Tue Apr  7 07:33:28 2026
     }
   }
 }</code></pre>
-					<h3>Model Info</h3>
+					<h2>Model Info</h2>
 <pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
   Model
     architecture        qwen3next    
@@ -449,7 +453,7 @@ Tue Apr  7 07:33:28 2026
 +-----------------------------------------------------------------------------------------+
 </code></pre>
 					
-					<h3>Benefits of Local AI</h3>
+					<h2>Benefits of Local AI</h2>
 					<ul>
 						<li>✅ <strong>Say Hi !!</strong> - คุณจะไม่ต้องเสีย token limit ถึง 4% ไปกับการแค่พิมพ์ว่า "Hi !" อีกต่อไป</li>
 						<li>✅ Privacy - โค้ดของคุณจะไม่มีวันออกจากเครื่องของคุณ</li>
@@ -458,21 +462,23 @@ Tue Apr  7 07:33:28 2026
 						<li>✅ Full control - เลือกใช้ model ใดก็ได้ตามที่คุณต้องการ</li>
 					</ul>
 					
-					<h3>My Experience</h3>
+					<h2>My Experience</h2>
 					<p>การนำ Ollama มาใช้งานร่วมกับ Opencode ได้เข้ามาเปลี่ยน workflow การทำงานของผมไปอย่างสิ้นเชิง AI assistant แบบ local ตัวนี้ช่วยให้ผมเขียนโค้ดได้ดีขึ้นและเร็วขึ้น โดยที่ยังรักษาความเป็นส่วนตัวและอยู่ภายใต้เงื่อนไขที่ผมควบคุมได้ทั้งหมด</p>
 					<p><em>Note: หน้าเว็บนี้ถูกเขียนขึ้นโดยใช้ Opencode กับ qwen3-coder-next:q8_0 model ซึ่งกำลังรันแบบ local ผ่าน Ollama!</em></p>
 				</div>
 
 				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>用于安全代码审查的本地 Open WebUI</h2>
+					<p><strong>核心结论 (BLUF):</strong> 您可以使用 Ollama 和 Open WebUI 建立一个本地的私有 AI 环境来进行代码审查。这样可以安全地审查敏感的源代码，而无需将数据发送到外部云 API。</p>
 					<p>今天，我将展示如何将 <strong>Ollama</strong> 与 <strong>Opencode</strong> 集成，以无缝地运行本地的 AI models。</p>
 				
-					<h3>什么是 Ollama？</h3>
+					<h2>什么是 Ollama？</h2>
 					<p>Ollama 是一个可以轻松地在本地机器上运行 large language models (LLMs) 的工具。它通过简单的命令支持 Llama 2、Mistral 以及许多其他 models。</p>
 					
-					<h3>什么是 Opencode？</h3>
+					<h2>什么是 Opencode？</h2>
 					<p>Opencode 是一个由 AI 驱动的 coding assistant，可帮助 developers 更快地编写、调试和 optimize 代码。当与 Ollama 结合使用时，它可以在本地运行，而无需将你的代码发送到外部服务器。</p>
 					
-					<h3>了解 AI Agent Context</h3>
+					<h2>了解 AI Agent Context</h2>
 					<p>像 Opencode 这样的 AI coding assistants 依赖于 context files 来理解你的 project structure 和 coding style。这些文件包含用于指导 AI 行为的指令和信息。</p>
 					
 					<h4>"AGENTS.md"</h4>
@@ -523,7 +529,7 @@ Tue Apr  7 07:33:28 2026
 						<li>这两个文件都不支持嵌套的 configurations（nested configurations） - 仅使用根级别的文件</li>
 					</ul>
 					
-					<h3>Quick Setup Guide</h3>
+					<h2>Quick Setup Guide</h2>
 					<ol>
 						<li><strong>安装 Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
 						<li><strong>下载 model</strong>: ollama run qwen3-coder-next:q8_0</li>
@@ -549,7 +555,7 @@ Tue Apr  7 07:33:28 2026
     }
   }
 }</code></pre>
-					<h3>Model Info</h3>
+					<h2>Model Info</h2>
 <pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
   Model
     architecture        qwen3next    
@@ -603,7 +609,7 @@ Tue Apr  7 07:33:28 2026
 +-----------------------------------------------------------------------------------------+
 </code></pre>
 					
-					<h3>Benefits of Local AI</h3>
+					<h2>Benefits of Local AI</h2>
 					<ul>
 						<li>✅ <strong>Say Hi !!</strong> - 你再也不会因为说一句“Hi !”而损失 4% 的 token limit 了</li>
 						<li>✅ Privacy - 你的代码永远不会离开你的机器</li>
@@ -612,21 +618,23 @@ Tue Apr  7 07:33:28 2026
 						<li>✅ Full control - 选择任何你想要的 model</li>
 					</ul>
 					
-					<h3>My Experience</h3>
+					<h2>My Experience</h2>
 					<p>将 Ollama 与 Opencode 结合使用彻底改变了我的 development workflow。这个本地的 AI assistant 帮助我更快地编写出更好的代码，同时保留了所有的隐私权，一切尽在我的掌控之中。</p>
 					<p><em>Note: 此页面是使用 Opencode 以及通过 Ollama 在本地运行的 qwen3-coder-next:q8_0 model 编写的！</em></p>
 				</div>
 
 				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>セキュアなコードレビューのためのローカル Open WebUI</h2>
+					<p><strong>要点 (BLUF):</strong> Ollama と Open WebUI を使用して、コードレビュー用のローカルでプライベートな AI 環境を構築できます。これにより、機密データを外部のクラウド API に送信することなく安全にレビューできます。</p>
 					<p>今日は、<strong>Ollama</strong> を <strong>Opencode</strong> と統合し、ローカルの AI models をシームレスに実行する方法を紹介します。</p>
 				
-					<h3>Ollama とは？</h3>
+					<h2>Ollama とは？</h2>
 					<p>Ollama は、ローカルマシン上で large language models (LLMs) を簡単に実行するためのツールです。Llama 2、Mistral、その他の多くの models をシンプルなコマンドでサポートしています。</p>
 					
-					<h3>Opencode とは？</h3>
+					<h2>Opencode とは？</h2>
 					<p>Opencode は、developers がコードをより早く記述、デバッグ、そして optimize するのを支援する AI-powered の coding assistant です。Ollama と組み合わせることで、外部サーバーにコードを送信することなく、ローカルで実行できるようになります。</p>
 					
-					<h3>AI Agent Context について</h3>
+					<h2>AI Agent Context について</h2>
 					<p>Opencode のような AI coding assistants は、project structure や coding style を理解するために context files に依存しています。これらのファイルには、AI の挙動を導くための指示や情報が含まれています。</p>
 					
 					<h4>"AGENTS.md"</h4>
@@ -677,7 +685,7 @@ Tue Apr  7 07:33:28 2026
 						<li>どちらのファイルも nested configurations（ネストされた設定）をサポートしていません - root レベルのファイルのみが使用されます</li>
 					</ul>
 					
-					<h3>Quick Setup Guide</h3>
+					<h2>Quick Setup Guide</h2>
 					<ol>
 						<li><strong>Ollama のインストール</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
 						<li><strong>model のダウンロード</strong>: ollama run qwen3-coder-next:q8_0</li>
@@ -703,7 +711,7 @@ Tue Apr  7 07:33:28 2026
     }
   }
 }</code></pre>
-					<h3>Model Info</h3>
+					<h2>Model Info</h2>
 <pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
   Model
     architecture        qwen3next    
@@ -757,7 +765,7 @@ Tue Apr  7 07:33:28 2026
 +-----------------------------------------------------------------------------------------+
 </code></pre>
 					
-					<h3>Benefits of Local AI</h3>
+					<h2>Benefits of Local AI</h2>
 					<ul>
 						<li>✅ <strong>Say Hi !!</strong> - 「Hi !」と言うだけで 4% の token limit を失うことはもうありません</li>
 						<li>✅ Privacy - コードがあなたのマシンから出ることはありません</li>
@@ -766,21 +774,23 @@ Tue Apr  7 07:33:28 2026
 						<li>✅ Full control - 好きな model を自由に選択できます</li>
 					</ul>
 					
-					<h3>My Experience</h3>
+					<h2>My Experience</h2>
 					<p>Ollama を Opencode とともに使用することは、私の development workflow にとってゲームチェンジャーとなりました。このローカルの AI assistant のおかげで、すべてをプライベートに、自分の思い通りに保ちながら、より良いコードをより速く書くことができるようになりました。</p>
 					<p><em>Note: このページは、Ollama 経由でローカルで実行されている qwen3-coder-next:q8_0 model とともに Opencode を使用して作成されました！</em></p>
 				</div>
 
 				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>Lokale Open WebUI für sicheres Code-Review</h2>
+					<p><strong>Zusammenfassung (BLUF):</strong> Sie können eine lokale, private AI-Umgebung für Code-Reviews mit Ollama und Open WebUI einrichten. So können Sie sensiblen Quellcode sicher überprüfen, ohne Daten an externe Cloud-APIs zu senden.</p>
 					<p>Heute zeige ich, wie man <strong>Ollama</strong> mit <strong>Opencode</strong> integriert, um lokale AI models nahtlos auszuführen.</p>
 				
-					<h3>Was ist Ollama?</h3>
+					<h2>Was ist Ollama?</h2>
 					<p>Ollama ist ein Tool, das die Ausführung von large language models (LLMs) auf Ihrem lokalen Rechner einfach macht. Es unterstützt Models wie Llama 2, Mistral und viele andere mit einfachen Befehlen.</p>
 					
-					<h3>Was ist Opencode?</h3>
+					<h2>Was ist Opencode?</h2>
 					<p>Opencode ist ein AI-powered coding assistant, der Developern hilft, Code schneller zu schreiben, zu debuggen und zu optimize. In Kombination mit Ollama kann es lokal ausgeführt werden, ohne dass Ihr Code an externe Server gesendet wird.</p>
 					
-					<h3>AI Agent Context Verstehen</h3>
+					<h2>AI Agent Context Verstehen</h2>
 					<p>AI coding assistants wie Opencode sind auf Context files angewiesen, um Ihre project structure und Ihren coding style zu verstehen. Diese Dateien enthalten Anweisungen und Informationen, die das Verhalten der AI steuern.</p>
 					
 					<h4>"AGENTS.md"</h4>
@@ -831,7 +841,7 @@ Tue Apr  7 07:33:28 2026
 						<li>Beide Dateien unterstützen keine verschachtelten Konfigurationen (nested configurations) - nur die Datei auf Root-Ebene wird verwendet</li>
 					</ul>
 					
-					<h3>Quick Setup Guide</h3>
+					<h2>Quick Setup Guide</h2>
 					<ol>
 						<li><strong>Installieren von Ollama</strong>: curl -fsSL https://ollama.com/install.sh | sh</li>
 						<li><strong>Download eines models</strong>: ollama run qwen3-coder-next:q8_0</li>
@@ -857,7 +867,7 @@ Tue Apr  7 07:33:28 2026
     }
   }
 }</code></pre>
-					<h3>Model Info</h3>
+					<h2>Model Info</h2>
 <pre><code>root@spark-7dd8:~# ollama show qwen3-coder-next:q8_0
   Model
     architecture        qwen3next    
@@ -911,7 +921,7 @@ Tue Apr  7 07:33:28 2026
 +-----------------------------------------------------------------------------------------+
 </code></pre>
 					
-					<h3>Benefits of Local AI</h3>
+					<h2>Benefits of Local AI</h2>
 					<ul>
 						<li>✅ <strong>Say Hi !!</strong> - Sie verlieren nie wieder 4% des Token-Limits, nur weil Sie "Hi !" sagen</li>
 						<li>✅ Privacy - Ihr Code verlässt niemals Ihren Rechner</li>
@@ -920,7 +930,7 @@ Tue Apr  7 07:33:28 2026
 						<li>✅ Full control - Wählen Sie jedes gewünschte Model</li>
 					</ul>
 					
-					<h3>My Experience</h3>
+					<h2>My Experience</h2>
 					<p>Die Verwendung von Ollama zusammen mit Opencode war ein Game-Changer für meinen Development workflow. Der lokale AI assistant hilft mir, besseren Code schneller zu schreiben, während alles privat und unter meiner Kontrolle bleibt.</p>
 					<p><em>Note: Diese Seite wurde mit Opencode und dem lokal über Ollama ausgeführten qwen3-coder-next:q8_0 Model geschrieben!</em></p>
 				</div>
