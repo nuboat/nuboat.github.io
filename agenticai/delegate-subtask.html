@@ -1,0 +1,995 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - Delegate subtask to Antigravity</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="How to delegate self-contained subtasks to the Antigravity CLI (agy) and integrate the results into your current workflow." />
+		<meta name="keywords" content="Antigravity, agy, CLI, AI Agent, Delegate, Subtask, LLM" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/ci.css" />
+		<link rel="stylesheet" href="../assets/css/cookie-consent.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('consent', 'default', { analytics_storage: 'denied' });
+			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
+			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
+			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
+		</script>
+		<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			/* On smaller screens where the layout collapses to a single column, we revert to horizontal layout */
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+			
+			pre {
+				background-color: var(--ci-canvas);
+				padding: 1em;
+				border-radius: 8px;
+				overflow-x: auto;
+			}
+			code {
+				font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+			}
+		</style>
+		<script>
+			// Dark mode init
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
+	</head>
+
+	<body class="is-preload page-blog">
+
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon"></a>
+
+					<h1>Delegate subtask to Antigravity</h1>
+					<p><a href="../agenticai.html">Agentic AI</a> > <em>June 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp;</em></p>
+				</header>
+
+				<div class="lang-switcher">
+					<a href="#lang-en" class="lang-icon active" title="English">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+
+					<a href="#lang-th" class="lang-icon" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					
+					<a href="#lang-zh" class="lang-icon" title="中文">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					
+					<a href="#lang-ja" class="lang-icon" title="日本語">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+					
+					<a href="#lang-de" class="lang-icon" title="Deutsch">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
+
+				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
+					<h2>antigravity — Delegate to the Antigravity CLI</h2>
+					<p><strong>Bottom Line Up Front:</strong> The <highlight>agy</highlight> CLI runs Antigravity (an agentic assistant) non-interactively. Use it to hand off a bounded subtask, capture the result from stdout, and continue the main task in this session.</p>
+
+					<div style="position: relative; margin-bottom: 2em;">
+						<button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); this.innerHTML='<i class=\'fas fa-check\'></i>'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i>', 2000);" style="position: absolute; top: 10px; right: 10px; background: var(--ci-paper); border: 1px solid var(--ci-line); border-radius: 4px; padding: 4px 8px; cursor: pointer; color: var(--ci-muted); z-index: 10;" title="Copy to clipboard"><i class="far fa-copy"></i></button>
+						<pre style="margin: 0;"><code>---
+name: antigravity
+description: Delegate self-contained subtasks to the Antigravity CLI (`agy`). Use `agy -p` to offload work better handled outside this session — translating non-English input, summarizing, drafting, extracting, or one-off code/text generation — optionally choosing a model (`--model`; list with `agy models`: Gemini / Claude / GPT-OSS) or giving it files (`--add-dir`), then continue here with its stdout. Use when the subtask is well-scoped and returns a complete result.
+---
+
+# antigravity — Delegate to the Antigravity CLI
+
+The `agy` CLI runs Antigravity (an agentic assistant) non-interactively. Use it to hand
+off a bounded subtask, capture the result from stdout, and continue the main task in
+this session.
+
+## Use when
+
+- A subtask is well-scoped and expressible as a single prompt — translation,
+  summarization, drafting, extraction, classification, or one-off code/text generation.
+- You want to offload work that is cheaper or faster handled outside this session, then
+  consume the result here.
+- You want a second model's take on a self-contained question (Antigravity exposes
+  Gemini, Claude, and GPT-OSS models).
+
+## Do not use when
+
+- The work depends on this session's accumulated context, open files, or tools — keep
+  that here.
+- You need tight interactive iteration, or to drive the tool calls yourself.
+- It's trivial enough that doing it inline is faster than shelling out.
+
+## How to call
+
+Print mode (`-p`, alias for `--print` / `--prompt`) runs one prompt and prints the
+response to stdout:
+
+```bash
+agy -p "&lt;your prompt here&gt;"
+```
+
+Pipe larger input on stdin and reference it in the instruction:
+
+```bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+```
+
+Or give Antigravity read access to files instead of pasting them:
+
+```bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+```
+
+### Useful options
+
+- `--model "&lt;name&gt;"` — pick the model; list options with `agy models` (e.g.
+  *Gemini 3.5 Flash* for cheap/fast, *Claude Opus 4.6 (Thinking)* for hard reasoning).
+- `--add-dir &lt;dir&gt;` — add a directory to Antigravity's workspace (repeatable) so it can
+  read files itself.
+- `--print-timeout &lt;dur&gt;` — raise the wait for long tasks (default 5m).
+- `-c` / `--continue`, `--conversation &lt;id&gt;` — continue a prior delegation when one
+  prompt isn't enough.
+
+### Examples
+
+```bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+```
+
+## Rules
+
+1. **Scope the prompt fully.** `agy -p` is non-interactive — include everything it needs
+   in one prompt (or use `-c` to continue an existing delegation).
+2. **Delegate, then continue here.** Antigravity handles the offloaded subtask; the
+   surrounding work, decisions, and edits stay in this session.
+3. **Constrain the output.** Ask for exactly the format you want ("output only …") so the
+   result is easy to consume programmatically.
+4. **Match the model to the job.** A fast/cheap model for simple offloads, a stronger
+   thinking model for hard reasoning.
+5. **Surface failures.** If `agy` errors or is unavailable, report that plainly rather
+   than guessing at the result.</code></pre>
+					</div>
+
+					<h3>Use when</h3>
+					<ul>
+						<li>A subtask is well-scoped and expressible as a single prompt — translation, summarization, drafting, extraction, classification, or one-off code/text generation.</li>
+						<li>You want to offload work that is cheaper or faster handled outside this session, then consume the result here.</li>
+						<li>You want a second model's take on a self-contained question (Antigravity exposes Gemini, Claude, and GPT-OSS models).</li>
+					</ul>
+
+					<h3>Do not use when</h3>
+					<ul>
+						<li>The work depends on this session's accumulated context, open files, or tools — keep that here.</li>
+						<li>You need tight interactive iteration, or to drive the tool calls yourself.</li>
+						<li>It's trivial enough that doing it inline is faster than shelling out.</li>
+					</ul>
+
+					<h3>How to call</h3>
+					<p>Print mode (<highlight>-p</highlight>, alias for <highlight>--print</highlight> / <highlight>--prompt</highlight>) runs one prompt and prints the response to stdout:</p>
+					<pre><code>bash
+agy -p "&lt;your prompt here&gt;"
+</code></pre>
+					<p>Pipe larger input on stdin and reference it in the instruction:</p>
+					<pre><code>bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+</code></pre>
+					<p>Or give Antigravity read access to files instead of pasting them:</p>
+					<pre><code>bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+</code></pre>
+
+					<h3>Useful options</h3>
+					<ul>
+						<li><highlight>--model "&lt;name&gt;"</highlight> — pick the model; list options with <highlight>agy models</highlight> (e.g. <em>Gemini 3.5 Flash</em> for cheap/fast, <em>Claude Opus 4.6 (Thinking)</em> for hard reasoning).</li>
+						<li><highlight>--add-dir &lt;dir&gt;</highlight> — add a directory to Antigravity's workspace (repeatable) so it can read files itself.</li>
+						<li><highlight>--print-timeout &lt;dur&gt;</highlight> — raise the wait for long tasks (default 5m).</li>
+						<li><highlight>-c</highlight> / <highlight>--continue</highlight>, <highlight>--conversation &lt;id&gt;</highlight> — continue a prior delegation when one prompt isn't enough.</li>
+					</ul>
+
+					<h3>Examples</h3>
+					<pre><code>bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+</code></pre>
+
+					<h3>Rules</h3>
+					<ol>
+						<li><strong>Scope the prompt fully.</strong> <highlight>agy -p</highlight> is non-interactive — include everything it needs in one prompt (or use <highlight>-c</highlight> to continue an existing delegation).</li>
+						<li><strong>Delegate, then continue here.</strong> Antigravity handles the offloaded subtask; the surrounding work, decisions, and edits stay in this session.</li>
+						<li><strong>Constrain the output.</strong> Ask for exactly the format you want ("output only …") so the result is easy to consume programmatically.</li>
+						<li><strong>Match the model to the job.</strong> A fast/cheap model for simple offloads, a stronger thinking model for hard reasoning.</li>
+						<li><strong>Surface failures.</strong> If <highlight>agy</highlight> errors or is unavailable, report that plainly rather than guessing at the result.</li>
+					</ol>
+				</div>
+
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>antigravity — Delegate งานไปที่ Antigravity CLI</h2>
+					<p><strong>สรุปประเด็นสำคัญ (BLUF):</strong> <highlight>agy</highlight> CLI ทำงานกับ Antigravity แบบ non-interactive ใช้มันเพื่อ delegate subtask ที่มีขอบเขตชัดเจน รับผลลัพธ์จาก stdout แล้วทำงานหลักต่อใน session ปัจจุบัน</p>
+
+					<div style="position: relative; margin-bottom: 2em;">
+						<button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); this.innerHTML='<i class=\'fas fa-check\'></i>'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i>', 2000);" style="position: absolute; top: 10px; right: 10px; background: var(--ci-paper); border: 1px solid var(--ci-line); border-radius: 4px; padding: 4px 8px; cursor: pointer; color: var(--ci-muted); z-index: 10;" title="Copy to clipboard"><i class="far fa-copy"></i></button>
+						<pre style="margin: 0;"><code>---
+name: antigravity
+description: Delegate self-contained subtasks to the Antigravity CLI (`agy`). Use `agy -p` to offload work better handled outside this session — translating non-English input, summarizing, drafting, extracting, or one-off code/text generation — optionally choosing a model (`--model`; list with `agy models`: Gemini / Claude / GPT-OSS) or giving it files (`--add-dir`), then continue here with its stdout. Use when the subtask is well-scoped and returns a complete result.
+---
+
+# antigravity — Delegate to the Antigravity CLI
+
+The `agy` CLI runs Antigravity (an agentic assistant) non-interactively. Use it to hand
+off a bounded subtask, capture the result from stdout, and continue the main task in
+this session.
+
+## Use when
+
+- A subtask is well-scoped and expressible as a single prompt — translation,
+  summarization, drafting, extraction, classification, or one-off code/text generation.
+- You want to offload work that is cheaper or faster handled outside this session, then
+  consume the result here.
+- You want a second model's take on a self-contained question (Antigravity exposes
+  Gemini, Claude, and GPT-OSS models).
+
+## Do not use when
+
+- The work depends on this session's accumulated context, open files, or tools — keep
+  that here.
+- You need tight interactive iteration, or to drive the tool calls yourself.
+- It's trivial enough that doing it inline is faster than shelling out.
+
+## How to call
+
+Print mode (`-p`, alias for `--print` / `--prompt`) runs one prompt and prints the
+response to stdout:
+
+```bash
+agy -p "&lt;your prompt here&gt;"
+```
+
+Pipe larger input on stdin and reference it in the instruction:
+
+```bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+```
+
+Or give Antigravity read access to files instead of pasting them:
+
+```bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+```
+
+### Useful options
+
+- `--model "&lt;name&gt;"` — pick the model; list options with `agy models` (e.g.
+  *Gemini 3.5 Flash* for cheap/fast, *Claude Opus 4.6 (Thinking)* for hard reasoning).
+- `--add-dir &lt;dir&gt;` — add a directory to Antigravity's workspace (repeatable) so it can
+  read files itself.
+- `--print-timeout &lt;dur&gt;` — raise the wait for long tasks (default 5m).
+- `-c` / `--continue`, `--conversation &lt;id&gt;` — continue a prior delegation when one
+  prompt isn't enough.
+
+### Examples
+
+```bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+```
+
+## Rules
+
+1. **Scope the prompt fully.** `agy -p` is non-interactive — include everything it needs
+   in one prompt (or use `-c` to continue an existing delegation).
+2. **Delegate, then continue here.** Antigravity handles the offloaded subtask; the
+   surrounding work, decisions, and edits stay in this session.
+3. **Constrain the output.** Ask for exactly the format you want ("output only …") so the
+   result is easy to consume programmatically.
+4. **Match the model to the job.** A fast/cheap model for simple offloads, a stronger
+   thinking model for hard reasoning.
+5. **Surface failures.** If `agy` errors or is unavailable, report that plainly rather
+   than guessing at the result.</code></pre>
+					</div>
+
+					<h3>Use when (ควรใช้เมื่อ)</h3>
+					<ul>
+						<li>Subtask มีขอบเขตชัดเจนและสามารถระบุใน prompt เดียว — เช่น การแปล (translation), สรุปความ (summarization), ร่างเอกสาร (drafting), ดึงข้อมูล (extraction), จัดหมวดหมู่ (classification) หรือสร้างโค้ด/ข้อความสั้นๆ</li>
+						<li>คุณต้องการ offload งานที่จัดการได้ถูกกว่าหรือเร็วกว่าภายนอก session นี้ แล้วนำผลลัพธ์กลับมาใช้</li>
+						<li>คุณต้องการคำตอบของโมเดลอื่นสำหรับคำถามเฉพาะเจาะจง (Antigravity รองรับโมเดล Gemini, Claude, และ GPT-OSS)</li>
+					</ul>
+
+					<h3>Do not use when (ไม่ควรใช้เมื่อ)</h3>
+					<ul>
+						<li>งานนั้นต้องอาศัย context, ไฟล์ที่กำลังเปิดอยู่ หรือเครื่องมือภายใน session ปัจจุบัน — ให้ทำในนี้แทน</li>
+						<li>คุณต้องการการโต้ตอบแบบ interactive อย่างใกล้ชิด หรือต้องการเรียกใช้ tool calls ด้วยตัวเอง</li>
+						<li>งานนั้นง่ายมากจนการทำ inline เร็วกว่าการเรียกคำสั่งภายนอก</li>
+					</ul>
+
+					<h3>How to call (วิธีการเรียกใช้)</h3>
+					<p>Print mode (<highlight>-p</highlight>, ย่อมาจาก <highlight>--print</highlight> / <highlight>--prompt</highlight>) รันหนึ่ง prompt แล้วพิมพ์ผลลัพธ์ไปที่ stdout:</p>
+					<pre><code>bash
+agy -p "&lt;your prompt here&gt;"
+</code></pre>
+					<p>ส่งข้อมูลขนาดใหญ่ผ่าน stdin แล้วอ้างอิงถึงมันใน instruction:</p>
+					<pre><code>bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+</code></pre>
+					<p>หรือให้สิทธิ์ Antigravity ในการอ่านไฟล์แทนที่จะ paste ลงไป:</p>
+					<pre><code>bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+</code></pre>
+
+					<h3>Useful options (ออปชันที่มีประโยชน์)</h3>
+					<ul>
+						<li><highlight>--model "&lt;name&gt;"</highlight> — เลือกโมเดล; ดูตัวเลือกได้ด้วย <highlight>agy models</highlight> (เช่น <em>Gemini 3.5 Flash</em> สำหรับงานถูก/เร็ว, <em>Claude Opus 4.6 (Thinking)</em> สำหรับการใช้เหตุผลที่ซับซ้อน)</li>
+						<li><highlight>--add-dir &lt;dir&gt;</highlight> — เพิ่ม directory ให้ workspace ของ Antigravity (สามารถใช้ซ้ำได้) เพื่อให้อ่านไฟล์ได้เอง</li>
+						<li><highlight>--print-timeout &lt;dur&gt;</highlight> — เพิ่มเวลารอสำหรับงานที่ใช้เวลานาน (ค่าเริ่มต้นคือ 5 นาที)</li>
+						<li><highlight>-c</highlight> / <highlight>--continue</highlight>, <highlight>--conversation &lt;id&gt;</highlight> — ทำงานต่อจากการ delegate ก่อนหน้าหาก prompt เดียวไม่พอ</li>
+					</ul>
+
+					<h3>Examples (ตัวอย่าง)</h3>
+					<pre><code>bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+</code></pre>
+
+					<h3>Rules (กฎ)</h3>
+					<ol>
+						<li><strong>Scope the prompt fully.</strong> <highlight>agy -p</highlight> เป็นแบบ non-interactive — ใส่ทุกอย่างที่ต้องการลงใน prompt เดียว (หรือใช้ <highlight>-c</highlight> เพื่อทำต่อจาก delegation เดิม)</li>
+						<li><strong>Delegate, then continue here.</strong> Antigravity จะจัดการ offloaded subtask; ส่วนงานหลัก การตัดสินใจ และการแก้ไขยังคงอยู่ใน session นี้</li>
+						<li><strong>Constrain the output.</strong> ระบุรูปแบบที่คุณต้องการให้ชัดเจน ("output only …") เพื่อให้ผลลัพธ์นำไปใช้ต่อโปรแกรมได้ง่าย</li>
+						<li><strong>Match the model to the job.</strong> ใช้โมเดลเร็ว/ถูก สำหรับ offload ง่ายๆ และโมเดล thinking สำหรับการใช้เหตุผลซับซ้อน</li>
+						<li><strong>Surface failures.</strong> หาก <highlight>agy</highlight> เกิดข้อผิดพลาดหรือไม่พร้อมใช้งาน ให้รายงานตามตรงแทนที่จะเดาผลลัพธ์</li>
+					</ol>
+				</div>
+
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>antigravity — 将任务 Delegate 给 Antigravity CLI</h2>
+					<p><strong>核心结论 (BLUF):</strong> <highlight>agy</highlight> CLI 以非交互方式运行 Antigravity。使用它来 delegate 一个明确边界的 subtask，从 stdout 获取结果，然后在此 session 中继续主任务。</p>
+
+					<div style="position: relative; margin-bottom: 2em;">
+						<button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); this.innerHTML='<i class=\'fas fa-check\'></i>'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i>', 2000);" style="position: absolute; top: 10px; right: 10px; background: var(--ci-paper); border: 1px solid var(--ci-line); border-radius: 4px; padding: 4px 8px; cursor: pointer; color: var(--ci-muted); z-index: 10;" title="Copy to clipboard"><i class="far fa-copy"></i></button>
+						<pre style="margin: 0;"><code>---
+name: antigravity
+description: Delegate self-contained subtasks to the Antigravity CLI (`agy`). Use `agy -p` to offload work better handled outside this session — translating non-English input, summarizing, drafting, extracting, or one-off code/text generation — optionally choosing a model (`--model`; list with `agy models`: Gemini / Claude / GPT-OSS) or giving it files (`--add-dir`), then continue here with its stdout. Use when the subtask is well-scoped and returns a complete result.
+---
+
+# antigravity — Delegate to the Antigravity CLI
+
+The `agy` CLI runs Antigravity (an agentic assistant) non-interactively. Use it to hand
+off a bounded subtask, capture the result from stdout, and continue the main task in
+this session.
+
+## Use when
+
+- A subtask is well-scoped and expressible as a single prompt — translation,
+  summarization, drafting, extraction, classification, or one-off code/text generation.
+- You want to offload work that is cheaper or faster handled outside this session, then
+  consume the result here.
+- You want a second model's take on a self-contained question (Antigravity exposes
+  Gemini, Claude, and GPT-OSS models).
+
+## Do not use when
+
+- The work depends on this session's accumulated context, open files, or tools — keep
+  that here.
+- You need tight interactive iteration, or to drive the tool calls yourself.
+- It's trivial enough that doing it inline is faster than shelling out.
+
+## How to call
+
+Print mode (`-p`, alias for `--print` / `--prompt`) runs one prompt and prints the
+response to stdout:
+
+```bash
+agy -p "&lt;your prompt here&gt;"
+```
+
+Pipe larger input on stdin and reference it in the instruction:
+
+```bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+```
+
+Or give Antigravity read access to files instead of pasting them:
+
+```bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+```
+
+### Useful options
+
+- `--model "&lt;name&gt;"` — pick the model; list options with `agy models` (e.g.
+  *Gemini 3.5 Flash* for cheap/fast, *Claude Opus 4.6 (Thinking)* for hard reasoning).
+- `--add-dir &lt;dir&gt;` — add a directory to Antigravity's workspace (repeatable) so it can
+  read files itself.
+- `--print-timeout &lt;dur&gt;` — raise the wait for long tasks (default 5m).
+- `-c` / `--continue`, `--conversation &lt;id&gt;` — continue a prior delegation when one
+  prompt isn't enough.
+
+### Examples
+
+```bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+```
+
+## Rules
+
+1. **Scope the prompt fully.** `agy -p` is non-interactive — include everything it needs
+   in one prompt (or use `-c` to continue an existing delegation).
+2. **Delegate, then continue here.** Antigravity handles the offloaded subtask; the
+   surrounding work, decisions, and edits stay in this session.
+3. **Constrain the output.** Ask for exactly the format you want ("output only …") so the
+   result is easy to consume programmatically.
+4. **Match the model to the job.** A fast/cheap model for simple offloads, a stronger
+   thinking model for hard reasoning.
+5. **Surface failures.** If `agy` errors or is unavailable, report that plainly rather
+   than guessing at the result.</code></pre>
+					</div>
+
+					<h3>Use when (何时使用)</h3>
+					<ul>
+						<li>Subtask 范围明确，可以用一个 prompt 表达——例如翻译 (translation)、总结 (summarization)、起草 (drafting)、提取 (extraction)、分类 (classification) 或一次性代码/文本生成。</li>
+						<li>你想把在此 session 之外处理更便宜或更快的任务 offload 出去，然后在这里使用结果。</li>
+						<li>你需要另一个模型对独立问题的看法（Antigravity 提供 Gemini、Claude 和 GPT-OSS 模型）。</li>
+					</ul>
+
+					<h3>Do not use when (何时不使用)</h3>
+					<ul>
+						<li>工作依赖于此 session 积累的 context、打开的文件或工具——请留在这里完成。</li>
+						<li>你需要紧密的交互式迭代，或者需要自己驱动 tool calls。</li>
+						<li>任务非常简单，inline 处理比调用外部命令更快。</li>
+					</ul>
+
+					<h3>How to call (如何调用)</h3>
+					<p>Print mode (<highlight>-p</highlight>, 是 <highlight>--print</highlight> / <highlight>--prompt</highlight> 的简写) 运行一个 prompt 并将结果输出到 stdout:</p>
+					<pre><code>bash
+agy -p "&lt;your prompt here&gt;"
+</code></pre>
+					<p>通过 stdin 传入大量数据，并在 instruction 中引用它：</p>
+					<pre><code>bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+</code></pre>
+					<p>或者给 Antigravity 读取文件的权限，而不是直接粘贴：</p>
+					<pre><code>bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+</code></pre>
+
+					<h3>Useful options (实用选项)</h3>
+					<ul>
+						<li><highlight>--model "&lt;name&gt;"</highlight> — 选择模型；使用 <highlight>agy models</highlight> 查看选项（例如 <em>Gemini 3.5 Flash</em> 便宜/快速，<em>Claude Opus 4.6 (Thinking)</em> 适合复杂推理）。</li>
+						<li><highlight>--add-dir &lt;dir&gt;</highlight> — 将 directory 添加到 Antigravity 的 workspace（可重复使用），以便它可以自己读取文件。</li>
+						<li><highlight>--print-timeout &lt;dur&gt;</highlight> — 为长时间任务增加等待时间（默认 5 分钟）。</li>
+						<li><highlight>-c</highlight> / <highlight>--continue</highlight>, <highlight>--conversation &lt;id&gt;</highlight> — 当一个 prompt 不够时，继续之前的 delegation。</li>
+					</ul>
+
+					<h3>Examples (示例)</h3>
+					<pre><code>bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+</code></pre>
+
+					<h3>Rules (规则)</h3>
+					<ol>
+						<li><strong>Scope the prompt fully.</strong> <highlight>agy -p</highlight> 是非交互式的——在一个 prompt 中包含它需要的所有内容（或使用 <highlight>-c</highlight> 继续现有的 delegation）。</li>
+						<li><strong>Delegate, then continue here.</strong> Antigravity 处理 offload 出去的 subtask；周边的主要工作、决定和修改留在这个 session 中。</li>
+						<li><strong>Constrain the output.</strong> 准确要求你想要的格式（"output only …"），这样结果就能轻松通过程序处理。</li>
+						<li><strong>Match the model to the job.</strong> 使用快速/便宜的模型处理简单的 offload，使用更强的 thinking 模型处理复杂的推理。</li>
+						<li><strong>Surface failures.</strong> 如果 <highlight>agy</highlight> 出错或不可用，直接报告，而不是猜测结果。</li>
+					</ol>
+				</div>
+
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>antigravity — Antigravity CLI へのタスクの Delegate</h2>
+					<p><strong>結論 (BLUF):</strong> <highlight>agy</highlight> CLI は非対話的に Antigravity を実行します。境界が明確な subtask を delegate し、stdout から結果を取得して、現在の session でメインのタスクを続行するために使用します。</p>
+
+					<div style="position: relative; margin-bottom: 2em;">
+						<button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); this.innerHTML='<i class=\'fas fa-check\'></i>'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i>', 2000);" style="position: absolute; top: 10px; right: 10px; background: var(--ci-paper); border: 1px solid var(--ci-line); border-radius: 4px; padding: 4px 8px; cursor: pointer; color: var(--ci-muted); z-index: 10;" title="Copy to clipboard"><i class="far fa-copy"></i></button>
+						<pre style="margin: 0;"><code>---
+name: antigravity
+description: Delegate self-contained subtasks to the Antigravity CLI (`agy`). Use `agy -p` to offload work better handled outside this session — translating non-English input, summarizing, drafting, extracting, or one-off code/text generation — optionally choosing a model (`--model`; list with `agy models`: Gemini / Claude / GPT-OSS) or giving it files (`--add-dir`), then continue here with its stdout. Use when the subtask is well-scoped and returns a complete result.
+---
+
+# antigravity — Delegate to the Antigravity CLI
+
+The `agy` CLI runs Antigravity (an agentic assistant) non-interactively. Use it to hand
+off a bounded subtask, capture the result from stdout, and continue the main task in
+this session.
+
+## Use when
+
+- A subtask is well-scoped and expressible as a single prompt — translation,
+  summarization, drafting, extraction, classification, or one-off code/text generation.
+- You want to offload work that is cheaper or faster handled outside this session, then
+  consume the result here.
+- You want a second model's take on a self-contained question (Antigravity exposes
+  Gemini, Claude, and GPT-OSS models).
+
+## Do not use when
+
+- The work depends on this session's accumulated context, open files, or tools — keep
+  that here.
+- You need tight interactive iteration, or to drive the tool calls yourself.
+- It's trivial enough that doing it inline is faster than shelling out.
+
+## How to call
+
+Print mode (`-p`, alias for `--print` / `--prompt`) runs one prompt and prints the
+response to stdout:
+
+```bash
+agy -p "&lt;your prompt here&gt;"
+```
+
+Pipe larger input on stdin and reference it in the instruction:
+
+```bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+```
+
+Or give Antigravity read access to files instead of pasting them:
+
+```bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+```
+
+### Useful options
+
+- `--model "&lt;name&gt;"` — pick the model; list options with `agy models` (e.g.
+  *Gemini 3.5 Flash* for cheap/fast, *Claude Opus 4.6 (Thinking)* for hard reasoning).
+- `--add-dir &lt;dir&gt;` — add a directory to Antigravity's workspace (repeatable) so it can
+  read files itself.
+- `--print-timeout &lt;dur&gt;` — raise the wait for long tasks (default 5m).
+- `-c` / `--continue`, `--conversation &lt;id&gt;` — continue a prior delegation when one
+  prompt isnt enough.
+
+### Examples
+
+```bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+```
+
+## Rules
+
+1. **Scope the prompt fully.** `agy -p` is non-interactive — include everything it needs
+   in one prompt (or use `-c` to continue an existing delegation).
+2. **Delegate, then continue here.** Antigravity handles the offloaded subtask; the
+   surrounding work, decisions, and edits stay in this session.
+3. **Constrain the output.** Ask for exactly the format you want ("output only …") so the
+   result is easy to consume programmatically.
+4. **Match the model to the job.** A fast/cheap model for simple offloads, a stronger
+   thinking model for hard reasoning.
+5. **Surface failures.** If `agy` errors or is unavailable, report that plainly rather
+   than guessing at the result.</code></pre>
+					</div>
+
+					<h3>Use when (使用する場面)</h3>
+					<ul>
+						<li>Subtask のスコープが適切で、単一の prompt で表現できる場合 — 翻訳 (translation)、要約 (summarization)、ドラフト作成 (drafting)、抽出 (extraction)、分類 (classification)、または 1 回限りのコード/テキスト生成など。</li>
+						<li>この session 外で処理した方が安価または高速なタスクを offload し、その結果をここで使用したい場合。</li>
+						<li>独立した質問に対する別のモデルの回答が必要な場合 (Antigravity は Gemini、Claude、GPT-OSS モデルを提供しています)。</li>
+					</ul>
+
+					<h3>Do not use when (使用しない場面)</h3>
+					<ul>
+						<li>タスクがこの session の蓄積された context、開いているファイル、またはツールに依存している場合 — ここで実行してください。</li>
+						<li>密接な対話型のイテレーションが必要な場合、または自分で tool calls を駆動したい場合。</li>
+						<li>非常に単純なため、インラインで実行する方が外部コマンドを呼び出すよりも速い場合。</li>
+					</ul>
+
+					<h3>How to call (呼び出し方)</h3>
+					<p>Print mode (<highlight>-p</highlight>, <highlight>--print</highlight> / <highlight>--prompt</highlight> のエイリアス) は 1 つの prompt を実行し、結果を stdout に出力します。</p>
+					<pre><code>bash
+agy -p "&lt;your prompt here&gt;"
+</code></pre>
+					<p>大きな入力は stdin でパイプし、instruction でそれを参照します。</p>
+					<pre><code>bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+</code></pre>
+					<p>または、テキストを貼り付ける代わりに、Antigravity にファイルの読み取りアクセス権を与えます。</p>
+					<pre><code>bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+</code></pre>
+
+					<h3>Useful options (便利なオプション)</h3>
+					<ul>
+						<li><highlight>--model "&lt;name&gt;"</highlight> — モデルを選択します。<highlight>agy models</highlight> でオプションをリスト表示します (例: <em>Gemini 3.5 Flash</em> は安価で高速、<em>Claude Opus 4.6 (Thinking)</em> は複雑な推論向け)。</li>
+						<li><highlight>--add-dir &lt;dir&gt;</highlight> — Antigravity の workspace に directory を追加し (繰り返し可能)、自身でファイルを読み取れるようにします。</li>
+						<li><highlight>--print-timeout &lt;dur&gt;</highlight> — 長時間のタスクの待機時間を増やします (デフォルトは 5 分)。</li>
+						<li><highlight>-c</highlight> / <highlight>--continue</highlight>, <highlight>--conversation &lt;id&gt;</highlight> — 1 つの prompt では不十分な場合、以前の delegation を続行します。</li>
+					</ul>
+
+					<h3>Examples (例)</h3>
+					<pre><code>bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+</code></pre>
+
+					<h3>Rules (ルール)</h3>
+					<ol>
+						<li><strong>Scope the prompt fully.</strong> <highlight>agy -p</highlight> は非対話的です — 必要なすべてを 1 つの prompt に含めます (または <highlight>-c</highlight> を使用して既存の delegation を続行します)。</li>
+						<li><strong>Delegate, then continue here.</strong> Antigravity は offload された subtask を処理します。周辺の作業、決定、編集はこの session に留まります。</li>
+						<li><strong>Constrain the output.</strong> プログラムで結果を簡単に消費できるように、希望するフォーマット ("output only …" など) を正確に要求してください。</li>
+						<li><strong>Match the model to the job.</strong> 単純な offload には高速で安価なモデルを、複雑な推論にはより強力な thinking モデルを使用します。</li>
+						<li><strong>Surface failures.</strong> <highlight>agy</highlight> でエラーが発生した場合、または利用できない場合は、結果を推測するのではなく、そのまま報告してください。</li>
+					</ol>
+				</div>
+
+				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>antigravity — Delegate an das Antigravity CLI</h2>
+					<p><strong>Fazit (BLUF):</strong> Das <highlight>agy</highlight> CLI führt Antigravity nicht-interaktiv aus. Verwenden Sie es, um einen abgegrenzten Subtask zu delegieren, das Ergebnis aus stdout zu erfassen und die Hauptaufgabe in dieser Session fortzusetzen.</p>
+
+					<div style="position: relative; margin-bottom: 2em;">
+						<button class="copy-btn" onclick="navigator.clipboard.writeText(this.nextElementSibling.innerText); this.innerHTML='<i class=\'fas fa-check\'></i>'; setTimeout(() => this.innerHTML='<i class=\'far fa-copy\'></i>', 2000);" style="position: absolute; top: 10px; right: 10px; background: var(--ci-paper); border: 1px solid var(--ci-line); border-radius: 4px; padding: 4px 8px; cursor: pointer; color: var(--ci-muted); z-index: 10;" title="Copy to clipboard"><i class="far fa-copy"></i></button>
+						<pre style="margin: 0;"><code>---
+name: antigravity
+description: Delegate self-contained subtasks to the Antigravity CLI (`agy`). Use `agy -p` to offload work better handled outside this session — translating non-English input, summarizing, drafting, extracting, or one-off code/text generation — optionally choosing a model (`--model`; list with `agy models`: Gemini / Claude / GPT-OSS) or giving it files (`--add-dir`), then continue here with its stdout. Use when the subtask is well-scoped and returns a complete result.
+---
+
+# antigravity — Delegate to the Antigravity CLI
+
+The `agy` CLI runs Antigravity (an agentic assistant) non-interactively. Use it to hand
+off a bounded subtask, capture the result from stdout, and continue the main task in
+this session.
+
+## Use when
+
+- A subtask is well-scoped and expressible as a single prompt — translation,
+  summarization, drafting, extraction, classification, or one-off code/text generation.
+- You want to offload work that is cheaper or faster handled outside this session, then
+  consume the result here.
+- You want a second model's take on a self-contained question (Antigravity exposes
+  Gemini, Claude, and GPT-OSS models).
+
+## Do not use when
+
+- The work depends on this session's accumulated context, open files, or tools — keep
+  that here.
+- You need tight interactive iteration, or to drive the tool calls yourself.
+- It's trivial enough that doing it inline is faster than shelling out.
+
+## How to call
+
+Print mode (`-p`, alias for `--print` / `--prompt`) runs one prompt and prints the
+response to stdout:
+
+```bash
+agy -p "&lt;your prompt here&gt;"
+```
+
+Pipe larger input on stdin and reference it in the instruction:
+
+```bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+```
+
+Or give Antigravity read access to files instead of pasting them:
+
+```bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+```
+
+### Useful options
+
+- `--model "&lt;name&gt;"` — pick the model; list options with `agy models` (e.g.
+  *Gemini 3.5 Flash* for cheap/fast, *Claude Opus 4.6 (Thinking)* for hard reasoning).
+- `--add-dir &lt;dir&gt;` — add a directory to Antigravity's workspace (repeatable) so it can
+  read files itself.
+- `--print-timeout &lt;dur&gt;` — raise the wait for long tasks (default 5m).
+- `-c` / `--continue`, `--conversation &lt;id&gt;` — continue a prior delegation when one
+  prompt isn't enough.
+
+### Examples
+
+```bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+```
+
+## Rules
+
+1. **Scope the prompt fully.** `agy -p` is non-interactive — include everything it needs
+   in one prompt (or use `-c` to continue an existing delegation).
+2. **Delegate, then continue here.** Antigravity handles the offloaded subtask; the
+   surrounding work, decisions, and edits stay in this session.
+3. **Constrain the output.** Ask for exactly the format you want ("output only …") so the
+   result is easy to consume programmatically.
+4. **Match the model to the job.** A fast/cheap model for simple offloads, a stronger
+   thinking model for hard reasoning.
+5. **Surface failures.** If `agy` errors or is unavailable, report that plainly rather
+   than guessing at the result.</code></pre>
+					</div>
+
+					<h3>Use when (Wann verwenden)</h3>
+					<ul>
+						<li>Ein Subtask ist gut abgegrenzt und lässt sich in einem einzigen Prompt ausdrücken — z. B. Übersetzung (translation), Zusammenfassung (summarization), Entwurf (drafting), Extraktion (extraction), Klassifizierung (classification) oder einmalige Code-/Texterstellung.</li>
+						<li>Sie möchten Arbeiten offloaden, die außerhalb dieser Session billiger oder schneller erledigt werden, und das Ergebnis dann hier konsumieren.</li>
+						<li>Sie möchten die Meinung eines zweiten Modells zu einer in sich geschlossenen Frage (Antigravity bietet Gemini-, Claude- und GPT-OSS-Modelle an).</li>
+					</ul>
+
+					<h3>Do not use when (Wann nicht verwenden)</h3>
+					<ul>
+						<li>Die Arbeit hängt vom angesammelten Context, den geöffneten Dateien oder den Tools dieser Session ab — erledigen Sie das hier.</li>
+						<li>Sie benötigen enge interaktive Iterationen oder müssen Tool Calls selbst steuern.</li>
+						<li>Es ist so trivial, dass die Inline-Ausführung schneller ist als der Aufruf eines externen Befehls.</li>
+					</ul>
+
+					<h3>How to call (Aufruf)</h3>
+					<p>Der Print Mode (<highlight>-p</highlight>, Alias für <highlight>--print</highlight> / <highlight>--prompt</highlight>) führt einen Prompt aus und gibt die Antwort in stdout aus:</p>
+					<pre><code>bash
+agy -p "&lt;your prompt here&gt;"
+</code></pre>
+					<p>Leiten Sie größere Eingaben über stdin weiter und verweisen Sie in der Instruction darauf:</p>
+					<pre><code>bash
+cat &lt;file&gt; | agy -p "&lt;instruction describing what to do with the input&gt;"
+</code></pre>
+					<p>Oder geben Sie Antigravity Lesezugriff auf Dateien, anstatt sie einzufügen:</p>
+					<pre><code>bash
+agy --add-dir . -p "Review app/conf/.../FooController.scala and list any unhandled error cases."
+</code></pre>
+
+					<h3>Useful options (Nützliche Optionen)</h3>
+					<ul>
+						<li><highlight>--model "&lt;name&gt;"</highlight> — Modell auswählen; Optionen mit <highlight>agy models</highlight> auflisten (z. B. <em>Gemini 3.5 Flash</em> für billig/schnell, <em>Claude Opus 4.6 (Thinking)</em> für komplexe Schlussfolgerungen).</li>
+						<li><highlight>--add-dir &lt;dir&gt;</highlight> — Ein Directory zum Workspace von Antigravity hinzufügen (wiederholbar), damit es Dateien selbst lesen kann.</li>
+						<li><highlight>--print-timeout &lt;dur&gt;</highlight> — Wartezeit für lange Aufgaben erhöhen (Standard 5 Min.).</li>
+						<li><highlight>-c</highlight> / <highlight>--continue</highlight>, <highlight>--conversation &lt;id&gt;</highlight> — Eine frühere Delegation fortsetzen, wenn ein Prompt nicht ausreicht.</li>
+					</ul>
+
+					<h3>Examples (Beispiele)</h3>
+					<pre><code>bash
+# Translate to English, output only the translation
+agy -p "Translate the following into English, output only the translation:\n&lt;source text&gt;"
+
+# Summarize a file
+cat notes.md | agy -p "Summarize the following in 5 bullet points."
+
+# Cheap one-off generation on a fast model
+agy --model "Gemini 3.5 Flash (Low)" -p "Write a regex for an RFC 5322 email. Output only the regex."
+</code></pre>
+
+					<h3>Rules (Regeln)</h3>
+					<ol>
+						<li><strong>Scope the prompt fully.</strong> <highlight>agy -p</highlight> ist nicht-interaktiv — fügen Sie alles, was benötigt wird, in einen Prompt ein (oder verwenden Sie <highlight>-c</highlight>, um eine bestehende Delegation fortzusetzen).</li>
+						<li><strong>Delegate, then continue here.</strong> Antigravity übernimmt den ausgelagerten Subtask; die umliegende Arbeit, Entscheidungen und Änderungen bleiben in dieser Session.</li>
+						<li><strong>Constrain the output.</strong> Fragen Sie genau nach dem Format, das Sie haben möchten ("output only …"), damit das Ergebnis leicht programmgesteuert verwendet werden kann.</li>
+						<li><strong>Match the model to the job.</strong> Ein schnelles/billiges Modell für einfache Offloads, ein stärkeres Thinking-Modell für harte Überlegungen.</li>
+						<li><strong>Surface failures.</strong> Wenn <highlight>agy</highlight> Fehler macht oder nicht verfügbar ist, melden Sie dies klar, anstatt das Ergebnis zu raten.</li>
+					</ol>
+				</div>
+			</section>
+
+			<div class="inner">
+				<p class="copyright">
+					&copy; peerapat.cc
+				</p>
+			</div>
+		</div>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+		<script src="../assets/js/cookie-consent.js"></script>
+		<script>
+			// Language Switcher Logic
+			function switchLanguage(langId) {
+				document.querySelectorAll('.lang-section').forEach(el => el.classList.remove('active'));
+				document.querySelectorAll('.lang-icon').forEach(el => el.classList.remove('active'));
+				
+				const section = document.getElementById(langId);
+				const icon = document.querySelector(`.lang-icon[href="#${langId}"]`);
+				
+				if (section) section.classList.add('active');
+				if (icon) icon.classList.add('active');
+			}
+
+			document.querySelectorAll('.lang-icon').forEach(link => {
+				link.addEventListener('click', function(e) {
+					e.preventDefault();
+					const langId = this.getAttribute('href').substring(1);
+					switchLanguage(langId);
+					window.location.hash = langId;
+				});
+			});
+
+			if (window.location.hash) {
+				const langId = window.location.hash.substring(1);
+				if (document.getElementById(langId)) {
+					switchLanguage(langId);
+				}
+			}
+
+			// Theme toggle logic
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				// Update icon based on current theme
+				const updateIcon = () => {
+					if (document.documentElement.getAttribute('data-theme') === 'dark') {
+						themeToggle.classList.remove('fa-moon');
+						themeToggle.classList.add('fa-sun');
+					} else {
+						themeToggle.classList.remove('fa-sun');
+						themeToggle.classList.add('fa-moon');
+					}
+				};
+				updateIcon();
+
+				themeToggle.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					updateIcon();
+				});
+			}
+		</script>
+	</body>
+</html>
