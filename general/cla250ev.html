@@ -1,0 +1,715 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Mercedes-Benz CLA 250 e (EV+) Owner's Guide</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Comprehensive guide for the Mercedes-Benz CLA 250 e. Learn about DYNAMIC SELECT, MBUX Voice Assistant, and EV charging features." />
+		<meta name="keywords" content="Mercedes-Benz, CLA 250 e, EV, DYNAMIC SELECT, MBUX, Electric Intelligence" />
+		<meta name="color-scheme" content="light dark">
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/ci.css" />
+		<link rel="stylesheet" href="../assets/css/cookie-consent.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('consent', 'default', { analytics_storage: 'denied' });
+			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
+			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
+			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
+		</script>
+		<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+		</style>
+		<script>
+			// Dark mode init
+			const savedTheme = localStorage.getItem('theme');
+			const systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (systemDark) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
+	</head>
+
+	<body class="is-preload">
+
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon"></a>
+					<h1>Mercedes-Benz CLA 250 e (EV+) Owner's Guide</h1>
+				</header>
+
+				<div class="lang-switcher">
+					<a href="#lang-en" class="lang-icon active" title="English">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+
+					<a href="#lang-th" class="lang-icon" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					
+					<a href="#lang-zh" class="lang-icon" title="中文">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					
+					<a href="#lang-ja" class="lang-icon" title="日本語">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+					
+					<a href="#lang-de" class="lang-icon" title="Deutsch">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
+
+				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
+					<h2>Mercedes-Benz CLA 250 e (EV+) Owner's Guide</h2>
+					<p><strong>Bottom Line Up Front:</strong> The Mercedes-Benz CLA 250 e combines dynamic driving with electric efficiency. Mastering the DYNAMIC SELECT drive programs, MBUX Voice Assistant, and dashboard indicators will significantly improve your driving experience and electric range.</p>
+
+					<h3>DYNAMIC SELECT Drive Programs</h3>
+					<p>The DYNAMIC SELECT system lets you quickly adjust your vehicle's Drive, Steering, and ESP&reg; characteristics to suit your needs.</p>
+					<ul>
+						<li><strong>[C] COMFORT:</strong> Best for everyday driving. Offers a balanced setup between traction, stability, efficiency, and performance on all carriageway conditions.</li>
+						<li><strong>[S] SPORT:</strong> Designed for dynamic driving with maximum power availability and a sporty setup. Only use on dry, good carriageway surfaces with clear visibility.</li>
+						<li><strong>[E] ECO:</strong> Maximizes efficiency and electric range. Features <strong>Navigation with Electric Intelligence</strong>, which displays recommended maximum speeds to help you reach the next charging station. It also includes speed-dependent acceleration limitations (which can be overridden with kick-down).</li>
+						<li><strong>[I*] INDIVIDUAL:</strong> Customize your own settings for Drive, Steering, and ESP&reg;.</li>
+					</ul>
+
+					<p><strong>What does ECO mode do in the CLA 250 e?</strong><br>
+					ECO mode optimizes the vehicle for maximum range. It limits acceleration and uses Electric Intelligence during navigation to guide your speed so you can reach your next charging stop.</p>
+
+					<h3>Dashboard Indicators and Warning Lamps</h3>
+					<p>Understanding your driver display ensures safety and optimal performance.</p>
+
+					<p><img src="../images/cla250-indicator-screen.png" alt="Mercedes-Benz CLA 250 driver display layout" style="max-width: 100%; border-radius: 8px;"></p>
+					<p><em>(Mercedes-Benz CLA 250 driver display layout)</em></p>
+
+					<h4>Dashboard Indicators (Full List)</h4>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>No.</th>
+									<th>Indicator / Warning Lamp</th>
+									<th>Page</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>1</td><td>Turn signal light</td><td>236</td></tr>
+								<tr><td>2</td><td>Distance warning</td><td>735</td></tr>
+								<tr><td>3</td><td>Traffic Sign Assist</td><td>336</td></tr>
+								<tr><td>4</td><td>Break Hold</td><td>336</td></tr>
+								<tr><td>5</td><td>Distance Assist DISTRONIC</td><td>320</td></tr>
+								<tr><td>6</td><td>Car Ready</td><td>336</td></tr>
+								<tr><td>7</td><td>Steering Assist</td><td>327</td></tr>
+								<tr><td>8</td><td>Restraint system</td><td>730</td></tr>
+								<tr><td>9</td><td>System fault</td><td>732</td></tr>
+								<tr><td>10</td><td>Transmission position</td><td>232</td></tr>
+								<tr><td>11</td><td>Drive program</td><td>232</td></tr>
+								<tr><td>12-20</td><td><strong>Dynamic display sections for:</strong><br/>
+								- ATTENTION ASSIST<br/>
+								- Brake Assist<br/>
+								- ABS<br/>
+								- Tyre pressure monitoring system<br/>
+								- Trailer hitch<br/>
+								- Power steering (red)<br/>
+								- Power steering (yellow)<br/>
+								- Occupant presence reminder (white)<br/>
+								- Occupant presence reminder (yellow)<br/>
+								- Mercedes-Benz emergency call system<br/>
+								- Reduced power<br/>
+								- Electrical fault<br/>
+								- Brakes (red)<br/>
+								- Brakes (yellow)<br/>
+								- Electric parking brake (yellow)<br/>
+								- Rear window wiper</td>
+								<td><br/>735<br/>735<br/>735<br/>739<br/><br/>732<br/>732<br/>730<br/><br/>739<br/>732<br/>732<br/>733<br/>733<br/>733<br/>236</td></tr>
+								<tr><td>19</td><td>Charge level display</td><td>333</td></tr>
+								<tr><td>20</td><td>Electric parking brake (red)</td><td>733</td></tr>
+								<tr><td>21</td><td>Adaptive Highbeam Assist</td><td>239</td></tr>
+								<tr><td>22</td><td>Standing lights</td><td>235</td></tr>
+								<tr><td>-</td><td>Low beam</td><td>235</td></tr>
+								<tr><td>23</td><td>Rear fog lights</td><td>235</td></tr>
+								<tr><td>24</td><td>ESP&reg; OFF</td><td>735</td></tr>
+								<tr><td>-</td><td>ESP&reg;</td><td>735</td></tr>
+								<tr><td>25</td><td>Seat belt</td><td>730</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3>MBUX Voice Assistant ("Hey Mercedes")</h3>
+					<p>Control multimedia, navigation, and vehicle settings hands-free using colloquial language. Just say "Hey Mercedes, ..."</p>
+
+					<h4>Key Voice Commands</h4>
+					<ul>
+						<li><strong>Navigation:</strong> "Where is the nearest charging station?", "Navigate me to Warsaw and avoid toll roads."</li>
+						<li><strong>Vehicle Functions:</strong> "Switch the seat heating to level 2," "I would like to set the ambient light to blue." (Actions apply to the seat closest to the speaker).</li>
+						<li><strong>Information:</strong> "How do I charge the vehicle?", "What do I need ESP for?"</li>
+						<li><strong>General Knowledge:</strong> "Is it raining at my destination?", "How many Swiss franks make 25 euros?"</li>
+					</ul>
+					<p><em>Pro Tip:</em> You can customize the assistant by navigating to <code>Settings &gt; Virtual assistant &gt; Customise assistant</code> on your display or via the Notification Centre.</p>
+
+					<h3>FAQ</h3>
+					<p><strong>How do I find the nearest EV charging station?</strong><br>
+					Simply activate the MBUX Voice Assistant and say, "Hey Mercedes, where is the nearest charging station?" The system will route you there dynamically.</p>
+
+					<p><strong>Full Manual</strong><br>
+					For more detailed information, please refer to the <a href="https://www.mercedes-benz.co.th/passengercars/owners-manuals/en-th/pdf/mercedes-cla-saloon-2026-april-c174-mbux-owners-manual-1.pdf" target="_blank">Full Mercedes-Benz CLA Owner's Manual</a>.</p>
+				</div>
+
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>คู่มือผู้ใช้ Mercedes-Benz CLA 250 e (EV+)</h2>
+					<p><strong>สรุปเนื้อหาสำคัญ (Bottom Line Up Front):</strong> Mercedes-Benz CLA 250 e ผสมผสานการขับขี่แบบ dynamic เข้ากับประสิทธิภาพของระบบไฟฟ้า การทำความเข้าใจระบบ DYNAMIC SELECT, MBUX Voice Assistant และไฟสัญญาณเตือนบนหน้าปัด จะช่วยยกระดับประสบการณ์การขับขี่และระยะทางที่วิ่งได้ด้วยไฟฟ้าอย่างมาก</p>
+
+					<h3>โหมดการขับขี่ DYNAMIC SELECT</h3>
+					<p>ระบบ DYNAMIC SELECT ช่วยให้คุณสามารถปรับตั้งค่า Drive, Steering และ ESP&reg; ของรถได้อย่างรวดเร็วตามความต้องการของคุณ</p>
+					<ul>
+						<li><strong>[C] COMFORT:</strong> เหมาะสำหรับการขับขี่ในชีวิตประจำวัน ให้ความสมดุลระหว่าง traction, stability, ประสิทธิภาพ และสมรรถนะในทุกสภาพถนน</li>
+						<li><strong>[S] SPORT:</strong> ออกแบบมาเพื่อการขับขี่แบบ dynamic ที่ใช้ maximum power และการปรับตั้งแบบสปอร์ต ควรใช้เฉพาะบนถนนที่แห้ง สภาพดี และมีทัศนวิสัยชัดเจนเท่านั้น</li>
+						<li><strong>[E] ECO:</strong> เพิ่มประสิทธิภาพและระยะทางด้วยระบบไฟฟ้าสูงสุด มีฟีเจอร์ <strong>Navigation with Electric Intelligence</strong> ซึ่งจะแสดงความเร็วสูงสุดที่แนะนำเพื่อช่วยให้คุณไปถึง charging station ถัดไปได้ รวมไปถึงการจำกัด acceleration ตามความเร็ว (ซึ่งสามารถยกเลิกได้ด้วยการ kick-down)</li>
+						<li><strong>[I*] INDIVIDUAL:</strong> ปรับแต่งการตั้งค่า Drive, Steering และ ESP&reg; ของคุณเอง</li>
+					</ul>
+
+					<p><strong>ECO mode ทำงานอย่างไรใน CLA 250 e?</strong><br>
+					ECO mode จะปรับตั้งรถยนต์เพื่อให้ได้ระยะทางวิ่งสูงสุด โดยจำกัด acceleration และใช้ Electric Intelligence ร่วมกับ navigation เพื่อแนะนำความเร็วที่เหมาะสมในการวิ่งไปยัง charging station ถัดไป</p>
+
+					<h3>ไฟสัญญาณเตือนและไฟแสดงสถานะ (Dashboard Indicators)</h3>
+					<p>การเข้าใจ driver display ของคุณจะช่วยให้เกิดความปลอดภัยและประสิทธิภาพสูงสุด</p>
+
+					<p><img src="../images/cla250-indicator-screen.png" alt="หน้าจอแสดงผลของ Mercedes-Benz CLA 250" style="max-width: 100%; border-radius: 8px;"></p>
+					<p><em>(หน้าจอแสดงผลของ Mercedes-Benz CLA 250)</em></p>
+
+					<h4>รายการไฟสัญญาณเตือนทั้งหมด (Full List)</h4>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>หมายเลข</th>
+									<th>ไฟสัญญาณเตือน / ไฟแจ้งเตือน</th>
+									<th>หน้า</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>1</td><td>Turn signal light</td><td>236</td></tr>
+								<tr><td>2</td><td>Distance warning</td><td>735</td></tr>
+								<tr><td>3</td><td>Traffic Sign Assist</td><td>336</td></tr>
+								<tr><td>4</td><td>Break Hold</td><td>336</td></tr>
+								<tr><td>5</td><td>Distance Assist DISTRONIC</td><td>320</td></tr>
+								<tr><td>6</td><td>Car Ready</td><td>336</td></tr>
+								<tr><td>7</td><td>Steering Assist</td><td>327</td></tr>
+								<tr><td>8</td><td>Restraint system</td><td>730</td></tr>
+								<tr><td>9</td><td>System fault</td><td>732</td></tr>
+								<tr><td>10</td><td>Transmission position</td><td>232</td></tr>
+								<tr><td>11</td><td>Drive program</td><td>232</td></tr>
+								<tr><td>12-20</td><td><strong>Dynamic display sections สำหรับ:</strong><br/>
+								- ATTENTION ASSIST<br/>
+								- Brake Assist<br/>
+								- ABS<br/>
+								- Tyre pressure monitoring system<br/>
+								- Trailer hitch<br/>
+								- Power steering (สีแดง)<br/>
+								- Power steering (สีเหลือง)<br/>
+								- Occupant presence reminder (สีขาว)<br/>
+								- Occupant presence reminder (สีเหลือง)<br/>
+								- Mercedes-Benz emergency call system<br/>
+								- Reduced power<br/>
+								- Electrical fault<br/>
+								- Brakes (สีแดง)<br/>
+								- Brakes (สีเหลือง)<br/>
+								- Electric parking brake (สีเหลือง)<br/>
+								- Rear window wiper</td>
+								<td><br/>735<br/>735<br/>735<br/>739<br/><br/>732<br/>732<br/>730<br/><br/>739<br/>732<br/>732<br/>733<br/>733<br/>733<br/>236</td></tr>
+								<tr><td>19</td><td>Charge level display</td><td>333</td></tr>
+								<tr><td>20</td><td>Electric parking brake (สีแดง)</td><td>733</td></tr>
+								<tr><td>21</td><td>Adaptive Highbeam Assist</td><td>239</td></tr>
+								<tr><td>22</td><td>Standing lights</td><td>235</td></tr>
+								<tr><td>-</td><td>Low beam</td><td>235</td></tr>
+								<tr><td>23</td><td>Rear fog lights</td><td>235</td></tr>
+								<tr><td>24</td><td>ESP&reg; OFF</td><td>735</td></tr>
+								<tr><td>-</td><td>ESP&reg;</td><td>735</td></tr>
+								<tr><td>25</td><td>Seat belt</td><td>730</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3>MBUX Voice Assistant ("Hey Mercedes")</h3>
+					<p>ควบคุม multimedia, navigation และ vehicle settings แบบ hands-free ด้วยภาษาพูดทั่วไป เพียงพูดว่า "Hey Mercedes, ..."</p>
+
+					<h4>คำสั่งเสียงที่สำคัญ (Voice Commands)</h4>
+					<ul>
+						<li><strong>Navigation:</strong> "Where is the nearest charging station?", "Navigate me to Warsaw and avoid toll roads."</li>
+						<li><strong>Vehicle Functions:</strong> "Switch the seat heating to level 2," "I would like to set the ambient light to blue." (การทำงานจะมีผลกับเบาะที่อยู่ใกล้ผู้พูดที่สุด)</li>
+						<li><strong>Information:</strong> "How do I charge the vehicle?", "What do I need ESP for?"</li>
+						<li><strong>General Knowledge:</strong> "Is it raining at my destination?", "How many Swiss franks make 25 euros?"</li>
+					</ul>
+					<p><em>Pro Tip:</em> คุณสามารถปรับแต่ง assistant ได้โดยไปที่ <code>Settings &gt; Virtual assistant &gt; Customise assistant</code> บนหน้าจอของคุณ หรือผ่านทาง Notification Centre</p>
+
+					<h3>FAQ</h3>
+					<p><strong>ฉันจะหา charging station ที่ใกล้ที่สุดได้อย่างไร?</strong><br>
+					เพียงเปิดใช้งาน MBUX Voice Assistant แล้วพูดว่า "Hey Mercedes, where is the nearest charging station?" ระบบจะนำทางคุณไปที่นั่นแบบ dynamically</p>
+
+					<p><strong>คู่มือฉบับเต็ม (Full Manual)</strong><br>
+					สำหรับข้อมูลเพิ่มเติม โปรดอ้างอิงจาก <a href="https://www.mercedes-benz.co.th/passengercars/owners-manuals/en-th/pdf/mercedes-cla-saloon-2026-april-c174-mbux-owners-manual-1.pdf" target="_blank">คู่มือผู้ใช้ Mercedes-Benz CLA ฉบับเต็ม</a></p>
+				</div>
+
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>Mercedes-Benz CLA 250 e (EV+) 用户指南</h2>
+					<p><strong>核心结论 (Bottom Line Up Front):</strong> Mercedes-Benz CLA 250 e 结合了 dynamic 驾驶体验与电力驱动的高效能。掌握 DYNAMIC SELECT、MBUX Voice Assistant 以及仪表盘指示灯，将显著提升您的驾驶体验和纯电续航里程。</p>
+
+					<h3>DYNAMIC SELECT 驾驶模式</h3>
+					<p>DYNAMIC SELECT 系统允许您根据自身需求快速调整车辆的 Drive、Steering 和 ESP&reg; 特性。</p>
+					<ul>
+						<li><strong>[C] COMFORT:</strong> 适合日常驾驶。在各种路况下提供 traction、stability、效能与性能的最佳平衡。</li>
+						<li><strong>[S] SPORT:</strong> 专为 dynamic 驾驶设计，提供 maximum power 并具有运动化调校。仅适用于路况良好、路面干燥且视野清晰的情况。</li>
+						<li><strong>[E] ECO:</strong> 最大化效能与纯电续航。具备 <strong>Navigation with Electric Intelligence</strong> 功能，可显示建议的最高车速，帮助您到达下一个 charging station。还包含与速度相关的 acceleration 限制（可通过 kick-down 取消）。</li>
+						<li><strong>[I*] INDIVIDUAL:</strong> 允许对 Drive、Steering 和 ESP&reg; 进行独立自定义设置。</li>
+					</ul>
+
+					<p><strong>CLA 250 e 中的 ECO mode 有什么作用？</strong><br>
+					ECO mode 通过优化车辆来最大化续航里程。它限制了 acceleration，并在 navigation 过程中使用 Electric Intelligence 引导您的车速，确保您顺利到达下一个 charging station。</p>
+
+					<h3>仪表盘指示灯与警告灯 (Dashboard Indicators)</h3>
+					<p>了解您的 driver display 可确保行车安全并实现最佳性能。</p>
+
+					<p><img src="../images/cla250-indicator-screen.png" alt="Mercedes-Benz CLA 250 driver display 布局" style="max-width: 100%; border-radius: 8px;"></p>
+					<p><em>(Mercedes-Benz CLA 250 driver display 布局)</em></p>
+
+					<h4>仪表盘指示灯完整列表 (Full List)</h4>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>编号</th>
+									<th>指示灯 / 警告灯</th>
+									<th>页码</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>1</td><td>Turn signal light</td><td>236</td></tr>
+								<tr><td>2</td><td>Distance warning</td><td>735</td></tr>
+								<tr><td>3</td><td>Traffic Sign Assist</td><td>336</td></tr>
+								<tr><td>4</td><td>Break Hold</td><td>336</td></tr>
+								<tr><td>5</td><td>Distance Assist DISTRONIC</td><td>320</td></tr>
+								<tr><td>6</td><td>Car Ready</td><td>336</td></tr>
+								<tr><td>7</td><td>Steering Assist</td><td>327</td></tr>
+								<tr><td>8</td><td>Restraint system</td><td>730</td></tr>
+								<tr><td>9</td><td>System fault</td><td>732</td></tr>
+								<tr><td>10</td><td>Transmission position</td><td>232</td></tr>
+								<tr><td>11</td><td>Drive program</td><td>232</td></tr>
+								<tr><td>12-20</td><td><strong>Dynamic display sections 用于:</strong><br/>
+								- ATTENTION ASSIST<br/>
+								- Brake Assist<br/>
+								- ABS<br/>
+								- Tyre pressure monitoring system<br/>
+								- Trailer hitch<br/>
+								- Power steering (红色)<br/>
+								- Power steering (黄色)<br/>
+								- Occupant presence reminder (白色)<br/>
+								- Occupant presence reminder (黄色)<br/>
+								- Mercedes-Benz emergency call system<br/>
+								- Reduced power<br/>
+								- Electrical fault<br/>
+								- Brakes (红色)<br/>
+								- Brakes (黄色)<br/>
+								- Electric parking brake (黄色)<br/>
+								- Rear window wiper</td>
+								<td><br/>735<br/>735<br/>735<br/>739<br/><br/>732<br/>732<br/>730<br/><br/>739<br/>732<br/>732<br/>733<br/>733<br/>733<br/>236</td></tr>
+								<tr><td>19</td><td>Charge level display</td><td>333</td></tr>
+								<tr><td>20</td><td>Electric parking brake (红色)</td><td>733</td></tr>
+								<tr><td>21</td><td>Adaptive Highbeam Assist</td><td>239</td></tr>
+								<tr><td>22</td><td>Standing lights</td><td>235</td></tr>
+								<tr><td>-</td><td>Low beam</td><td>235</td></tr>
+								<tr><td>23</td><td>Rear fog lights</td><td>235</td></tr>
+								<tr><td>24</td><td>ESP&reg; OFF</td><td>735</td></tr>
+								<tr><td>-</td><td>ESP&reg;</td><td>735</td></tr>
+								<tr><td>25</td><td>Seat belt</td><td>730</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3>MBUX Voice Assistant ("Hey Mercedes")</h3>
+					<p>使用日常口语即可 hands-free 控制 multimedia、navigation 和 vehicle settings。只需说 "Hey Mercedes, ..."</p>
+
+					<h4>关键语音指令 (Voice Commands)</h4>
+					<ul>
+						<li><strong>Navigation:</strong> "Where is the nearest charging station?", "Navigate me to Warsaw and avoid toll roads."</li>
+						<li><strong>Vehicle Functions:</strong> "Switch the seat heating to level 2," "I would like to set the ambient light to blue." (操作将应用于距离说话者最近的座椅)。</li>
+						<li><strong>Information:</strong> "How do I charge the vehicle?", "What do I need ESP for?"</li>
+						<li><strong>General Knowledge:</strong> "Is it raining at my destination?", "How many Swiss franks make 25 euros?"</li>
+					</ul>
+					<p><em>Pro Tip:</em> 您可以通过在显示屏上导航到 <code>Settings &gt; Virtual assistant &gt; Customise assistant</code> 或通过 Notification Centre 来自定义该 assistant。</p>
+
+					<h3>FAQ</h3>
+					<p><strong>如何找到最近的 EV charging station？</strong><br>
+					只需激活 MBUX Voice Assistant 并说："Hey Mercedes, where is the nearest charging station?"，系统便会 dynamically 为您规划路线。</p>
+
+					<p><strong>完整手册 (Full Manual)</strong><br>
+					有关更多详细信息，请参阅 <a href="https://www.mercedes-benz.co.th/passengercars/owners-manuals/en-th/pdf/mercedes-cla-saloon-2026-april-c174-mbux-owners-manual-1.pdf" target="_blank">完整的 Mercedes-Benz CLA 用户手册</a>。</p>
+				</div>
+
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>Mercedes-Benz CLA 250 e (EV+) オーナーズガイド</h2>
+					<p><strong>要約 (Bottom Line Up Front):</strong> Mercedes-Benz CLA 250 eは、dynamicな走りと電気自動車の効率性を融合させています。DYNAMIC SELECT、MBUX Voice Assistant、およびダッシュボードの指示灯をマスターすることで、ドライビング体験と航続距離が飛躍的に向上します。</p>
+
+					<h3>DYNAMIC SELECT ドライブプログラム</h3>
+					<p>DYNAMIC SELECT システムにより、状況に合わせて車両の Drive、Steering、および ESP&reg; を素早く調整できます。</p>
+					<ul>
+						<li><strong>[C] COMFORT:</strong> 日常の運転に最適です。あらゆる路面状況において、traction、stability、効率性、パフォーマンスの最適なバランスを提供します。</li>
+						<li><strong>[S] SPORT:</strong> maximum power を引き出す dynamic な走りとスポーティな設定のために設計されています。視界が良好で乾燥した路面でのみ使用してください。</li>
+						<li><strong>[E] ECO:</strong> 効率性と航続距離を最大化します。<strong>Navigation with Electric Intelligence</strong> 機能を備えており、次の charging station に到達するための推奨最高速度を表示します。また、速度に応じた acceleration 制限も含まれます（kick-down で解除可能）。</li>
+						<li><strong>[I*] INDIVIDUAL:</strong> Drive、Steering、および ESP&reg; の個別設定をカスタマイズできます。</li>
+					</ul>
+
+					<p><strong>CLA 250 e の ECO mode はどのような機能ですか？</strong><br>
+					ECO mode は航続距離を最大化するように車両を最適化します。acceleration を制限し、navigation 中に Electric Intelligence を使用して速度を管理し、次の charging station まで到達できるようにサポートします。</p>
+
+					<h3>ダッシュボードの指示灯と警告灯 (Dashboard Indicators)</h3>
+					<p>driver display を理解することで、安全性と最適なパフォーマンスが確保されます。</p>
+
+					<p><img src="../images/cla250-indicator-screen.png" alt="Mercedes-Benz CLA 250 driver display のレイアウト" style="max-width: 100%; border-radius: 8px;"></p>
+					<p><em>(Mercedes-Benz CLA 250 driver display のレイアウト)</em></p>
+
+					<h4>ダッシュボード・インジケーター一覧 (Full List)</h4>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>番号</th>
+									<th>指示灯 / 警告灯</th>
+									<th>ページ</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>1</td><td>Turn signal light</td><td>236</td></tr>
+								<tr><td>2</td><td>Distance warning</td><td>735</td></tr>
+								<tr><td>3</td><td>Traffic Sign Assist</td><td>336</td></tr>
+								<tr><td>4</td><td>Break Hold</td><td>336</td></tr>
+								<tr><td>5</td><td>Distance Assist DISTRONIC</td><td>320</td></tr>
+								<tr><td>6</td><td>Car Ready</td><td>336</td></tr>
+								<tr><td>7</td><td>Steering Assist</td><td>327</td></tr>
+								<tr><td>8</td><td>Restraint system</td><td>730</td></tr>
+								<tr><td>9</td><td>System fault</td><td>732</td></tr>
+								<tr><td>10</td><td>Transmission position</td><td>232</td></tr>
+								<tr><td>11</td><td>Drive program</td><td>232</td></tr>
+								<tr><td>12-20</td><td><strong>以下の Dynamic display sections:</strong><br/>
+								- ATTENTION ASSIST<br/>
+								- Brake Assist<br/>
+								- ABS<br/>
+								- Tyre pressure monitoring system<br/>
+								- Trailer hitch<br/>
+								- Power steering (赤)<br/>
+								- Power steering (黄)<br/>
+								- Occupant presence reminder (白)<br/>
+								- Occupant presence reminder (黄)<br/>
+								- Mercedes-Benz emergency call system<br/>
+								- Reduced power<br/>
+								- Electrical fault<br/>
+								- Brakes (赤)<br/>
+								- Brakes (黄)<br/>
+								- Electric parking brake (黄)<br/>
+								- Rear window wiper</td>
+								<td><br/>735<br/>735<br/>735<br/>739<br/><br/>732<br/>732<br/>730<br/><br/>739<br/>732<br/>732<br/>733<br/>733<br/>733<br/>236</td></tr>
+								<tr><td>19</td><td>Charge level display</td><td>333</td></tr>
+								<tr><td>20</td><td>Electric parking brake (赤)</td><td>733</td></tr>
+								<tr><td>21</td><td>Adaptive Highbeam Assist</td><td>239</td></tr>
+								<tr><td>22</td><td>Standing lights</td><td>235</td></tr>
+								<tr><td>-</td><td>Low beam</td><td>235</td></tr>
+								<tr><td>23</td><td>Rear fog lights</td><td>235</td></tr>
+								<tr><td>24</td><td>ESP&reg; OFF</td><td>735</td></tr>
+								<tr><td>-</td><td>ESP&reg;</td><td>735</td></tr>
+								<tr><td>25</td><td>Seat belt</td><td>730</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3>MBUX Voice Assistant ("Hey Mercedes")</h3>
+					<p>日常会話を使って、multimedia、navigation、vehicle settings を hands-free で操作できます。「Hey Mercedes, ...」と話しかけるだけです。</p>
+
+					<h4>主要な音声コマンド (Voice Commands)</h4>
+					<ul>
+						<li><strong>Navigation:</strong> "Where is the nearest charging station?", "Navigate me to Warsaw and avoid toll roads."</li>
+						<li><strong>Vehicle Functions:</strong> "Switch the seat heating to level 2," "I would like to set the ambient light to blue."（指示を出した人に最も近いシートに適用されます）。</li>
+						<li><strong>Information:</strong> "How do I charge the vehicle?", "What do I need ESP for?"</li>
+						<li><strong>General Knowledge:</strong> "Is it raining at my destination?", "How many Swiss franks make 25 euros?"</li>
+					</ul>
+					<p><em>Pro Tip:</em> ディスプレイの <code>Settings &gt; Virtual assistant &gt; Customise assistant</code> から、または Notification Centre を通じて assistant をカスタマイズできます。</p>
+
+					<h3>FAQ</h3>
+					<p><strong>最寄りの EV charging station はどうやって見つけますか？</strong><br>
+					MBUX Voice Assistant を起動し、「Hey Mercedes, where is the nearest charging station?」と言うだけです。システムが dynamically にルートを案内します。</p>
+
+					<p><strong>完全版マニュアル (Full Manual)</strong><br>
+					詳細については、<a href="https://www.mercedes-benz.co.th/passengercars/owners-manuals/en-th/pdf/mercedes-cla-saloon-2026-april-c174-mbux-owners-manual-1.pdf" target="_blank">Mercedes-Benz CLA オーナーズマニュアル完全版</a>をご参照ください。</p>
+				</div>
+
+				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>Mercedes-Benz CLA 250 e (EV+) Benutzerhandbuch</h2>
+					<p><strong>Fazit vorab (Bottom Line Up Front):</strong> Der Mercedes-Benz CLA 250 e kombiniert dynamic Fahren mit elektrischer Effizienz. Wenn Sie die DYNAMIC SELECT Fahrprogramme, den MBUX Voice Assistant und die Dashboard Indicators beherrschen, verbessern Sie Ihr Fahrerlebnis und Ihre elektrische Reichweite erheblich.</p>
+
+					<h3>DYNAMIC SELECT Fahrprogramme</h3>
+					<p>Das DYNAMIC SELECT System ermöglicht es Ihnen, die Drive-, Steering- und ESP&reg;-Eigenschaften Ihres Fahrzeugs schnell an Ihre Bedürfnisse anzupassen.</p>
+					<ul>
+						<li><strong>[C] COMFORT:</strong> Ideal für das tägliche Fahren. Bietet eine ausgewogene Balance zwischen traction, stability, Effizienz und Leistung auf allen Fahrbahnen.</li>
+						<li><strong>[S] SPORT:</strong> Entwickelt für dynamic Fahren mit maximum power und sportlicher Abstimmung. Nur auf trockenen, gut ausgebauten Straßen mit klarer Sicht verwenden.</li>
+						<li><strong>[E] ECO:</strong> Maximiert die Effizienz und die elektrische Reichweite. Bietet <strong>Navigation with Electric Intelligence</strong>, die die empfohlene Höchstgeschwindigkeit anzeigt, um die nächste charging station zu erreichen. Beinhaltet auch eine geschwindigkeitsabhängige acceleration Begrenzung (kann durch kick-down übersteuert werden).</li>
+						<li><strong>[I*] INDIVIDUAL:</strong> Passen Sie Ihre eigenen Einstellungen für Drive, Steering und ESP&reg; an.</li>
+					</ul>
+
+					<p><strong>Was bewirkt der ECO mode im CLA 250 e?</strong><br>
+					Der ECO mode optimiert das Fahrzeug für maximale Reichweite. Er begrenzt die acceleration und nutzt Electric Intelligence während der navigation, um Ihre Geschwindigkeit zu steuern, damit Sie den nächsten Ladestopp erreichen.</p>
+
+					<h3>Anzeige- und Warnleuchten (Dashboard Indicators)</h3>
+					<p>Das Verständnis Ihres driver display gewährleistet Sicherheit und optimale Leistung.</p>
+
+					<p><img src="../images/cla250-indicator-screen.png" alt="Layout des Mercedes-Benz CLA 250 driver display" style="max-width: 100%; border-radius: 8px;"></p>
+					<p><em>(Layout des Mercedes-Benz CLA 250 driver display)</em></p>
+
+					<h4>Vollständige Liste der Anzeigen (Full List)</h4>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Nr.</th>
+									<th>Anzeige- / Warnleuchte</th>
+									<th>Seite</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr><td>1</td><td>Turn signal light</td><td>236</td></tr>
+								<tr><td>2</td><td>Distance warning</td><td>735</td></tr>
+								<tr><td>3</td><td>Traffic Sign Assist</td><td>336</td></tr>
+								<tr><td>4</td><td>Break Hold</td><td>336</td></tr>
+								<tr><td>5</td><td>Distance Assist DISTRONIC</td><td>320</td></tr>
+								<tr><td>6</td><td>Car Ready</td><td>336</td></tr>
+								<tr><td>7</td><td>Steering Assist</td><td>327</td></tr>
+								<tr><td>8</td><td>Restraint system</td><td>730</td></tr>
+								<tr><td>9</td><td>System fault</td><td>732</td></tr>
+								<tr><td>10</td><td>Transmission position</td><td>232</td></tr>
+								<tr><td>11</td><td>Drive program</td><td>232</td></tr>
+								<tr><td>12-20</td><td><strong>Dynamic display sections für:</strong><br/>
+								- ATTENTION ASSIST<br/>
+								- Brake Assist<br/>
+								- ABS<br/>
+								- Tyre pressure monitoring system<br/>
+								- Trailer hitch<br/>
+								- Power steering (rot)<br/>
+								- Power steering (gelb)<br/>
+								- Occupant presence reminder (weiß)<br/>
+								- Occupant presence reminder (gelb)<br/>
+								- Mercedes-Benz emergency call system<br/>
+								- Reduced power<br/>
+								- Electrical fault<br/>
+								- Brakes (rot)<br/>
+								- Brakes (gelb)<br/>
+								- Electric parking brake (gelb)<br/>
+								- Rear window wiper</td>
+								<td><br/>735<br/>735<br/>735<br/>739<br/><br/>732<br/>732<br/>730<br/><br/>739<br/>732<br/>732<br/>733<br/>733<br/>733<br/>236</td></tr>
+								<tr><td>19</td><td>Charge level display</td><td>333</td></tr>
+								<tr><td>20</td><td>Electric parking brake (rot)</td><td>733</td></tr>
+								<tr><td>21</td><td>Adaptive Highbeam Assist</td><td>239</td></tr>
+								<tr><td>22</td><td>Standing lights</td><td>235</td></tr>
+								<tr><td>-</td><td>Low beam</td><td>235</td></tr>
+								<tr><td>23</td><td>Rear fog lights</td><td>235</td></tr>
+								<tr><td>24</td><td>ESP&reg; OFF</td><td>735</td></tr>
+								<tr><td>-</td><td>ESP&reg;</td><td>735</td></tr>
+								<tr><td>25</td><td>Seat belt</td><td>730</td></tr>
+							</tbody>
+						</table>
+					</div>
+
+					<h3>MBUX Voice Assistant ("Hey Mercedes")</h3>
+					<p>Steuern Sie multimedia, navigation und vehicle settings hands-free in alltäglicher Sprache. Sagen Sie einfach "Hey Mercedes, ..."</p>
+
+					<h4>Wichtige Sprachbefehle (Voice Commands)</h4>
+					<ul>
+						<li><strong>Navigation:</strong> "Where is the nearest charging station?", "Navigate me to Warsaw and avoid toll roads."</li>
+						<li><strong>Vehicle Functions:</strong> "Switch the seat heating to level 2," "I would like to set the ambient light to blue." (Die Aktion wird auf dem Sitz ausgeführt, der dem Sprecher am nächsten ist).</li>
+						<li><strong>Information:</strong> "How do I charge the vehicle?", "What do I need ESP for?"</li>
+						<li><strong>General Knowledge:</strong> "Is it raining at my destination?", "How many Swiss franks make 25 euros?"</li>
+					</ul>
+					<p><em>Pro Tip:</em> Sie können den assistant anpassen, indem Sie auf Ihrem Display zu <code>Settings &gt; Virtual assistant &gt; Customise assistant</code> navigieren oder das Notification Centre nutzen.</p>
+
+					<h3>FAQ</h3>
+					<p><strong>Wie finde ich die nächste EV charging station?</strong><br>
+					Aktivieren Sie einfach den MBUX Voice Assistant und sagen Sie: "Hey Mercedes, where is the nearest charging station?" Das System leitet Sie dynamically dorthin.</p>
+
+					<p><strong>Vollständiges Handbuch (Full Manual)</strong><br>
+					Für detailliertere Informationen lesen Sie bitte das <a href="https://www.mercedes-benz.co.th/passengercars/owners-manuals/en-th/pdf/mercedes-cla-saloon-2026-april-c174-mbux-owners-manual-1.pdf" target="_blank">vollständige Mercedes-Benz CLA Benutzerhandbuch</a>.</p>
+				</div>
+
+			</section>
+		</div>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+		<script src="../assets/js/cookie-consent.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const langIcons = document.querySelectorAll('.lang-icon');
+				const langSections = document.querySelectorAll('.lang-section');
+
+				function activateLanguage(hash) {
+					// Remove active class from all icons and sections
+					langIcons.forEach(i => i.classList.remove('active'));
+					langSections.forEach(s => s.classList.remove('active'));
+
+					// Find target icon and section
+					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === hash) || langIcons[0];
+					const targetHash = targetIcon.getAttribute('href');
+					const targetSection = document.querySelector(targetHash);
+
+					// Activate them
+					if (targetIcon) targetIcon.classList.add('active');
+					if (targetSection) targetSection.classList.add('active');
+				}
+
+				// Update active icon on click
+				langIcons.forEach(icon => {
+					icon.addEventListener('click', function(e) {
+						e.preventDefault(); // Prevent jump since it acts like a tab now
+						const hash = this.getAttribute('href');
+						history.pushState(null, null, hash);
+						activateLanguage(hash);
+					});
+				});
+
+				// Set initial active state from URL hash if present, else default to first
+				activateLanguage(window.location.hash || langIcons[0].getAttribute('href'));
+			});
+		</script>
+		<script>
+			// Theme toggle logic
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				// Update icon based on current theme
+				const updateIcon = () => {
+					if (document.documentElement.getAttribute('data-theme') === 'dark') {
+						themeToggle.classList.remove('fa-moon');
+						themeToggle.classList.add('fa-sun');
+					} else {
+						themeToggle.classList.remove('fa-sun');
+						themeToggle.classList.add('fa-moon');
+					}
+				};
+				updateIcon();
+
+				themeToggle.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					updateIcon();
+				});
+			}
+		</script>
+	</body>
+</html>
