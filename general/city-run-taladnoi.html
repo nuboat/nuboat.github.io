@@ -1,0 +1,579 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - City Run: River City to Hua Lamphong via Talad Noi</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="A morning city run in Bangkok starting from River City, passing through historic Talad Noi, Hua Lamphong Station, and back to the hotel." />
+		<meta name="keywords" content="City Run, Bangkok, River City, Talad Noi, Hua Lamphong, Morning Run" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/ci.css" />
+		<link rel="stylesheet" href="../assets/css/cookie-consent.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('consent', 'default', { analytics_storage: 'denied' });
+			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
+			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
+			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
+		</script>
+		<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+		
+			.image-gallery {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+				gap: 15px;
+				margin: 1.5em 0;
+			}
+			.image-gallery img {
+				width: 100%;
+				height: 200px;
+				object-fit: cover;
+				border-radius: 8px;
+				box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.3s ease, z-index 0s linear 0.3s;
+				position: relative;
+				z-index: 1;
+			}
+			.image-gallery img:hover {
+				transform: scale(2.2);
+				z-index: 100;
+				box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+				transition-delay: 0s;
+			}
+		</style>
+		<script>
+			// Dark mode init
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
+	</head>
+
+	<body class="is-preload">
+
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon"></a>
+					<h1>City Run: River City to Hua Lamphong via Talad Noi</h1>
+					<p><a href="../general.html">General</a> > <em>July 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp;</em></p>
+				</header>
+
+				<div class="lang-switcher">
+					<a href="#lang-en" class="lang-icon active" title="English">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+					<a href="#lang-th" class="lang-icon" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					<a href="#lang-zh" class="lang-icon" title="中文">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					<a href="#lang-ja" class="lang-icon" title="日本語">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+					<a href="#lang-de" class="lang-icon" title="Deutsch">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
+
+								<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
+					<h2>City Run: River City to Hua Lamphong via Talad Noi</h2>
+					<p><strong>Bottom Line Up Front (BLUF):</strong> A morning city run from River City through Talad Noi to Hua Lamphong Railway Station offers a perfect blend of exercise and Bangkok's rich history. It is highly recommended to start early to avoid the heat and traffic while experiencing the authentic charm of these cultural landmarks.</p>
+					<p>My recent city run started at <strong>River City Bangkok</strong>, weaving through the historic neighborhood of <strong>Talad Noi</strong>, looping around the classic <strong>Hua Lamphong Railway Station</strong>, and finally heading back to the hotel. Running through Bangkok in the early morning is one of the best ways to see the city wake up.</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/RiverCity/RiverCity.jpeg" alt="River City" loading="lazy"/>
+					</div>
+					<h3>Talad Noi: A Glimpse into Historic Bangkok</h3>
+					<p>Talad Noi is one of Bangkok's oldest neighborhoods. Running through its narrow alleys feels like stepping back in time. You will pass by historic Chinese shrines, vibrant street art, and the famous piles of second-hand car parts. The contrast between the old shophouses and the modern city skyline makes it a unique backdrop for a morning run.</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Taladnoi/IMG_5139.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5140.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5143.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5144.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5145.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5147.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5148.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5150.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5151.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5152.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5153.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5154.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5156.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5158.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5160.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5162.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5163.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5164.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5167.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5168.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5170.jpeg" alt="Talad Noi Alley" loading="lazy"/>
+					</div>
+					<h3>Hua Lamphong & The Way Back: The Classic Railway Terminus</h3>
+					<p>After navigating Talad Noi, the route opens up as you approach Hua Lamphong Railway Station. Opened in 1916, its Italian Neo-Renaissance architecture and distinct half-dome structure are stunning in the morning light. Running past this iconic landmark without the usual dense crowds of commuters is a rewarding experience, before heading back to the hotel.</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Hualumpong/IMG_5171.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5172.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5174.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5178.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5179.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5180.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5181.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5182.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5183.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5184.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5186.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5187.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5188.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5189.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5190.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5191.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5192.jpeg" alt="Hua Lamphong and Way Back" loading="lazy"/>
+					</div>
+					<h3>Tips for the Route</h3>
+					<ul>
+						<li><strong>Start Early:</strong> Begin around 6:00 AM. The weather is cooler, and you can avoid the heavy Bangkok traffic.</li>
+						<li><strong>Watch Your Step:</strong> The alleys in Talad Noi can be uneven, and sidewalks are sometimes cluttered with car parts.</li>
+						<li><strong>Stay Hydrated:</strong> The humidity is high even in the morning, so bringing a small water bottle is recommended.</li>
+					</ul>
+				</div>
+
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>City Run: จาก River City สู่หัวลำโพง ผ่านตลาดน้อย</h2>
+					<p><strong>สรุปประเด็นสำคัญ (BLUF):</strong> การวิ่ง City Run ยามเช้าจาก River City ผ่านตลาดน้อยไปยังสถานีรถไฟหัวลำโพง เป็นการผสมผสานระหว่างการออกกำลังกายและประวัติศาสตร์ของกรุงเทพฯ ได้อย่างลงตัว แนะนำให้เริ่มวิ่งแต่เช้าตรู่เพื่อหลีกเลี่ยงอากาศร้อนและการจราจร พร้อมสัมผัสเสน่ห์ที่แท้จริงของสถานที่สำคัญทางวัฒนธรรมเหล่านี้</p>
+					<p>การวิ่ง City Run ครั้งล่าสุดของผมเริ่มต้นที่ <strong>River City Bangkok</strong> ลัดเลาะผ่านย่านประวัติศาสตร์อย่าง <strong>ตลาดน้อย</strong> วนไปที่ <strong>สถานีรถไฟหัวลำโพง</strong> สุดคลาสสิก และจบลงด้วยทางเดินกลับโรงแรม การวิ่งในกรุงเทพฯ ช่วงเช้าตรู่เป็นหนึ่งในวิธีที่ดีที่สุดในการดูเมืองนี้ตื่นขึ้นมา</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/RiverCity/RiverCity.jpeg" alt="River City" loading="lazy"/>
+					</div>
+					<h3>ตลาดน้อย: สัมผัสเสน่ห์กรุงเทพฯ ยุคเก่า</h3>
+					<p>ตลาดน้อยเป็นหนึ่งในย่านที่เก่าแก่ที่สุดของกรุงเทพฯ การวิ่งผ่านตรอกซอกซอยแคบๆ ให้ความรู้สึกเหมือนได้ย้อนเวลากลับไป คุณจะวิ่งผ่านศาลเจ้าจีนโบราณ สตรีทอาร์ตสีสันสดใส และกองอะไหล่รถยนต์มือสองอันเลื่องชื่อ ความแตกต่างระหว่างตึกแถวเก่าแก่กับเส้นขอบฟ้าของเมืองสมัยใหม่ทำให้ที่นี่เป็นฉากหลังที่ไม่เหมือนใครสำหรับการวิ่งยามเช้า</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Taladnoi/IMG_5139.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5140.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5143.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5144.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5145.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5147.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5148.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5150.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5151.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5152.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5153.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5154.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5156.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5158.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5160.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5162.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5163.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5164.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5167.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5168.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5170.jpeg" alt="ตลาดน้อย" loading="lazy"/>
+					</div>
+					<h3>หัวลำโพงและทางกลับ: สถานีรถไฟสุดคลาสสิก</h3>
+					<p>หลังจากผ่านตลาดน้อย เส้นทางจะเปิดกว้างขึ้นเมื่อคุณเข้าใกล้สถานีรถไฟหัวลำโพง สถานีแห่งนี้เปิดให้บริการในปี 1916 ด้วยสถาปัตยกรรมแบบ Italian Neo-Renaissance และโครงสร้างหลังคาครึ่งโดมที่โดดเด่น ซึ่งดูสวยงามมากในแสงยามเช้า การวิ่งผ่านแลนด์มาร์คแห่งนี้โดยไม่มีฝูงชนพลุกพล่านถือเป็นประสบการณ์ที่คุ้มค่า ก่อนที่จะเดินกลับโรงแรม</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Hualumpong/IMG_5171.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5172.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5174.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5178.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5179.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5180.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5181.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5182.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5183.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5184.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5186.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5187.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5188.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5189.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5190.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5191.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5192.jpeg" alt="หัวลำโพงและทางกลับโรงแรม" loading="lazy"/>
+					</div>
+					<h3>เคล็ดลับสำหรับเส้นทางนี้</h3>
+					<ul>
+						<li><strong>เริ่มแต่เช้า:</strong> เริ่มวิ่งประมาณ 6:00 น. อากาศจะเย็นกว่าและหลีกเลี่ยงการจราจรที่ติดขัดของกรุงเทพฯ ได้</li>
+						<li><strong>ระวังทางเดิน:</strong> ตรอกซอกซอยในตลาดน้อยอาจไม่ราบเรียบ และทางเท้าบางครั้งอาจมีกองอะไหล่รถยนต์วางอยู่</li>
+						<li><strong>พกน้ำดื่ม:</strong> ความชื้นสูงแม้ในตอนเช้า แนะนำให้พกขวดน้ำเล็กๆ ไปด้วย</li>
+					</ul>
+				</div>
+
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>城市晨跑：从 River City 经 Talad Noi 到 Hua Lamphong</h2>
+					<p><strong>核心结论 (BLUF):</strong> 从 River City 途经 Talad Noi（哒叻内）到 Hua Lamphong（华喃峰火车站）的城市晨跑，完美结合了锻炼与曼谷丰富的历史。强烈建议尽早出发，以避开高温和交通拥堵，同时体验这些文化地标的真实魅力。</p>
+					<p>我最近的城市晨跑从 <strong>River City Bangkok</strong> 开始，穿过历史悠久的 <strong>Talad Noi</strong> 街区，环绕经典的 <strong>Hua Lamphong Railway Station</strong>，最后返回酒店。清晨在曼谷跑步是见证这座城市苏醒的最佳方式之一。</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/RiverCity/RiverCity.jpeg" alt="River City" loading="lazy"/>
+					</div>
+					<h3>Talad Noi：一瞥曼谷的历史</h3>
+					<p>Talad Noi 是曼谷最古老的街区之一。跑过它狭窄的小巷感觉就像时光倒流。你会经过历史悠久的华人神庙、充满活力的街头艺术以及著名的二手汽车零件堆。古老的店屋与现代城市天际线之间的对比，为晨跑提供了独特的背景。</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Taladnoi/IMG_5139.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5140.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5143.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5144.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5145.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5147.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5148.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5150.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5151.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5152.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5153.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5154.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5156.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5158.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5160.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5162.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5163.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5164.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5167.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5168.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5170.jpeg" alt="Talad Noi 历史小巷" loading="lazy"/>
+					</div>
+					<h3>Hua Lamphong 与回程：经典的铁路终点站</h3>
+					<p>穿过 Talad Noi 后，当您接近 Hua Lamphong Railway Station 时，路线变得开阔。该站于 1916 年开放，其意大利新文艺复兴时期的建筑风格和独特的半穹顶结构在晨光中显得分外迷人。在没有往常拥挤通勤人群的情况下跑过这个标志性地标，是一次非常有意义的体验。</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Hualumpong/IMG_5171.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5172.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5174.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5178.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5179.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5180.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5181.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5182.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5183.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5184.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5186.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5187.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5188.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5189.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5190.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5191.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5192.jpeg" alt="Hua Lamphong 与回程" loading="lazy"/>
+					</div>
+					<h3>路线提示</h3>
+					<ul>
+						<li><strong>尽早出发：</strong> 大约早上 6:00 开始。天气较凉爽，并且可以避开曼谷繁忙的交通。</li>
+						<li><strong>注意脚下：</strong> Talad Noi 的小巷可能高低不平，人行道上有时会堆放着汽车零件。</li>
+						<li><strong>保持水分：</strong> 即使在早晨湿度也很高，建议携带一小瓶水。</li>
+					</ul>
+				</div>
+
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>シティラン：River CityからTalad Noiを経てHua Lamphongへ</h2>
+					<p><strong>要点 (BLUF):</strong> River CityからTalad Noi（タラートノイ）を抜け、Hua Lamphong（フアランポーン）駅へと向かう朝のシティランは、エクササイズとバンコクの豊かな歴史を完璧に融合させています。暑さと交通渋滞を避け、これらの文化的なランドマークの真の魅力を体験するために、早朝に出発することを強くお勧めします。</p>
+					<p>私の最近のシティランは、<strong>River City Bangkok</strong>から始まり、歴史ある<strong>Talad Noi</strong>の街並みを縫うように走り、クラシックな<strong>Hua Lamphong Railway Station</strong>を回ってホテルに戻るルートでした。早朝のバンコクを走るのは、街が目覚めるのを見る最高の方法の一つです。</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/RiverCity/RiverCity.jpeg" alt="River City" loading="lazy"/>
+					</div>
+					<h3>Talad Noi：歴史あるバンコクの垣間見</h3>
+					<p>Talad Noiはバンコクで最も古い地区の一つです。その狭い路地を走ると、まるでタイムスリップしたような気分になります。歴史ある中国の祠、色鮮やかなストリートアート、そして有名な中古車部品の山を通り過ぎます。古いショップハウスと近代的な都市のスカイラインとのコントラストが、朝のランニングにユニークな背景を提供します。</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Taladnoi/IMG_5139.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5140.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5143.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5144.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5145.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5147.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5148.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5150.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5151.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5152.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5153.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5154.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5156.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5158.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5160.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5162.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5163.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5164.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5167.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5168.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5170.jpeg" alt="Talad Noiの路地" loading="lazy"/>
+					</div>
+					<h3>Hua Lamphong と帰り道：クラシックな鉄道ターミナル</h3>
+					<p>Talad Noiを抜けると、Hua Lamphong Railway Stationに近づくにつれて道が開けます。1916年に開業したイタリア・ネオルネッサンス様式の建築と独特の半ドーム構造は、朝の光の中で美しく輝きます。通勤客の混雑がない中、この象徴的なランドマークのそばを走るのは、とても価値のある体験です。</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Hualumpong/IMG_5171.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5172.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5174.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5178.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5179.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5180.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5181.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5182.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5183.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5184.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5186.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5187.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5188.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5189.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5190.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5191.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5192.jpeg" alt="Hua Lamphong と帰り道" loading="lazy"/>
+					</div>
+					<h3>ルートのヒント</h3>
+					<ul>
+						<li><strong>早めに出発：</strong> 午前6時頃に始めましょう。涼しく、バンコクの激しい交通渋滞を避けることができます。</li>
+						<li><strong>足元に注意：</strong> Talad Noiの路地は平坦でないことがあり、歩道には車の部品が置かれていることがあります。</li>
+						<li><strong>水分補給：</strong> 朝でも湿度が高いため、小さな水筒を持参することをお勧めします。</li>
+					</ul>
+				</div>
+
+				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>City Run: Vom River City über Talad Noi nach Hua Lamphong</h2>
+					<p><strong>Fazit (BLUF):</strong> Ein morgendlicher City Run vom River City durch Talad Noi zum Hua Lamphong Bahnhof bietet eine perfekte Mischung aus Training und der reichen Geschichte Bangkoks. Es wird dringend empfohlen, früh zu starten, um Hitze und Verkehr zu vermeiden und gleichzeitig den authentischen Charme dieser kulturellen Wahrzeichen zu erleben.</p>
+					<p>Mein letzter City Run begann am <strong>River City Bangkok</strong>, führte durch das historische Viertel <strong>Talad Noi</strong>, verlief rund um den klassischen <strong>Hua Lamphong Railway Station</strong> und endete schließlich wieder am Hotel. Am frühen Morgen durch Bangkok zu laufen, ist eine der besten Möglichkeiten, die Stadt erwachen zu sehen.</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/RiverCity/RiverCity.jpeg" alt="River City" loading="lazy"/>
+					</div>
+					<h3>Talad Noi: Ein Blick ins historische Bangkok</h3>
+					<p>Talad Noi ist eines der ältesten Viertel Bangkoks. Das Laufen durch die engen Gassen fühlt sich an wie eine Reise in die Vergangenheit. Sie passieren historische chinesische Schreine, lebhafte Street-Art und die berühmten Haufen von gebrauchten Autoteilen. Der Kontrast zwischen den alten Geschäftshäusern und der modernen Skyline der Stadt bietet eine einzigartige Kulisse für einen morgendlichen Lauf.</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Taladnoi/IMG_5139.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5140.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5143.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5144.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5145.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5147.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5148.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5150.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5151.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5152.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5153.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5154.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5156.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5158.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5160.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5162.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5163.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5164.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5167.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5168.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+						<img src="../travel/cityrun/Taladnoi/IMG_5170.jpeg" alt="Talad Noi Gasse" loading="lazy"/>
+					</div>
+					<h3>Hua Lamphong und der Rückweg: Der klassische Kopfbahnhof</h3>
+					<p>Nachdem Sie Talad Noi durchquert haben, öffnet sich die Route, wenn Sie sich dem Hua Lamphong Railway Station nähern. Die 1916 eröffnete italienische Neo-Renaissance-Architektur und die markante Halbkupelstruktur sind im Morgenlicht atemberaubend. An diesem Wahrzeichen ohne die üblichen Pendlerströme vorbeizulaufen, ist ein lohnendes Erlebnis.</p>
+					<div class="image-gallery">
+						<img src="../travel/cityrun/Hualumpong/IMG_5171.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5172.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5174.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5178.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5179.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5180.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5181.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5182.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5183.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5184.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5186.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5187.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5188.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5189.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5190.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5191.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+						<img src="../travel/cityrun/Hualumpong/IMG_5192.jpeg" alt="Hua Lamphong und der Rückweg" loading="lazy"/>
+					</div>
+					<h3>Tipps für die Route</h3>
+					<ul>
+						<li><strong>Früh starten:</strong> Beginnen Sie gegen 6:00 Uhr morgens. Das Wetter ist kühler und Sie können den dichten Verkehr Bangkoks meiden.</li>
+						<li><strong>Auf den Weg achten:</strong> Die Gassen in Talad Noi können uneben sein, und die Gehwege sind manchmal mit Autoteilen vollgestellt.</li>
+						<li><strong>Ausreichend trinken:</strong> Die Luftfeuchtigkeit ist auch morgens hoch, daher wird die Mitnahme einer kleinen Wasserflasche empfohlen.</li>
+					</ul>
+				</div>
+			</section>
+
+			<section id="comments">
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function () {
+						this.page.url = window.location.href.split('#')[0].split('?')[0];
+						this.page.identifier = window.location.pathname;
+					};
+					(function() {
+						var d = document, s = d.createElement('script');
+						s.src = 'https://norbor.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			</section>
+
+			<div class="inner">
+				<p class="copyright">
+					&copy; peerapat.cc
+				</p>
+			</div>
+		</div>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+		<script src="../assets/js/cookie-consent.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const langIcons = document.querySelectorAll('.lang-icon');
+				const langSections = document.querySelectorAll('.lang-section');
+
+				function activateLanguage(hash) {
+					langIcons.forEach(i => i.classList.remove('active'));
+					langSections.forEach(s => s.classList.remove('active'));
+
+					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === hash) || langIcons[0];
+					const targetHash = targetIcon.getAttribute('href');
+					const targetSection = document.querySelector(targetHash);
+
+					if (targetIcon) targetIcon.classList.add('active');
+					if (targetSection) targetSection.classList.add('active');
+				}
+
+				langIcons.forEach(icon => {
+					icon.addEventListener('click', function(e) {
+						e.preventDefault();
+						const hash = this.getAttribute('href');
+						history.pushState(null, null, hash);
+						activateLanguage(hash);
+					});
+				});
+
+				activateLanguage(window.location.hash || langIcons[0].getAttribute('href'));
+			});
+		</script>
+		<script>
+			// Theme toggle logic
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				const updateIcon = () => {
+					if (document.documentElement.getAttribute('data-theme') === 'dark') {
+						themeToggle.classList.remove('fa-moon');
+						themeToggle.classList.add('fa-sun');
+					} else {
+						themeToggle.classList.remove('fa-sun');
+						themeToggle.classList.add('fa-moon');
+					}
+				};
+				updateIcon();
+
+				themeToggle.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					updateIcon();
+				});
+			}
+		</script>
+	</body>
+</html>
