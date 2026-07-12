@@ -63,28 +63,6 @@
 			.gallery-item:hover img {
 				transform: scale(1.1);
 			}
-			.gallery-item-overlay {
-				position: absolute;
-				bottom: 0;
-				left: 0;
-				right: 0;
-				background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-				padding: 2rem 1.5rem 1.5rem;
-				color: white;
-				opacity: 0;
-				transform: translateY(20px);
-				transition: opacity 0.3s ease, transform 0.3s ease;
-			}
-			.gallery-item:hover .gallery-item-overlay {
-				opacity: 1;
-				transform: translateY(0);
-			}
-			.gallery-item-title {
-				margin: 0;
-				font-size: 1.2rem;
-				font-weight: 600;
-				text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-			}
 			
 			/* Modal for viewing images */
 			.gallery-modal {
@@ -144,14 +122,18 @@
 		</header>
 		
 		<div class="gallery-container">
-			<!-- Gallery Item -->
-			<div class="gallery-item" onclick="openModal('gallery/ratecard.png')">
-				<img src="gallery/ratecard.png" alt="Professional Rate Card" loading="lazy" />
-				<div class="gallery-item-overlay">
-					<h3 class="gallery-item-title">Rate Card</h3>
-				</div>
+			<div class="gallery-item" onclick="openModal('gallery/rate_card.png')">
+				<img src="gallery/rate_card.png" alt="Rate Card" loading="lazy" />
 			</div>
-			<!-- You can add more gallery items here -->
+			<div class="gallery-item" onclick="openModal('gallery/cat_live.jpeg')">
+				<img src="gallery/cat_live.jpeg" alt="Cat Live" loading="lazy" />
+			</div>
+			<div class="gallery-item" onclick="openModal('gallery/harness.jpeg')">
+				<img src="gallery/harness.jpeg" alt="Harness" loading="lazy" />
+			</div>
+			<div class="gallery-item" onclick="openModal('gallery/sign_doc.jpeg')">
+				<img src="gallery/sign_doc.jpeg" alt="Sign Doc" loading="lazy" />
+			</div>
 		</div>
 	
 		<div class="inner" style="text-align: center;">
