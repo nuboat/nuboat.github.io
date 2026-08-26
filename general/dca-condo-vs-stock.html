@@ -1,0 +1,1000 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - DCA Condo vs DCA Stock</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Saving 6,000 baht a month for 10 years: DCA into stocks at 6% a year, or let a tenant help you pay off a 1M baht condo? A side-by-side comparison of the final wealth, the cash flow, and the risks." />
+		<meta name="keywords" content="DCA, Dollar Cost Averaging, DCA หุ้น, DCA คอนโด, ลงทุนคอนโดปล่อยเช่า, เปรียบเทียบหุ้นกับอสังหา, Other People's Money, leverage, passive income, ผ่อนคอนโด, ค่าเช่าช่วยผ่อน, รีไฟแนนซ์, real estate vs stocks" />
+		<link rel="canonical" href="https://www.peerapat.cc/general/dca-condo-vs-stock.html" />
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/ci.css" />
+		<link rel="stylesheet" href="../assets/css/cookie-consent.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<meta name="author" content="Peerapat A" />
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('consent', 'default', { analytics_storage: 'denied' });
+			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
+			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
+			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
+		</script>
+		<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			/* On smaller screens where the layout collapses to a single column, we revert to horizontal layout */
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+
+			/* ============ Wealth comparison chart ============ */
+			.wc-chart {
+				--wc-stock: #1E7FC4;
+				--wc-condo: #C86A18;
+				--wc-base:  #7E93A8;
+				--wc-grid:  var(--ci-line);
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 12px;
+				padding: 1.6rem 1.4rem 1.2rem;
+				margin: 2.5rem 0;
+				box-shadow: var(--ci-shadow);
+			}
+			[data-theme="dark"] .wc-chart {
+				--wc-stock: #3399D6;
+				--wc-condo: #CC8030;
+				--wc-base:  #5A82A6;
+			}
+			.wc-title {
+				font-family: var(--ci-display);
+				font-weight: 600;
+				color: var(--ci-headline);
+				font-size: 0.95em;
+				line-height: 1.4;
+			}
+			.wc-note {
+				color: var(--ci-muted);
+				font-size: 0.78em;
+				margin: 0.2rem 0 1.6rem;
+				line-height: 1.5;
+			}
+			.wc-row { margin-bottom: 1.5rem; }
+			.wc-head {
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				gap: 1rem;
+				font-size: 0.82em;
+				color: var(--ci-ink);
+				margin-bottom: 0.45rem;
+			}
+			.wc-value {
+				font-variant-numeric: tabular-nums;
+				font-weight: 600;
+				color: var(--ci-headline);
+				white-space: nowrap;
+			}
+			.wc-track {
+				position: relative;
+				height: 24px;
+			}
+			.wc-grid-line {
+				position: absolute;
+				top: -4px;
+				bottom: -4px;
+				width: 1px;
+				background: var(--wc-grid);
+			}
+			.wc-bar {
+				position: relative;
+				display: flex;
+				height: 100%;
+			}
+			.wc-seg { height: 100%; }
+			.wc-seg-base { background: var(--wc-base); }
+			.wc-seg-gain {
+				margin-left: 2px;
+				border-radius: 0 4px 4px 0;
+			}
+			.wc-seg-gain.is-stock { background: var(--wc-stock); }
+			.wc-seg-gain.is-condo { background: var(--wc-condo); }
+			.wc-axis {
+				display: flex;
+				justify-content: space-between;
+				border-top: 1px solid var(--wc-grid);
+				padding-top: 0.4rem;
+				font-size: 0.72em;
+				font-variant-numeric: tabular-nums;
+				color: var(--ci-muted);
+			}
+			.wc-legend {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.4rem 1.4rem;
+				margin-top: 1.1rem;
+				font-size: 0.78em;
+				color: var(--ci-muted);
+			}
+			.wc-legend span {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+			}
+			.wc-key {
+				width: 12px;
+				height: 12px;
+				border-radius: 3px;
+				flex: 0 0 auto;
+			}
+			.wc-key-base  { background: var(--wc-base); }
+			.wc-key-stock { background: var(--wc-stock); }
+			.wc-key-condo { background: var(--wc-condo); }
+
+			.hero-figure { margin: 2.5rem 0 0; }
+			.hero-figure img {
+				display: block;
+				width: 100%;
+				height: auto;
+				border-radius: 12px;
+				border: 1px solid var(--ci-line);
+				box-shadow: var(--ci-shadow);
+			}
+			.hero-figure figcaption {
+				margin-top: 0.7rem;
+				font-size: 0.78em;
+				line-height: 1.5;
+				color: var(--ci-muted);
+			}
+
+			.table-wrap { overflow-x: auto; margin: 1.5rem 0; }
+			.table-wrap table { margin-bottom: 0; }
+			/* main.css zebra-stripes odd rows with a hard-coded #f7f7f7,
+			   which goes light-on-light in dark mode — re-tint it from the ink token. */
+			.table-wrap table tbody tr:nth-child(2n + 1) { background-color: transparent; }
+			.table-wrap table tbody tr:nth-child(2n + 1) {
+				background-color: color-mix(in srgb, var(--ci-ink) 5%, transparent);
+			}
+			.table-wrap table tbody td:first-child { color: var(--ci-muted); }
+			.table-wrap table tbody td { font-variant-numeric: tabular-nums; }
+
+			/* ci.css paints <highlight> in --ci-blue, unreadable on the dark canvas */
+			[data-theme="dark"] .lang-section highlight {
+				color: var(--ci-sand) !important;
+				background: rgba(247, 216, 142, 0.14);
+			}
+		</style>
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "Article",
+			"headline": "DCA Condo vs DCA Stock: 6,000 Baht a Month for 10 Years",
+			"description": "Saving 6,000 baht a month for 10 years: DCA into stocks at 6% a year, or let a tenant help you pay off a 1M baht condo? A side-by-side comparison of the final wealth, the cash flow, and the risks.",
+			"author": { "@type": "Person", "name": "Peerapat A", "url": "https://www.peerapat.cc/profile.html" },
+			"datePublished": "2026-08-26",
+			"inLanguage": ["en", "th", "zh", "ja", "de"],
+			"mainEntityOfPage": "https://www.peerapat.cc/general/dca-condo-vs-stock.html"
+		}
+		</script>
+		<script>
+			// Dark mode init
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
+	</head>
+
+	<body class="is-preload">
+
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon"></a>
+
+					<h1>DCA Condo vs DCA Stock: ออมเดือนละ 6,000 บาท 10 ปี ใครรวยกว่า?</h1>
+					<p><a href="../general.html">General</a> > <em>August 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp;</em></p>
+				</header>
+
+				<div class="lang-switcher">
+					<a href="#lang-en" class="lang-icon active" title="English">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+
+					<a href="#lang-th" class="lang-icon" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+
+					<a href="#lang-zh" class="lang-icon" title="中文">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+
+					<a href="#lang-ja" class="lang-icon" title="日本語">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+
+					<a href="#lang-de" class="lang-icon" title="Deutsch">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
+
+				<figure class="hero-figure">
+					<img src="../images/comparedcabetweenstockandcondo.png"
+						alt="Infographic comparing two ways to save 6,000 baht a month for 10 years. Left: DCA into stocks grows to about 983,276 baht and stays fully liquid. Right: a condo where 5,000 baht of monthly rent helps clear the loan in 9 years, leaving about 1,121,000 baht in assets."
+						width="2752" height="1536" fetchpriority="high" decoding="async" />
+					<figcaption>ออม 6,000 บาทเท่ากันทุกเดือน 10 ปี — หุ้น DCA เน้นสภาพคล่อง ส่วนคอนโดใช้พลัง OPM ให้ค่าเช่าช่วยผ่อน</figcaption>
+				</figure>
+
+				<!-- ==================== ENGLISH ==================== -->
+				<div id="lang-en" class="lang-section" style="padding-top: 2em; margin-bottom: 4em;">
+					<h2>DCA Condo vs DCA Stock: 6,000 Baht a Month for 10 Years</h2>
+					<p><strong>Bottom Line Up Front:</strong> Put 6,000 baht a month into stocks at 6% a year and you end up with about 983,000 baht after 10 years. Put the same 6,000 baht into a 1M baht condo, add 5,000 baht of rent from a tenant, and you end up with about 1,121,000 baht — a debt-free unit plus cash. The condo wins by roughly 138,000 baht, and the reason is not the property market. It is that someone else paid part of your instalment.</p>
+
+					<h3>The Setup</h3>
+					<p>Same money out of your own pocket, same 10 years. Only the vehicle changes.</p>
+					<ul>
+						<li><strong>Your contribution:</strong> 6,000 baht/month for 120 months = <highlight>720,000 baht</highlight> in both cases</li>
+						<li><strong>Option 1 — Stocks:</strong> DCA 6,000 baht/month, 6% a year (0.5% a month, compounded)</li>
+						<li><strong>Option 2 — Condo:</strong> a 1M baht unit, 1M baht loan at 4%, rented out for 5,000 baht/month. You pay 6,000, the tenant pays 5,000, so the bank receives 11,000 baht/month</li>
+					</ul>
+
+					<h3>Option 1: Stocks — 6% a Year</h3>
+					<p>Nothing exotic here. 6,000 baht a month at 0.5% monthly compounding for 120 months.</p>
+					<ul>
+						<li><strong>Principal you actually paid:</strong> 720,000 baht</li>
+						<li><strong>Portfolio value at year 10:</strong> <highlight>~983,276 baht</highlight></li>
+						<li><strong>Net gain:</strong> ~263,276 baht</li>
+						<li><strong>Asset condition:</strong> 100% liquid. Sell any morning you like.</li>
+					</ul>
+
+					<h3>Option 2: A 1M Baht Condo — You Pay 6,000, the Tenant Adds 5,000</h3>
+					<p>With an 11,000 baht monthly instalment against a 1M baht loan at 4%, the debt is <strong>gone in about 109 months (9 years 1 month)</strong> — ahead of the 10-year mark.</p>
+					<ul>
+						<li><strong>Months 1–109:</strong> the full 11,000 goes to the bank until the balance hits zero. Total interest paid: roughly 193,000 baht.</li>
+						<li><strong>Months 110–120:</strong> debt-free. Your 6,000 and the tenant's 5,000 now land in your pocket — <highlight>121,000 baht in cash</highlight> over those 11 months.</li>
+						<li><strong>Principal you actually paid:</strong> 720,000 baht (6,000 × 120 months)</li>
+						<li><strong>Total assets at year 10:</strong> <highlight>~1,121,000 baht</highlight> (condo 1,000,000 + cash 121,000). Any rise or fall in the condo's price is <em>not</em> counted here.</li>
+						<li><strong>Net gain:</strong> ~401,000 baht</li>
+					</ul>
+
+					<figure class="wc-chart">
+						<div class="wc-title">Wealth after 10 years — same 720,000 baht out of pocket</div>
+						<p class="wc-note">Condo valued at purchase price; price appreciation not counted.</p>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>Stocks — DCA at 6%/year</span><span class="wc-value">983,276 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="Your own money: 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-stock" style="width: calc(21.94% - 2px)" title="Net gain: 263,276 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>Condo — rent covers 5,000/month</span><span class="wc-value">1,121,000 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="Your own money: 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-condo" style="width: calc(33.42% - 2px)" title="Net gain: 401,000 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-axis"><span>0</span><span>400,000</span><span>800,000</span><span>1,200,000 ฿</span></div>
+
+						<div class="wc-legend">
+							<span><i class="wc-key wc-key-base"></i>Your own money · 720,000 ฿</span>
+							<span><i class="wc-key wc-key-stock"></i>Gain — stocks · 263,276 ฿</span>
+							<span><i class="wc-key wc-key-condo"></i>Gain — condo · 401,000 ฿</span>
+						</div>
+					</figure>
+
+					<h3>Side by Side</h3>
+					<div class="table-wrap">
+					<table>
+						<thead>
+							<tr><th>&nbsp;</th><th>Stocks (DCA)</th><th>Condo (rented out)</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Out of your pocket / month</td><td>6,000 ฿</td><td>6,000 ฿</td></tr>
+							<tr><td>Added by the tenant / month</td><td>—</td><td>5,000 ฿</td></tr>
+							<tr><td>Working capital / month</td><td>6,000 ฿</td><td>11,000 ฿</td></tr>
+							<tr><td>Your principal over 10 years</td><td>720,000 ฿</td><td>720,000 ฿</td></tr>
+							<tr><td>Value at year 10</td><td>983,276 ฿</td><td>1,121,000 ฿</td></tr>
+							<tr><td>Net gain</td><td>263,276 ฿</td><td>401,000 ฿</td></tr>
+							<tr><td>Liquidity</td><td>Very high</td><td>Low</td></tr>
+							<tr><td>Cash flow after year 10</td><td>—</td><td>5,000 ฿/month</td></tr>
+						</tbody>
+					</table>
+					</div>
+
+					<h3>What the Numbers Are Telling Us</h3>
+					<p><strong>The condo produces more net wealth — about 138,000 baht more.</strong> The main reason is <strong>Other People's Money (OPM)</strong>. You put in the same 6,000 baht either way, but on the condo side the tenant adds another 5,000, so 11,000 baht a month is chipping away at the loan instead of 6,000. The bank interest you pay over those nine years — around 193,000 baht — is more than cancelled out by the rent you collect (600,000 baht over 10 years), and there is still a surplus left over for you.</p>
+
+					<h3>What the Numbers Don't Show</h3>
+					<p>The stock side of this comparison is close to reality. The condo side is the best-case version, so read it with these in mind:</p>
+					<ul>
+						<li><strong>Vacancy.</strong> The model assumes a tenant every single month for nine years. Two empty months a year and you are covering 11,000 baht yourself.</li>
+						<li><strong>Costs the model ignores.</strong> Common fees, sinking fund, property tax, insurance, agent commission, repairs, and refurnishing between tenants. Budget 10–20% of the rent.</li>
+						<li><strong>The interest rate does not stay at 4%.</strong> Thai mortgages are teaser-rate products — cheap for the first three years, then floating. Refinancing every three years is not optional in this plan; it is the plan.</li>
+						<li><strong>Price risk cuts both ways.</strong> A 10% drop in the unit's value wipes out most of the condo's advantage. A 10% rise doubles it.</li>
+						<li><strong>Liquidity.</strong> Stocks settle in days. A condo takes months to sell, and the buyer sets the price when you are in a hurry.</li>
+						<li><strong>Effort.</strong> Stock DCA is one standing instruction. A rental unit is a small business with a landlord attached.</li>
+					</ul>
+
+					<h3>How to Choose</h3>
+					<ul>
+						<li><strong>Go with stocks</strong> if you want flexibility, might need a lump sum in the next 5–7 years, and have no appetite for chasing tenants or fixing air conditioners.</li>
+						<li><strong>Go with the condo</strong> if you trust your own discipline about refinancing to keep the rate down, and you want to build a "golden goose" — because from year 11 onward that 5,000 baht a month is passive income and you never put in another baht of your own.</li>
+					</ul>
+
+					<h3>Bottom Line</h3>
+					<p>This is not really stocks versus property. It is unleveraged versus leveraged, with a tenant servicing the leverage. Leverage is what makes the condo win on paper and what makes it hurt when a tenant walks out. Pick the one whose failure mode you can live with.</p>
+				</div>
+
+				<!-- ==================== THAI ==================== -->
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>DCA คอนโด vs DCA หุ้น: ออมเดือนละ 6,000 บาท 10 ปี ใครรวยกว่า?</h2>
+					<p><strong>สรุปประเด็นสำคัญ (BLUF):</strong> ออมเดือนละ 6,000 บาทลงหุ้นที่ผลตอบแทน 6% ต่อปี ครบ 10 ปีจะได้ราว 983,000 บาท แต่ถ้าเอาเงิน 6,000 บาทก้อนเดียวกันไปผ่อนคอนโด 1 ล้านบาท แล้วมีค่าเช่าจากผู้เช่ามาสมทบอีก 5,000 บาท ครบ 10 ปีคุณจะมีทรัพย์สินราว 1,121,000 บาท — เป็นห้องปลอดหนี้บวกเงินสด คอนโดชนะไปประมาณ 138,000 บาท และเหตุผลไม่ใช่เพราะราคาอสังหาขึ้น แต่เพราะมีคนอื่นช่วยจ่ายค่างวดให้คุณ</p>
+
+					<h3>เงื่อนไขที่ใช้เปรียบเทียบ</h3>
+					<p>ควักกระเป๋าตัวเองเท่ากัน ระยะเวลาเท่ากัน ต่างกันแค่เครื่องมือ</p>
+					<ul>
+						<li><strong>เงินที่คุณจ่ายเอง:</strong> 6,000 บาท/เดือน × 120 เดือน = <highlight>720,000 บาท</highlight> เท่ากันทั้งสองทาง</li>
+						<li><strong>ทางเลือกที่ 1 — หุ้น:</strong> DCA เดือนละ 6,000 บาท ผลตอบแทน 6% ต่อปี (0.5% ต่อเดือน ทบต้น)</li>
+						<li><strong>ทางเลือกที่ 2 — คอนโด:</strong> ห้องราคา 1 ล้านบาท กู้เต็ม 1 ล้าน ดอกเบี้ย 4% ปล่อยเช่าเดือนละ 5,000 บาท คุณจ่าย 6,000 ผู้เช่าจ่าย 5,000 รวมส่งธนาคาร 11,000 บาท/เดือน</li>
+					</ul>
+
+					<h3>ทางเลือกที่ 1: หุ้น (DCA 6,000 บาท/เดือน กำไร 6% ต่อปี)</h3>
+					<p>ไม่มีอะไรซับซ้อน 6,000 บาทต่อเดือน ทบต้นเดือนละ 0.5% เป็นเวลา 120 เดือน</p>
+					<ul>
+						<li><strong>เงินต้นที่คุณจ่ายจริง:</strong> 720,000 บาท</li>
+						<li><strong>มูลค่าพอร์ตเมื่อครบ 10 ปี:</strong> <highlight>~983,276 บาท</highlight></li>
+						<li><strong>กำไรสุทธิ (ส่วนต่าง):</strong> ~263,276 บาท</li>
+						<li><strong>สภาพสินทรัพย์:</strong> เป็นเงินสดหรือสินทรัพย์สภาพคล่องสูง 100% ขายเมื่อไหร่ก็ได้</li>
+					</ul>
+
+					<h3>ทางเลือกที่ 2: คอนโด 1 ล้านบาท (จ่ายเอง 6,000 ได้ค่าเช่ามาสมทบ 5,000)</h3>
+					<p>ด้วยการผ่อนชำระเดือนละ 11,000 บาทกับหนี้ 1 ล้านบาท (ดอกเบี้ย 4%) หนี้ก้อนนี้จะ <strong>หมดเกลี้ยงภายในประมาณ 109 เดือน (9 ปี 1 เดือน)</strong> ซึ่งเร็วกว่ากำหนด 10 ปี</p>
+					<ul>
+						<li><strong>เดือนที่ 1–109:</strong> นำเงิน 11,000 บาท จ่ายธนาคารจนหนี้เป็น 0 ดอกเบี้ยที่จ่ายไปตลอดทางประมาณ 193,000 บาท</li>
+						<li><strong>เดือนที่ 110–120 (11 เดือนสุดท้าย):</strong> คุณปลอดหนี้แล้ว เงินออม 6,000 และค่าเช่า 5,000 จะกลายเป็นเงินสดเก็บเข้ากระเป๋าคุณเต็มๆ รวมเป็น <highlight>เงินสด 121,000 บาท</highlight></li>
+						<li><strong>เงินต้นที่คุณจ่ายจริง:</strong> 720,000 บาท (6,000 บาท × 120 เดือน)</li>
+						<li><strong>มูลค่าทรัพย์สินเมื่อครบ 10 ปี:</strong> <highlight>~1,121,000 บาท</highlight> (มูลค่าคอนโด 1,000,000 บาท + เงินสดที่เก็บได้ช่วงปลาย 121,000 บาท) ทั้งนี้<em>ยังไม่รวม</em>โอกาสที่คอนโดอาจราคาขึ้นหรือลง</li>
+						<li><strong>กำไรสุทธิ (ส่วนต่าง):</strong> ~401,000 บาท</li>
+					</ul>
+
+					<figure class="wc-chart">
+						<div class="wc-title">ความมั่งคั่งเมื่อครบ 10 ปี — ควักกระเป๋าตัวเอง 720,000 บาทเท่ากัน</div>
+						<p class="wc-note">ตีมูลค่าคอนโดเท่าราคาซื้อ ยังไม่นับส่วนต่างราคาที่อาจขึ้นหรือลง</p>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>หุ้น — DCA ผลตอบแทน 6% ต่อปี</span><span class="wc-value">983,276 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="เงินที่จ่ายเอง 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-stock" style="width: calc(21.94% - 2px)" title="กำไรสุทธิ 263,276 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>คอนโด — มีค่าเช่าสมทบเดือนละ 5,000</span><span class="wc-value">1,121,000 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="เงินที่จ่ายเอง 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-condo" style="width: calc(33.42% - 2px)" title="กำไรสุทธิ 401,000 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-axis"><span>0</span><span>400,000</span><span>800,000</span><span>1,200,000 ฿</span></div>
+
+						<div class="wc-legend">
+							<span><i class="wc-key wc-key-base"></i>เงินต้นที่จ่ายเอง · 720,000 ฿</span>
+							<span><i class="wc-key wc-key-stock"></i>กำไร — หุ้น · 263,276 ฿</span>
+							<span><i class="wc-key wc-key-condo"></i>กำไร — คอนโด · 401,000 ฿</span>
+						</div>
+					</figure>
+
+					<h3>เทียบกันชัดๆ</h3>
+					<div class="table-wrap">
+					<table>
+						<thead>
+							<tr><th>&nbsp;</th><th>หุ้น (DCA)</th><th>คอนโดปล่อยเช่า</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>เงินที่จ่ายเอง/เดือน</td><td>6,000 ฿</td><td>6,000 ฿</td></tr>
+							<tr><td>เงินสมทบจากผู้เช่า/เดือน</td><td>—</td><td>5,000 ฿</td></tr>
+							<tr><td>เงินที่ทำงานให้เรา/เดือน</td><td>6,000 ฿</td><td>11,000 ฿</td></tr>
+							<tr><td>เงินต้นของคุณตลอด 10 ปี</td><td>720,000 ฿</td><td>720,000 ฿</td></tr>
+							<tr><td>มูลค่าเมื่อครบ 10 ปี</td><td>983,276 ฿</td><td>1,121,000 ฿</td></tr>
+							<tr><td>กำไรสุทธิ</td><td>263,276 ฿</td><td>401,000 ฿</td></tr>
+							<tr><td>สภาพคล่อง</td><td>สูงมาก</td><td>ต่ำ</td></tr>
+							<tr><td>กระแสเงินสดหลังปีที่ 10</td><td>—</td><td>5,000 ฿/เดือน</td></tr>
+						</tbody>
+					</table>
+					</div>
+
+					<h3>ข้อสังเกตจากตัวเลข</h3>
+					<p><strong>คอนโดให้ความมั่งคั่งสุทธิสูงกว่า (ชนะไปราวๆ 1.3 แสนบาท)</strong> สาเหตุหลักเป็นเพราะคุณได้รับพลังจาก <strong>"เงินคนอื่น" (Other People's Money)</strong> แม้คุณจะควักกระเป๋า 6,000 บาทเท่ากับหุ้น แต่ในการผ่อนคอนโด คุณมีเงินผู้เช่ามาสมทบอีก 5,000 บาท ทำให้ยอดเงินที่ไปลดต้นลดดอกนั้นสูงถึง 11,000 บาท/เดือน ดอกเบี้ยธนาคารที่เสียไปตลอด 9 ปี (ประมาณ 1.9 แสนบาท) จึงถูกหักล้างด้วยเงินค่าเช่า (6 แสนบาทตลอด 10 ปี) จนหมดสิ้น และยังเหลือกำไรกลับมาหาคุณ</p>
+
+					<h3>สิ่งที่ตัวเลขชุดนี้ยังไม่ได้บอก</h3>
+					<p>ฝั่งหุ้นค่อนข้างใกล้เคียงความจริงแล้ว แต่ฝั่งคอนโดคือกรณีที่ทุกอย่างเป็นใจ ควรอ่านพร้อมข้อควรระวังเหล่านี้</p>
+					<ul>
+						<li><strong>ห้องว่าง.</strong> โมเดลนี้สมมติว่ามีผู้เช่าครบทุกเดือนตลอด 9 ปี ถ้าปีหนึ่งห้องว่าง 2 เดือน คุณต้องควักจ่ายเอง 11,000 บาทในเดือนนั้น</li>
+						<li><strong>ค่าใช้จ่ายที่ยังไม่ได้หัก.</strong> ค่าส่วนกลาง เงินกองทุน ภาษีที่ดินและสิ่งปลูกสร้าง ประกัน ค่านายหน้า ค่าซ่อม และค่าปรับปรุงห้องระหว่างเปลี่ยนผู้เช่า ควรกันไว้ราว 10–20% ของค่าเช่า</li>
+						<li><strong>ดอกเบี้ยไม่ได้อยู่ที่ 4% ตลอด.</strong> สินเชื่อบ้านไทยเป็นดอกเบี้ยโปรโมชัน 3 ปีแรก แล้วลอยตัว การรีไฟแนนซ์ทุก 3 ปีจึงไม่ใช่ทางเลือก แต่เป็นส่วนหนึ่งของแผน</li>
+						<li><strong>ราคาขึ้นลงได้ทั้งสองทาง.</strong> ถ้าราคาห้องลด 10% ความได้เปรียบของคอนโดหายไปเกือบหมด แต่ถ้าขึ้น 10% กำไรก็เกือบเท่าตัว</li>
+						<li><strong>สภาพคล่อง.</strong> หุ้นขายวันนี้ได้เงินภายในไม่กี่วัน คอนโดใช้เวลาเป็นเดือน และเวลาที่คุณรีบ คนซื้อจะเป็นคนกำหนดราคา</li>
+						<li><strong>แรงที่ต้องลง.</strong> DCA หุ้นตั้งคำสั่งครั้งเดียวจบ ส่วนห้องเช่าคือธุรกิจเล็กๆ ที่มีคุณเป็นเจ้าของและผู้ดูแล</li>
+					</ul>
+
+					<h3>การเลือกแบบไหนขึ้นอยู่กับเป้าหมายปลายทาง</h3>
+					<ul>
+						<li><strong>ไปทางหุ้น:</strong> ถ้าคุณต้องการความยืดหยุ่นสูง เผื่อต้องใช้เงินก้อนฉุกเฉินใน 5–7 ปีข้างหน้า และไม่อยากวุ่นวายกับการหาผู้เช่าหรือซ่อมแซมห้อง</li>
+						<li><strong>ไปทางคอนโด:</strong> ถ้าคุณมั่นใจในวินัยการรีไฟแนนซ์เพื่อคุมดอกเบี้ย และต้องการสร้าง "ห่านทองคำ" เพราะเมื่อพ้นปีที่ 10 ไปแล้ว คุณจะได้รับค่าเช่า 5,000 บาท/เดือน เป็น Passive Income ไปเรื่อยๆ โดยไม่ต้องควักเงินตัวเองอีกต่อไป</li>
+					</ul>
+
+					<h3>สรุป</h3>
+					<p>จริงๆ แล้วนี่ไม่ใช่ศึกหุ้นปะทะอสังหา แต่คือการเทียบระหว่าง "ไม่ใช้ leverage" กับ "ใช้ leverage โดยมีผู้เช่าช่วยผ่อน" ตัว leverage นี่แหละที่ทำให้คอนโดชนะบนกระดาษ และก็เป็นตัวเดียวกันที่ทำให้เจ็บเมื่อผู้เช่าย้ายออก เลือกทางที่คุณรับ "วันที่มันพัง" ได้</p>
+				</div>
+
+				<!-- ==================== CHINESE ==================== -->
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>DCA 买公寓 vs DCA 买股票：每月存 6,000 泰铢、坚持 10 年，谁更富有？</h2>
+					<p><strong>核心结论（BLUF）：</strong>每月拿 6,000 泰铢做股票 DCA，按年化 6% 计算，10 年后约有 983,000 泰铢。同样每月 6,000 泰铢，改去供一套 100 万泰铢的公寓，再加上租客每月 5,000 泰铢的租金，10 年后你手上的资产约为 1,121,000 泰铢——一套无贷款的房子外加一笔现金。公寓大约多赢 138,000 泰铢，原因不是房价上涨，而是有别人帮你还了一部分月供。</p>
+
+					<h3>比较的前提</h3>
+					<p>自己掏的钱一样多，时间一样长，只是工具不同。</p>
+					<ul>
+						<li><strong>你自己出的钱：</strong>每月 6,000 泰铢 × 120 个月 = <highlight>720,000 泰铢</highlight>，两边完全相同</li>
+						<li><strong>方案一 — 股票：</strong>每月 DCA 6,000 泰铢，年化 6%（每月 0.5%，复利）</li>
+						<li><strong>方案二 — 公寓：</strong>房价 100 万泰铢，全额贷款 100 万，利率 4%，出租每月 5,000 泰铢。你出 6,000，租客出 5,000，每月还银行 11,000 泰铢</li>
+					</ul>
+
+					<h3>方案一：股票 — 年化 6%</h3>
+					<p>没有任何花招。每月 6,000 泰铢，按每月 0.5% 复利，共 120 个月。</p>
+					<ul>
+						<li><strong>你实际投入的本金：</strong>720,000 泰铢</li>
+						<li><strong>第 10 年的组合市值：</strong><highlight>约 983,276 泰铢</highlight></li>
+						<li><strong>净收益：</strong>约 263,276 泰铢</li>
+						<li><strong>资产状态：</strong>100% 高流动性，随时可以卖出</li>
+					</ul>
+
+					<h3>方案二：100 万泰铢的公寓（自付 6,000，租金补贴 5,000）</h3>
+					<p>以每月 11,000 泰铢偿还 100 万泰铢、利率 4% 的贷款，这笔债务将在<strong>约 109 个月（9 年 1 个月）内还清</strong>，比 10 年的期限还早。</p>
+					<ul>
+						<li><strong>第 1–109 个月：</strong>每月 11,000 泰铢全部还给银行，直到余额归零。这段期间支付的利息约 193,000 泰铢。</li>
+						<li><strong>第 110–120 个月（最后 11 个月）：</strong>你已无债一身轻，6,000 的存款加上 5,000 的租金全数进你口袋，合计 <highlight>现金 121,000 泰铢</highlight>。</li>
+						<li><strong>你实际投入的本金：</strong>720,000 泰铢（6,000 × 120 个月）</li>
+						<li><strong>第 10 年的资产总值：</strong><highlight>约 1,121,000 泰铢</highlight>（公寓 1,000,000 + 后期累积现金 121,000）。此处<em>尚未计入</em>公寓价格的涨跌。</li>
+						<li><strong>净收益：</strong>约 401,000 泰铢</li>
+					</ul>
+
+					<figure class="wc-chart">
+						<div class="wc-title">10 年后的财富 — 自己掏的钱同为 720,000 泰铢</div>
+						<p class="wc-note">公寓按买入价计算，未计入价格涨跌。</p>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>股票 — DCA，年化 6%</span><span class="wc-value">983,276 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="自有资金 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-stock" style="width: calc(21.94% - 2px)" title="净收益 263,276 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>公寓 — 每月租金补贴 5,000</span><span class="wc-value">1,121,000 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="自有资金 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-condo" style="width: calc(33.42% - 2px)" title="净收益 401,000 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-axis"><span>0</span><span>400,000</span><span>800,000</span><span>1,200,000 ฿</span></div>
+
+						<div class="wc-legend">
+							<span><i class="wc-key wc-key-base"></i>自有本金 · 720,000 ฿</span>
+							<span><i class="wc-key wc-key-stock"></i>收益 — 股票 · 263,276 ฿</span>
+							<span><i class="wc-key wc-key-condo"></i>收益 — 公寓 · 401,000 ฿</span>
+						</div>
+					</figure>
+
+					<h3>并排对比</h3>
+					<div class="table-wrap">
+					<table>
+						<thead>
+							<tr><th>&nbsp;</th><th>股票（DCA）</th><th>公寓（出租）</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>每月自付</td><td>6,000 ฿</td><td>6,000 ฿</td></tr>
+							<tr><td>每月租客补贴</td><td>—</td><td>5,000 ฿</td></tr>
+							<tr><td>每月实际投入运作的钱</td><td>6,000 ฿</td><td>11,000 ฿</td></tr>
+							<tr><td>10 年自有本金</td><td>720,000 ฿</td><td>720,000 ฿</td></tr>
+							<tr><td>第 10 年资产价值</td><td>983,276 ฿</td><td>1,121,000 ฿</td></tr>
+							<tr><td>净收益</td><td>263,276 ฿</td><td>401,000 ฿</td></tr>
+							<tr><td>流动性</td><td>非常高</td><td>低</td></tr>
+							<tr><td>第 10 年后的现金流</td><td>—</td><td>每月 5,000 ฿</td></tr>
+						</tbody>
+					</table>
+					</div>
+
+					<h3>数字告诉我们什么</h3>
+					<p><strong>公寓的净财富更高，约多出 138,000 泰铢。</strong>主要原因是<strong>「别人的钱」（Other People's Money，OPM）</strong>。两边你都只掏 6,000 泰铢，但在公寓这一侧，租客又补上 5,000，于是每月有 11,000 泰铢在削减本金与利息，而不是 6,000。九年间付给银行的利息（约 193,000 泰铢）被收到的租金（10 年共 600,000 泰铢）完全抵销，还有余额落进你的口袋。</p>
+
+					<h3>数字没有说出来的部分</h3>
+					<p>股票那一侧已经相当接近现实，公寓那一侧则是「一切顺利」的版本。请带着以下前提来读：</p>
+					<ul>
+						<li><strong>空置。</strong>模型假设九年间每个月都有租客。若一年空置两个月，那两个月的 11,000 泰铢就得你自己扛。</li>
+						<li><strong>被忽略的费用。</strong>物业管理费、维修基金、房地产税、保险、中介佣金、修缮，以及换租客之间的翻新。建议预留租金的 10–20%。</li>
+						<li><strong>利率不会一直是 4%。</strong>泰国房贷前三年是优惠利率，之后转为浮动。每三年再融资（refinance）不是可选项，而是这个计划的一部分。</li>
+						<li><strong>房价涨跌是双向的。</strong>房价跌 10%，公寓的优势几乎被抹平；涨 10%，收益则接近翻倍。</li>
+						<li><strong>流动性。</strong>股票几天内就能变现，公寓要卖上几个月，而且你越急，定价权越在买家手上。</li>
+						<li><strong>投入的精力。</strong>股票 DCA 设定一次即可；出租房则是一门有你亲自当房东的小生意。</li>
+					</ul>
+
+					<h3>该怎么选</h3>
+					<ul>
+						<li><strong>选股票：</strong>如果你需要高度弹性，未来 5–7 年可能要动用一笔现金，而且不想为找租客或修空调操心。</li>
+						<li><strong>选公寓：</strong>如果你有把握靠定期再融资把利率压住，并且想养一只「金鹅」——因为第 10 年之后，那每月 5,000 泰铢就是被动收入，你再也不用自己掏一分钱。</li>
+					</ul>
+
+					<h3>结语</h3>
+					<p>这其实不是股票对决房地产，而是「不用杠杆」对决「用杠杆、并由租客帮忙还款」。杠杆让公寓在纸面上胜出，也正是同一个杠杆，会在租客搬走的那天让你痛。选那个你承受得起其失败情境的方案。</p>
+				</div>
+
+				<!-- ==================== JAPANESE ==================== -->
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>DCA コンドミニアム vs DCA 株式：毎月6,000バーツを10年間、どちらが豊かになるか？</h2>
+					<p><strong>結論（BLUF）：</strong>毎月6,000バーツを年利6%の株式に DCA すると、10年後の資産は約983,000バーツ。同じ6,000バーツを100万バーツのコンドミニアムのローン返済に充て、入居者からの家賃5,000バーツを上乗せすると、10年後の資産は約1,121,000バーツ——無借金の物件に現金が加わります。コンドミニアムの勝ちは約138,000バーツ。その理由は不動産価格の上昇ではなく、返済の一部を他人が払ってくれたことにあります。</p>
+
+					<h3>比較の前提</h3>
+					<p>自腹を切る金額は同じ、期間も同じ。違うのは手段だけです。</p>
+					<ul>
+						<li><strong>自己負担額：</strong>月6,000バーツ × 120か月 = <highlight>720,000バーツ</highlight>（両者とも同額）</li>
+						<li><strong>選択肢1 — 株式：</strong>毎月6,000バーツを DCA、年利6%（月0.5%の複利）</li>
+						<li><strong>選択肢2 — コンドミニアム：</strong>物件価格100万バーツ、全額ローン（金利4%）、家賃月5,000バーツで賃貸。自分が6,000、入居者が5,000を負担し、銀行への返済は月11,000バーツ</li>
+					</ul>
+
+					<h3>選択肢1：株式 — 年利6%</h3>
+					<p>特別な仕掛けはありません。毎月6,000バーツを月0.5%の複利で120か月です。</p>
+					<ul>
+						<li><strong>実際に払い込んだ元本：</strong>720,000バーツ</li>
+						<li><strong>10年後のポートフォリオ評価額：</strong><highlight>約983,276バーツ</highlight></li>
+						<li><strong>純利益：</strong>約263,276バーツ</li>
+						<li><strong>資産の性質：</strong>100%流動性が高く、いつでも売却可能</li>
+					</ul>
+
+					<h3>選択肢2：100万バーツのコンドミニアム（自己負担6,000＋家賃5,000）</h3>
+					<p>100万バーツ・金利4%のローンを月11,000バーツで返済すると、この借金は<strong>約109か月（9年1か月）で完済</strong>します。10年の期限より早く終わる計算です。</p>
+					<ul>
+						<li><strong>1〜109か月目：</strong>11,000バーツ全額を銀行へ。残高がゼロになるまでの支払利息は約193,000バーツ。</li>
+						<li><strong>110〜120か月目（最後の11か月）：</strong>すでに無借金。自分の6,000バーツと家賃5,000バーツがそのまま手元に残り、<highlight>現金121,000バーツ</highlight>になります。</li>
+						<li><strong>実際に払い込んだ元本：</strong>720,000バーツ（6,000 × 120か月）</li>
+						<li><strong>10年後の資産合計：</strong><highlight>約1,121,000バーツ</highlight>（コンドミニアム1,000,000＋終盤に貯まった現金121,000）。物件価格の値上がり・値下がりは<em>含んでいません</em>。</li>
+						<li><strong>純利益：</strong>約401,000バーツ</li>
+					</ul>
+
+					<figure class="wc-chart">
+						<div class="wc-title">10年後の資産 — 自己負担はどちらも720,000バーツ</div>
+						<p class="wc-note">コンドミニアムは購入価格で評価。価格変動は含みません。</p>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>株式 — DCA・年利6%</span><span class="wc-value">983,276 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="自己資金 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-stock" style="width: calc(21.94% - 2px)" title="純利益 263,276 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>コンドミニアム — 家賃が月5,000を補填</span><span class="wc-value">1,121,000 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="自己資金 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-condo" style="width: calc(33.42% - 2px)" title="純利益 401,000 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-axis"><span>0</span><span>400,000</span><span>800,000</span><span>1,200,000 ฿</span></div>
+
+						<div class="wc-legend">
+							<span><i class="wc-key wc-key-base"></i>自己資金 · 720,000 ฿</span>
+							<span><i class="wc-key wc-key-stock"></i>利益 — 株式 · 263,276 ฿</span>
+							<span><i class="wc-key wc-key-condo"></i>利益 — コンドミニアム · 401,000 ฿</span>
+						</div>
+					</figure>
+
+					<h3>並べて比較</h3>
+					<div class="table-wrap">
+					<table>
+						<thead>
+							<tr><th>&nbsp;</th><th>株式（DCA）</th><th>コンドミニアム（賃貸）</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>毎月の自己負担</td><td>6,000 ฿</td><td>6,000 ฿</td></tr>
+							<tr><td>入居者からの上乗せ</td><td>—</td><td>5,000 ฿</td></tr>
+							<tr><td>毎月働くお金</td><td>6,000 ฿</td><td>11,000 ฿</td></tr>
+							<tr><td>10年間の自己元本</td><td>720,000 ฿</td><td>720,000 ฿</td></tr>
+							<tr><td>10年後の評価額</td><td>983,276 ฿</td><td>1,121,000 ฿</td></tr>
+							<tr><td>純利益</td><td>263,276 ฿</td><td>401,000 ฿</td></tr>
+							<tr><td>流動性</td><td>非常に高い</td><td>低い</td></tr>
+							<tr><td>11年目以降のキャッシュフロー</td><td>—</td><td>月5,000 ฿</td></tr>
+						</tbody>
+					</table>
+					</div>
+
+					<h3>数字が語っていること</h3>
+					<p><strong>コンドミニアムのほうが純資産で約138,000バーツ多い。</strong>主な理由は<strong>「他人のお金」（Other People's Money, OPM）</strong>です。自腹はどちらも6,000バーツですが、コンドミニアム側では入居者が5,000バーツを上乗せするため、元利の返済に回るお金が6,000ではなく月11,000バーツになります。9年間で銀行に払う利息(約193,000バーツ)は、受け取る家賃(10年で600,000バーツ)によって完全に相殺され、なお手元に残ります。</p>
+
+					<h3>数字が見せていないもの</h3>
+					<p>株式側はほぼ現実的ですが、コンドミニアム側は「すべてうまくいった場合」です。次の点を前提に読んでください。</p>
+					<ul>
+						<li><strong>空室。</strong>このモデルは9年間毎月入居者がいる前提です。年に2か月空室なら、その月の11,000バーツは自分で払うことになります。</li>
+						<li><strong>計算に入れていない費用。</strong>共益費、修繕積立金、固定資産税、保険、仲介手数料、修理費、入居者入れ替え時の原状回復。家賃の10〜20%は見ておきましょう。</li>
+						<li><strong>金利は4%のままではない。</strong>タイの住宅ローンは最初の3年が優遇金利で、その後は変動金利になります。3年ごとの借り換え（refinance）は選択肢ではなく、この計画の一部です。</li>
+						<li><strong>価格変動は両方向。</strong>物件価格が10%下がればコンドミニアムの優位はほぼ消え、10%上がれば利益はほぼ倍になります。</li>
+						<li><strong>流動性。</strong>株式は数日で現金化できますが、コンドミニアムの売却には数か月かかり、急いでいるときほど買い手が価格を決めます。</li>
+						<li><strong>手間。</strong>株式の DCA は一度設定すれば終わり。賃貸物件はあなたが大家を兼ねる小さな事業です。</li>
+					</ul>
+
+					<h3>どちらを選ぶか</h3>
+					<ul>
+						<li><strong>株式を選ぶなら：</strong>高い柔軟性が欲しい、今後5〜7年でまとまった資金が必要になるかもしれない、入居者探しやエアコン修理に関わりたくない場合。</li>
+						<li><strong>コンドミニアムを選ぶなら：</strong>借り換えで金利を抑え続ける自信があり、「金の卵を産むガチョウ」を育てたい場合。10年目を過ぎれば月5,000バーツは不労所得となり、自分の財布からはもう一銭も出ません。</li>
+					</ul>
+
+					<h3>まとめ</h3>
+					<p>これは株式対不動産の戦いではなく、「レバレッジなし」対「入居者が返済を手伝うレバレッジあり」の比較です。紙の上でコンドミニアムを勝たせているのもレバレッジなら、入居者が去った日に痛みを与えるのも同じレバレッジ。自分が受け入れられる失敗のかたちで選んでください。</p>
+				</div>
+
+				<!-- ==================== GERMAN ==================== -->
+				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>DCA Eigentumswohnung vs. DCA Aktien: 6,000 Baht im Monat, 10 Jahre lang</h2>
+					<p><strong>Das Wichtigste zuerst (BLUF):</strong> Wer 6,000 Baht im Monat mit 6% Rendite pro Jahr in Aktien per DCA anlegt, hat nach 10 Jahren rund 983,000 Baht. Wer dieselben 6,000 Baht in eine Eigentumswohnung für 1 Mio. Baht steckt und zusätzlich 5,000 Baht Miete von einem Mieter kassiert, hat nach 10 Jahren rund 1,121,000 Baht — eine schuldenfreie Wohnung plus Bargeld. Die Wohnung gewinnt um etwa 138,000 Baht, und der Grund ist nicht der Immobilienmarkt, sondern dass jemand anderes einen Teil Ihrer Rate bezahlt hat.</p>
+
+					<h3>Die Ausgangslage</h3>
+					<p>Gleicher Betrag aus der eigenen Tasche, gleiche 10 Jahre. Nur das Vehikel ändert sich.</p>
+					<ul>
+						<li><strong>Ihr eigener Beitrag:</strong> 6,000 Baht/Monat × 120 Monate = <highlight>720,000 Baht</highlight> in beiden Fällen</li>
+						<li><strong>Variante 1 — Aktien:</strong> DCA von 6,000 Baht/Monat, 6% pro Jahr (0,5% monatlich, mit Zinseszins)</li>
+						<li><strong>Variante 2 — Eigentumswohnung:</strong> Kaufpreis 1 Mio. Baht, Darlehen über die volle Summe zu 4%, vermietet für 5,000 Baht/Monat. Sie zahlen 6,000, der Mieter 5,000 — die Bank erhält 11,000 Baht/Monat</li>
+					</ul>
+
+					<h3>Variante 1: Aktien — 6% pro Jahr</h3>
+					<p>Nichts Exotisches. 6,000 Baht monatlich, 0,5% monatlicher Zinseszins, 120 Monate lang.</p>
+					<ul>
+						<li><strong>Tatsächlich eingezahltes Kapital:</strong> 720,000 Baht</li>
+						<li><strong>Depotwert nach 10 Jahren:</strong> <highlight>~983,276 Baht</highlight></li>
+						<li><strong>Nettogewinn:</strong> ~263,276 Baht</li>
+						<li><strong>Zustand des Vermögens:</strong> zu 100% liquide, jederzeit verkäuflich</li>
+					</ul>
+
+					<h3>Variante 2: Eine Wohnung für 1 Mio. Baht (Sie zahlen 6,000, die Miete steuert 5,000 bei)</h3>
+					<p>Bei einer Monatsrate von 11,000 Baht auf ein Darlehen von 1 Mio. Baht zu 4% ist die Schuld <strong>nach etwa 109 Monaten (9 Jahre 1 Monat) vollständig getilgt</strong> — früher als die 10-Jahres-Frist.</p>
+					<ul>
+						<li><strong>Monate 1–109:</strong> die vollen 11,000 Baht gehen an die Bank, bis der Saldo bei null steht. Gezahlte Zinsen insgesamt: rund 193,000 Baht.</li>
+						<li><strong>Monate 110–120 (die letzten 11 Monate):</strong> schuldenfrei. Ihre 6,000 und die 5,000 des Mieters landen nun vollständig bei Ihnen — <highlight>121,000 Baht in bar</highlight>.</li>
+						<li><strong>Tatsächlich eingezahltes Kapital:</strong> 720,000 Baht (6,000 × 120 Monate)</li>
+						<li><strong>Gesamtvermögen nach 10 Jahren:</strong> <highlight>~1,121,000 Baht</highlight> (Wohnung 1,000,000 + Bargeld 121,000). Wertsteigerungen oder -verluste der Wohnung sind hier <em>nicht</em> berücksichtigt.</li>
+						<li><strong>Nettogewinn:</strong> ~401,000 Baht</li>
+					</ul>
+
+					<figure class="wc-chart">
+						<div class="wc-title">Vermögen nach 10 Jahren — beide Male 720,000 Baht aus eigener Tasche</div>
+						<p class="wc-note">Wohnung zum Kaufpreis bewertet; Wertentwicklung nicht eingerechnet.</p>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>Aktien — DCA mit 6%/Jahr</span><span class="wc-value">983,276 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="Eigenes Kapital: 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-stock" style="width: calc(21.94% - 2px)" title="Nettogewinn: 263,276 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-row">
+							<div class="wc-head"><span>Wohnung — Miete steuert 5,000/Monat bei</span><span class="wc-value">1,121,000 ฿</span></div>
+							<div class="wc-track">
+								<div class="wc-grid-line" style="left: 33.33%"></div>
+								<div class="wc-grid-line" style="left: 66.67%"></div>
+								<div class="wc-grid-line" style="left: calc(100% - 1px)"></div>
+								<div class="wc-bar">
+									<div class="wc-seg wc-seg-base" style="width: 60%" title="Eigenes Kapital: 720,000 ฿"></div>
+									<div class="wc-seg wc-seg-gain is-condo" style="width: calc(33.42% - 2px)" title="Nettogewinn: 401,000 ฿"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="wc-axis"><span>0</span><span>400,000</span><span>800,000</span><span>1,200,000 ฿</span></div>
+
+						<div class="wc-legend">
+							<span><i class="wc-key wc-key-base"></i>Eigenes Kapital · 720,000 ฿</span>
+							<span><i class="wc-key wc-key-stock"></i>Gewinn — Aktien · 263,276 ฿</span>
+							<span><i class="wc-key wc-key-condo"></i>Gewinn — Wohnung · 401,000 ฿</span>
+						</div>
+					</figure>
+
+					<h3>Direkter Vergleich</h3>
+					<div class="table-wrap">
+					<table>
+						<thead>
+							<tr><th>&nbsp;</th><th>Aktien (DCA)</th><th>Wohnung (vermietet)</th></tr>
+						</thead>
+						<tbody>
+							<tr><td>Aus eigener Tasche / Monat</td><td>6,000 ฿</td><td>6,000 ฿</td></tr>
+							<tr><td>Beitrag des Mieters / Monat</td><td>—</td><td>5,000 ฿</td></tr>
+							<tr><td>Arbeitendes Kapital / Monat</td><td>6,000 ฿</td><td>11,000 ฿</td></tr>
+							<tr><td>Eigenkapital über 10 Jahre</td><td>720,000 ฿</td><td>720,000 ฿</td></tr>
+							<tr><td>Wert nach 10 Jahren</td><td>983,276 ฿</td><td>1,121,000 ฿</td></tr>
+							<tr><td>Nettogewinn</td><td>263,276 ฿</td><td>401,000 ฿</td></tr>
+							<tr><td>Liquidität</td><td>Sehr hoch</td><td>Gering</td></tr>
+							<tr><td>Cashflow ab Jahr 11</td><td>—</td><td>5,000 ฿/Monat</td></tr>
+						</tbody>
+					</table>
+					</div>
+
+					<h3>Was die Zahlen sagen</h3>
+					<p><strong>Die Wohnung erzeugt mehr Nettovermögen — rund 138,000 Baht mehr.</strong> Der Hauptgrund heißt <strong>Other People's Money (OPM)</strong>. Sie zahlen in beiden Fällen dieselben 6,000 Baht, aber auf der Immobilienseite legt der Mieter weitere 5,000 Baht drauf. Damit tilgen 11,000 Baht pro Monat das Darlehen statt 6,000. Die Bankzinsen von rund 193,000 Baht über neun Jahre werden durch die Mieteinnahmen (600,000 Baht über 10 Jahre) mehr als ausgeglichen — und es bleibt sogar noch etwas für Sie übrig.</p>
+
+					<h3>Was die Zahlen nicht zeigen</h3>
+					<p>Die Aktienseite kommt der Realität nahe. Die Immobilienseite ist der Best Case — lesen Sie sie mit diesen Vorbehalten:</p>
+					<ul>
+						<li><strong>Leerstand.</strong> Das Modell unterstellt neun Jahre lang jeden Monat einen Mieter. Zwei leere Monate pro Jahr, und Sie zahlen die 11,000 Baht selbst.</li>
+						<li><strong>Nicht eingerechnete Kosten.</strong> Hausgeld, Instandhaltungsrücklage, Grundsteuer, Versicherung, Maklerprovision, Reparaturen und Renovierung zwischen zwei Mietern. Kalkulieren Sie 10–20% der Miete ein.</li>
+						<li><strong>Der Zins bleibt nicht bei 4%.</strong> Thailändische Hypotheken sind Lockangebote — günstig in den ersten drei Jahren, danach variabel. Eine Umschuldung alle drei Jahre ist keine Option, sondern Teil des Plans.</li>
+						<li><strong>Preisrisiko wirkt in beide Richtungen.</strong> Ein Wertverlust von 10% löscht den Vorsprung der Wohnung fast vollständig aus; ein Plus von 10% verdoppelt ihn nahezu.</li>
+						<li><strong>Liquidität.</strong> Aktien sind in Tagen zu Geld gemacht. Eine Wohnung braucht Monate — und wer es eilig hat, überlässt dem Käufer den Preis.</li>
+						<li><strong>Aufwand.</strong> Aktien-DCA ist ein einziger Dauerauftrag. Eine vermietete Wohnung ist ein kleines Unternehmen mit Ihnen als Vermieter.</li>
+					</ul>
+
+					<h3>Wie Sie wählen</h3>
+					<ul>
+						<li><strong>Nehmen Sie Aktien,</strong> wenn Sie Flexibilität brauchen, in den nächsten 5–7 Jahren womöglich eine größere Summe benötigen und keine Lust haben, Mieter zu suchen oder Klimaanlagen zu reparieren.</li>
+						<li><strong>Nehmen Sie die Wohnung,</strong> wenn Sie sich zutrauen, den Zins durch konsequentes Umschulden niedrig zu halten, und eine "Gans, die goldene Eier legt" aufbauen wollen — denn ab Jahr 11 sind die 5,000 Baht im Monat passives Einkommen, ohne dass Sie noch einen Baht beisteuern.</li>
+					</ul>
+
+					<h3>Fazit</h3>
+					<p>Im Kern geht es nicht um Aktien gegen Immobilien, sondern um ohne Hebel gegen mit Hebel — wobei ein Mieter den Hebel bedient. Der Hebel lässt die Wohnung auf dem Papier gewinnen, und derselbe Hebel tut weh, wenn der Mieter auszieht. Wählen Sie die Variante, deren Scheitern Sie aushalten.</p>
+				</div>
+			</section>
+
+			<section id="comments">
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function () {
+						this.page.url = window.location.href.split('#')[0].split('?')[0];
+						this.page.identifier = window.location.pathname;
+					};
+					(function() {
+						var d = document, s = d.createElement('script');
+						s.src = 'https://norbor.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			</section>
+
+			<div class="inner">
+				<p class="copyright">
+					&copy; peerapat.cc
+				</p>
+			</div>
+		</div>
+
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://github.com/nuboat" class="icon brands fa-github"><span class="label">Github</span></a></li>
+					<li><a href="https://www.linkedin.com/in/peerapat/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+					<li><a href="mailto:nuboat@gmail.com" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+				</ul>
+			</div>
+		</footer>
+
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+		<script src="../assets/js/cookie-consent.js"></script>
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const langIcons = document.querySelectorAll('.lang-icon');
+				const langSections = document.querySelectorAll('.lang-section');
+
+				function activateLanguage(hash) {
+					// Remove active class from all icons and sections
+					langIcons.forEach(i => i.classList.remove('active'));
+					langSections.forEach(s => s.classList.remove('active'));
+
+					// Find target icon and section
+					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === hash) || langIcons[0];
+					const targetHash = targetIcon.getAttribute('href');
+					const targetSection = document.querySelector(targetHash);
+
+					// Activate them
+					if (targetIcon) targetIcon.classList.add('active');
+					if (targetSection) targetSection.classList.add('active');
+				}
+
+				// Update active icon on click
+				langIcons.forEach(icon => {
+					icon.addEventListener('click', function(e) {
+						e.preventDefault(); // Prevent jump since it acts like a tab now
+						const hash = this.getAttribute('href');
+						history.pushState(null, null, hash);
+						activateLanguage(hash);
+					});
+				});
+
+				// Set initial active state from URL hash if present, else default to first
+				activateLanguage(window.location.hash || langIcons[0].getAttribute('href'));
+			});
+		</script>
+		<script>
+			// Theme toggle logic
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				// Update icon based on current theme
+				const updateIcon = () => {
+					if (document.documentElement.getAttribute('data-theme') === 'dark') {
+						themeToggle.classList.remove('fa-moon');
+						themeToggle.classList.add('fa-sun');
+					} else {
+						themeToggle.classList.remove('fa-sun');
+						themeToggle.classList.add('fa-moon');
+					}
+				};
+				updateIcon();
+
+				themeToggle.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					updateIcon();
+				});
+			}
+		</script>
+	</body>
+</html>
