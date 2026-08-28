@@ -1,0 +1,446 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - Certificates</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Peerapat A's certificates and academic credentials — Master of Science in IT Management, cloud security, Oracle Java SE 8, CompTIA Cloud Essentials and more." />
+		<link rel="stylesheet" href="./assets/css/main.css" />
+		<link rel="stylesheet" href="./assets/css/ci.css" />
+		<link rel="stylesheet" href="./assets/css/cookie-consent.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+		<meta name="author" content="Peerapat A" />
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('consent', 'default', { analytics_storage: 'denied' });
+			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
+			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
+			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
+		</script>
+
+		<style>
+			/* Premium Gallery Styles — certificate variant */
+			.gallery-container {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 400px));
+				justify-content: center;
+				gap: 1.5rem;
+				padding: 2rem 0;
+			}
+			.gallery-item {
+				position: relative;
+				display: flex;
+				flex-direction: column;
+				width: 100%;
+				padding: 0;
+				border-radius: 16px;
+				overflow: hidden;
+				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+				transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+				background: rgba(255, 255, 255, 0.05);
+				backdrop-filter: blur(10px);
+				-webkit-backdrop-filter: blur(10px);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				cursor: pointer;
+				font: inherit;
+				color: inherit;
+				text-align: left;
+				appearance: none;
+				-webkit-appearance: none;
+			}
+			.gallery-item:hover,
+			.gallery-item:focus-visible {
+				transform: translateY(-8px) scale(1.03);
+				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+				z-index: 2;
+			}
+			.gallery-item:focus-visible {
+				outline: 2px solid var(--ci-cyan);
+				outline-offset: 3px;
+			}
+
+			/* Preview pane — certificates are documents, so contain them on paper
+			   rather than cropping the name and title away with object-fit: cover. */
+			.cert-preview {
+				position: relative;
+				display: block;
+				aspect-ratio: 4 / 3;
+				background: #ffffff;
+				overflow: hidden;
+			}
+			.cert-preview img {
+				position: absolute;
+				inset: 0;
+				display: block;
+				width: 100%;
+				height: 100%;
+				border: 0;
+				object-fit: contain;
+				transition: transform 0.5s ease;
+			}
+			.gallery-item:hover .cert-preview img {
+				transform: scale(1.06);
+			}
+			/* PDFs are previewed by a pre-rendered page-1 thumbnail rather than an
+			   embedded viewer: an <img> paints immediately, looks the same in every
+			   browser, and does not depend on a PDF plugin that iOS Safari lacks.
+			   The tile still opens the real PDF. */
+			.cert-badge {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.3rem;
+				margin-left: 0.5rem;
+				padding: 0.1rem 0.45rem;
+				border-radius: 99px;
+				border: 1px solid var(--ci-line);
+				color: var(--ci-muted);
+				font-family: var(--ci-display);
+				font-size: 0.68rem;
+				font-weight: 600;
+				letter-spacing: 0.06em;
+				vertical-align: 0.05em;
+			}
+			.cert-badge i { font-size: 0.9em; color: #b23b3b; }
+
+			.cert-caption {
+				display: block;
+				padding: 0.9rem 1rem 1rem;
+				background: var(--ci-paper);
+				border-top: 1px solid var(--ci-line);
+			}
+			.cert-title {
+				display: block;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.92rem;
+				line-height: 1.35;
+				color: var(--ci-headline);
+			}
+			.cert-meta {
+				display: block;
+				margin-top: 0.25rem;
+				white-space: nowrap;
+				font-size: 0.78rem;
+				color: var(--ci-muted);
+			}
+
+			/* Modal for viewing certificates */
+			.gallery-modal {
+				width: 100%;
+				max-width: 100%;
+				height: 100%;
+				max-height: 100%;
+				padding: 0;
+				border: 0;
+				background: transparent;
+				overflow: hidden;
+			}
+			.gallery-modal::backdrop {
+				background: rgba(0, 0, 0, 0.85);
+				backdrop-filter: blur(8px);
+				-webkit-backdrop-filter: blur(8px);
+			}
+			.gallery-modal-inner {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 100%;
+				height: 100%;
+			}
+			.gallery-modal img,
+			.gallery-modal iframe {
+				width: 90%;
+				max-width: 1100px;
+				height: 90vh;
+				border: 0;
+				border-radius: 8px;
+				box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+				background: #ffffff;
+				transform: scale(0.95);
+				transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+			}
+			.gallery-modal img {
+				width: auto;
+				max-height: 90vh;
+				object-fit: contain;
+				background: transparent;
+			}
+			.gallery-modal[open] img,
+			.gallery-modal[open] iframe {
+				transform: scale(1);
+			}
+			.gallery-modal-close {
+				position: absolute;
+				top: 20px;
+				right: 30px;
+				color: white;
+				font-size: 2rem;
+				line-height: 1;
+				cursor: pointer;
+				background: none;
+				border: 0;
+				padding: 0.25rem;
+				transition: color 0.2s ease;
+				z-index: 10001;
+			}
+			.gallery-modal-close:hover { color: #f56a6a; }
+			.gallery-modal-open {
+				position: absolute;
+				top: 26px;
+				left: 30px;
+				color: rgba(255, 255, 255, 0.85);
+				font-size: 0.85rem;
+				z-index: 10001;
+			}
+			.gallery-modal-open:hover { color: #ffffff !important; }
+
+			@media screen and (max-width: 736px) {
+				.gallery-modal img,
+				.gallery-modal iframe { width: 100%; height: 78vh; }
+				.gallery-modal-open { top: auto; bottom: 20px; left: 20px; }
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.gallery-item,
+				.cert-preview img,
+				.gallery-modal img,
+				.gallery-modal iframe { transition: none; }
+				.gallery-item:hover,
+				.gallery-item:focus-visible { transform: none; }
+			}
+
+			#theme-toggle {
+				position: absolute;
+				top: 1.5rem;
+				right: 1.5rem;
+				cursor: pointer;
+				border-bottom: none;
+				font-size: 1.2em;
+			}
+		</style>
+		<script>
+			// Dark mode init
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
+	</head>
+	<!-- do not change layout -->
+	<body class="is-preload page-gallery">
+
+		<header class="major">
+			<a id="theme-toggle" class="fa fa-moon" role="button" tabindex="0" aria-label="Toggle dark mode"></a>
+			<br />
+			<div style="display: flex; justify-content: center; align-items: center; text-align: center;">
+				<h2>Norbor Certificates</h2>
+			</div>
+		</header>
+
+		<div class="gallery-container">
+			<button class="gallery-item" type="button"
+				data-src="certificate/NCS_Cloud_Certificate.pdf" data-type="pdf"
+				data-title="Cloud Security Standard for Practitioner">
+				<span class="cert-preview">
+					<img src="certificate/thumbs/NCS_Cloud_Certificate.jpg"
+						alt="Cloud Security Standard for Practitioner certificate" loading="lazy" width="1200" height="849" />
+				</span>
+				<span class="cert-caption">
+					<span class="cert-title">Cloud Security Standard for Practitioner</span>
+					<span class="cert-meta">NCSA Thailand &middot; August 2026<span class="cert-badge"><i class="fa-regular fa-file-pdf"></i>PDF</span></span>
+				</span>
+			</button>
+
+			<button class="gallery-item" type="button"
+				data-src="certificate/UIH_CyberSecurity_Certificate.png" data-type="image"
+				data-title="Cybersecurity Awareness 2026 Training Course">
+				<span class="cert-preview">
+					<img src="certificate/UIH_CyberSecurity_Certificate.png"
+						alt="Certificate of completion for the Cybersecurity Awareness 2026 Training Course, United Information Highway" loading="lazy" width="3258" height="2094" />
+				</span>
+				<span class="cert-caption">
+					<span class="cert-title">Cybersecurity Awareness 2026 Training Course</span>
+					<span class="cert-meta">United Information Highway &middot; May 2026</span>
+				</span>
+			</button>
+
+			<button class="gallery-item" type="button"
+				data-src="certificate/MasterDegree.pdf" data-type="pdf"
+				data-title="Master of Science in Information Technology Management">
+				<span class="cert-preview">
+					<img src="certificate/thumbs/MasterDegree.jpg"
+						alt="Master of Science certificate of graduation, Mahidol University" loading="lazy" width="927" height="1200" />
+				</span>
+				<span class="cert-caption">
+					<span class="cert-title">Master of Science, Information Technology Management</span>
+					<span class="cert-meta">Mahidol University &middot; 2020<span class="cert-badge"><i class="fa-regular fa-file-pdf"></i>PDF</span></span>
+				</span>
+			</button>
+
+			<button class="gallery-item" type="button"
+				data-src="certificate/Mahidol_Certificate_Present.pdf" data-type="pdf"
+				data-title="Effective Presentation Technique">
+				<span class="cert-preview">
+					<img src="certificate/thumbs/Mahidol_Certificate_Present.jpg"
+						alt="Effective Presentation Technique certificate, Mahidol University" loading="lazy" width="1200" height="849" />
+				</span>
+				<span class="cert-caption">
+					<span class="cert-title">Effective Presentation Technique</span>
+					<span class="cert-meta">Mahidol University &middot; June 2020<span class="cert-badge"><i class="fa-regular fa-file-pdf"></i>PDF</span></span>
+				</span>
+			</button>
+
+			<button class="gallery-item" type="button"
+				data-src="certificate/Oracle_Certificate_Java8.pdf" data-type="pdf"
+				data-title="Oracle Certified Associate, Java SE 8 Programmer">
+				<span class="cert-preview">
+					<img src="certificate/thumbs/Oracle_Certificate_Java8.jpg"
+						alt="Oracle Certified Associate, Java SE 8 Programmer certificate" loading="lazy" width="1200" height="927" />
+				</span>
+				<span class="cert-caption">
+					<span class="cert-title">Oracle Certified Associate, Java SE 8 Programmer</span>
+					<span class="cert-meta">Oracle University &middot; April 2017<span class="cert-badge"><i class="fa-regular fa-file-pdf"></i>PDF</span></span>
+				</span>
+			</button>
+
+			<button class="gallery-item" type="button"
+				data-src="certificate/CompTIA_Cloud_Certificate.pdf" data-type="pdf"
+				data-title="CompTIA Cloud Essentials">
+				<span class="cert-preview">
+					<img src="certificate/thumbs/CompTIA_Cloud_Certificate.jpg"
+						alt="CompTIA Cloud Essentials certificate" loading="lazy" width="1200" height="927" />
+				</span>
+				<span class="cert-caption">
+					<span class="cert-title">CompTIA Cloud Essentials</span>
+					<span class="cert-meta">CompTIA &middot; December 2016<span class="cert-badge"><i class="fa-regular fa-file-pdf"></i>PDF</span></span>
+				</span>
+			</button>
+
+			<button class="gallery-item" type="button"
+				data-src="certificate/IMC_Hadoop_Certificate.jpg" data-type="image"
+				data-title="Big Data using Hadoop Workshop">
+				<span class="cert-preview">
+					<img src="certificate/IMC_Hadoop_Certificate.jpg"
+						alt="Certificate of participation in the Big Data using Hadoop Workshop, IMC Institute" loading="lazy" width="798" height="654" />
+				</span>
+				<span class="cert-caption">
+					<span class="cert-title">Big Data using Hadoop Workshop</span>
+					<span class="cert-meta">IMC Institute &middot; March 2013</span>
+				</span>
+			</button>
+		</div>
+
+		<div class="inner" style="text-align: center;">
+			<p class="copyright">&copy; peerapat.cc</p>
+		</div>
+
+		<!-- Certificate Modal -->
+		<dialog class="gallery-modal" id="galleryModal" closedby="any" aria-label="Certificate viewer">
+			<a class="gallery-modal-open" id="modalOpen" href="#" target="_blank" rel="noopener">
+				<i class="fa fa-arrow-up-right-from-square"></i> Open in new tab
+			</a>
+			<button type="button" class="fa fa-times gallery-modal-close" id="modalClose" autofocus aria-label="Close"></button>
+			<div class="gallery-modal-inner" id="modalBody"></div>
+		</dialog>
+
+		<script src="./assets/js/jquery.min.js"></script>
+		<script src="./assets/js/jquery.poptrox.min.js"></script>
+		<script src="./assets/js/browser.min.js"></script>
+		<script src="./assets/js/breakpoints.min.js"></script>
+		<script src="./assets/js/util.js"></script>
+		<script src="./assets/js/main.js"></script>
+		<script src="./assets/js/cookie-consent.js"></script>
+		<script>
+			// Modal logic
+			const modal = document.getElementById('galleryModal');
+			const modalBody = document.getElementById('modalBody');
+			const modalOpen = document.getElementById('modalOpen');
+
+			function openModal(src, type, title) {
+				modalBody.replaceChildren();
+
+				const node = document.createElement(type === 'pdf' ? 'iframe' : 'img');
+				node.src = type === 'pdf' ? src + '#navpanes=0&view=Fit' : src;
+				if (type === 'pdf') {
+					node.title = title;
+				} else {
+					node.alt = title;
+				}
+				modalBody.appendChild(node);
+
+				modalOpen.href = src;
+				modal.showModal();
+				document.body.style.overflow = 'hidden';
+			}
+
+			document.querySelectorAll('.gallery-item').forEach(item => {
+				item.addEventListener('click', () => {
+					openModal(item.dataset.src, item.dataset.type, item.dataset.title);
+				});
+			});
+
+			document.getElementById('modalClose').addEventListener('click', () => modal.close());
+
+			// showModal() handles Esc and focus trapping; clearing up happens here.
+			modal.addEventListener('close', () => {
+				modalBody.replaceChildren();
+				document.body.style.overflow = '';
+			});
+
+			// Light-dismiss fallback for browsers without <dialog closedby> (Safari).
+			if (!('closedBy' in HTMLDialogElement.prototype)) {
+				modal.addEventListener('click', (event) => {
+					if (event.target !== modal) return;
+					const rect = modal.getBoundingClientRect();
+					const insideContent =
+						rect.top <= event.clientY && event.clientY <= rect.top + rect.height &&
+						rect.left <= event.clientX && event.clientX <= rect.left + rect.width;
+					if (insideContent) return;
+					modal.close();
+				});
+				// The dialog fills the viewport here, so also treat a click on the
+				// empty area of the flex wrapper as a backdrop click.
+				modalBody.addEventListener('click', (event) => {
+					if (event.target === modalBody) modal.close();
+				});
+			}
+		</script>
+		<script>
+			// Theme toggle logic
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				// Update icon based on current theme
+				const updateIcon = () => {
+					if (document.documentElement.getAttribute('data-theme') === 'dark') {
+						themeToggle.classList.remove('fa-moon');
+						themeToggle.classList.add('fa-sun');
+					} else {
+						themeToggle.classList.remove('fa-sun');
+						themeToggle.classList.add('fa-moon');
+					}
+				};
+				updateIcon();
+
+				const toggleTheme = () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					updateIcon();
+				};
+
+				themeToggle.addEventListener('click', toggleTheme);
+				themeToggle.addEventListener('keydown', (e) => {
+					if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleTheme(); }
+				});
+			}
+		</script>
+	</body>
+</html>
