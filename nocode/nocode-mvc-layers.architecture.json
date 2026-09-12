@@ -1,0 +1,369 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "NoCode Platform — MVC Layers",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "https://github.com/nuboat/nocode",
+      "revision": "c06f1bda82b0ad0624eb85a7d43529cd53309c87"
+    },
+    "views": [
+      {
+        "id": "request-path",
+        "label": "REST request path",
+        "focus": [
+          "api_client",
+          "filters",
+          "rest_ctl",
+          "facade",
+          "jdbc",
+          "postgres"
+        ],
+        "note": "One API call from the edge down to SQL: Controller, Facade, Jdbc, PostgreSQL."
+      },
+      {
+        "id": "two-front-doors",
+        "label": "Two front doors",
+        "focus": [
+          "api_client",
+          "console",
+          "rest_ctl",
+          "web_ctl",
+          "facade"
+        ],
+        "note": "API and admin console are separate controllers over one shared Facade."
+      },
+      {
+        "id": "authorization",
+        "label": "Access and policy",
+        "focus": [
+          "filters",
+          "authz",
+          "rest_ctl",
+          "facade"
+        ],
+        "note": "Play filters, then the Account scope, then config.policy inside the Facade."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "api_client",
+      "type": "external",
+      "label": "API Client",
+      "sublabel": "REST + JSON",
+      "pos": [
+        40,
+        280
+      ],
+      "size": [
+        165,
+        88
+      ]
+    },
+    {
+      "id": "console",
+      "type": "external",
+      "label": "Admin Console",
+      "sublabel": "browser session",
+      "pos": [
+        40,
+        480
+      ],
+      "size": [
+        165,
+        88
+      ]
+    },
+    {
+      "id": "authz",
+      "type": "security",
+      "label": "Yoda authorize",
+      "sublabel": "token → Account",
+      "pos": [
+        315,
+        80
+      ],
+      "size": [
+        165,
+        88
+      ],
+      "sources": [
+        {
+          "path": "application-api/app/cc/peerapat/yoda/http/RESTController.scala",
+          "line": 28,
+          "label": "authorize"
+        }
+      ]
+    },
+    {
+      "id": "filters",
+      "type": "security",
+      "label": "Play Filters",
+      "sublabel": "CSRF · CSP · hosts",
+      "pos": [
+        315,
+        280
+      ],
+      "size": [
+        165,
+        88
+      ],
+      "tag": "conf/csrf.conf",
+      "sources": [
+        {
+          "path": "application-api/conf/common.conf",
+          "line": 30,
+          "label": "filters"
+        }
+      ]
+    },
+    {
+      "id": "rest_ctl",
+      "type": "backend",
+      "label": "REST Controller",
+      "sublabel": "one endpoint · *Form",
+      "pos": [
+        590,
+        280
+      ],
+      "size": [
+        165,
+        88
+      ],
+      "tag": "app/conf/<area>",
+      "sources": [
+        {
+          "path": "application-api/app/conf/transition/TransitionSaveController.scala",
+          "line": 1,
+          "label": "TransitionSaveController"
+        }
+      ]
+    },
+    {
+      "id": "web_ctl",
+      "type": "frontend",
+      "label": "Web Controller",
+      "sublabel": "views/*.scala.html",
+      "pos": [
+        590,
+        480
+      ],
+      "size": [
+        165,
+        88
+      ],
+      "sources": [
+        {
+          "path": "application-api/app/cc/peerapat/yoda/http/WebController.scala",
+          "line": 34,
+          "label": "sessionAction"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "type": "backend",
+      "label": "Service",
+      "sublabel": "optional @Cached",
+      "pos": [
+        865,
+        80
+      ],
+      "size": [
+        165,
+        88
+      ]
+    },
+    {
+      "id": "facade",
+      "type": "backend",
+      "label": "Facade",
+      "sublabel": "owns the transaction",
+      "pos": [
+        865,
+        280
+      ],
+      "size": [
+        165,
+        88
+      ],
+      "tag": "PolicyGuard gate",
+      "sources": [
+        {
+          "path": "application-api/app/cc/peerapat/nocode/config/transition/TransitionSaveFacade.scala",
+          "line": 20,
+          "label": "TransitionSaveFacade"
+        }
+      ]
+    },
+    {
+      "id": "jdbc",
+      "type": "backend",
+      "label": "Jdbc → ORM",
+      "sublabel": "SQL + row parse",
+      "pos": [
+        1140,
+        280
+      ],
+      "size": [
+        165,
+        88
+      ],
+      "sources": [
+        {
+          "path": "application-api/app/cc/peerapat/nocode/config/transition/TransitionORM.scala",
+          "line": 9,
+          "label": "TransitionORM"
+        }
+      ]
+    },
+    {
+      "id": "postgres",
+      "type": "database",
+      "label": "PostgreSQL",
+      "sublabel": "access · config · app",
+      "pos": [
+        1140,
+        480
+      ],
+      "size": [
+        165,
+        88
+      ]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Play Framework 3 / Scala 3 monolith",
+      "wraps": [
+        "filters",
+        "authz",
+        "rest_ctl",
+        "web_ctl",
+        "facade",
+        "service",
+        "jdbc"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "Entry gate: filters + authorize",
+      "wraps": [
+        "filters",
+        "authz"
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "client-request",
+      "from": "api_client",
+      "to": "filters",
+      "label": "HTTPS · JSON",
+      "variant": "emphasis"
+    },
+    {
+      "id": "filtered-api",
+      "from": "filters",
+      "to": "rest_ctl",
+      "label": "filtered request",
+      "variant": "emphasis"
+    },
+    {
+      "id": "validated-form",
+      "from": "rest_ctl",
+      "to": "facade",
+      "label": "validated *Form",
+      "variant": "emphasis"
+    },
+    {
+      "id": "facade-entity",
+      "from": "facade",
+      "to": "jdbc",
+      "label": "Entity",
+      "variant": "emphasis"
+    },
+    {
+      "id": "jdbc-sql",
+      "from": "jdbc",
+      "to": "postgres",
+      "label": "SQL",
+      "variant": "emphasis",
+      "labelDy": 60
+    },
+    {
+      "id": "account-scope",
+      "from": "authz",
+      "to": "rest_ctl",
+      "label": "Account · org/app scope",
+      "variant": "security",
+      "fromSide": "right",
+      "toSide": "top"
+    },
+    {
+      "id": "console-session",
+      "from": "console",
+      "to": "filters",
+      "label": "form POST"
+    },
+    {
+      "id": "filtered-web",
+      "from": "filters",
+      "to": "web_ctl",
+      "label": "CSRF-checked"
+    },
+    {
+      "id": "shared-facade",
+      "from": "web_ctl",
+      "to": "facade",
+      "label": "same Facade as the API"
+    },
+    {
+      "id": "cached-read",
+      "from": "facade",
+      "to": "service",
+      "label": "cached / reusable read",
+      "variant": "dashed"
+    },
+    {
+      "id": "service-jdbc",
+      "from": "service",
+      "to": "jdbc",
+      "fromSide": "right",
+      "toSide": "top"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Two front doors",
+      "items": [
+        "REST API: one endpoint per controller under app/<area>",
+        "Admin console rendered by Web Controllers over views/*.scala.html",
+        "Both call the same Facade: one behavior, two doors"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Layer contract",
+      "items": [
+        "Controller: parse the colocated *Form, delegate, return okJson",
+        "Facade: exec(form), one pool.withTransaction, maps Entity to *Model",
+        "Service: optional, reusable or @Cached reads only",
+        "Jdbc extends *ORM: SQL and row parse — no Proxy or Processor layer"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "Security",
+      "items": [
+        "Play filters: CSRF, CSP, allowed hosts, CORS",
+        "authorize resolves the Account; org/app scope never comes from the body",
+        "config.policy gates rows, fields and values inside the Facade"
+      ]
+    }
+  ]
+}
