@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>Peerapat A - Switch</title>
+		<title>Peerapat A - Games</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="View Peerapat A's Nintendo Switch gallery." />
+		<meta name="description" content="View Peerapat A's game collection gallery featuring Nintendo Switch, PlayStation 5, and PSP games." />
 		<link rel="stylesheet" href="./assets/css/main.css" />
 		<link rel="stylesheet" href="./assets/css/ci.css" />
 		<link rel="stylesheet" href="./assets/css/cookie-consent.css" />
@@ -22,8 +22,6 @@
 			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
-		
-
 
 		<style>
 			/* Premium Gallery Styles */
@@ -39,7 +37,7 @@
 				border-radius: 16px;
 				overflow: hidden;
 				box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-				transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+				transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease, opacity 0.3s ease;
 				background: rgba(255, 255, 255, 0.05);
 				backdrop-filter: blur(10px);
 				-webkit-backdrop-filter: blur(10px);
@@ -47,10 +45,15 @@
 				cursor: pointer;
 			}
 
-			.gallery-item:hover {
+			.gallery-item:hover,
+			.gallery-item:focus-visible {
 				transform: translateY(-8px) scale(1.03);
 				box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 				z-index: 2;
+				outline: none;
+			}
+			.gallery-item:focus-visible {
+				box-shadow: 0 0 0 3px var(--ci-cyan, #05ACE1), 0 20px 40px rgba(0, 0, 0, 0.15);
 			}
 			.gallery-item img {
 				width: 100%;
@@ -58,10 +61,65 @@
 				display: block;
 				transition: transform 0.5s ease;
 			}
-			.gallery-item:hover img {
-				transform: scale(1.1);
+			.gallery-item:hover img,
+			.gallery-item:focus-visible img {
+				transform: scale(1.08);
 			}
-			
+
+			.gallery-item.hidden {
+				display: none;
+			}
+
+			/* Filter Bar */
+			.filter-bar {
+				display: flex;
+				justify-content: center;
+				gap: 0.5rem;
+				flex-wrap: wrap;
+				margin-top: 1.25rem;
+				padding: 0 1rem;
+			}
+			.filter-btn {
+				background: var(--ci-paper, #ffffff);
+				border: 1px solid var(--ci-line, #e3e8ee);
+				color: var(--ci-muted, #5c6b7a);
+				padding: 0.45rem 1.1rem;
+				border-radius: 99px;
+				font-size: 0.85rem;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.25s ease;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+				font-family: inherit;
+				text-decoration: none;
+			}
+			.filter-btn:hover {
+				color: var(--ci-navy, #002856);
+				border-color: var(--ci-cyan, #05ACE1);
+				transform: translateY(-1px);
+			}
+			.filter-btn.active {
+				background: var(--ci-blue, #006098);
+				color: #ffffff;
+				border-color: var(--ci-blue, #006098);
+				box-shadow: 0 4px 14px rgba(0, 96, 152, 0.25);
+			}
+			[data-theme="dark"] .filter-btn {
+				background: var(--ci-paper, #002856);
+				border-color: var(--ci-line, #003d6b);
+				color: var(--ci-muted, #919C7A);
+			}
+			[data-theme="dark"] .filter-btn:hover {
+				color: var(--ci-sand, #F7D88E);
+				border-color: var(--ci-cyan, #05ACE1);
+			}
+			[data-theme="dark"] .filter-btn.active {
+				background: var(--ci-cyan, #05ACE1);
+				color: #00162e;
+				border-color: var(--ci-cyan, #05ACE1);
+				box-shadow: 0 4px 14px rgba(5, 172, 225, 0.35);
+			}
+
 			/* Modal for viewing images */
 			.gallery-modal {
 				display: none;
@@ -124,29 +182,76 @@
 		<header class="major">
 			<br />
 			<div style="display: flex; justify-content: center; align-items: center; text-align: center; gap: 1rem;">
-				<h2>Switch Gallery</h2>
-				<a id="theme-toggle" style="cursor: pointer; font-size: 1.5em;" class="icon solid fa-moon"><span class="label">Theme</span></a>
+				<h2>Games Gallery</h2>
+				<a id="theme-toggle" style="cursor: pointer; font-size: 1.5em;" class="icon solid fa-moon" title="Toggle theme"><span class="label">Theme</span></a>
+			</div>
+			<div class="filter-bar">
+				<button type="button" class="filter-btn active" data-filter="all">All (18)</button>
+				<button type="button" class="filter-btn" data-filter="switch">Nintendo Switch (10)</button>
+				<button type="button" class="filter-btn" data-filter="ps5">PlayStation 5 (3)</button>
+				<button type="button" class="filter-btn" data-filter="psp">PSP (5)</button>
 			</div>
 		</header>
 		
 		<div class="gallery-container">
-			<div class="gallery-item" onclick="openModal('switch/mario_bros.png')">
-				<img src="switch/mario_bros.png" alt="Mario Bros" loading="lazy" />
+			<!-- Nintendo Switch -->
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_zelda_breathofthewind.png', 'The Legend of Zelda: Breath of the Wild')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_zelda_breathofthewind.png', 'The Legend of Zelda: Breath of the Wild')">
+				<img src="games/sw_zelda_breathofthewind.png" alt="The Legend of Zelda: Breath of the Wild" title="The Legend of Zelda: Breath of the Wild" loading="lazy" />
 			</div>
-			<div class="gallery-item" onclick="openModal('switch/mario_galaxy.png')">
-				<img src="switch/mario_galaxy.png" alt="Mario Galaxy" loading="lazy" />
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_zelda_tearofthekingdom.png', 'The Legend of Zelda: Tears of the Kingdom')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_zelda_tearofthekingdom.png', 'The Legend of Zelda: Tears of the Kingdom')">
+				<img src="games/sw_zelda_tearofthekingdom.png" alt="The Legend of Zelda: Tears of the Kingdom" title="The Legend of Zelda: Tears of the Kingdom" loading="lazy" />
 			</div>
-			<div class="gallery-item" onclick="openModal('switch/xenoblad_3.png')">
-				<img src="switch/xenoblad_3.png" alt="Xenoblade 3" loading="lazy" />
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_zelda_linkawekning.png', 'The Legend of Zelda: Link\'s Awakening')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_zelda_linkawekning.png', 'The Legend of Zelda: Link\'s Awakening')">
+				<img src="games/sw_zelda_linkawekning.png" alt="The Legend of Zelda: Link's Awakening" title="The Legend of Zelda: Link's Awakening" loading="lazy" />
 			</div>
-			<div class="gallery-item" onclick="openModal('switch/zelda_breathofthewind.png')">
-				<img src="switch/zelda_breathofthewind.png" alt="Zelda Breath of the Wild" loading="lazy" />
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_zelda_sword.jpg', 'The Legend of Zelda: Skyward Sword HD')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_zelda_sword.jpg', 'The Legend of Zelda: Skyward Sword HD')">
+				<img src="games/sw_zelda_sword.jpg" alt="The Legend of Zelda: Skyward Sword HD" title="The Legend of Zelda: Skyward Sword HD" loading="lazy" />
 			</div>
-			<div class="gallery-item" onclick="openModal('switch/zelda_linkawekning.png')">
-				<img src="switch/zelda_linkawekning.png" alt="Zelda Link's Awakening" loading="lazy" />
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_xenoblade_3.png', 'Xenoblade Chronicles 3')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_xenoblade_3.png', 'Xenoblade Chronicles 3')">
+				<img src="games/sw_xenoblade_3.png" alt="Xenoblade Chronicles 3" title="Xenoblade Chronicles 3" loading="lazy" />
 			</div>
-			<div class="gallery-item" onclick="openModal('switch/zelda_tearofthekingdom.png')">
-				<img src="switch/zelda_tearofthekingdom.png" alt="Zelda Tears of the Kingdom" loading="lazy" />
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_xenoblade_x.jpg', 'Xenoblade Chronicles X: Definitive Edition')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_xenoblade_x.jpg', 'Xenoblade Chronicles X: Definitive Edition')">
+				<img src="games/sw_xenoblade_x.jpg" alt="Xenoblade Chronicles X: Definitive Edition" title="Xenoblade Chronicles X: Definitive Edition" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_octopath_i.jpg', 'Octopath Traveler')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_octopath_i.jpg', 'Octopath Traveler')">
+				<img src="games/sw_octopath_i.jpg" alt="Octopath Traveler" title="Octopath Traveler" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_octopath_ii.jpg', 'Octopath Traveler II')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_octopath_ii.jpg', 'Octopath Traveler II')">
+				<img src="games/sw_octopath_ii.jpg" alt="Octopath Traveler II" title="Octopath Traveler II" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_mario_bros.png', 'New Super Mario Bros. U Deluxe')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_mario_bros.png', 'New Super Mario Bros. U Deluxe')">
+				<img src="games/sw_mario_bros.png" alt="New Super Mario Bros. U Deluxe" title="New Super Mario Bros. U Deluxe" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="switch" tabindex="0" onclick="openModal('games/sw_mario_galaxy.png', 'Super Mario 3D All-Stars')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/sw_mario_galaxy.png', 'Super Mario 3D All-Stars')">
+				<img src="games/sw_mario_galaxy.png" alt="Super Mario 3D All-Stars" title="Super Mario 3D All-Stars" loading="lazy" />
+			</div>
+
+			<!-- PlayStation 5 -->
+			<div class="gallery-item" data-platform="ps5" tabindex="0" onclick="openModal('games/ps5_ffvii_remake.jpg', 'Final Fantasy VII Remake Intergrade')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/ps5_ffvii_remake.jpg', 'Final Fantasy VII Remake Intergrade')">
+				<img src="games/ps5_ffvii_remake.jpg" alt="Final Fantasy VII Remake Intergrade" title="Final Fantasy VII Remake Intergrade" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="ps5" tabindex="0" onclick="openModal('games/ps5_crisiscore.jpg', 'Crisis Core: Final Fantasy VII Reunion')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/ps5_crisiscore.jpg', 'Crisis Core: Final Fantasy VII Reunion')">
+				<img src="games/ps5_crisiscore.jpg" alt="Crisis Core: Final Fantasy VII Reunion" title="Crisis Core: Final Fantasy VII Reunion" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="ps5" tabindex="0" onclick="openModal('games/ps5_ff_xvi.jpg', 'Final Fantasy XVI')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/ps5_ff_xvi.jpg', 'Final Fantasy XVI')">
+				<img src="games/ps5_ff_xvi.jpg" alt="Final Fantasy XVI" title="Final Fantasy XVI" loading="lazy" />
+			</div>
+
+			<!-- PlayStation Portable (PSP) -->
+			<div class="gallery-item" data-platform="psp" tabindex="0" onclick="openModal('games/psp_fftactic.jpg', 'Final Fantasy Tactics: The War of the Lions')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/psp_fftactic.jpg', 'Final Fantasy Tactics: The War of the Lions')">
+				<img src="games/psp_fftactic.jpg" alt="Final Fantasy Tactics: The War of the Lions" title="Final Fantasy Tactics: The War of the Lions" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="psp" tabindex="0" onclick="openModal('games/psp_disidia.jpg', 'Dissidia Final Fantasy')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/psp_disidia.jpg', 'Dissidia Final Fantasy')">
+				<img src="games/psp_disidia.jpg" alt="Dissidia Final Fantasy" title="Dissidia Final Fantasy" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="psp" tabindex="0" onclick="openModal('games/psp_ysI_II.jpg', 'Ys I & II Chronicles')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/psp_ysI_II.jpg', 'Ys I & II Chronicles')">
+				<img src="games/psp_ysI_II.jpg" alt="Ys I & II Chronicles" title="Ys I & II Chronicles" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="psp" tabindex="0" onclick="openModal('games/psp_ys_theoath.jpg', 'Ys: The Oath in Felghana')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/psp_ys_theoath.jpg', 'Ys: The Oath in Felghana')">
+				<img src="games/psp_ys_theoath.jpg" alt="Ys: The Oath in Felghana" title="Ys: The Oath in Felghana" loading="lazy" />
+			</div>
+			<div class="gallery-item" data-platform="psp" tabindex="0" onclick="openModal('games/psp_jikandia.jpg', 'Jikandia: The Timeless Land')" onkeydown="if(event.key==='Enter'||event.key===' ')openModal('games/psp_jikandia.jpg', 'Jikandia: The Timeless Land')">
+				<img src="games/psp_jikandia.jpg" alt="Jikandia: The Timeless Land" title="Jikandia: The Timeless Land" loading="lazy" />
 			</div>
 		</div>
 	
@@ -156,7 +261,7 @@
 	
 		<!-- Gallery Modal -->
 		<div class="gallery-modal" id="galleryModal" onclick="closeModal(event)">
-			<i class="fa fa-times gallery-modal-close" onclick="closeModal(event)"></i>
+			<i class="fa fa-times gallery-modal-close" onclick="closeModal(event)" title="Close modal"></i>
 			<img id="modalImage" src="" alt="Expanded Gallery Image" onclick="event.stopPropagation()" />
 		</div>
 
@@ -172,8 +277,9 @@
 			const modal = document.getElementById('galleryModal');
 			const modalImg = document.getElementById('modalImage');
 
-			function openModal(imgSrc) {
+			function openModal(imgSrc, imgAlt) {
 				modalImg.src = imgSrc;
+				modalImg.alt = imgAlt || 'Expanded Game Cover';
 				modal.style.display = 'flex';
 				// Trigger reflow for transition
 				void modal.offsetWidth;
@@ -196,6 +302,26 @@
 				if (e.key === 'Escape' && modal.classList.contains('active')) {
 					closeModal();
 				}
+			});
+
+			// Filter tab logic
+			const filterButtons = document.querySelectorAll('.filter-btn');
+			const galleryItems = document.querySelectorAll('.gallery-item');
+
+			filterButtons.forEach(btn => {
+				btn.addEventListener('click', () => {
+					filterButtons.forEach(b => b.classList.remove('active'));
+					btn.classList.add('active');
+					const filter = btn.getAttribute('data-filter');
+
+					galleryItems.forEach(item => {
+						if (filter === 'all' || item.getAttribute('data-platform') === filter) {
+							item.classList.remove('hidden');
+						} else {
+							item.classList.add('hidden');
+						}
+					});
+				});
 			});
 
 			// Theme toggle logic
