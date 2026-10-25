@@ -1,15 +1,33 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>Peerapat A - Blogs</title>
+		<title>Peerapat A - Software Engineer & Technical Blog</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="Peerapat A's blog — Coding, Agentic AI, and English grammar." />
+		<meta name="description" content="Personal blog and portfolio of Peerapat A — Software Engineer, Director of Professional Service at UIH, Lecturer at KMIT'L, and PhD Candidate at Mahidol. Exploring Agentic AI, Cloud & Coding, and English." />
+		<meta name="keywords" content="Peerapat Asoktummarungsri, Peerapat A, Software Engineer, Agentic AI, Coding, Fast English, Cloud Solutions, Tech Blog" />
+		<link rel="canonical" href="https://www.peerapat.cc/" />
+		<meta name="author" content="Peerapat A" />
+
+		<!-- Open Graph / Social Media -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Peerapat A - Software Engineer & Technical Blog" />
+		<meta property="og:description" content="Personal blog and portfolio of Peerapat A — Agentic AI, Modern Coding, and Technical Insights." />
+		<meta property="og:url" content="https://www.peerapat.cc/" />
+		<meta property="og:image" content="https://www.peerapat.cc/images/avatar.png" />
+
+		<!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Peerapat A - Software Engineer & Technical Blog" />
+		<meta name="twitter:description" content="Personal blog and portfolio of Peerapat A — Agentic AI, Modern Coding, and Technical Insights." />
+		<meta name="twitter:image" content="https://www.peerapat.cc/images/avatar.png" />
+
 		<link rel="stylesheet" href="./assets/css/main.css" />
 		<link rel="stylesheet" href="./assets/css/ci.css" />
 		<link rel="stylesheet" href="./assets/css/cookie-consent.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-		<meta name="author" content="Peerapat A" />
+
+		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
@@ -20,8 +38,9 @@
 			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
-			<script>
-			// Dark mode init
+
+		<!-- Dark mode init (Prevents FOUC) -->
+		<script>
 			const savedTheme = localStorage.getItem('theme');
 			if (savedTheme) {
 				document.documentElement.setAttribute('data-theme', savedTheme);
@@ -29,80 +48,786 @@
 				document.documentElement.setAttribute('data-theme', 'dark');
 			}
 		</script>
+
+		<!-- Structured Data / JSON-LD -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@graph": [
+				{
+					"@type": "WebSite",
+					"name": "Peerapat A Technical Blog",
+					"url": "https://www.peerapat.cc/",
+					"description": "Practical knowledge on Agentic AI, modern Coding practices, and fast English Grammar."
+				},
+				{
+					"@type": "Person",
+					"name": "Peerapat Asoktummarungsri",
+					"alternateName": "Peerapat A",
+					"url": "https://www.peerapat.cc/profile.html",
+					"jobTitle": "Director of Professional Service",
+					"worksFor": {
+						"@type": "Organization",
+						"name": "UIH"
+					},
+					"sameAs": [
+						"https://github.com/nuboat",
+						"https://www.linkedin.com/in/peerapat/"
+					]
+				}
+			]
+		}
+		</script>
+
+		<style>
+			/* =================================================================
+			   MODERN ENHANCED STYLING FOR INDEX.HTML (DESKTOP & MOBILE)
+			   ================================================================= */
+
+			/* Global Smooth Scrolling & Focus Ring */
+			html {
+				scroll-behavior: smooth;
+			}
+			:focus-visible {
+				outline: 2px solid var(--ci-cyan, #05ACE1);
+				outline-offset: 3px;
+			}
+
+			/* ------------------ Sidebar (#header) Enhancements ------------------ */
+			#header {
+				width: 30%;
+				max-width: 420px;
+				padding: 3rem 2.5rem 2.5rem;
+				overflow-y: auto;
+				overflow-x: hidden;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+				scrollbar-width: thin;
+				scrollbar-color: rgba(5, 172, 225, 0.3) transparent;
+			}
+			#header::-webkit-scrollbar {
+				width: 4px;
+			}
+			#header::-webkit-scrollbar-thumb {
+				background: rgba(5, 172, 225, 0.3);
+				border-radius: 4px;
+			}
+
+			#header > .inner {
+				width: 100%;
+				max-width: 340px;
+				margin: 0 auto;
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			/* Avatar Container with Glow & Gradient Ring */
+			.profile-avatar-wrap {
+				position: relative;
+				margin-bottom: 1.25rem;
+				display: inline-block;
+			}
+			.profile-avatar {
+				width: 140px;
+				height: 140px;
+				border-radius: 28px;
+				object-fit: cover;
+				display: block;
+				box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+				border: 2px solid rgba(255, 255, 255, 0.2);
+				transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s ease;
+			}
+			.profile-avatar:hover {
+				transform: translateY(-4px) scale(1.02);
+				box-shadow: 0 16px 40px rgba(5, 172, 225, 0.35);
+			}
+
+			/* Name & Slogan */
+			.profile-name {
+				font-family: var(--ci-display);
+				font-size: 1.6em;
+				font-weight: 700;
+				color: #ffffff !important;
+				margin: 0 0 0.4rem 0;
+				letter-spacing: -0.01em;
+			}
+			.profile-slogan {
+				font-size: 0.88em;
+				line-height: 1.5;
+				color: var(--ci-sand, #F7D88E);
+				font-weight: 600;
+				background: rgba(247, 216, 142, 0.1);
+				padding: 0.35rem 0.85rem;
+				border-radius: 99px;
+				border: 1px solid rgba(247, 216, 142, 0.25);
+				display: inline-block;
+				margin-bottom: 1.25rem;
+			}
+
+			/* Portal Navigation Cards Grid */
+			.sidebar-portals {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 0.65rem;
+				width: 100%;
+				margin: 0.5rem 0 1.25rem;
+			}
+			.portal-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+				padding: 0.65rem 0.75rem;
+				background: rgba(255, 255, 255, 0.07);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				border-radius: 12px;
+				color: #ffffff !important;
+				font-size: 0.85em;
+				font-weight: 600;
+				text-decoration: none !important;
+				transition: all 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+				backdrop-filter: blur(8px);
+			}
+			.portal-btn i {
+				font-size: 1.1em;
+				color: var(--ci-cyan, #05ACE1);
+				transition: transform 0.25s ease;
+			}
+			.portal-btn:hover {
+				background: rgba(5, 172, 225, 0.2);
+				border-color: var(--ci-cyan, #05ACE1);
+				color: #ffffff !important;
+				transform: translateY(-2px);
+				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+			}
+			.portal-btn:hover i {
+				transform: scale(1.15);
+			}
+
+			/* Credentials List */
+			.credentials-card {
+				width: 100%;
+				background: rgba(0, 20, 45, 0.35);
+				border: 1px solid rgba(255, 255, 255, 0.08);
+				border-radius: 14px;
+				padding: 0.85rem 1rem;
+				margin-bottom: 1.25rem;
+				text-align: left;
+			}
+			.credential-item {
+				display: flex;
+				align-items: center;
+				gap: 0.65rem;
+				padding: 0.35rem 0;
+				font-size: 0.86em;
+				color: rgba(255, 255, 255, 0.85);
+			}
+			.credential-item i {
+				color: var(--ci-cyan, #05ACE1);
+				width: 16px;
+				text-align: center;
+				font-size: 0.95em;
+				flex-shrink: 0;
+			}
+			.credential-item a {
+				color: #ffffff !important;
+				text-decoration: none;
+				border-bottom: 1px dashed rgba(255, 255, 255, 0.3);
+				transition: all 0.2s ease;
+			}
+			.credential-item a:hover {
+				color: var(--ci-cyan, #05ACE1) !important;
+				border-bottom-color: var(--ci-cyan, #05ACE1);
+			}
+
+			/* Social Links & Theme Button Row */
+			.sidebar-actions {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.75rem;
+				width: 100%;
+				margin-top: 0.25rem;
+			}
+			.social-btn {
+				width: 40px;
+				height: 40px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				color: #ffffff !important;
+				font-size: 1.1em;
+				text-decoration: none !important;
+				transition: all 0.25s ease;
+			}
+			.social-btn:hover {
+				background: var(--ci-cyan, #05ACE1);
+				color: #00162e !important;
+				border-color: var(--ci-cyan, #05ACE1);
+				transform: translateY(-2px);
+				box-shadow: 0 6px 16px rgba(5, 172, 225, 0.4);
+			}
+			.theme-toggle-btn {
+				width: 40px;
+				height: 40px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 50%;
+				background: rgba(247, 216, 142, 0.15);
+				border: 1px solid rgba(247, 216, 142, 0.3);
+				color: var(--ci-sand, #F7D88E) !important;
+				font-size: 1.05em;
+				cursor: pointer;
+				text-decoration: none !important;
+				transition: all 0.25s ease;
+			}
+			.theme-toggle-btn:hover {
+				background: var(--ci-sand, #F7D88E);
+				color: #00162e !important;
+				transform: rotate(15deg) translateY(-2px);
+			}
+
+			/* ------------------ Main Content Area (#main) ------------------ */
+			#main {
+				margin-left: 30%;
+				width: calc(100% - 30%);
+				padding: 3.5rem 4rem 4rem;
+				min-height: 100vh;
+				box-sizing: border-box;
+				background: var(--ci-canvas);
+			}
+
+			/* BLUF Hero Announcement Banner */
+			.bluf-hero {
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 18px;
+				padding: 1.5rem 1.8rem;
+				margin-bottom: 2.75rem;
+				box-shadow: var(--ci-shadow);
+				position: relative;
+				overflow: hidden;
+			}
+			.bluf-hero::before {
+				content: "";
+				position: absolute;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				width: 5px;
+				background: linear-gradient(180deg, var(--ci-cyan), var(--ci-blue));
+			}
+			.bluf-hero-header {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				margin-bottom: 0.65rem;
+			}
+			.bluf-pill {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.45rem;
+				background: rgba(5, 172, 225, 0.1);
+				color: var(--ci-blue);
+				font-size: 0.78em;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				padding: 0.3rem 0.75rem;
+				border-radius: 99px;
+				border: 1px solid rgba(5, 172, 225, 0.25);
+			}
+			[data-theme="dark"] .bluf-pill {
+				color: var(--ci-cyan);
+				background: rgba(5, 172, 225, 0.15);
+			}
+			.bluf-hero p {
+				margin: 0;
+				font-size: 1.05em;
+				line-height: 1.65;
+				color: var(--ci-ink);
+			}
+
+			/* Section Title */
+			.section-heading-wrap {
+				margin-bottom: 1.75rem;
+			}
+			.section-heading-wrap h2 {
+				margin: 0 0 0.35rem 0;
+				font-size: 1.7em;
+				font-weight: 700;
+				color: var(--ci-headline);
+				padding-left: 0;
+			}
+			.section-heading-wrap h2::before {
+				display: none;
+			}
+			.section-subtitle {
+				margin: 0;
+				font-size: 0.95em;
+				color: var(--ci-muted);
+			}
+
+			/* Responsive Category Grid */
+			.category-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 1.75rem;
+				margin-bottom: 3.5rem;
+			}
+
+			.cat-card {
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 18px;
+				overflow: hidden;
+				box-shadow: var(--ci-shadow);
+				display: flex;
+				flex-direction: column;
+				transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+				text-decoration: none !important;
+				color: inherit !important;
+				position: relative;
+			}
+			.cat-card:hover {
+				transform: translateY(-6px);
+				border-color: rgba(5, 172, 225, 0.5);
+				box-shadow: 0 2px 4px rgba(0,40,86,.04), 0 24px 48px -12px rgba(0,40,86,.22);
+			}
+			[data-theme="dark"] .cat-card:hover {
+				box-shadow: 0 2px 4px rgba(0,0,0,.3), 0 24px 48px -12px rgba(0,0,0,.7);
+			}
+
+			/* Card Thumbnail */
+			.cat-thumb-wrap {
+				position: relative;
+				width: 100%;
+				aspect-ratio: 16 / 9;
+				overflow: hidden;
+				background: var(--ci-navy);
+			}
+			.cat-thumb-wrap img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				display: block;
+				transition: transform 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+			}
+			.cat-card:hover .cat-thumb-wrap img {
+				transform: scale(1.06);
+			}
+			.cat-badge {
+				position: absolute;
+				top: 12px;
+				left: 12px;
+				background: rgba(0, 22, 46, 0.75);
+				backdrop-filter: blur(8px);
+				-webkit-backdrop-filter: blur(8px);
+				color: #ffffff;
+				font-size: 0.72em;
+				font-weight: 600;
+				letter-spacing: 0.04em;
+				text-transform: uppercase;
+				padding: 0.25rem 0.65rem;
+				border-radius: 6px;
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				z-index: 2;
+			}
+
+			/* Card Content Body */
+			.cat-body {
+				padding: 1.4rem 1.5rem 1.25rem;
+				display: flex;
+				flex-direction: column;
+				flex-grow: 1;
+				justify-content: space-between;
+			}
+			.cat-title {
+				font-family: var(--ci-display);
+				font-size: 1.28em;
+				font-weight: 700;
+				color: var(--ci-headline);
+				margin: 0 0 0.5rem 0;
+				line-height: 1.3;
+				transition: color 0.2s ease;
+			}
+			.cat-card:hover .cat-title {
+				color: var(--ci-cyan, #05ACE1);
+			}
+			.cat-desc {
+				font-size: 0.9em;
+				line-height: 1.6;
+				color: var(--ci-muted);
+				margin: 0 0 1.25rem 0;
+				flex-grow: 1;
+			}
+
+			/* Card CTA Button Row */
+			.cat-footer {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding-top: 0.85rem;
+				border-top: 1px solid var(--ci-line);
+				font-size: 0.88em;
+				font-weight: 600;
+				color: var(--ci-blue);
+			}
+			[data-theme="dark"] .cat-footer {
+				color: var(--ci-cyan);
+			}
+			.cat-footer i {
+				transition: transform 0.25s ease;
+			}
+			.cat-card:hover .cat-footer i {
+				transform: translateX(4px);
+			}
+
+			/* Page Footer */
+			.site-footer {
+				margin-top: 2rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid var(--ci-line);
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 1rem;
+				font-size: 0.85em;
+				color: var(--ci-muted);
+			}
+			.site-footer a {
+				color: var(--ci-muted);
+			}
+			.site-footer a:hover {
+				color: var(--ci-cyan);
+			}
+
+			/* Mobile Floating Theme Toggle */
+			.mobile-theme-fab {
+				display: none;
+			}
+
+			/* =================================================================
+			   RESPONSIVE BREAKPOINTS (TABLETS & MOBILE)
+			   ================================================================= */
+
+			/* Medium & Tablet Screens (<= 980px) */
+			@media screen and (max-width: 980px) {
+				#header {
+					position: relative;
+					width: 100%;
+					max-width: 100%;
+					height: auto;
+					padding: 2.25rem 1.5rem 1.75rem;
+					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+				}
+				#header::after {
+					top: auto;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					width: 100%;
+					height: 3px;
+					background: linear-gradient(90deg, var(--ci-cyan), var(--ci-green), var(--ci-sage), var(--ci-sand), var(--ci-red));
+				}
+				#header > .inner {
+					max-width: 580px;
+				}
+				.profile-avatar {
+					width: 110px;
+					height: 110px;
+					border-radius: 24px;
+				}
+				.sidebar-portals {
+					grid-template-columns: repeat(4, 1fr);
+					gap: 0.5rem;
+				}
+
+				#main {
+					margin: 0;
+					width: 100%;
+					padding: 2.5rem 1.75rem 3rem;
+				}
+				.bluf-hero {
+					padding: 1.25rem 1.4rem;
+					margin-bottom: 2rem;
+				}
+				.category-grid {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 1.25rem;
+				}
+			}
+
+			/* Mobile Screens (<= 640px) */
+			@media screen and (max-width: 640px) {
+				#header {
+					padding: 1.75rem 1.2rem 1.5rem;
+				}
+				.profile-avatar {
+					width: 90px;
+					height: 90px;
+					border-radius: 20px;
+				}
+				.profile-name {
+					font-size: 1.35em;
+				}
+				.profile-slogan {
+					font-size: 0.8em;
+					padding: 0.25rem 0.65rem;
+				}
+				.sidebar-portals {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 0.5rem;
+				}
+				.portal-btn {
+					padding: 0.55rem 0.5rem;
+					font-size: 0.82em;
+				}
+				.credentials-card {
+					padding: 0.65rem 0.85rem;
+				}
+				.credential-item {
+					font-size: 0.8em;
+				}
+
+				#main {
+					padding: 1.75rem 1.15rem 2.5rem;
+				}
+				.bluf-hero {
+					padding: 1.15rem 1.2rem;
+					border-radius: 14px;
+				}
+				.bluf-hero p {
+					font-size: 0.95em;
+				}
+				.section-heading-wrap h2 {
+					font-size: 1.4em;
+				}
+				.category-grid {
+					grid-template-columns: 1fr;
+					gap: 1.25rem;
+				}
+				.cat-card {
+					border-radius: 14px;
+				}
+				.cat-body {
+					padding: 1.15rem 1.25rem 1rem;
+				}
+				.site-footer {
+					flex-direction: column;
+					text-align: center;
+					gap: 0.5rem;
+				}
+			}
+
+			/* Animations */
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(6px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+			.cat-card {
+				animation: fadeIn 0.5s ease backwards;
+			}
+			.cat-card:nth-child(1) { animation-delay: 0.05s; }
+			.cat-card:nth-child(2) { animation-delay: 0.12s; }
+			.cat-card:nth-child(3) { animation-delay: 0.19s; }
+			.cat-card:nth-child(4) { animation-delay: 0.26s; }
+
+			@media (prefers-reduced-motion: reduce) {
+				.cat-card, .profile-avatar, .portal-btn {
+					animation: none !important;
+					transition: none !important;
+				}
+			}
+		</style>
 	</head>
+
 	<body class="is-preload page-blog page-home">
 
+		<!-- ===================================================================
+		     SIDEBAR / MOBILE TOP BAR (#header)
+		     =================================================================== -->
 		<header id="header">
 			<div class="inner">
-				<img src="images/avatar.png" style="max-width: 240px;" />
-				<h1 style="font-size: 1.2em; margin-top: 0.5em; margin-bottom: 0;">Peerapat A</h1>
-				<hr>
-				<ul class="icons">
-					<li><a href="profile.html" class="icon solid fa-user" target="_blank"><span class="label">Profile</span></a></li>
-					<li><a href="nocode/nocode-mvc-layers.html" class="icon solid fa-sitemap" target="_blank"><span class="label">Archify</span></a></li>
-					<li><a href="gallery.html" class="icon fa-solid fa-images" target="_blank"><span class="label">Gallery</span></a></li>
-					<li><a href="games.html" class="icon solid fa-gamepad" target="_blank"><span class="label">Games</span></a></li>
-				</ul>
-				<hr>
-				<b>Trust me, I'm a Software Engineer by AI</b>
-				<br><a href="https://www.uih.co.th" target="_blank">Director of Professional Service</a>
-				<br><a href="https://curriculum.kmitl.ac.th/major/17" target="_blank">Lecturer @ KMIT'L</a>
-				<br><a href="https://itm.eg.mahidol.ac.th/" target="_blank">PhD Candidate @ Mahidol</a>
-				<hr>
-				<ul class="icons">
-					<li><a href="https://github.com/nuboat" class="icon brands fa-github" target="_blank"><span class="label">Github</span></a></li>
-					<li><a href="https://www.linkedin.com/in/peerapat/" class="icon brands fa-linkedin" target="_blank"><span class="label">LinkedIn</span></a></li>	
-				</ul>
+				<!-- Avatar -->
+				<div class="profile-avatar-wrap">
+					<img src="images/avatar.png" alt="Peerapat A - Profile Avatar" class="profile-avatar" width="140" height="140" />
+				</div>
+
+				<!-- Identity -->
+				<h1 class="profile-name">Peerapat A</h1>
+				<div class="profile-slogan">
+					<i class="fas fa-sparkles"></i> Trust me, I'm a Software Engineer by AI
+				</div>
+
+				<!-- Portal Navigation Links -->
+				<nav class="sidebar-portals" aria-label="Quick Portals">
+					<a href="profile.html" class="portal-btn" target="_blank" rel="noopener">
+						<i class="fas fa-user"></i>
+						<span>Profile</span>
+					</a>
+					<a href="nocode/nocode-mvc-layers.html" class="portal-btn" target="_blank" rel="noopener">
+						<i class="fas fa-sitemap"></i>
+						<span>Archify</span>
+					</a>
+					<a href="gallery.html" class="portal-btn" target="_blank" rel="noopener">
+						<i class="fas fa-images"></i>
+						<span>Gallery</span>
+					</a>
+					<a href="games.html" class="portal-btn" target="_blank" rel="noopener">
+						<i class="fas fa-gamepad"></i>
+						<span>Games</span>
+					</a>
+				</nav>
+
+				<!-- Professional Roles & Credentials -->
+				<div class="credentials-card">
+					<div class="credential-item">
+						<i class="fas fa-briefcase"></i>
+						<span><a href="https://www.uih.co.th" target="_blank" rel="noopener">Director of Professional Service</a> @ UIH</span>
+					</div>
+					<div class="credential-item">
+						<i class="fas fa-chalkboard-teacher"></i>
+						<span><a href="https://curriculum.kmitl.ac.th/major/17" target="_blank" rel="noopener">Lecturer</a> @ KMIT'L</span>
+					</div>
+					<div class="credential-item">
+						<i class="fas fa-user-graduate"></i>
+						<span><a href="https://itm.eg.mahidol.ac.th/" target="_blank" rel="noopener">PhD Candidate</a> @ Mahidol</span>
+					</div>
+				</div>
+
+				<!-- Social Links & Dark Mode Toggle -->
+				<div class="sidebar-actions">
+					<a href="https://github.com/nuboat" class="social-btn" target="_blank" rel="noopener" title="GitHub Profile" aria-label="GitHub">
+						<i class="fab fa-github"></i>
+					</a>
+					<a href="https://www.linkedin.com/in/peerapat/" class="social-btn" target="_blank" rel="noopener" title="LinkedIn Profile" aria-label="LinkedIn">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+					<a id="theme-toggle" class="theme-toggle-btn theme-toggle" title="Toggle dark/light theme" aria-label="Toggle theme">
+						<i class="fas fa-moon theme-toggle-icon"></i>
+					</a>
+				</div>
 			</div>
 		</header>
 
+		<!-- ===================================================================
+		     MAIN CONTENT AREA (#main)
+		     =================================================================== -->
 		<div id="main">
 			<section id="one">
-				<div class="row">
-					<article class="category-item">
-						<a class="category-thumb" href="agenticai.html"><img src="./images/project-with-claude.png" alt="Agentic AI"></a>
-						<div class="category-body">
-							<h3><a href="agenticai.html">Agentic AI</a></h3>
-							<p>เรื่องราวการนำ AI Agent มาใช้ในงานจริง แนวคิด เครื่องมือ และเทคนิคต่าง ๆ</p>
-						</div>
-					</article>
-					<article class="category-item">
-						<a class="category-thumb" href="coding.html"><img src="./images/aws_lambda.png" alt="Coding"></a>
-						<div class="category-body">
-							<h3><a href="coding.html">Coding</a></h3>
-							<p>บทความด้านการเขียนโปรแกรม คลาวด์ และการพัฒนาซอฟต์แวร์</p>
-						</div>
-					</article>
-					<article class="category-item">
-						<a class="category-thumb" href="english.html"><img src="./images/learn_english.png" alt="Fast English"></a>
-						<div class="category-body">
-							<h3><a href="english.html">Fast English</a></h3>
-							<p>ไวยากรณ์อังกฤษแบบกระชับ อธิบายเป็นไทย พร้อมสูตรและตัวอย่างที่เข้าใจง่าย</p>
-						</div>
-					</article>
-					<article class="category-item">
-						<a class="category-thumb" href="general.html"><img src="./images/touch-typing.png" alt="General"></a>
-						<div class="category-body">
-							<h3><a href="general.html">General</a></h3>
-							<p>บทความทั่วไป เรื่องเล่า และเกร็ดความรู้น่าสนใจอื่น ๆ</p>
-						</div>
-					</article>
+				<!-- BLUF Announcement Card -->
+				<div class="bluf-hero">
+					<div class="bluf-hero-header">
+						<span class="bluf-pill">
+							<i class="fas fa-bolt"></i> Bottom Line Up Front
+						</span>
+					</div>
+					<p>
+						This blog shares practical knowledge on <strong>Agentic AI</strong>, modern <strong>Coding</strong> practices, and fast <strong>English Grammar</strong> lessons to help developers and professionals grow.
+					</p>
 				</div>
-				<br />
+
+				<!-- Section Heading -->
+				<div class="section-heading-wrap">
+					<h2>Explore Categories</h2>
+					<p class="section-subtitle">Curated technical collections, production lessons, and practical guides</p>
+				</div>
+
+				<!-- Category Cards Grid -->
+				<div class="category-grid">
+					<!-- Category 1: Agentic AI -->
+					<a href="agenticai.html" class="cat-card">
+						<div class="cat-thumb-wrap">
+							<span class="cat-badge">AI & Automation</span>
+							<img src="./images/project-with-claude.png" alt="Agentic AI Article Collection" loading="lazy" />
+						</div>
+						<div class="cat-body">
+							<h3 class="cat-title">Agentic AI</h3>
+							<p class="cat-desc">เรื่องราวการนำ AI Agent มาใช้ในงานจริง แนวคิด เครื่องมือ และเทคนิคต่าง ๆ</p>
+							<div class="cat-footer">
+								<span>Browse Articles</span>
+								<i class="fas fa-arrow-right"></i>
+							</div>
+						</div>
+					</a>
+
+					<!-- Category 2: Coding -->
+					<a href="coding.html" class="cat-card">
+						<div class="cat-thumb-wrap">
+							<span class="cat-badge">Cloud & Dev</span>
+							<img src="./images/aws_lambda.png" alt="Coding Article Collection" loading="lazy" />
+						</div>
+						<div class="cat-body">
+							<h3 class="cat-title">Coding</h3>
+							<p class="cat-desc">บทความด้านการเขียนโปรแกรม คลาวด์ และการพัฒนาซอฟต์แวร์</p>
+							<div class="cat-footer">
+								<span>Browse Articles</span>
+								<i class="fas fa-arrow-right"></i>
+							</div>
+						</div>
+					</a>
+
+					<!-- Category 3: Fast English -->
+					<a href="english.html" class="cat-card">
+						<div class="cat-thumb-wrap">
+							<span class="cat-badge">Language & Grammar</span>
+							<img src="./images/learn_english.png" alt="Fast English Article Collection" loading="lazy" />
+						</div>
+						<div class="cat-body">
+							<h3 class="cat-title">Fast English</h3>
+							<p class="cat-desc">ไวยากรณ์อังกฤษแบบกระชับ อธิบายเป็นไทย พร้อมสูตรและตัวอย่างที่เข้าใจง่าย</p>
+							<div class="cat-footer">
+								<span>Browse Articles</span>
+								<i class="fas fa-arrow-right"></i>
+							</div>
+						</div>
+					</a>
+
+					<!-- Category 4: General -->
+					<a href="general.html" class="cat-card">
+						<div class="cat-thumb-wrap">
+							<span class="cat-badge">Stories & Insights</span>
+							<img src="./images/touch-typing.png" alt="General Topics and Articles" loading="lazy" />
+						</div>
+						<div class="cat-body">
+							<h3 class="cat-title">General</h3>
+							<p class="cat-desc">บทความทั่วไป เรื่องเล่า และเกร็ดความรู้น่าสนใจอื่น ๆ</p>
+							<div class="cat-footer">
+								<span>Browse Articles</span>
+								<i class="fas fa-arrow-right"></i>
+							</div>
+						</div>
+					</a>
+				</div>
 			</section>
 
-			<div class="inner">
-				<p class="copyright">
-					&copy; peerapat.cc
+			<!-- Site Footer -->
+			<footer class="site-footer">
+				<p class="copyright" style="margin: 0;">
+					&copy; peerapat.cc &middot; Peerapat Asoktummarungsri
 				</p>
-			</div>
-
-			<header class="major">
-				<p>
-					<strong><a id="theme-toggle" style="cursor: pointer;" class="icon solid fa-moon"><span class="label">Theme</span></a> Bottom Line Up Front:</strong> This blog shares practical knowledge on Agentic AI, modern Coding practices, and fast English Grammar lessons to help developers and professionals grow.
-				</p>
-			</header>
+				<div style="display: flex; gap: 1rem; align-items: center;">
+					<a href="profile.html">Resume</a>
+					<span>&bull;</span>
+					<a href="policy.html">Privacy</a>
+					<span>&bull;</span>
+					<a href="pub.html">Publications</a>
+				</div>
+			</footer>
 		</div>
+
+		<!-- Core JavaScript Dependencies -->
 		<script src="./assets/js/jquery.min.js"></script>
 		<script src="./assets/js/jquery.poptrox.min.js"></script>
 		<script src="./assets/js/browser.min.js"></script>
@@ -110,30 +835,39 @@
 		<script src="./assets/js/util.js"></script>
 		<script src="./assets/js/main.js"></script>
 		<script src="./assets/js/cookie-consent.js"></script>
-			<script>
-			// Theme toggle logic
-			const themeToggle = document.getElementById('theme-toggle');
-			if (themeToggle) {
-				// Update icon based on current theme
-				const updateIcon = () => {
-					if (document.documentElement.getAttribute('data-theme') === 'dark') {
-						themeToggle.classList.remove('fa-moon');
-						themeToggle.classList.add('fa-sun');
-					} else {
-						themeToggle.classList.remove('fa-sun');
-						themeToggle.classList.add('fa-moon');
-					}
-				};
-				updateIcon();
 
-				themeToggle.addEventListener('click', () => {
-					const currentTheme = document.documentElement.getAttribute('data-theme');
-					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-					document.documentElement.setAttribute('data-theme', newTheme);
-					localStorage.setItem('theme', newTheme);
-					updateIcon();
+		<!-- Theme Toggle Logic Script -->
+		<script>
+			(function() {
+				const themeToggles = document.querySelectorAll('.theme-toggle');
+
+				function updateIcons() {
+					const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+					document.querySelectorAll('.theme-toggle-icon').forEach(icon => {
+						if (isDark) {
+							icon.classList.remove('fa-moon');
+							icon.classList.add('fa-sun');
+						} else {
+							icon.classList.remove('fa-sun');
+							icon.classList.add('fa-moon');
+						}
+					});
+				}
+
+				// Sync icon on initial load
+				updateIcons();
+
+				themeToggles.forEach(btn => {
+					btn.addEventListener('click', (e) => {
+						e.preventDefault();
+						const currentTheme = document.documentElement.getAttribute('data-theme');
+						const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+						document.documentElement.setAttribute('data-theme', newTheme);
+						localStorage.setItem('theme', newTheme);
+						updateIcons();
+					});
 				});
-			}
+			})();
 		</script>
 	</body>
 </html>
