@@ -1,15 +1,33 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>Peerapat A - Coding</title>
+		<title>Peerapat A - Coding &amp; Cloud Solutions</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="บทความด้านการเขียนโปรแกรมและคลาวด์" />
+		<meta name="description" content="บทความด้านการเขียนโปรแกรม คลาวด์ และสถาปัตยกรรมซอฟต์แวร์: AWS Lambda ด้วยภาษา Java, EC2 Instance Savings Plans และแนวทางปฏิบัติระดับ Production" />
+		<meta name="keywords" content="Coding, Software Engineering, AWS Lambda, Java, Cloud Computing, EC2 Savings Plans, Microservices, Peerapat Asoktummarungsri" />
+		<link rel="canonical" href="https://www.peerapat.cc/coding.html" />
+		<meta name="author" content="Peerapat A" />
+
+		<!-- Open Graph / Social Media -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Peerapat A - Coding &amp; Cloud Solutions" />
+		<meta property="og:description" content="บทความด้านการเขียนโปรแกรม คลาวด์ และสถาปัตยกรรมซอฟต์แวร์: AWS Lambda ด้วยภาษา Java, EC2 Instance Savings Plans" />
+		<meta property="og:url" content="https://www.peerapat.cc/coding.html" />
+		<meta property="og:image" content="https://www.peerapat.cc/images/cat-coding.jpg" />
+
+		<!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Peerapat A - Coding &amp; Cloud Solutions" />
+		<meta name="twitter:description" content="บทความด้านการเขียนโปรแกรม คลาวด์ และสถาปัตยกรรมซอฟต์แวร์: AWS Lambda ด้วยภาษา Java, EC2 Instance Savings Plans" />
+		<meta name="twitter:image" content="https://www.peerapat.cc/images/cat-coding.jpg" />
+
 		<link rel="stylesheet" href="./assets/css/main.css" />
 		<link rel="stylesheet" href="./assets/css/ci.css" />
 		<link rel="stylesheet" href="./assets/css/cookie-consent.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-		<meta name="author" content="Peerapat A" />
+
+		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
@@ -20,7 +38,7 @@
 			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
-			<script>
+		<script>
 			// Dark mode init
 			const savedTheme = localStorage.getItem('theme');
 			if (savedTheme) {
@@ -29,17 +47,357 @@
 				document.documentElement.setAttribute('data-theme', 'dark');
 			}
 		</script>
+
+		<style>
+			/* Global Smooth Scrolling & Focus Ring */
+			html {
+				scroll-behavior: smooth;
+			}
+			:focus-visible {
+				outline: 2px solid var(--ci-cyan, #05ACE1);
+				outline-offset: 3px;
+			}
+
+			/* ------------------ Sidebar (#header) Enhancements ------------------ */
+			#header {
+				width: 30%;
+				max-width: 420px;
+				padding: 3rem 2.5rem 2.5rem;
+				overflow-y: auto;
+				overflow-x: hidden;
+				display: flex;
+				flex-direction: column;
+				justify-content: flex-start;
+				align-items: center;
+				scrollbar-width: thin;
+				scrollbar-color: rgba(5, 172, 225, 0.3) transparent;
+			}
+			#header::-webkit-scrollbar {
+				width: 4px;
+			}
+			#header::-webkit-scrollbar-thumb {
+				background: rgba(5, 172, 225, 0.3);
+				border-radius: 4px;
+			}
+
+			#header > .inner {
+				width: 100%;
+				max-width: 340px;
+				margin: 0 auto;
+				text-align: center;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			/* Sidebar Title, Badge, Description */
+			.sidebar-title {
+				font-family: var(--ci-display, "Space Grotesk", sans-serif);
+				font-size: 1.85em;
+				font-weight: 700;
+				color: #ffffff !important;
+				margin: 0 0 0.4rem 0;
+				letter-spacing: -0.01em;
+				line-height: 1.2;
+			}
+			.sidebar-badge {
+				font-size: 0.8em;
+				line-height: 1.4;
+				color: var(--ci-sand, #F7D88E);
+				font-weight: 600;
+				background: rgba(247, 216, 142, 0.1);
+				padding: 0.35rem 0.85rem;
+				border-radius: 99px;
+				border: 1px solid rgba(247, 216, 142, 0.25);
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				margin-bottom: 0.85rem;
+			}
+			.sidebar-desc {
+				font-size: 0.88em;
+				line-height: 1.55;
+				color: rgba(255, 255, 255, 0.78);
+				margin: 0 0 1.25rem 0;
+				text-align: center;
+			}
+
+			/* Left Sidebar BLUF Card */
+			.sidebar-bluf {
+				width: 100%;
+				background: rgba(0, 20, 45, 0.45);
+				border: 1px solid rgba(5, 172, 225, 0.25);
+				border-left: 3px solid var(--ci-cyan, #05ACE1);
+				border-radius: 12px;
+				padding: 0.85rem 1rem;
+				margin-bottom: 1.25rem;
+				text-align: left;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+				backdrop-filter: blur(8px);
+			}
+			.sidebar-bluf-title {
+				display: flex;
+				align-items: center;
+				gap: 0.45rem;
+				font-size: 0.76em;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: var(--ci-cyan, #05ACE1);
+				margin-bottom: 0.45rem;
+			}
+			.sidebar-bluf p {
+				margin: 0;
+				font-size: 0.86em;
+				line-height: 1.6;
+				color: rgba(255, 255, 255, 0.88);
+			}
+			.sidebar-bluf p strong {
+				color: #ffffff;
+			}
+
+			/* Navigation Cards Grid */
+			.sidebar-portals {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 0.65rem;
+				width: 100%;
+				margin: 0 0 1.25rem;
+			}
+			.portal-btn {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+				padding: 0.65rem 0.75rem;
+				background: rgba(255, 255, 255, 0.07);
+				border: 1px solid rgba(255, 255, 255, 0.12);
+				border-radius: 12px;
+				color: #ffffff !important;
+				font-size: 0.85em;
+				font-weight: 600;
+				text-decoration: none !important;
+				transition: all 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+				backdrop-filter: blur(8px);
+			}
+			.portal-btn i {
+				font-size: 1.05em;
+				color: var(--ci-cyan, #05ACE1);
+				transition: transform 0.25s ease;
+			}
+			.portal-btn:hover {
+				background: rgba(5, 172, 225, 0.2);
+				border-color: var(--ci-cyan, #05ACE1);
+				color: #ffffff !important;
+				transform: translateY(-2px);
+				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+			}
+			.portal-btn:hover i {
+				transform: scale(1.15);
+			}
+
+			/* Social Links & Theme Button Row */
+			.sidebar-actions {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.75rem;
+				width: 100%;
+				margin-top: 0.25rem;
+			}
+			.social-btn {
+				width: 40px;
+				height: 40px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 50%;
+				background: rgba(255, 255, 255, 0.08);
+				border: 1px solid rgba(255, 255, 255, 0.15);
+				color: #ffffff !important;
+				font-size: 1.1em;
+				text-decoration: none !important;
+				transition: all 0.25s ease;
+			}
+			.social-btn:hover {
+				background: var(--ci-cyan, #05ACE1);
+				color: #00162e !important;
+				border-color: var(--ci-cyan, #05ACE1);
+				transform: translateY(-2px);
+				box-shadow: 0 6px 16px rgba(5, 172, 225, 0.4);
+			}
+			.theme-toggle-btn {
+				width: 40px;
+				height: 40px;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				border-radius: 50%;
+				background: rgba(247, 216, 142, 0.15);
+				border: 1px solid rgba(247, 216, 142, 0.3);
+				color: var(--ci-sand, #F7D88E) !important;
+				font-size: 1.05em;
+				cursor: pointer;
+				text-decoration: none !important;
+				transition: all 0.25s ease;
+			}
+			.theme-toggle-btn:hover {
+				background: var(--ci-sand, #F7D88E);
+				color: #00162e !important;
+				transform: rotate(15deg) translateY(-2px);
+			}
+
+			/* ------------------ Main Content Area (#main) ------------------ */
+			#main {
+				margin-left: 30%;
+				width: calc(100% - 30%);
+				padding: 3.5rem 4rem 4rem;
+				min-height: 100vh;
+				box-sizing: border-box;
+				background: var(--ci-canvas);
+			}
+
+			/* Page Footer */
+			.site-footer {
+				margin-top: 3rem;
+				padding-top: 1.5rem;
+				border-top: 1px solid var(--ci-line);
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				flex-wrap: wrap;
+				gap: 1rem;
+				font-size: 0.85em;
+				color: var(--ci-muted);
+			}
+			.site-footer a {
+				color: var(--ci-muted);
+				text-decoration: none;
+			}
+			.site-footer a:hover {
+				color: var(--ci-cyan);
+			}
+
+			/* Responsive Breakpoints */
+			@media screen and (max-width: 980px) {
+				#header {
+					position: relative;
+					width: 100%;
+					max-width: 100%;
+					height: auto;
+					padding: 2.25rem 1.5rem 1.75rem;
+					box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+				}
+				#header::after {
+					top: auto;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					width: 100%;
+					height: 3px;
+					background: linear-gradient(90deg, var(--ci-cyan), var(--ci-green), var(--ci-sage), var(--ci-sand), var(--ci-red));
+				}
+				#header > .inner {
+					max-width: 580px;
+				}
+				.sidebar-portals {
+					grid-template-columns: repeat(4, 1fr);
+					gap: 0.5rem;
+				}
+				#main {
+					margin: 0;
+					width: 100%;
+					padding: 2.5rem 1.75rem 3rem;
+				}
+			}
+
+			@media screen and (max-width: 640px) {
+				#header {
+					padding: 1.75rem 1.2rem 1.5rem;
+				}
+				.sidebar-title {
+					font-size: 1.5em;
+				}
+				.sidebar-badge {
+					font-size: 0.75em;
+					padding: 0.25rem 0.65rem;
+				}
+				.sidebar-portals {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 0.5rem;
+				}
+				.portal-btn {
+					padding: 0.55rem 0.5rem;
+					font-size: 0.82em;
+				}
+				#main {
+					padding: 1.75rem 1.15rem 2.5rem;
+				}
+				.site-footer {
+					flex-direction: column;
+					text-align: center;
+					gap: 0.5rem;
+				}
+			}
+
+			@media (prefers-reduced-motion: reduce) {
+				.work-item, .portal-btn, .theme-toggle-btn, .social-btn {
+					animation: none !important;
+					transition: none !important;
+				}
+			}
+		</style>
 	</head>
 	<body class="is-preload page-blog">
 
+		<!-- ===================================================================
+		     SIDEBAR / MOBILE TOP BAR (#header)
+		     =================================================================== -->
+		<header id="header">
+			<div class="inner">
+				<!-- Topic Badge -->
+				<div class="sidebar-badge">
+					<i class="fas fa-code"></i> Cloud &amp; Dev
+				</div>
+
+				<!-- Tagline / Subtitle -->
+				<p class="sidebar-desc">
+					
+				</p>
+
+				<!-- Bottom Line Up Front (BLUF / BULF) -->
+				<div>
+					<p>
+						รวบรวมบทความด้านการเขียนโปรแกรม การพัฒนาซอฟต์แวร์ และคลาวด์ (<strong>AWS</strong>) เพื่อยกระดับทักษะและการตัดสินใจทางเทคนิคของนักพัฒนา
+					</p>
+				</div>
+
+				<!-- Social Links & Dark Mode Toggle -->
+				<div class="sidebar-actions">
+					<a href="./index.html" class="social-btn" rel="noopener" title="Peerapat A" aria-label="Peerapat">
+						<i class="fas fa-home"></i>
+					</a>
+					<a href="https://github.com/nuboat" class="social-btn" target="_blank" rel="noopener" title="GitHub Profile" aria-label="GitHub">
+						<i class="fab fa-github"></i>
+					</a>
+					<a href="https://www.linkedin.com/in/peerapat/" class="social-btn" target="_blank" rel="noopener" title="LinkedIn Profile" aria-label="LinkedIn">
+						<i class="fab fa-linkedin-in"></i>
+					</a>
+					<a href="mailto:nuboat@gmail.com" class="social-btn" title="Email" aria-label="Email">
+						<i class="fas fa-envelope"></i>
+					</a>
+					<a id="theme-toggle" class="theme-toggle-btn theme-toggle" title="Toggle dark/light theme" aria-label="Toggle theme">
+						<i class="fas fa-moon theme-toggle-icon"></i>
+					</a>
+				</div>
+			</div>
+		</header>
+
+		<!-- ===================================================================
+		     MAIN CONTENT AREA (#main)
+		     =================================================================== -->
 		<div id="main">
 			<section id="one">
-				<header class="major">
-					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon"></a>
-
-					<h1><a href="index.html"><i class="fas fa-home"></i></a> > Coding</h1>
-				</header>
-
 				<div class="row">
 					<article class="col-6 col-12-xsmall work-item">
 						<span class="image fit thumb"><img src="./images/coding-aws-lambda-java.jpg" alt="พัฒนา AWS Lambda Web Services ด้วยภาษา Java"></span>
@@ -52,16 +410,26 @@
 						<p>ลดค่า EC2 ได้ถึง 40–60% โดยไม่ต้องแก้โค้ดแม้แต่บรรทัดเดียว คู่มือปฏิบัติสำหรับ EC2 Instance Savings Plans — หลักการทำงาน วิธีกำหนดจำนวน Credit Commitment อย่างปลอดภัย</p>
 					</article>
 				</div>
-				<br />
-				<p><strong>สรุปประเด็นสำคัญ (BLUF):</strong> รวบรวมบทความด้านการเขียนโปรแกรม การพัฒนาซอฟต์แวร์ และคลาวด์ (AWS) เพื่อยกระดับทักษะการทำงานของนักพัฒนา</p>
 			</section>
 
-			<div class="inner">
-				<p class="copyright">
+			<!-- Site Footer -->
+			<footer class="site-footer">
+				<p style="margin: 0;">
 					&copy; 2021 - 2026, Peerapat Asoktummarungsri
 				</p>
-			</div>
+				<div style="display: flex; gap: 1rem; align-items: center;">
+					<a href="index.html">Home</a>
+					<span>&bull;</span>
+					<a href="profile.html">Resume</a>
+					<span>&bull;</span>
+					<a href="policy.html">Privacy</a>
+					<span>&bull;</span>
+					<a href="pub.html">Publications</a>
+				</div>
+			</footer>
 		</div>
+
+		<!-- Core JavaScript Dependencies -->
 		<script src="./assets/js/jquery.min.js"></script>
 		<script src="./assets/js/jquery.poptrox.min.js"></script>
 		<script src="./assets/js/browser.min.js"></script>
@@ -69,30 +437,38 @@
 		<script src="./assets/js/util.js"></script>
 		<script src="./assets/js/main.js"></script>
 		<script src="./assets/js/cookie-consent.js"></script>
-			<script>
-			// Theme toggle logic
-			const themeToggle = document.getElementById('theme-toggle');
-			if (themeToggle) {
-				// Update icon based on current theme
-				const updateIcon = () => {
-					if (document.documentElement.getAttribute('data-theme') === 'dark') {
-						themeToggle.classList.remove('fa-moon');
-						themeToggle.classList.add('fa-sun');
-					} else {
-						themeToggle.classList.remove('fa-sun');
-						themeToggle.classList.add('fa-moon');
-					}
-				};
-				updateIcon();
 
-				themeToggle.addEventListener('click', () => {
-					const currentTheme = document.documentElement.getAttribute('data-theme');
-					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-					document.documentElement.setAttribute('data-theme', newTheme);
-					localStorage.setItem('theme', newTheme);
-					updateIcon();
+		<!-- Theme Toggle Logic Script -->
+		<script>
+			(function() {
+				const themeToggles = document.querySelectorAll('.theme-toggle');
+				const updateIcons = (theme) => {
+					const isDark = theme === 'dark';
+					themeToggles.forEach(btn => {
+						const icon = btn.querySelector('.theme-toggle-icon') || btn;
+						if (isDark) {
+							icon.classList.remove('fa-moon');
+							icon.classList.add('fa-sun');
+						} else {
+							icon.classList.remove('fa-sun');
+							icon.classList.add('fa-moon');
+						}
+					});
+				};
+
+				const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+				updateIcons(currentTheme);
+
+				themeToggles.forEach(btn => {
+					btn.addEventListener('click', (e) => {
+						e.preventDefault();
+						const activeTheme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+						document.documentElement.setAttribute('data-theme', activeTheme);
+						localStorage.setItem('theme', activeTheme);
+						updateIcons(activeTheme);
+					});
 				});
-			}
+			})();
 		</script>
 	</body>
 </html>
