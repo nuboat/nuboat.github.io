@@ -14,13 +14,13 @@
 		<meta property="og:title" content="Peerapat A - Software Engineer & Technical Blog" />
 		<meta property="og:description" content="Personal blog and portfolio of Peerapat A — Agentic AI, Modern Coding, and Technical Insights." />
 		<meta property="og:url" content="https://www.peerapat.cc/" />
-		<meta property="og:image" content="https://www.peerapat.cc/images/avatar.png" />
+		<meta property="og:image" content="https://www.peerapat.cc/images/cat-agentic-ai.jpg" />
 
 		<!-- Twitter Cards -->
-		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content="Peerapat A - Software Engineer & Technical Blog" />
 		<meta name="twitter:description" content="Personal blog and portfolio of Peerapat A — Agentic AI, Modern Coding, and Technical Insights." />
-		<meta name="twitter:image" content="https://www.peerapat.cc/images/avatar.png" />
+		<meta name="twitter:image" content="https://www.peerapat.cc/images/cat-agentic-ai.jpg" />
 
 		<link rel="stylesheet" href="./assets/css/main.css" />
 		<link rel="stylesheet" href="./assets/css/ci.css" />
@@ -125,25 +125,38 @@
 				align-items: center;
 			}
 
-			/* Avatar Container with Glow & Gradient Ring */
-			.profile-avatar-wrap {
-				position: relative;
+			/* Left Sidebar BLUF Card */
+			.sidebar-bluf {
+				width: 100%;
+				background: rgba(0, 20, 45, 0.45);
+				border: 1px solid rgba(5, 172, 225, 0.25);
+				border-left: 3px solid var(--ci-cyan, #05ACE1);
+				border-radius: 12px;
+				padding: 0.85rem 1rem;
 				margin-bottom: 1.25rem;
-				display: inline-block;
+				text-align: left;
+				box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+				backdrop-filter: blur(8px);
 			}
-			.profile-avatar {
-				width: 140px;
-				height: 140px;
-				border-radius: 28px;
-				object-fit: cover;
-				display: block;
-				box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
-				border: 2px solid rgba(255, 255, 255, 0.2);
-				transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.4s ease;
+			.sidebar-bluf-title {
+				display: flex;
+				align-items: center;
+				gap: 0.45rem;
+				font-size: 0.76em;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.05em;
+				color: var(--ci-cyan, #05ACE1);
+				margin-bottom: 0.45rem;
 			}
-			.profile-avatar:hover {
-				transform: translateY(-4px) scale(1.02);
-				box-shadow: 0 16px 40px rgba(5, 172, 225, 0.35);
+			.sidebar-bluf p {
+				margin: 0;
+				font-size: 0.86em;
+				line-height: 1.6;
+				color: rgba(255, 255, 255, 0.88);
+			}
+			.sidebar-bluf p strong {
+				color: #ffffff;
 			}
 
 			/* Name & Slogan */
@@ -303,58 +316,6 @@
 				min-height: 100vh;
 				box-sizing: border-box;
 				background: var(--ci-canvas);
-			}
-
-			/* BLUF Hero Announcement Banner */
-			.bluf-hero {
-				background: var(--ci-paper);
-				border: 1px solid var(--ci-line);
-				border-radius: 18px;
-				padding: 1.5rem 1.8rem;
-				margin-bottom: 2.75rem;
-				box-shadow: var(--ci-shadow);
-				position: relative;
-				overflow: hidden;
-			}
-			.bluf-hero::before {
-				content: "";
-				position: absolute;
-				top: 0;
-				left: 0;
-				bottom: 0;
-				width: 5px;
-				background: linear-gradient(180deg, var(--ci-cyan), var(--ci-blue));
-			}
-			.bluf-hero-header {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				gap: 1rem;
-				margin-bottom: 0.65rem;
-			}
-			.bluf-pill {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.45rem;
-				background: rgba(5, 172, 225, 0.1);
-				color: var(--ci-blue);
-				font-size: 0.78em;
-				font-weight: 700;
-				text-transform: uppercase;
-				letter-spacing: 0.05em;
-				padding: 0.3rem 0.75rem;
-				border-radius: 99px;
-				border: 1px solid rgba(5, 172, 225, 0.25);
-			}
-			[data-theme="dark"] .bluf-pill {
-				color: var(--ci-cyan);
-				background: rgba(5, 172, 225, 0.15);
-			}
-			.bluf-hero p {
-				margin: 0;
-				font-size: 1.05em;
-				line-height: 1.65;
-				color: var(--ci-ink);
 			}
 
 			/* Section Title */
@@ -543,11 +504,6 @@
 				#header > .inner {
 					max-width: 580px;
 				}
-				.profile-avatar {
-					width: 110px;
-					height: 110px;
-					border-radius: 24px;
-				}
 				.sidebar-portals {
 					grid-template-columns: repeat(4, 1fr);
 					gap: 0.5rem;
@@ -557,10 +513,6 @@
 					margin: 0;
 					width: 100%;
 					padding: 2.5rem 1.75rem 3rem;
-				}
-				.bluf-hero {
-					padding: 1.25rem 1.4rem;
-					margin-bottom: 2rem;
 				}
 				.category-grid {
 					grid-template-columns: repeat(2, 1fr);
@@ -572,11 +524,6 @@
 			@media screen and (max-width: 640px) {
 				#header {
 					padding: 1.75rem 1.2rem 1.5rem;
-				}
-				.profile-avatar {
-					width: 90px;
-					height: 90px;
-					border-radius: 20px;
 				}
 				.profile-name {
 					font-size: 1.35em;
@@ -602,13 +549,6 @@
 
 				#main {
 					padding: 1.75rem 1.15rem 2.5rem;
-				}
-				.bluf-hero {
-					padding: 1.15rem 1.2rem;
-					border-radius: 14px;
-				}
-				.bluf-hero p {
-					font-size: 0.95em;
 				}
 				.section-heading-wrap h2 {
 					font-size: 1.4em;
@@ -644,7 +584,7 @@
 			.cat-card:nth-child(4) { animation-delay: 0.26s; }
 
 			@media (prefers-reduced-motion: reduce) {
-				.cat-card, .profile-avatar, .portal-btn {
+				.cat-card, .portal-btn {
 					animation: none !important;
 					transition: none !important;
 				}
@@ -659,13 +599,18 @@
 		     =================================================================== -->
 		<header id="header">
 			<div class="inner">
-				<!-- Avatar -->
-				<div class="profile-avatar-wrap">
-					<img src="images/avatar.png" alt="Peerapat A - Profile Avatar" class="profile-avatar" width="140" height="140" />
+
+				<!-- Bottom Line Up Front (BLUF) -->
+				<div class="credentials-card">
+					<div class="sidebar-bluf-title">
+						<i class="fas fa-bolt"></i> Bottom Line Up Front
+					</div>
+					<p>
+						This blog shares practical knowledge on <strong>Agentic AI</strong>, modern <strong>Coding</strong> practices, and fast <strong>English Grammar</strong> lessons to help developers and professionals grow.
+					</p>
 				</div>
 
 				<!-- Identity -->
-				<h1 class="profile-name">Peerapat A</h1>
 				<div class="profile-slogan">
 					<i class="fas fa-sparkles"></i> Trust me, I'm a Software Engineer by AI
 				</div>
@@ -674,7 +619,7 @@
 				<nav class="sidebar-portals" aria-label="Quick Portals">
 					<a href="profile.html" class="portal-btn" target="_blank" rel="noopener">
 						<i class="fas fa-user"></i>
-						<span>Profile</span>
+						<span>Peerapat A</span>
 					</a>
 					<a href="nocode/nocode-mvc-layers.html" class="portal-btn" target="_blank" rel="noopener">
 						<i class="fas fa-sitemap"></i>
@@ -726,18 +671,6 @@
 		     =================================================================== -->
 		<div id="main">
 			<section id="one">
-				<!-- BLUF Announcement Card -->
-				<div class="bluf-hero">
-					<div class="bluf-hero-header">
-						<span class="bluf-pill">
-							<i class="fas fa-bolt"></i> Bottom Line Up Front
-						</span>
-					</div>
-					<p>
-						This blog shares practical knowledge on <strong>Agentic AI</strong>, modern <strong>Coding</strong> practices, and fast <strong>English Grammar</strong> lessons to help developers and professionals grow.
-					</p>
-				</div>
-
 				<!-- Section Heading -->
 				<div class="section-heading-wrap">
 					<h2>Explore Categories</h2>
@@ -814,8 +747,8 @@
 
 			<!-- Site Footer -->
 			<footer class="site-footer">
-				<p class="copyright" style="margin: 0;">
-					&copy; peerapat.cc &middot; Peerapat Asoktummarungsri
+				<p style="margin: 0;">
+					&copy; 2026, Peerapat Asoktummarungsri
 				</p>
 				<div style="display: flex; gap: 1rem; align-items: center;">
 					<a href="profile.html">Resume</a>
