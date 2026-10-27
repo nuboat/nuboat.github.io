@@ -1,0 +1,791 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - Academic Research: Literature Review in Introduction vs. Chapter 2</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Why citing literature in the Introduction is mandatory in academic research. Explore Swales' CARS Model, the Inverted Funnel structure, and key differences between Intro citations and Chapter 2 literature review." />
+		<meta name="keywords" content="Academic Research, Literature Review, Introduction, Thesis Writing, Swales CARS Model, Research Gap, Establish the Territory, Theoretical Grounding, State-of-the-Art, Dissertation Chapter 2" />
+		<link rel="canonical" href="https://www.peerapat.cc/general/research.html" />
+		<meta name="author" content="Peerapat A" />
+
+		<!-- Open Graph / Social Media -->
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Literature Review in Introduction vs. Chapter 2: The Scholarly Guide" />
+		<meta property="og:description" content="Learn why citing literature in your thesis or paper Introduction is essential, how to identify research gaps using Swales' CARS model, and how it differs from Chapter 2." />
+		<meta property="og:url" content="https://www.peerapat.cc/general/research.html" />
+		<meta property="og:image" content="https://www.peerapat.cc/images/cat-general.jpg" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Literature Review in Introduction vs. Chapter 2: The Scholarly Guide" />
+		<meta name="twitter:description" content="Master academic Introduction writing: CARS Model, Inverted Funnel, Research Gaps, and Chapter 2 differences." />
+		<meta name="twitter:image" content="https://www.peerapat.cc/images/cat-general.jpg" />
+
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/ci.css" />
+		<link rel="stylesheet" href="../assets/css/cookie-consent.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('consent', 'default', { analytics_storage: 'denied' });
+			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
+			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
+			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
+		</script>
+
+		<style>
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			.table-wrapper table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 1.5em 0;
+			}
+			.table-wrapper th, .table-wrapper td {
+				padding: 0.85em 1em;
+				border: 1px solid var(--ci-line);
+				vertical-align: top;
+			}
+			.table-wrapper th {
+				background: var(--ci-canvas);
+				font-weight: 600;
+				color: var(--ci-headline);
+			}
+
+			.callout-box {
+				background: var(--ci-canvas);
+				border-left: 4px solid var(--ci-cyan);
+				padding: 1.2rem 1.4rem;
+				border-radius: 0 8px 8px 0;
+				margin: 1.5rem 0;
+			}
+
+			.callout-box p {
+				margin: 0;
+			}
+
+			/* On smaller screens where the layout collapses to a single column, revert to horizontal layout */
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+		</style>
+
+		<script>
+			// Dark mode init
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
+	</head>
+
+	<body class="is-preload">
+
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon" aria-label="Toggle dark/light mode"></a>
+
+					<h1>Literature Review in Introduction vs. Chapter 2</h1>
+					<p><a href="../general.html">General</a> > <em>October 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp;</em></p>
+				</header>
+
+				<!-- Language Switcher -->
+				<div class="lang-switcher">
+					<a href="#lang-en" class="lang-icon active" title="English">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+
+					<a href="#lang-th" class="lang-icon" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					
+					<a href="#lang-zh" class="lang-icon" title="中文">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					
+					<a href="#lang-ja" class="lang-icon" title="日本語">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+					
+					<a href="#lang-de" class="lang-icon" title="Deutsch">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
+
+				<!-- ===================================================================
+				     1. ENGLISH SECTION (Default)
+				     =================================================================== -->
+				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
+					<h2>Literature Review in Introduction vs. Chapter 2: The Scholarly Blueprint</h2>
+					
+					<div class="callout-box">
+						<p><strong>Bottom Line Up Front (BLUF):</strong> Citing literature in an academic Introduction is not merely recommended—it is a non-negotiable mandatory requirement under international scientific standards (such as the Inverted Funnel Model and Swales’ CARS Model). In the Introduction, literature is cited selectively to justify the research gap and lead directly to the research question; in Chapter 2, literature is reviewed exhaustively to synthesize theory, methodology, and empirical evidence.</p>
+					</div>
+
+					<p>One of the most persistent dilemmas faced by graduate researchers, PhD candidates, and academic writers is whether literature should be cited within the Introduction (Chapter 1) or strictly reserved for the comprehensive Literature Review (Chapter 2). The definitive academic consensus is unequivocal: <strong>literature citations in the Introduction are strictly essential</strong>.</p>
+					
+					<p>An Introduction written entirely without scholarly citations reads as unsubstantiated opinion. Without anchoring in peer-reviewed literature, a researcher cannot establish that the investigated problem is empirically grounded, scientifically urgent, or recognized by the broader academic community.</p>
+
+					<h3>Four Core Objectives of Citing Literature in the Introduction</h3>
+					<p>Literature citations in the Introduction serve distinct rhetorical and structural functions that differ fundamentally from the detailed survey conducted in Chapter 2:</p>
+					<ul>
+						<li><strong>1. Establish the Territory:</strong> Demonstrates to reviewers and readers that the research domain is vital, relevant, and active. Grounding the topic in seminal studies confirms that the problem is real and matters in contemporary academia, rather than being an idiosyncratic assertion.</li>
+						<li><strong>2. Identify the Research Gap:</strong> Highlights the critical blind spot in current scholarship. Even when a topic has been widely studied, previous literature may have overlooked specific variables, produced conflicting findings, used outdated methodologies, or investigated distinct contexts (e.g., international studies whose findings do not translate to local or emerging markets). Pinpointing this gap establishes the absolute necessity and legitimacy of your investigation.</li>
+						<li><strong>3. State the Theoretical Grounding:</strong> Introduces the core theoretical lens, foundational models, and primary definitions concisely. It prepares the reader to comprehend the conceptual paradigm through which the problem is analyzed.</li>
+						<li><strong>4. Establish Scholarly Credibility:</strong> Reflects that the researcher possesses deep command of the latest State-of-the-Art developments, academic debates, and authoritative works in the discipline.</li>
+					</ul>
+
+					<h3>Structural Framework: Swales’ CARS Model &amp; The Inverted Funnel</h3>
+					<p>In international academic writing, John Swales’ seminal <strong>CARS Model (Create a Research Space)</strong> outlines three systematic rhetorical moves required in every high-impact Introduction:</p>
+					<ol>
+						<li><strong>Move 1: Establishing a Territory</strong> — Authors claim centrality, review items of previous research, and emphasize the topic’s significance.</li>
+						<li><strong>Move 2: Establishing a Niche</strong> — Authors counter-claim, indicate a knowledge gap, raise unanswered questions, or extend a prior tradition. Citing literature here proves that current studies have not yet resolved the problem.</li>
+						<li><strong>Move 3: Occupying the Niche</strong> — Authors announce the present study, outline its specific aims and research questions, state its value, and foreshadow key structural sections.</li>
+					</ol>
+					<p>This operates alongside the classic <strong>Inverted Funnel Model</strong>: beginning broadly with macro-level context and citations, narrowing down systematically to the specific research gap, and concluding precisely with your research questions and hypotheses.</p>
+
+					<h3>Comparison: Literature in "Introduction" vs. "Chapter 2"</h3>
+					<p>To prevent redundancy while maintaining scholarly rigor, understand the distinct division of labor between the two sections:</p>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Dimension</th>
+									<th>Literature in Introduction (Chapter 1)</th>
+									<th>Literature in Literature Review (Chapter 2)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Primary Role</strong></td>
+									<td>Frames the problem, identifies the <strong>Research Gap</strong>, and justifies the validity of the research question.</td>
+									<td>Provides an <strong>exhaustive deep dive</strong> to build conceptual frameworks, evaluate methodologies, and compare findings.</td>
+								</tr>
+								<tr>
+									<td><strong>Writing Scope</strong></td>
+									<td>Selective and concise; focuses only on key, landmark, and seminal papers directly leading to the gap.</td>
+									<td>Comprehensive and thorough; evaluates historical trajectories, competing theories, and empirical evidence across themes.</td>
+								</tr>
+								<tr>
+									<td><strong>Presentation Weight</strong></td>
+									<td>Presents the macro perspective, highlights the friction/gap, and transitions immediately to research objectives.</td>
+									<td>Synthesizes, critically evaluates, and categorizes studies into thematic constructs, variables, or chronological paradigms.</td>
+								</tr>
+								<tr>
+									<td><strong>Citation Density</strong></td>
+									<td>Moderate (typically 5–15 high-impact citations per introductory section).</td>
+									<td>High (often 50–150+ comprehensive references across all sub-disciplines).</td>
+								</tr>
+								<tr>
+									<td><strong>Reader's Takeaway</strong></td>
+									<td><em>"Why does this study need to be conducted right now?"</em></td>
+									<td><em>"What is the totality of knowledge that informs this study's design and findings?"</em></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="callout-box">
+						<p><strong>Core Rule of Thumb:</strong> <em>"In the Introduction, cite only what is strictly necessary to lead up to the research question. In Chapter 2, unfold the comprehensive landscape of answers, theoretical foundations, and empirical methodologies."</em></p>
+					</div>
+
+					<h3>Common Pitfalls to Avoid</h3>
+					<ul>
+						<li><strong>Ghost Claims:</strong> Writing statements like <em>"Studies show that AI adoption fails in 70% of enterprises"</em> without providing authoritative citations. Every empirical assertion in an Introduction must be referenced.</li>
+						<li><strong>The Literature Dump:</strong> Pasting exhaustive study-by-study summaries into the Introduction, converting Chapter 1 into an accidental Chapter 2 and obscuring the research question.</li>
+						<li><strong>Outdated Benchmarks:</strong> Failing to cite recent State-of-the-Art literature (within the past 2–3 years), giving reviewers the impression that the research problem has already been addressed or is obsolete.</li>
+						<li><strong>The Disconnected Gap:</strong> Identifying a research gap in the literature that does not align with your stated research questions and proposed methodology.</li>
+					</ul>
+
+					<h3>Frequently Asked Questions (FAQ)</h3>
+					<h4>Q1: Can I cite the same papers in both the Introduction and Chapter 2?</h4>
+					<p>Yes, absolutely. Landmark and seminal papers that establish the research gap in Chapter 1 will naturally appear in Chapter 2, where their methodologies, theoretical models, and nuanced findings are examined in far greater depth.</p>
+
+					<h4>Q2: How many citations belong in a thesis Introduction?</h4>
+					<p>While requirements vary by discipline, a typical empirical paper or thesis Introduction contains between 8 and 20 targeted citations. The priority is conceptual alignment and authority over raw quantity.</p>
+
+					<h4>Q3: What if no previous literature exists on my exact topic?</h4>
+					<p>Cite analog or adjacent domains. Frame the territory around broader industry trends or parallel technologies, and use the absence of direct scholarship as your primary justification for the study.</p>
+				</div>
+
+				<!-- ===================================================================
+				     2. THAI SECTION
+				     =================================================================== -->
+				<div id="lang-th" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>การอ้างอิงวรรณกรรมในบทนำ (Introduction) vs. การทบทวนวรรณกรรมฉบับเต็ม (บทที่ 2)</h2>
+					
+					<div class="callout-box">
+						<p><strong>สรุปประเด็นสำคัญ (BLUF):</strong> การอ้างอิงวรรณกรรมในบทนำ (Introduction) <strong>ควรอย่างยิ่ง</strong> และในทางวิชาการถือเป็นองค์ประกอบไฟลท์บังคับของการเขียนบทนำตามโครงสร้างสากล (เช่น โมเดลทรงกรวยคว่ำ หรือ Swales’ CARS Model) โดยในบทนำจะคัดเฉพาะงานหลักมาอ้างอิงเพื่อชี้ช่องว่าง (Research Gap) และสร้างความชอบธรรมให้โจทย์วิจัย ในขณะที่บทที่ 2 จะเน้นลงลึกรอบด้านเพื่อสร้างกรอบแนวคิดและวิธีวิทยา</p>
+					</div>
+
+					<p>คำถามยอดฮิตของนักศึกษาระดับบัณฑิตศึกษาและนักวิจัยคือ "ในบทนำ (บทที่ 1) จำเป็นต้องใส่การอ้างอิง Literature ด้วยหรือไม่ หรือควรรอไปใส่ทีเดียวในบททบทวนวรรณกรรม (บทที่ 2)?" คำตอบทางวิชาการคือ <strong>จำเป็นต้องใส่และขาดไม่ได้อย่างยิ่ง</strong></p>
+
+					<p>หากบทนำไม่มีการอ้างอิงงานวิจัยเลย ข้อความทั้งหมดจะกลายเป็นเพียง "ความคิดเห็นส่วนตัว" ของผู้วิจัย ซึ่งขาดน้ำหนักและความน่าเชื่อถือทางวิทยาศาสตร์ การอ้างอิงในบทนำจึงมีวัตถุประสงค์เฉพาะที่ต่างจากการทบทวนวรรณกรรมฉบับเต็ม (บทที่ 2) อย่างชัดเจน</p>
+
+					<h3>วัตถุประสงค์ของการอ้างอิง Literature ใน Introduction</h3>
+					<ul>
+						<li><strong>สร้างความสำคัญและบริบทของปัญหา (Establish the Territory):</strong> แสดงให้ผู้อ่านเห็นว่าหัวข้อที่เราศึกษามีความสำคัญและเป็นประเด็นที่แวดวงวิชาการให้ความสนใจ โดยใช้หลักฐานหรืองานวิจัยก่อนหน้ามายืนยันว่าปัญหานี้มีอยู่จริง ไม่ได้คิดขึ้นมาเอง</li>
+						<li><strong>ระบุช่องว่างทางความรู้ (Identify the Research Gap):</strong> ใช้ชี้ให้เห็นว่าแม้จะมีคนศึกษาเรื่องนี้มาแล้ว แต่ยังมีจุดไหนที่งานเหล่านั้นยังตอบไม่ได้ มองข้าม มีข้อขัดแย้ง หรือบริบทเปลี่ยนไป (เช่น งานเดิมทำในต่างประเทศ แต่ยังไม่มีการศึกษาในบริบทไทย) ซึ่งจุดนี้เองคือเหตุผลความจำเป็นที่ต้องทำงานวิจัยชิ้นนี้</li>
+						<li><strong>แสดงจุดยืนและแนวคิดตั้งต้น (State the Theoretical Grounding):</strong> บ่งบอกกรอบแนวคิด นิยามสำคัญ หรือทฤษฎีหลักแบบย่นย่อ เพื่อปูทางให้ผู้อ่านเข้าใจว่าเรากำลังมองปัญหาผ่านเลนส์หรือทฤษฎีใด</li>
+						<li><strong>สร้างความน่าเชื่อถือให้ผู้วิจัย (Establish Scholarly Credibility):</strong> สะท้อนว่าผู้วิจัยได้ศึกษาและเข้าใจสถานะล่าสุดขององค์ความรู้ (State-of-the-Art) ในสาขาวิชานั้นอย่างถ่องแท้</li>
+					</ul>
+
+					<h3>โครงสร้างสากล: Swales’ CARS Model และโมเดลทรงกรวยคว่ำ</h3>
+					<p>ตามหลักการเขียนบทความวิชาการระดับนานาชาติ โครงสร้าง <strong>Swales’ CARS Model (Create a Research Space)</strong> กำหนดขั้นตอน (Moves) ไว้ 3 ขั้นตอนสำคัญ:</p>
+					<ol>
+						<li><strong>Move 1: Establishing a Territory</strong> — การสร้างอาณาเขต อ้างอิงงานสำคัญเพื่อชี้ให้เห็นความสำคัญของหัวข้อวิจัยในภาพรวม</li>
+						<li><strong>Move 2: Establishing a Niche</strong> — การสร้างพื้นที่ว่างทางวิชาการ โดยชี้ให้เห็นจุดบกพร่อง ช่องว่าง หรือข้อจำกัดของวรรณกรรมที่มีอยู่ในปัจจุบัน</li>
+						<li><strong>Move 3: Occupying the Niche</strong> — การเข้าครอบครองพื้นที่ว่าง ด้วยการประกาศวัตถุประสงค์การวิจัย คำถามวิจัย และคุณค่าที่งานชิ้นนี้จะมอบให้</li>
+					</ol>
+					<p>ซึ่งสอดคล้องกับ <strong>โมเดลทรงกรวยคว่ำ (Inverted Funnel Model)</strong> ที่เริ่มจากบริบทกว้างระดับโลก แล้วค่อย ๆ บีบให้แคบลงสู่ปัญหาเฉพาะจุด จนนำเข้าสู่คำถามวิจัยที่ชัดเจน</p>
+
+					<h3>ความแตกต่างระหว่าง Lit Review ใน "บทนำ" กับ "บทที่ 2"</h3>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>ประเด็น</th>
+									<th>Literature ในบทนำ (Introduction)</th>
+									<th>Literature ในบททบทวนวรรณกรรม (บทที่ 2)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>บทบาทหลัก</strong></td>
+									<td>ปูเรื่องเพื่อ <strong>"หาช่องว่าง"</strong> (Research Gap) และสร้างความชอบธรรมให้โจทย์วิจัย</td>
+									<td><strong>"ลงลึกในรายละเอียด"</strong> เพื่อสร้างกรอบแนวคิด นิยามตัวแปร และวิธีวิทยา (Methodology)</td>
+								</tr>
+								<tr>
+									<td><strong>ขอบเขตการเขียน</strong></td>
+									<td>คัดเฉพาะงานหลัก/งานหมุดหมาย (Key/Seminal papers) แบบกระชับ ตรงประเด็น</td>
+									<td>ครอบคลุม ละเอียด เปรียบเทียบวิธีการ ผลลัพธ์ และข้อจำกัดของแต่ละงานอย่างรอบด้าน</td>
+								</tr>
+								<tr>
+									<td><strong>น้ำหนักการนำเสนอ</strong></td>
+									<td>เน้นภาพกว้าง ชี้ปัญหา แล้วส่งต่อเข้าสู่วัตถุประสงค์การวิจัยทันที</td>
+									<td>วิเคราะห์ สังเคราะห์ และจัดกลุ่มตามธีม ตัวแปร หรือทฤษฎี</td>
+								</tr>
+								<tr>
+									<td><strong>ความหนาแน่นของการอ้างอิง</strong></td>
+									<td>ปานกลาง (ประมาณ 5–15 แหล่งอ้างอิงระดับหัวแถว)</td>
+									<td>สูง (ตั้งแต่ 50–150+ รายการขึ้นไปตามขอบเขตงานวิจัย)</td>
+								</tr>
+								<tr>
+									<td><strong>ความรู้สึกของผู้อ่าน</strong></td>
+									<td><em>"ทำไมงานวิจัยชิ้นนี้ถึงต้องทำในตอนนี้?"</em></td>
+									<td><em>"งานวิจัยนี้มีฐานความรู้ ทฤษฎี และหลักฐานสนับสนุนแน่นหนาแค่ไหน?"</em></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="callout-box">
+						<p><strong>หลักคิดง่าย ๆ:</strong> <em>"ในบทนำ ให้อ้างอิงเท่าที่จำเป็นเพื่อนำไปสู่คำถามวิจัย ส่วนบทที่ 2 ค่อยลงรายละเอียดของคำตอบ ทฤษฎี และหลักฐานทั้งหมด"</em></p>
+					</div>
+
+					<h3>ข้อผิดพลาดที่พบบ่อย (Common Pitfalls)</h3>
+					<ul>
+						<li><strong>การอ้างลอย ๆ (Ghost Claims):</strong> อ้างว่า "มีงานวิจัยระบุว่า..." แต่ไม่มีการใส่วงเล็บอ้างอิงท้ายประโยค ซึ่งทำให้เสียคะแนนความน่าเชื่อถืออย่างรุนแรง</li>
+						<li><strong>การนำบทที่ 2 มายัดใส่บทนำ (Literature Dump):</strong> ใส่รายละเอียดการทดลอง วิธีวิจัย หรือข้อสรุปของงานคนอื่นยาวเกินไป จนผู้อ่านลืมว่าโจทย์วิจัยของเราคืออะไร</li>
+						<li><strong>ใช้แต่งานวิจัยเก่าเก็บ:</strong> ไม่มีงานวิจัยในช่วง 3–5 ปีล่าสุด (State-of-the-Art) ทำให้อาจารย์ที่ปรึกษาหรือ Peer Reviewers มองว่าปัญหานี้อาจล้าสมัยหรือมีคนแก้ไปแล้ว</li>
+						<li><strong>Gap หลุดจากโจทย์:</strong> ชี้ช่องว่างทางวรรณกรรมไว้เรื่องหนึ่ง แต่วัตถุประสงค์และระเบียบวิธีวิจัยของตนเองกลับไปตอบอีกเรื่องหนึ่ง</li>
+					</ul>
+
+					<h3>คำถามที่พบบ่อย (FAQ)</h3>
+					<h4>Q1: งานวิจัยที่อ้างในบทนำ นำไปอ้างซ้ำในบทที่ 2 ได้หรือไม่?</h4>
+					<p>สามารถทำได้และเป็นเรื่องปกติอย่างยิ่ง เอกสารหมุดหมาย (Seminal papers) ที่ใช้อ้างในบทนำเพื่อปูพื้นฐาน จะถูกนำไปวิเคราะห์และเปรียบเทียบในรายละเอียดเชิงลึกอีกครั้งในบทที่ 2</p>
+
+					<h4>Q2: ในบทนำควรอ้างอิงประมาณกี่ฉบับ?</h4>
+					<p>สำหรับบทความวิจัยหรือวิทยานิพนธ์ทั่วไป แนะนำให้อยู่ระหว่าง 8–20 แหล่งอ้างอิง โดยเน้นเฉพาะงานวิจัยคุณภาพสูงและตรงประเด็น ไม่จำเป็นต้องใส่จำนวนมากจนบทนำแน่นเกินไป</p>
+
+					<h4>Q3: หากหัวข้อวิจัยเป็นเรื่องใหม่มากจนแทบไม่มีวรรณกรรมโดยตรง ควรทำอย่างไร?</h4>
+					<p>ให้อ้างอิงจากสาขาใกล้เคียง (Analogous fields) หรือปัญหาระดับมหภาคที่เกี่ยวข้อง จากนั้นชี้ให้เห็นว่าการขาดแคลนงานวิจัยในบริบทตรงนี้แหละ คือ Research Gap ที่สำคัญที่สุดที่งานของเราจะเข้าไปเติมเต็ม</p>
+				</div>
+
+				<!-- ===================================================================
+				     3. CHINESE SECTION
+				     =================================================================== -->
+				<div id="lang-zh" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>学术研究：引言（Introduction）与文献综述（第二章）的文献引用对比</h2>
+					
+					<div class="callout-box">
+						<p><strong>核心结论 (BLUF):</strong> 在学术论文或学位论文的引言（Introduction）中引用文献不仅是强烈推荐的做法，而且按照国际学术规范（如倒金字塔模型或 Swales’ CARS 模型）更是一项<strong>刚性要求</strong>。引言中的文献引用旨在确立研究领域并指出研究空白（Research Gap）；而第二章的文献综述则是全景式、深入细致地构建理论基石与方法论框架。</p>
+					</div>
+
+					<p>许多硕博研究生和科研人员常常面临一个疑问：“文献究竟应该在引言（第一章）中引用，还是全部留到第二章的文献综述中？”国际学术界的共识非常明确：<strong>引言中的文献引用至关重要且不可或缺</strong>。</p>
+
+					<p>一篇完全没有文献引用的引言，在审稿人眼中不过是作者的主观臆断。缺乏权威文献的支持，研究者就无法证明所研究的问题具备现实紧迫性、学术价值以及同行关注度。</p>
+
+					<h3>引言中引用 Literature 的四大核心目标</h3>
+					<ul>
+						<li><strong>确立研究领地与问题背景（Establish the Territory）：</strong> 向读者证明本课题具有重大价值且深受学界关注。通过引用权威文献证明问题真实存在，而非凭空臆想。</li>
+						<li><strong>明确研究空白（Identify the Research Gap）：</strong> 指出既有研究的局限性、未解之谜、结论争议或应用情境的变化（例如：某理论在西方广泛应用，但在本土特定情境下尚属空白）。找准这个缺口，正是开展本项研究的立论依据与正当性所在。</li>
+						<li><strong>表明理论基石与切入视角（State the Theoretical Grounding）：</strong> 简练介绍核心理论概念、关键定义或分析框架，为读者理解全文提供明确的理论透镜。</li>
+						<li><strong>建立学者的学术信誉（Establish Scholarly Credibility）：</strong> 展现作者对本学科前沿（State-of-the-Art）和学术脉络的深厚把握。</li>
+					</ul>
+
+					<h3>国际经典架构：Swales’ CARS 模型与倒金字塔模型</h3>
+					<p>根据国际学术写作权威 John Swales 提出的 <strong>CARS 模型（Create a Research Space）</strong>，标准的引言由三个核心动量（Moves）构成：</p>
+					<ol>
+						<li><strong>Move 1：确立领地（Establishing a Territory）</strong> — 阐述课题中心地位，概述宏观研究背景与重要性。</li>
+						<li><strong>Move 2：确立生态位（Establishing a Niche）</strong> — 提出反驳、指出现有研究空白、提出问题或拓展研究传统。此处的文献引用是证明“知识缺口真实存在”的关键支撑。</li>
+						<li><strong>Move 3：占领生态位（Occupying the Niche）</strong> — 顺理成章地宣布本研究的目标、核心研究问题、学术贡献及论文框架。</li>
+					</ol>
+					<p>这一逻辑与<strong>倒金字塔模型（Inverted Funnel Model）</strong>高度契合：由宽入窄，从广泛的宏观背景逐渐收敛至具体的研究空白，最终精准导向核心研究问题。</p>
+
+					<h3>对比：“引言”中的文献 vs. “第二章”文献综述</h3>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>维度</th>
+									<th>引言中的文献（Introduction）</th>
+									<th>文献综述章节（Chapter 2）</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>核心角色</strong></td>
+									<td>铺垫背景以<strong>“寻找空白”</strong>（Research Gap），确立研究问题的正当性与合法性。</td>
+									<td><strong>“深度剖析”</strong>，构建完整的理论框架、变量定义及研究方法论（Methodology）。</td>
+								</tr>
+								<tr>
+									<td><strong>写作范围</strong></td>
+									<td>精选最核心、具里程碑意义的代表作（Key/Seminal papers），言简意赅。</td>
+									<td>全景覆盖、详实透彻，横向对比各研究的方法、实证结论及局限性。</td>
+								</tr>
+								<tr>
+									<td><strong>论述重心</strong></td>
+									<td>侧重宏观把控，点明矛盾与问题，迅速引出研究目的。</td>
+									<td>深度综合分析，按研究主题、核心变量或学派发展脉络分类评述。</td>
+								</tr>
+								<tr>
+									<td><strong>引用密度</strong></td>
+									<td>中等（通常精选 5–15 篇最具分量的前沿文献）。</td>
+									<td>高（通常涵盖 50–150+ 篇多维度、跨学科文献）。</td>
+								</tr>
+								<tr>
+									<td><strong>读者体验</strong></td>
+									<td><em>“这项研究为什么非做不可？为什么是现在？”</em></td>
+									<td><em>“这项研究的理论深度与知识库支撑到底有多扎实？”</em></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="callout-box">
+						<p><strong>黄金法则：</strong> <em>“在引言中，仅引用足以引出研究问题所必需的文献；在第二章中，再从容展开所有理论细节、方法讨论与实证证据。”</em></p>
+					</div>
+
+					<h3>常见误区与避坑指南</h3>
+					<ul>
+						<li><strong>无据断言（Ghost Claims）：</strong> 频繁出现“大量研究表明……”却不在句末附上权威引用，这在同行评审中属于重大失分点。</li>
+						<li><strong>文献堆砌（Literature Dump）：</strong> 在引言中罗列过多具体实验细节与长篇综述，导致第一章变成第二章的缩水版，淡化了真正的研究问题。</li>
+						<li><strong>文献陈旧：</strong> 缺少近 2–3 年内的 State-of-the-Art 顶级文献，容易让审稿人误判该课题已属陈旧或已被彻底解决。</li>
+						<li><strong>空白脱节：</strong> 引言中指出的文献空白，与后文的研究目标及方法论无法相互对应。</li>
+					</ul>
+
+					<h3>常见问题解答 (FAQ)</h3>
+					<h4>Q1: 引言中引用的文献，第二章还可以重复引用吗？</h4>
+					<p>完全可以。奠定研究背景的里程碑文献（Seminal papers）在引言中作为引路石，在第二章中对其理论假设和研究设计进行更深层次的拆解，是标准的学术规范。</p>
+
+					<h4>Q2: 引言篇幅有限，通常建议引用多少篇文献？</h4>
+					<p>对于常规学术期刊论文或学位论文引言，通常 8–20 篇高水平文献最为适宜。重点在于精准性和权威度，而非堆砌数量。</p>
+
+					<h4>Q3: 如果所研究的话题属于全新领域、几乎没有直接文献怎么办？</h4>
+					<p>可以引用邻近领域（Analogous fields）或上位概念的文献，说明相关领域的演进，并顺理成章地将“当前缺乏直接文献”作为本研究最强有力的 Research Gap。</p>
+				</div>
+
+				<!-- ===================================================================
+				     4. JAPANESE SECTION
+				     =================================================================== -->
+				<div id="lang-ja" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>学術論文における文献引用：序論（Introduction）と文献レビュー（第2章）の比較</h2>
+					
+					<div class="callout-box">
+						<p><strong>要点 (BLUF):</strong> 序論（Introduction）における先行研究の引用は、単なる推奨にとどまらず、国際的な学術基準（逆漏斗型モデルや Swales’ CARS モデルなど）において<strong>必須の構成要素</strong>です。序論では、リサーチギャップ（Research Gap）を特定し研究課題の正当性を示すために重要な文献を厳選して引用します。一方、第2章の文献レビューでは、理論的基盤や方法論を網羅的かつ詳細に構築します。</p>
+					</div>
+
+					<p>大学院生や研究者が直面する一般的な疑問の一つに、「先行研究の引用は序論（第1章）で行うべきか、それとも第2章の文献レビューにすべて集約すべきか？」という点があります。学術的な結論は明白であり、<strong>序論における文献引用は絶対に不可欠</strong>です。</p>
+
+					<p>先行研究の引用が一切ない序論は、査読者や読者にとって「著者の個人的な感想や独断」に過ぎないと見なされます。学術的に確立された文献の裏付けがあって初めて、その課題が現実に存在し、学術的に緊急かつ重要であることが証明されます。</p>
+
+					<h3>序論で先行研究を引用する4つの主要な目的</h3>
+					<ul>
+						<li><strong>研究領域と背景の確立（Establish the Territory）：</strong> 自身が取り組むテーマが極めて重要であり、学術界で活発に議論されていることを示します。先行研究をエビデンスとして提示することで、問題が客観的に存在することを裏付けます。</li>
+						<li><strong>リサーチギャップの特定（Identify the Research Gap）：</strong> 既存研究の限界、見過ごされてきた論点、相反する結果、あるいは適用文脈の変化（例：海外では広く研究されているが、日本国内の文脈では未開拓）を浮き彫りにします。この未解決の隙間こそが、本研究を実施する最大の根拠となります。</li>
+						<li><strong>理論的基盤と分析視座の明示（State the Theoretical Grounding）：</strong> 論文の根幹をなす理論的フレームワークや重要定義を簡潔に提示し、読者がどのような視座を通じて問題を把握すべきかを示します。</li>
+						<li><strong>研究者としての信頼性の獲得（Establish Scholarly Credibility）：</strong> 対象分野における最新の知見（State-of-the-Art）および学術的な動向を正確に把握していることを示します。</li>
+					</ul>
+
+					<h3>国際的標準フレームワーク：Swales’ CARS モデルと逆漏斗型構造</h3>
+					<p>学術英語ライティングの権威である John Swales が提唱した <strong>CARS モデル（Create a Research Space）</strong>では、優れた序論に必要な3つの修辞的展開（Moves）が定義されています：</p>
+					<ol>
+						<li><strong>Move 1: 領域の確立（Establishing a Territory）</strong> — 研究テーマの重要性を主張し、先行研究を概観して背景を提示します。</li>
+						<li><strong>Move 2: ニッチ（隙間）の確立（Establishing a Niche）</strong> — 既存研究の限界、疑問点、未解決のギャップを指摘します。ここでの引用が「なぜ今この研究が必要なのか」を客観的に証明します。</li>
+						<li><strong>Move 3: ニッチの獲得（Occupying the Niche）</strong> — 本研究の目的、リサーチクエスチョン、論文の貢献、および全体の構成を提示します。</li>
+					</ol>
+					<p>これは、広いマクロな視点から徐々に焦点を絞り込み、具体的なリサーチクエスチョンへと導く<strong>逆漏斗型モデル（Inverted Funnel Model）</strong>の構造そのものです。</p>
+
+					<h3>比較：「序論」の文献引用 vs. 「第2章」の文献レビュー</h3>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>項目</th>
+									<th>序論の先行研究（Introduction）</th>
+									<th>第2章の文献レビュー（Literature Review）</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>主な役割</strong></td>
+									<td>背景を提示し、<strong>「リサーチギャップ」</strong>を浮き彫りにして研究課題の正当性を証明する。</td>
+									<td>理論的枠組み、変数定義、および研究方法論（Methodology）を<strong>「深く包括的」</strong>に構築する。</td>
+								</tr>
+								<tr>
+									<td><strong>記述の範囲</strong></td>
+									<td>極めて重要かつ画期的な論文（Key/Seminal papers）に厳選し、簡潔にまとめる。</td>
+									<td>網羅的かつ詳細。先行研究の手法、実証結果、および限界を多角的に比較検討する。</td>
+								</tr>
+								<tr>
+									<td><strong>論述の力点</strong></td>
+									<td>全体像を概観して問題点を提起し、直ちに研究目的にバトンを渡す。</td>
+									<td>テーマ別、変数別、あるいは理論的アプローチごとに詳細に分析・統合する。</td>
+								</tr>
+								<tr>
+									<td><strong>引用の密度</strong></td>
+									<td>中程度（主要な重要論文を 5〜15本程度厳選）。</td>
+									<td>高密度（学術領域全体をカバーする 50〜150本以上の広範な文献群）。</td>
+								</tr>
+								<tr>
+									<td><strong>読者の納得感</strong></td>
+									<td><em>「なぜこの研究を今行う必要があるのか？」</em></td>
+									<td><em>「この研究はどれほど強固な先行知見に基づいて設計されているのか？」</em></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="callout-box">
+						<p><strong>基本指針：</strong> <em>「序論では、リサーチクエスチョンに読者を導くために真に必要な文献のみを厳選して引用する。第2章で、すべての理論的背景、先行する解答、および実証的証拠を詳細に展開する。」</em></p>
+					</div>
+
+					<h3>避けるべき典型的なミス</h3>
+					<ul>
+						<li><strong>根拠のない主張（Ghost Claims）：</strong> 「近年の研究で〜であることが示されている」と記述しながら引用を省略する行為。査読において著しく評価を落とします。</li>
+						<li><strong>文献の詰め込み（Literature Dump）：</strong> 序論で各論文の詳細な実験データや手順を長々と要約し、第2章の重複となってリサーチクエスチョンを埋没させてしまうミス。</li>
+						<li><strong>最新文献（State-of-the-Art）の欠如：</strong> 直近2〜3年の主要論文が引用されていない場合、査読者に「この課題はすでに解決済みではないか、あるいは時代遅れではないか」という疑念を抱かせます。</li>
+						<li><strong>ギャップと目的の不一致：</strong> 序論で指摘したリサーチギャップと、自身が設定した研究目的や方法論が整合していないケース。</li>
+					</ul>
+
+					<h3>よくある質問 (FAQ)</h3>
+					<h4>Q1: 序論で引用した論文を第2章で再引用しても問題ありませんか？</h4>
+					<p>全く問題ありません。研究の方向性を決める画期的な基本文献（Seminal papers）は、序論で問題提起のために言及され、第2章でその理論的詳細や手法がより深く掘り下げられるのが通例です。</p>
+
+					<h4>Q2: 序論における適切な引用数はどのくらいですか？</h4>
+					<p>学術分野によって異なりますが、一般的な論文や学位論文の序論では 8〜20本程度が目安です。重要なのは数ではなく、研究課題の必然性を裏付ける権威性と的確さです。</p>
+
+					<h4>Q3: 先行研究がほとんど存在しない全く新しいテーマの場合はどうすべきですか？</h4>
+					<p>関連する類似領域（Analogous fields）や広義の基盤技術に関する文献を引用し、当該の特定領域に先行研究が存在しないこと自体を、本研究の最大の Research Gap として提示します。</p>
+				</div>
+
+				<!-- ===================================================================
+				     5. GERMAN SECTION
+				     =================================================================== -->
+				<div id="lang-de" class="lang-section" style="padding-top: 2em; margin-bottom: 4em; border-top: 1px solid var(--ci-line);">
+					<h2>Wissenschaftliche Forschung: Literaturverweise in der Einleitung (Introduction) vs. Kapitel 2</h2>
+					
+					<div class="callout-box">
+						<p><strong>Zusammenfassung (BLUF):</strong> Das Zitieren von Literatur in einer wissenschaftlichen Einleitung ist nicht nur empfehlenswert, sondern nach internationalen akademischen Standards (wie dem Inverted Funnel Model und Swales’ CARS-Modell) eine <strong>zwingende Pflichtkomponente</strong>. In der Einleitung wird Literatur selektiv zitiert, um die Forschungslücke (Research Gap) zu begründen und direkt zur Forschungsfrage hinzuführen; in Kapitel 2 (Literaturübersicht) wird die Literatur erschöpfend analysiert, um theoretische und methodische Grundlagen aufzubauen.</p>
+					</div>
+
+					<p>Eine der häufigsten Unsicherheiten bei Promovierenden und Forschenden ist die Frage, ob wissenschaftliche Literatur bereits in der Einleitung (Kapitel 1) zitiert werden muss oder ausschließlich in das eigenständige Literatur-Review (Kapitel 2) gehört. Der akademische Konsens ist eindeutig: <strong>Literaturbelege in der Einleitung sind unverzichtbar</strong>.</p>
+
+					<p>Eine Einleitung ohne wissenschaftliche Zitate liest sich wie eine bloße Aneinanderreihung subjektiver Meinungen. Ohne Verankerung in peer-reviewter Forschung lässt sich nicht belegen, dass die untersuchte Problemstellung real, wissenschaftlich relevant und von der Fachwelt anerkannt ist.</p>
+
+					<h3>Vier Hauptziele von Literaturzitaten in der Einleitung</h3>
+					<ul>
+						<li><strong>Relevanz und Kontext des Problems begründen (Establish the Territory):</strong> Zeigt der Leserschaft und den Gutachtenden, dass das Themenfeld von hoher Aktualität und akademischer Tragweite ist. Empirische Belege bestätigen, dass das Problem tatsächlich existiert.</li>
+						<li><strong>Die Forschungslücke präzise identifizieren (Identify the Research Gap):</strong> Weist darauf hin, welche Aspekte in bisherigen Arbeiten unbeantwortet blieben, übersehen wurden, widersprüchliche Resultate lieferten oder in veränderten Kontexten (z. B. internationale Befunde, die noch nicht auf lokale Märkte übertragen wurden) noch nicht untersucht wurden. Diese Lücke rechtfertigt die Notwendigkeit der vorliegenden Studie.</li>
+						<li><strong>Theoretische Fundierung skizzieren (State the Theoretical Grounding):</strong> Führt zentrale Definitionen, Kernkonzepte oder theoretische Bezugsrahmen prägnant ein, um der Leserschaft die konzeptionelle Perspektive verständlich zu machen.</li>
+						<li><strong>Wissenschaftliche Glaubwürdigkeit sichern (Establish Scholarly Credibility):</strong> Signalisiert, dass die Autorenschaft den aktuellen Forschungsstand (State-of-the-Art) sowie die maßgeblichen Debatten der Disziplin fundiert beherrscht.</li>
+					</ul>
+
+					<h3>Internationale Struktur: Swales’ CARS-Modell &amp; Inverted Funnel Model</h3>
+					<p>Im akademischen Diskurs definiert das renommierte <strong>CARS-Modell (Create a Research Space)</strong> von John Swales drei essentielle Schritte (Moves) jeder überzeugenden Einleitung:</p>
+					<ol>
+						<li><strong>Move 1: Etablierung des Forschungsgebiets (Establishing a Territory)</strong> — Betonung der Zentralität des Themas und zusammenfassender Überblick über relevante Vorarbeiten.</li>
+						<li><strong>Move 2: Etablierung einer Nische (Establishing a Niche)</strong> — Aufzeigen von Forschungslücken, Widersprüchen, offenen Fragen oder methodischen Grenzen bisheriger Arbeiten.</li>
+						<li><strong>Move 3: Besetzung der Nische (Occupying the Niche)</strong> — Präsentation der eigenen Forschungsziele, der Leitfragen, des wissenschaftlichen Beitrags und der Kapitelstruktur.</li>
+					</ol>
+					<p>Dies korrespondiert mit dem <strong>Inverted Funnel Model (Modell des umgekehrten Trichters)</strong>: Beginnend mit einem breiten Makrokontext, verengt sich die Argumentation systematisch auf die konkrete Forschungslücke und mündet präzise in die Forschungsfragen.</p>
+
+					<h3>Gegenüberstellung: Literatur in der "Einleitung" vs. "Kapitel 2"</h3>
+					<div class="table-wrapper">
+						<table>
+							<thead>
+								<tr>
+									<th>Dimension</th>
+									<th>Literatur in der Einleitung (Kapitel 1)</th>
+									<th>Literaturübersicht / Review (Kapitel 2)</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Hauptfunktion</strong></td>
+									<td>Problemrahmen abstecken, die <strong>Forschungslücke</strong> (Research Gap) aufzeigen und die Forschungsfrage legitimieren.</td>
+									<td><strong>Umfassende Tiefenanalyse</strong> zur Entwicklung des theoretischen Modells, der Variablen und der Methodik.</td>
+								</tr>
+								<tr>
+									<td><strong>Umfang &amp; Dichte</strong></td>
+									<td>Selektiv und prägnant; konzentriert auf maßgebliche Landmark- und Schlüsselpublikationen (Seminal papers).</td>
+									<td>Vollständig und erschöpfend; systematischer Vergleich von Methoden, Ergebnissen und Limitationen.</td>
+								</tr>
+								<tr>
+									<td><strong>Darstellungsweise</strong></td>
+									<td>Makro-Perspektive, fokussiert auf Reibungspunkte, leitet unverzüglich zu den Forschungszielen über.</td>
+									<td>Kritische Synthese, thematische Gruppierung nach Variablen, Paradigmen oder theoretischen Schulen.</td>
+								</tr>
+								<tr>
+									<td><strong>Zitierdichte</strong></td>
+									<td>Moderat (typischerweise 5–15 hochrelevante Spitzenquellen).</td>
+									<td>Hoch (oft 50–150+ Referenzen über das gesamte Themenspektrum hinweg).</td>
+								</tr>
+								<tr>
+									<td><strong>Leserperspektive</strong></td>
+									<td><em>„Warum muss diese Forschung genau jetzt durchgeführt werden?“</em></td>
+									<td><em>„Auf welchem soliden Wissensfundament ruht das Studiendesign?“</em></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<div class="callout-box">
+						<p><strong>Praktische Faustregel:</strong> <em>„In der Einleitung wird nur so viel zitiert, wie nötig ist, um zwingend zur Forschungsfrage zu führen. In Kapitel 2 werden die vollständige theoretische Landschaft, die Methodendiskussion und empirische Belege ausgebreitet.“</em></p>
+					</div>
+
+					<h3>Typische Fehlerquellen (Common Pitfalls)</h3>
+					<ul>
+						<li><strong>Unbelegte Behauptungen (Ghost Claims):</strong> Formulierungen wie <em>„Zahlreiche Studien belegen, dass...“</em> ohne präzise Quellenangabe im Satz. Dies führt im Peer Review sofort zu Punktabzug.</li>
+						<li><strong>Überfrachtung (Literature Dump):</strong> Das Einfügen detaillierter Versuchsprotokolle und seitenlanger Zusammenfassungen verwandelt die Einleitung in ein zweites Kapitel 2 und verstellt den Blick auf die eigentliche Forschungsfrage.</li>
+						<li><strong>Veralteter Forschungsstand:</strong> Das Fehlen aktueller Publikationen (der letzten 2–3 Jahre) erweckt den Eindruck, das Thema sei bereits überholt oder schon gelöst worden.</li>
+						<li><strong>Inkongruente Lücke:</strong> Eine in der Einleitung behauptete Forschungslücke, die durch das tatsächliche Studiendesign und die Methodik gar nicht adressiert wird.</li>
+					</ul>
+
+					<h3>Häufig gestellte Fragen (FAQ)</h3>
+					<h4>Q1: Dürfen dieselben Quellen aus der Einleitung in Kapitel 2 wiederholt werden?</h4>
+					<p>Ja, selbstverständlich. Seminal Papers, die in der Einleitung den Kontext begründen, werden in Kapitel 2 bezüglich ihrer theoretischen Konstrukte und methodischen Nuancen vertieft analysiert.</p>
+
+					<h4>Q2: Wie viele Zitate gehören durchschnittlich in eine Einleitung?</h4>
+					<p>Je nach Fachdisziplin sind 8 bis 20 hochkarätige Referenzen der Richtwert. Entscheidend ist die Relevanz für die Herleitung der Forschungslücke, nicht die schiere Menge.</p>
+
+					<h4>Q3: Was tun, wenn zu einem neuartigen Thema kaum direkte Literatur existiert?</h4>
+					<p>Zitieren Sie angrenzende Fachgebiete (Analogous fields) und übergeordnete Trends. Begründen Sie das Fehlen direkter Vorarbeiten explizit als die zentrale Forschungslücke, die Ihre Arbeit schließt.</p>
+				</div>
+			</section>
+
+			<!-- Comments Section -->
+			<section id="comments">
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function () {
+						this.page.url = window.location.href.split('#')[0].split('?')[0];
+						this.page.identifier = window.location.pathname;
+					};
+					(function() {
+						var d = document, s = d.createElement('script');
+						s.src = 'https://norbor.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			</section>
+
+			<div class="inner">
+				<p class="copyright">
+					&copy; 2021 - 2026, Peerapat Asoktummarungsri
+				</p>
+			</div>
+		</div>
+
+		<!-- Core JavaScript Dependencies -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+		<script src="../assets/js/cookie-consent.js"></script>
+
+		<!-- Multilingual Switcher Script -->
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const langIcons = document.querySelectorAll('.lang-icon');
+				const langSections = document.querySelectorAll('.lang-section');
+
+				function switchLanguage(target) {
+					// Remove active class from all icons and sections
+					langIcons.forEach(i => i.classList.remove('active'));
+					langSections.forEach(s => s.classList.remove('active'));
+
+					// Normalize target hash (e.g. #lang-en or en)
+					const targetHash = target.startsWith('#') ? target : '#lang-' + target;
+					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === targetHash) || langIcons[0];
+					const actualHash = targetIcon ? targetIcon.getAttribute('href') : '#lang-en';
+					const targetSection = document.querySelector(actualHash);
+
+					// Activate matching icon and section
+					if (targetIcon) targetIcon.classList.add('active');
+					if (targetSection) targetSection.classList.add('active');
+				}
+
+				// Expose globally
+				window.switchLanguage = switchLanguage;
+
+				// Update active icon on click
+				langIcons.forEach(icon => {
+					icon.addEventListener('click', function(e) {
+						e.preventDefault();
+						const hash = this.getAttribute('href');
+						history.pushState(null, null, hash);
+						switchLanguage(hash);
+					});
+				});
+
+				// Set initial active state from URL hash if present, default to English (#lang-en)
+				switchLanguage(window.location.hash || '#lang-en');
+			});
+		</script>
+
+		<!-- Theme Toggle Logic Script -->
+		<script>
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				const updateIcon = () => {
+					if (document.documentElement.getAttribute('data-theme') === 'dark') {
+						themeToggle.classList.remove('fa-moon');
+						themeToggle.classList.add('fa-sun');
+					} else {
+						themeToggle.classList.remove('fa-sun');
+						themeToggle.classList.add('fa-moon');
+					}
+				};
+				updateIcon();
+
+				themeToggle.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					updateIcon();
+				});
+			}
+		</script>
+	</body>
+</html>
