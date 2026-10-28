@@ -27,8 +27,18 @@
 	</url>
 	<url>
 		<loc>https://www.peerapat.cc/academic.html</loc>
-		<lastmod>2026-10-27</lastmod>
+		<lastmod>2026-10-28</lastmod>
 		<priority>0.8</priority>
+	</url>
+	<url>
+		<loc>https://www.peerapat.cc/academic/falsifiable-causal-evidence.html</loc>
+		<lastmod>2026-10-28</lastmod>
+		<priority>0.7</priority>
+	</url>
+	<url>
+		<loc>https://www.peerapat.cc/academic/literature_review.html</loc>
+		<lastmod>2026-10-27</lastmod>
+		<priority>0.7</priority>
 	</url>
 	<url>
 		<loc>https://www.peerapat.cc/games.html</loc>
