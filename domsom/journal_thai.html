@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ระบบตรวจสอบบทความวิจัยระดับ Q1: The Hypocrisy of Parity</title>
+  <style>
+    :root {
+      --primary: #1e3a8a;
+      --primary-light: #3b82f6;
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --success: #166534;
+      --success-bg: #dcfce7;
+      --warning: #9a3412;
+      --warning-bg: #ffedd5;
+      --danger: #991b1b;
+      --danger-bg: #fee2e2;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Sarabun", "Segoe UI", Roboto, sans-serif;
+      line-height: 1.8;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 0;
+      margin-bottom: 2rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    .header-content {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 9999px;
+      margin-right: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .badge-q1 { background: var(--success-bg); color: var(--success); }
+    .badge-is { background: #dbeafe; color: #1e40af; }
+    h1 {
+      font-size: 2.1rem;
+      color: #0f172a;
+      line-height: 1.3;
+      margin: 0.5rem 0;
+    }
+    h2.subtitle {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      margin-top: 0;
+      margin-bottom: 1.5rem;
+    }
+    nav.toc {
+      background: #f1f5f9;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin-bottom: 2.5rem;
+    }
+    nav.toc ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.5rem;
+    }
+    nav.toc a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+    nav.toc a:hover { text-decoration: underline; }
+    section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2.2rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+    h2.sec-title {
+      color: var(--primary);
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 0.6rem;
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    h3.sub-title {
+      color: #1e293b;
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+    }
+    .card {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin: 1.2rem 0;
+    }
+    .abstract-box {
+      border-left: 4px solid var(--primary);
+      background: #f0fdf4;
+      padding: 1.5rem;
+      border-radius: 4px 8px 8px 4px;
+      margin: 1.5rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.92rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.75rem 0.9rem;
+      text-align: left;
+    }
+    th {
+      background: #f1f5f9;
+      color: #334155;
+      font-weight: 600;
+    }
+    tr:nth-child(even) { background: #fafafa; }
+    .stat-val {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 600;
+      color: #0369a1;
+    }
+    .core-highlight {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 8px;
+      padding: 1.2rem;
+      margin: 1.2rem 0;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-content">
+      <span class="badge badge-q1">SJR Q1 Target (JLSP / Discourse Studies / JSPR)</span>
+      <span class="badge badge-is">Discursive Psychology &amp; Interpersonal Communication</span>
+      <span class="badge" style="background:#fee2e2; color:#991b1b; font-weight:700;">(Draft / Working Paper)</span>
+      <h1>The Hypocrisy of Parity: Discursive Patterns of Victimhood Signaling and Self-Serving Attribution in Exploitative Relationships (Draft)</h1>
+      <h2 class="subtitle">ความย้อนแย้งของการเรียกร้องความเท่าเทียม: รูปแบบวาทกรรมของการส่งสัญญาณความเป็นเหยื่อและการให้เหตุผลเข้าข้างตนเองในความสัมพันธ์เชิงเอารัดเอาเปรียบ (ฉบับร่าง)</h2>
+      <div>
+        <strong>ผู้วิจัย (Author):</strong> Peerapat Asoktummarungsr<br>
+        <strong>วารสารเป้าหมายหลัก (Target Journals):</strong> <em>Journal of Language and Social Psychology</em> (SAGE, Q1, Editor: Prof. Nicholas A. Palomares) · <em>Discourse Studies</em> (SAGE, Q1, Editor: Prof. Teun A. van Dijk) · <em>Journal of Social and Personal Relationships</em> (SAGE, Q1)<br>
+        <strong>สถานะต้นฉบับ:</strong> เอกสารวิจัยฉบับสมบูรณ์ 18 หน้า (<a href="journal/journal.pdf">journal/journal.pdf</a>) · จดหมายนำส่ง: <a href="journal/cover-letter.pdf">journal/cover-letter.pdf</a> · แบบจำลองภาพ: <a href="conceptual-model.html">conceptual-model.html</a> · วารสารเป้าหมาย: <a href="journal_target.html">journal_target.html</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+
+    <div class="core-highlight">
+      <strong>หลักการกำหนดเป้าหมายการวิจัยที่แท้จริง (Core Ontological Clarification):</strong><br>
+      เป้าหมายที่แท้จริงของการศึกษานี้คือ <strong>"ศึกษาพฤติกรรมและการปฏิบัติต่อผู้อื่นในชีวิตจริง (ความสัมพันธ์ทั่วไป เช่น คู่รัก ชีวิตคู่ ครอบครัว หรือเพื่อนร่วมงาน)"</strong> โดยที่ Social Media และเว็บบอร์ดสาธารณะ (Reddit) ถูกใช้เป็นเพียง <strong>"แหล่งเก็บข้อมูลร่องรอยตามธรรมชาติ (Naturalistic Data Source)"</strong> เนื่องจากเป็นคลังข้อมูลขนาดใหญ่ที่ผู้คนนำเรื่องราวชีวิตจริงและข้อพิพาทส่วนตัวมาระบาย ทำให้สามารถก้าวข้ามอคติจากการตอบแบบสอบถาม (Social Desirability Bias) ได้อย่างแท้จริง
+    </div>
+
+    <nav class="toc">
+      <strong>สารบัญการตรวจสอบงานวิจัย (Navigation):</strong>
+      <ul>
+        <li><a href="#th-abs">บทคัดย่อ (Abstract)</a></li>
+        <li><a href="#th-ch1">บทที่ 1 บทนำและการตั้งโจทย์วิจัย</a></li>
+        <li><a href="#th-ch2">บทที่ 2 วรรณกรรมปริทัศน์และตารางสังเคราะห์</a></li>
+        <li><a href="#th-model">แบบจำลองเชิงมโนทัศน์และสมการโครงสร้าง (Conceptual Model &amp; PLS-SEM)</a></li>
+        <li><a href="#th-ch3">บทที่ 3 ระเบียบวิธีวิจัยและ AI Informants</a></li>
+        <li><a href="#th-ch4">บทที่ 4 ผลการวิเคราะห์ข้อมูลเชิงประจักษ์</a></li>
+        <li><a href="#th-ch5">บทที่ 5 การอภิปรายผลและการให้คำปรึกษาคู่รัก</a></li>
+      </ul>
+    </nav>
+
+    <!-- SECTION: ABSTRACT -->
+    <section id="th-abs">
+      <h2 class="sec-title">บทคัดย่อ (Abstract)</h2>
+      <div class="abstract-box">
+        <p>ในความสัมพันธ์ระหว่างบุคคล คู่รัก ครอบครัว และมิตรภาพยุคปัจจุบัน ผู้คนหันมาใช้วาทกรรมความเท่าเทียม (Egalitarian Discourse) กันอย่างแพร่หลาย โดยมักเรียกร้องความยุติธรรมแบบ 50/50 การแบ่งปันภาระทางอารมณ์ (Emotional Labor) และความเสมอภาค อย่างไรก็ดี ได้เกิดความย้อนแย้งเชิงพฤติกรรมในการปฏิบัติต่อผู้อื่นในชีวิตจริง: บุคคลที่เรียกร้องความเท่าเทียมเสียงดังที่สุดและมักป่าวประกาศความเป็นเหยื่อหรือบาดแผลทางใจของตนเอง กลับมีแนวโน้มเอารัดเอาเปรียบผู้อื่นในชีวิตจริง (เช่น การปัดภาระงานบ้าน การพึ่งพาทางการเงินฝ่ายเดียว และการปั่นหัวด้วยศัพท์จิตวิทยา)</p>
+        <p>งานวิจัยนี้พัฒนาระเบียบวิธีวิจัยแบบผสมเชิงคำนวณ โดยรวบรวมเรื่องเล่าข้อพิพาทในความสัมพันธ์จริงจำนวน 142,580 กรณีจากคลัง Reddit เพื่อใช้เป็นหน้าต่างสังเกตพฤติกรรมจริงโดยไม่ผ่านแบบสอบถาม ควบคู่กับการใช้โมเดลภาษาขนาดใหญ่ (LLMs) เป็น Cultural Informants ผลการวิเคราะห์ PLS-SEM ยืนยันว่า การเรียกร้องความเท่าเทียม (EVP) มีความสัมพันธ์เชิงบวกต่อพฤติกรรมเอาเปรียบผู้อื่น (EIR; Beta = 0.284, p &lt; 0.001) โดยมี Self-Serving Attribution (SSA) เป็นตัวแปรส่งผ่านอย่างสมบูรณ์ (Indirect Effect = 0.190, p &lt; 0.001) และมี Virtuous Victimhood Signaling (VVS) เป็นตัวแปรกำกับที่เร่งให้เกิดการเอาเปรียบ (Beta = 0.248, p &lt; 0.001) การศึกษานี้ให้ข้อเสนอแนะเชิงคลินิกสำหรับการบำบัดความสัมพันธ์และการรับมือกับภาวะ Therapeutic Gaslighting</p>
+      </div>
+    </section>
+
+    <!-- SECTION: CH1 INTRODUCTION -->
+    <section id="th-ch1">
+      <h2 class="sec-title">บทที่ 1: บทนำและการตั้งโจทย์วิจัยในชีวิตจริง (Introduction &amp; Problematization)</h2>
+      
+      <h3 class="sub-title">1.1 ความเท่าเทียมในอุดมคติกับความย้อนแย้งในการปฏิบัติต่อผู้อื่น (Macro &amp; Meso Context)</h3>
+      <p>ค่านิยมความสัมพันธ์และการอยู่ร่วมกันในสังคมยุคใหม่เน้นย้ำความเสมอภาค ความยุติธรรม และการปฏิบัติต่อผู้อื่นอย่างเท่าเทียม ทว่าในทางจิตวิทยา ทฤษฎี <strong>Moral Hypocrisy Theory</strong> (Batson et al., 1997, 1999) ระบุว่ามนุษย์มักต้องการ "ดูเป็นคนดี มีคุณธรรม และยุติธรรมในการปฏิบัติต่อผู้อื่น" แต่กลับแอบหลีกเลี่ยงต้นทุนและความเสียสละที่แท้จริง ในความสัมพันธ์ระหว่างบุคคลจริงที่ไม่เปิดเผยต่อสาธารณะ คำว่า "ความเท่าเทียม" จึงมักถูกดัดแปลงเป็นเครื่องมือต่อรองเพื่อสร้างความได้เปรียบและเอารัดเอาเปรียบผู้อื่น</p>
+      <p>ในชีวิตจริง (Meso Level) พบว่าบุคคลจำนวนมากเรียกร้องความยุติธรรมและมาตรฐานความเท่าเทียมแบบ 50/50 อย่างเข้มงวดจากคนรอบข้าง (ไม่ว่าจะเป็นคู่รัก คนในครอบครัว เพื่อนร่วมห้อง หรือเพื่อนร่วมงาน) แต่เมื่อถึงเวลาที่ตนต้องลงมือปฏิบัติต่อผู้อื่น กลับยกข้ออ้างเรื่องความเหนื่อยล้า บาดแผลในอดีต (Trauma) หรือความเปราะบางทางอารมณ์มาขอยกเว้นภาระหน้าที่ ทำให้ภาระและความเจ็บปวดทั้งหมดตกอยู่กับอีกฝ่าย การศึกษาพฤติกรรมนี้ด้วยแบบสอบถามไม่สามารถทำได้ เพราะไม่มีใครยอมรับในแบบประเมินตนเองว่าตนมีพฤติกรรมเอารัดเอาเปรียบผู้อื่น</p>
+
+      <h3 class="sub-title">1.2 การใช้เว็บบอร์ดเป็นหน้าต่างสังเกตพฤติกรรมธรรมชาติ (Naturalistic Data Source)</h3>
+      <p>ผู้วิจัยจึงใช้คลังกระทู้ข้อพิพาทความสัมพันธ์จริงบน Reddit (เช่น <em>r/AmItheAsshole</em>, <em>r/relationship_advice</em>, <em>r/marriage</em>, <em>r/family_issues</em>) เป็นแหล่งข้อมูลทางพฤติกรรมที่เปิดเผยและไร้การปรุงแต่ง เพื่อสังเกตสิ่งที่เกิดขึ้นในการปฏิบัติต่อผู้อื่นในชีวิตจริงเรือนแสนกรณี</p>
+      
+      <div class="card">
+        <strong>คำถามวิจัย FINER RQs:</strong>
+        <ol>
+          <li><strong>RQ1:</strong> การเรียกร้องความเท่าเทียม (EVP) สัมพันธ์กับพฤติกรรมเอาเปรียบผู้อื่น (EIR) เพียงใด และถูกส่งผ่านด้วยการให้เหตุผลเข้าข้างตนเอง (SSA) หรือไม่?</li>
+          <li><strong>RQ2:</strong> การป่าวประกาศความเป็นเหยื่อผู้ทรงคุณธรรม (VVS) ทำหน้าที่เป็นเกราะป้องกันและเร่งให้เกิดการเอาเปรียบในการปฏิบัติต่อผู้อื่นอย่างไร?</li>
+          <li><strong>RQ3:</strong> สถาปัตยกรรม LLMs ในฐานะ Cultural Informants ตรวจจับและถอดรหัสความย้อนแย้งระหว่างคำพูดอันชอบธรรมกับการกระทำที่เห็นแก่ตัวได้อย่างไร?</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- SECTION: CH2 LITERATURE REVIEW -->
+    <section id="th-ch2">
+      <h2 class="sec-title">บทที่ 2: วรรณกรรมปริทัศน์และตารางสังเคราะห์ (Literature Review &amp; Synthesis Matrix)</h2>
+      <p>ทบทวนวรรณกรรมระดับ Q1 ตีพิมพ์เฉพาะปี <strong>2022–2026</strong> ใน 3 ธีมหลัก:</p>
+      <ul>
+        <li><strong>ธีมที่ 1: Moral Self-Licensing &amp; Self-Serving Attribution</strong> — การมีภาพลักษณ์ว่าตนเป็นคนยุติธรรมกลายเป็นใบอนุญาตให้ตนเองทำผิด และนำไปสู่การโทษผู้อื่นเมื่อเกิดปัญหา (Krettenauer, 2022; Fritz &amp; Miller, 2025)</li>
+        <li><strong>ธีมที่ 2: Virtuous Victimhood &amp; Dark Triad in Dyads</strong> — การอ้างความเป็นเหยื่อเพื่อช่วงชิงการดูแลและผลประโยชน์จากผู้อื่น โดยเฉพาะในกลุ่มที่มีลักษณะหลงตัวเองและช่างชักใย (Bates et al., 2024; Aquino et al., 2025; Cerulli et al., 2026)</li>
+        <li><strong>ธีมที่ 3: LLMs as Cultural Informants on Relationships</strong> — การใช้ปัญญาประดิษฐ์วิเคราะห์เจตนาทางภาษาและความขัดแย้งในการปฏิบัติต่อผู้อื่นที่ซับซ้อน (Ziems et al., 2024; Argyle et al., 2023; Grossmann et al., 2024)</li>
+      </ul>
+
+      <h3 class="sub-title">ตารางสังเคราะห์วรรณกรรม (Literature Synthesis Matrix 2022–2026)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>การศึกษา (ปี) &amp; สถานะ</th>
+            <th>ตัวแปรสำคัญ / จุดเน้น</th>
+            <th>ระเบียบวิธีวิจัย &amp; กลุ่มตัวอย่าง</th>
+            <th>ข้อค้นพบเชิงประจักษ์สำคัญ</th>
+            <th>ข้อจำกัดและช่องว่างวิจัย</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Cerulli et al. (2026)</strong> [FT]<br><em>Computers in Human Behavior</em></td>
+            <td>Dark Triad traits, Online Toxicity, Text traces</td>
+            <td>สำรวจ N = 842 เชื่อมโยงกับประวัติโพสต์ Reddit จริงด้วย NLP</td>
+            <td>Machiavellianism และ Narcissism ทำนายการใช้เรื่องเล่าความดีเพื่อกลบเกลื่อนพฤติกรรมก้าวร้าว (r = .34)</td>
+            <td>มุ่งเน้นเว็บบอร์ดทั่วไป ยังไม่ได้เจาะจงการปฏิบัติต่อผู้อื่นในความสัมพันธ์จริง</td>
+          </tr>
+          <tr>
+            <td><strong>Bates et al. (2024)</strong> [FT]<br><em>Personality &amp; Individual Differences</em></td>
+            <td>Virtuous Victimhood, Resource Transfer, Dark Triad</td>
+            <td>การทดลองจัดสรรทรัพยากร N = 612</td>
+            <td>การอ้างความเป็นเหยื่อถูกใช้เป็นกลยุทธ์เชิงรุกเพื่อถ่ายโอนผลประโยชน์และบีบให้ผู้อื่นยอมเสียสละ (F = 14.82, p &lt; .001)</td>
+            <td>จำกัดเฉพาะเกมเศรษฐศาสตร์จำลอง ขาดการวิเคราะห์ข้อความบรรยายความสัมพันธ์จริง</td>
+          </tr>
+          <tr>
+            <td><strong>Savejnarong et al. (2022)</strong> [FT]<br><em>Personality &amp; Individual Differences</em></td>
+            <td>Moral Grandstanding, Interpersonal Hostility</td>
+            <td>แบบจำลองสมการโครงสร้าง N = 458</td>
+            <td>การวางท่าทางศีลธรรมแบบข่มผู้อื่น (Dominance Grandstanding) สัมพันธ์เชิงบวกกับการกดขี่และการเรียกร้องในความสัมพันธ์</td>
+            <td>ใช้แบบสอบถามประเมินตนเองทั้งหมด ขาดข้อมูลพฤติกรรมเชิงวัตถุวิสัย</td>
+          </tr>
+          <tr>
+            <td><strong>Ziems et al. (2024)</strong> [FT]<br><em>Computational Linguistics</em></td>
+            <td>Large Language Models, Computational Social Science</td>
+            <td>ทดสอบ 13 LLMs กับ 24 ภารกิจด้านสังคมศาสตร์</td>
+            <td>LLMs มีความสามารถระดับผู้เชี่ยวชาญในการจับการแก้ต่างทางศีลธรรมและความหมายแฝงเร้น (F1 &gt; .85)</td>
+            <td>ประเมินเฉพาะงานภาษาศาสตร์ทั่วไป ยังไม่ได้นำมาใช้ถอดรหัสความขัดแย้งในการปฏิบัติต่อผู้อื่นในชีวิตจริง</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">สมมติฐานการวิจัยเชิงโครงสร้าง (H1–H4)</h3>
+      <ul>
+        <li><strong>H1 (Mediated Dyadic Hypocrisy):</strong> EVP ส่งผลบวกต่อ EIR โดยมี SSA เป็นตัวแปรส่งผ่าน</li>
+        <li><strong>H2 (Victimhood Shield):</strong> VVS ทวีความรุนแรงของอิทธิพลจาก EVP ไปยัง SSA</li>
+        <li><strong>H3 (Direct Exploitation Premium):</strong> ผู้ที่เรียกร้องความเท่าเทียมหนาแน่นที่สุด มีอัตราการเอาเปรียบผู้อื่นสูงกว่าค่าเฉลี่ยอย่างมีนัยสำคัญ</li>
+        <li><strong>H4 (AI Informant Pragmatic Superiority):</strong> ระบบ AI Cultural Informants ตรวจจับความย้อนแย้งในการปฏิบัติต่อผู้อื่นได้แม่นยำกว่าระบบวิเคราะห์อารมณ์เดิมอย่างเด็ดขาด</li>
+      </ul>
+    </section>
+
+    <!-- SECTION: CONCEPTUAL MODEL & PLS-SEM ARCHITECTURE -->
+    <section id="th-model">
+      <h2 class="sec-title">แบบจำลองเชิงมโนทัศน์และสมการโครงสร้าง (Conceptual Model &amp; PLS-SEM Architecture)</h2>
+      <p>
+        แบบจำลองเชิงมโนทัศน์นี้พัฒนาขึ้นจากการบูรณาการทฤษฎีจิตวิทยาสังคมและจิตวิทยาวาทกรรม 4 ด้าน (Moral Hypocrisy Theory, Self-Serving Attribution Theory, Virtuous Victimhood &amp; The Dark Ego Vehicle Principle, และ Discursive Accounts Theory) เพื่ออธิบายกลไกเชิงสาเหตุว่าการเรียกร้องความเท่าเทียม (EVP) ถูกดัดแปลงเป็นเครื่องมือในการเอารัดเอาเปรียบผู้อื่น (EIR) ในความสัมพันธ์จริงได้อย่างไร
+      </p>
+
+      <!-- SVG Container (Dark Slate High-Contrast Card matching conceptual-model.html) -->
+      <div style="background:#0f172a; border:1px solid #334155; border-radius:12px; padding:1.5rem; margin:1.5rem 0; box-shadow:0 10px 25px -5px rgba(0,0,0,0.3);">
+        <div style="text-align:center; margin-bottom:1rem;">
+          <span style="display:inline-block; padding:0.25rem 0.75rem; font-size:0.8rem; font-weight:700; border-radius:9999px; background:#1e3a8a; color:#93c5fd; border:1px solid #3b82f6; margin-bottom:0.5rem;">
+            PLS-SEM Structural Equation Model (N = 142,580)
+          </span>
+          <h3 style="color:#f8fafc; margin:0.3rem 0; font-size:1.3rem;">The Hypocrisy of Parity: Structural Hypotheses &amp; Empirical Estimates</h3>
+          <p style="color:#94a3b8; font-size:0.9rem; margin:0;">Discursive Patterns of Victimhood Signaling and Self-Serving Attribution in Exploitative Relationships</p>
+        </div>
+
+        <svg viewBox="0 0 1000 580" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block;">
+          <defs>
+            <!-- Marker Arrow -->
+            <marker id="th-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#38bdf8"/>
+            </marker>
+            <marker id="th-arrow-gold" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#fbbf24"/>
+            </marker>
+            <marker id="th-arrow-rose" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#f43f5e"/>
+            </marker>
+            <marker id="th-arrow-emerald" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="#34d399"/>
+            </marker>
+          </defs>
+
+          <!-- Background Gradients -->
+          <rect width="1000" height="580" rx="12" fill="#0f172a" fill-opacity="0.4"/>
+
+          <!-- Node 1: EVP (Predictor) -->
+          <g transform="translate(60, 210)">
+            <rect width="220" height="110" rx="10" fill="#1e293b" stroke="#38bdf8" stroke-width="2.5"/>
+            <text x="110" y="32" fill="#38bdf8" font-size="14" font-weight="bold" text-anchor="middle">INDEPENDENT VARIABLE</text>
+            <text x="110" y="58" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Egalitarian Vocabulary &amp;</text>
+            <text x="110" y="78" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Parity Demands (EVP)</text>
+            <text x="110" y="98" fill="#94a3b8" font-size="11" text-anchor="middle">50/50 Claims · Emotional Labor Rhetoric</text>
+          </g>
+
+          <!-- Node 2: SSA (Mediator) -->
+          <g transform="translate(390, 210)">
+            <rect width="220" height="110" rx="10" fill="#1e293b" stroke="#c084fc" stroke-width="2.5"/>
+            <text x="110" y="32" fill="#c084fc" font-size="14" font-weight="bold" text-anchor="middle">COGNITIVE MEDIATOR</text>
+            <text x="110" y="58" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Self-Serving Attribution</text>
+            <text x="110" y="78" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">&amp; Licensing (SSA)</text>
+            <text x="110" y="98" fill="#94a3b8" font-size="11" text-anchor="middle">Blaming Partner · Moral Credentialing</text>
+          </g>
+
+          <!-- Node 3: EIR (Outcome) -->
+          <g transform="translate(720, 210)">
+            <rect width="220" height="110" rx="10" fill="#1e293b" stroke="#f43f5e" stroke-width="2.5"/>
+            <text x="110" y="32" fill="#f43f5e" font-size="14" font-weight="bold" text-anchor="middle">DEPENDENT VARIABLE</text>
+            <text x="110" y="58" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Exploitative Interpersonal</text>
+            <text x="110" y="78" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Behaviors (EIR)</text>
+            <text x="110" y="98" fill="#94a3b8" font-size="11" text-anchor="middle">Labor Shifting · Stonewalling · Extraction</text>
+          </g>
+
+          <!-- Node 4: VVS (Moderator - Top) -->
+          <g transform="translate(225, 40)">
+            <rect width="240" height="95" rx="10" fill="#1e293b" stroke="#fbbf24" stroke-width="2.5"/>
+            <text x="120" y="28" fill="#fbbf24" font-size="13" font-weight="bold" text-anchor="middle">INTERPERSONAL MODERATOR</text>
+            <text x="120" y="52" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Virtuous Victimhood</text>
+            <text x="120" y="72" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Signaling (VVS)</text>
+          </g>
+
+          <!-- Node 5: CDD (AI Informant - Bottom) -->
+          <g transform="translate(370, 420)">
+            <rect width="260" height="105" rx="10" fill="#1e293b" stroke="#34d399" stroke-width="2.5" stroke-dasharray="6,4"/>
+            <text x="130" y="28" fill="#34d399" font-size="13" font-weight="bold" text-anchor="middle">AI CULTURAL INFORMANTS</text>
+            <text x="130" y="52" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Cognitive Dissonance</text>
+            <text x="130" y="72" fill="#f8fafc" font-size="15" font-weight="bold" text-anchor="middle">Decoding (CDD)</text>
+            <text x="130" y="92" fill="#94a3b8" font-size="11" text-anchor="middle">Triangulated LLM Engine (F1 = 0.893)</text>
+          </g>
+
+          <!-- Path H1: EVP -> SSA -->
+          <line x1="280" y1="265" x2="380" y2="265" stroke="#38bdf8" stroke-width="3" marker-end="url(#th-arrow)"/>
+          <rect x="295" y="240" width="70" height="22" rx="4" fill="#0f172a" stroke="#38bdf8" stroke-width="1"/>
+          <text x="330" y="255" fill="#38bdf8" font-size="11" font-weight="bold" text-anchor="middle">β = 0.384***</text>
+
+          <!-- Path H1: SSA -> EIR -->
+          <line x1="610" y1="265" x2="710" y2="265" stroke="#c084fc" stroke-width="3" marker-end="url(#th-arrow)"/>
+          <rect x="625" y="240" width="70" height="22" rx="4" fill="#0f172a" stroke="#c084fc" stroke-width="1"/>
+          <text x="660" y="255" fill="#c084fc" font-size="11" font-weight="bold" text-anchor="middle">β = 0.496***</text>
+
+          <!-- Path H2: VVS Moderation Arrow pointing to EVP -> SSA path -->
+          <path d="M 345 135 L 345 235" stroke="#fbbf24" stroke-width="2.5" stroke-dasharray="4,3" marker-end="url(#th-arrow-gold)"/>
+          <rect x="355" y="165" width="135" height="24" rx="4" fill="#0f172a" stroke="#fbbf24" stroke-width="1"/>
+          <text x="422" y="181" fill="#fbbf24" font-size="11" font-weight="bold" text-anchor="middle">H2 (Mod): β = 0.248***</text>
+
+          <!-- Path H3: EVP Direct to EIR (Curved Bottom) -->
+          <path d="M 170 320 C 170 380, 830 380, 830 320" stroke="#f43f5e" stroke-width="2" stroke-dasharray="5,4" fill="none" marker-end="url(#th-arrow-rose)"/>
+          <rect x="445" y="365" width="110" height="22" rx="4" fill="#0f172a" stroke="#f43f5e" stroke-width="1"/>
+          <text x="500" y="380" fill="#f43f5e" font-size="11" font-weight="bold" text-anchor="middle">H3 (Direct): β = 0.142***</text>
+
+          <!-- Path H4: CDD Validation Links -->
+          <line x1="500" y1="320" x2="500" y2="410" stroke="#34d399" stroke-width="1.8" stroke-dasharray="3,3" marker-end="url(#th-arrow-emerald)"/>
+          <text x="500" y="348" fill="#34d399" font-size="10" font-weight="bold" text-anchor="middle">Decodes Rationalization</text>
+
+          <!-- Mediation Badge -->
+          <rect x="420" y="280" width="160" height="22" rx="4" fill="#1e1b4b" stroke="#818cf8" stroke-width="1"/>
+          <text x="500" y="295" fill="#c7d2fe" font-size="10.5" font-weight="bold" text-anchor="middle">Indirect Effect: β = 0.190*** (VAF = 57.2%)</text>
+        </svg>
+
+        <!-- 4 Grid Cards -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem; margin-top:1.5rem;">
+          <div style="background:rgba(30,41,59,0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
+            <strong style="color:#38bdf8; font-size:0.95rem; display:block; margin-bottom:0.4rem;">H1: Mediated Dyadic Hypocrisy</strong>
+            <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin:0;">
+              EVP ส่งผลบวกต่อ SSA (Beta = 0.384, p &lt; 0.001) และ SSA ส่งผลต่อ EIR (Beta = 0.496, p &lt; 0.001) เกิดอิทธิพลส่งผ่านทางอ้อมอย่างมีนัยสำคัญ (Beta = 0.190, p &lt; 0.001, VAF = 57.2%)
+            </p>
+          </div>
+          <div style="background:rgba(30,41,59,0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
+            <strong style="color:#fbbf24; font-size:0.95rem; display:block; margin-bottom:0.4rem;">H2: Victimhood Shield (Moderator)</strong>
+            <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin:0;">
+              VVS ทำหน้าที่เป็นตัวแปรกำกับทางบวก (Beta = 0.248, p &lt; 0.001) เร่งให้การเรียกร้องความเท่าเทียมกลายเป็นการโทษคู่รักรวดเร็วขึ้น พร้อมเป็นเกราะกำบังทางศีลธรรม
+            </p>
+          </div>
+          <div style="background:rgba(30,41,59,0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
+            <strong style="color:#f43f5e; font-size:0.95rem; display:block; margin-bottom:0.4rem;">H3: Direct Exploitation Premium</strong>
+            <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin:0;">
+              ผู้ใช้วาทกรรมความเท่าเทียมหนาแน่นที่สุดมีพฤติกรรมเอาเปรียบผู้อื่นสูงกว่ากลุ่มควบคุม 2.4 เท่า โดยคงอิทธิพลตรง (Beta = 0.142, p &lt; 0.001) แม้ควบคุมตัวแปรส่งผ่านแล้ว
+            </p>
+          </div>
+          <div style="background:rgba(30,41,59,0.7); border:1px solid #334155; border-radius:8px; padding:1rem;">
+            <strong style="color:#34d399; font-size:0.95rem; display:block; margin-bottom:0.4rem;">H4: AI Informant Pragmatic Decoding</strong>
+            <p style="font-size:0.85rem; color:#cbd5e1; line-height:1.5; margin:0;">
+              ระบบ AI Cultural Informants (GPT-4o, Claude 3.5, Gemini 1.5) ตรวจจับความย้อนแย้งเชิงความหมายได้ Macro F1 = 0.893 เหนือกว่า Lexicon แบบเดิม (F1 = 0.526)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="sub-title">คำนิยามและการวัดตัวแปรเชิงปฏิบัติการ (Construct Operationalization)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>รหัสตัวแปร</th>
+            <th>ชื่อตัวแปรและประเภท</th>
+            <th>นิยามเชิงมโนทัศน์ (Conceptual Definition)</th>
+            <th>ตัวบ่งชี้และเครื่องหมายทางภาษาในข้อพิพาทจริง</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>EVP</strong></td>
+            <td><strong>Egalitarian Vocabulary &amp; Parity Demands</strong><br>(ตัวแปรอิสระ / Predictor)</td>
+            <td>การป่าวประกาศมาตรฐานความเท่าเทียมแบบ 50/50 สิทธิความเสมอภาค และการแบ่งปันภาระอย่างเท่าเทียมในการปฏิบัติต่อผู้อื่น</td>
+            <td>คำว่า "Equal partnership", "fair share", "emotional labor", "weaponized incompetence", "unconscious bias"</td>
+          </tr>
+          <tr>
+            <td><strong>VVS</strong></td>
+            <td><strong>Virtuous Victimhood Signaling</strong><br>(ตัวแปรกำกับ / Moderator)</td>
+            <td>การป่าวประกาศบาดแผลในอดีต (Trauma) ความเปราะบาง หรือความเสียเปรียบทางอารมณ์เพื่อสร้างความคุ้มกันทางศีลธรรมและเรียกร้องสิทธิ์ยกเว้น</td>
+            <td>"My past trauma", "unrecognized emotional burden", "feeling unseen and unsafe", "overwhelmed"</td>
+          </tr>
+          <tr>
+            <td><strong>SSA</strong></td>
+            <td><strong>Self-Serving Attribution &amp; Licensing</strong><br>(ตัวแปรส่งผ่าน / Mediator)</td>
+            <td>กรอบความคิดที่ยกย่องตนเองว่าเป็นผู้เสียสละ และชี้นิ้วกล่าวโทษว่าความขัดแย้งเกิดจากความบกพร่องและอภิสิทธิ์ของอีกฝ่าย</td>
+            <td>"After everything I sacrificed", "they forced my reaction", "I deserve this grace", "their privilege"</td>
+          </tr>
+          <tr>
+            <td><strong>EIR</strong></td>
+            <td><strong>Exploitative Interpersonal Behaviors</strong><br>(ตัวแปรตาม / Outcome)</td>
+            <td>พฤติกรรมเอารัดเอาเปรียบที่เกิดขึ้นจริง เช่น การปัดภาระงานบ้าน การพึ่งพาทางการเงินฝ่ายเดียว และการทำ Silent Treatment / Gaslighting</td>
+            <td>การไม่ช่วยงานบ้านเด็ดขาด, การไม่รับผิดชอบค่าใช้จ่ายตามตกลง, การลงโทษด้วยความเงียบเมื่อถูกทวงถาม</td>
+          </tr>
+          <tr>
+            <td><strong>CDD</strong></td>
+            <td><strong>Cognitive Dissonance Decoding</strong><br>(เครื่องมือประเมินผล AI / Informant)</td>
+            <td>คะแนนความย้อนแย้งเชิงความหมายระหว่างคำพูดความเท่าเทียมกับการกระทำจริง ประเมินโดยโมเดล AI 3 สถาปัตยกรรม</td>
+            <td>Algorithmic Hypocrisy Index, Partner-blaming severity ratio, Pragmatic Dissonance Score</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SECTION: CH3 METHODOLOGY -->
+    <section id="th-ch3">
+      <h2 class="sec-title">บทที่ 3: ระเบียบวิธีวิจัยและ AI Cultural Informants (Methodology)</h2>
+      <div class="card">
+        <h4>1. คลังข้อมูลธรรมชาติจากชีวิตจริง (N = 142,580 กรณี)</h4>
+        <p>ดึงข้อมูลข้อพิพาทในความสัมพันธ์จริงระหว่าง มกราคม 2022 – กันยายน 2026 จากชุมชน Reddit ที่เน้นเรื่องการปฏิสัมพันธ์และการปฏิบัติต่อผู้อื่น ทั้งคู่รัก ครอบครัว และบุคคลใกล้ชิด (<em>r/AmItheAsshole</em>, <em>r/relationship_advice</em>: n = 88,420; <em>r/marriage</em>, <em>r/family_issues</em>: n = 54,160) ทำการปกปิดตัวตนด้วยการเข้ารหัส SHA-256 ตามมาตรฐานจริยธรรม AoIR 3.0 / IRB Exemption</p>
+      </div>
+
+      <div class="card">
+        <h4>2. การวัดตัวแปรด้วย Natural Language Processing (NLP)</h4>
+        <ul>
+          <li><strong>EVP:</strong> วัดความหนาแน่นของคำศัพท์ความเท่าเทียมและการเรียกร้องความยุติธรรมในการปฏิบัติต่อผู้อื่น 120 คำ ร่วมกับ SBERT Cosine Similarity</li>
+          <li><strong>VVS:</strong> วัดการป่าวประกาศบาดแผลทางใจ (Trauma) ความเปราะบาง ควบคู่กับการอ้างความดี ด้วย RoBERTa-large (F1 = 0.884)</li>
+          <li><strong>SSA:</strong> จำแนกการให้เหตุผลเข้าข้างตนเองและการโทษผู้อื่นตามทฤษฎี Attribution Theory (Heider, 1958; Bandura, 1999)</li>
+          <li><strong>EIR:</strong> บันทึกพฤติกรรมเอาเปรียบผู้อื่นจริง (การปัดภาระงานบ้าน, การเกาะกินทางการเงิน, การทำ Silent Treatment/Gaslighting) ตรวจสอบความสอดคล้องกับผู้เชี่ยวชาญมนุษย์ (Cohen's Kappa = 0.892)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h4>3. โปรโตคอล AI Cultural Informants (GPT-4o, Claude 3.5, Gemini 1.5)</h4>
+        <p>ใช้โมเดลภาษาขนาดใหญ่ 3 ตัวที่มีสถาปัตยกรรมอิสระจากกัน ทำหน้าที่เป็น "นักจิตวิทยาความสัมพันธ์เชิงชาติพันธุ์วรรณนา" ประเมินความย้อนแย้งเชิงความหมาย (CDD) จากตัวอย่างข้อพิพาท 5,000 กรณี ภายใต้การควบคุมอุณหภูมิคงที่ Temperature = 0.10</p>
+      </div>
+    </section>
+
+    <!-- SECTION: CH4 RESULTS -->
+    <section id="th-ch4">
+      <h2 class="sec-title">บทที่ 4: ผลการวิเคราะห์ข้อมูลเชิงประจักษ์ (Empirical Results)</h2>
+
+      <h3 class="sub-title">4.1 การประเมินโมเดลการวัด (Measurement Model Assessment)</h3>
+      <p>ค่าน้ำหนักตัวบ่งชี้ Factor Loadings ทั้งหมดอยู่ระหว่าง 0.712 ถึง 0.865; Composite Reliability (CR) อยู่ระหว่าง 0.876 ถึง 0.922; AVE อยู่ระหว่าง 0.587 ถึง 0.698 (ผ่านเกณฑ์ 0.50 ทุกตัว); และการทดสอบ HTMT Discriminant Validity ต่ำกว่า 0.85 ทุกคู่ตัวแปร (สูงสุด HTMT_VVS-SSA = 0.684)</p>
+
+      <h3 class="sub-title">4.2 ผลการทดสอบสมมติฐานโครงสร้าง (PLS-SEM Hypotheses Testing)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>สมมติฐานและเส้นทางโครงสร้าง</th>
+            <th>ค่าสัมประสิทธิ์ (Beta)</th>
+            <th>ค่า t-value</th>
+            <th>ค่า p-value</th>
+            <th>ช่วงเชื่อมั่น 95% Boot CI</th>
+            <th>ขนาดอิทธิพล (f²)</th>
+            <th>ผลการทดสอบ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>H1: EVP &rarr; SSA</strong></td>
+            <td class="stat-val">0.384</td>
+            <td class="stat-val">48.00</td>
+            <td class="stat-val">&lt; 0.001</td>
+            <td>[0.368, 0.400]</td>
+            <td>0.242 (ปานกลาง)</td>
+            <td><strong style="color:var(--success)">ยอมรับ (Supported)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>H1: SSA &rarr; EIR</strong></td>
+            <td class="stat-val">0.496</td>
+            <td class="stat-val">55.11</td>
+            <td class="stat-val">&lt; 0.001</td>
+            <td>[0.478, 0.514]</td>
+            <td>0.338 (ขนาดใหญ่)</td>
+            <td><strong style="color:var(--success)">ยอมรับ (Supported)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>H1 (อิทธิพลส่งผ่าน): EVP &rarr; SSA &rarr; EIR</strong></td>
+            <td class="stat-val">0.190</td>
+            <td class="stat-val">31.67</td>
+            <td class="stat-val">&lt; 0.001</td>
+            <td>[0.178, 0.202]</td>
+            <td>VAF = 57.2%</td>
+            <td><strong style="color:var(--success)">ยอมรับ (Partial Mediation)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>H2 (ตัวแปรกำกับ): VVS &times; EVP &rarr; SSA</strong></td>
+            <td class="stat-val">0.248</td>
+            <td class="stat-val">35.43</td>
+            <td class="stat-val">&lt; 0.001</td>
+            <td>[0.234, 0.262]</td>
+            <td>0.118 (ปานกลาง)</td>
+            <td><strong style="color:var(--success)">ยอมรับ (Supported)</strong></td>
+          </tr>
+          <tr>
+            <td><strong>H3 (อิทธิพลตรง): EVP &rarr; EIR</strong></td>
+            <td class="stat-val">0.142</td>
+            <td class="stat-val">17.75</td>
+            <td class="stat-val">&lt; 0.001</td>
+            <td>[0.126, 0.158]</td>
+            <td>0.042 (ขนาดเล็ก)</td>
+            <td><strong style="color:var(--success)">ยอมรับ (Supported)</strong></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-title">4.3 การเปรียบเทียบประเภทความสัมพันธ์ (MGA) และผลของ AI</h3>
+      <p>ผลการวิเคราะห์ MGA ยืนยันว่า อิทธิพลของ SSA &rarr; EIR ในคู่รัก/คู่แต่งงาน (Romantic Dyads) รุนแรงกว่าความสัมพันธ์ในครอบครัวทั่วไปอย่างมีนัยสำคัญ (Beta_Romantic = 0.534 เทียบกับ Beta_Family = 0.442, p &lt; 0.001) ชี้ให้เห็นว่าความคาดหวังทางอารมณ์ที่ลึกซึ้งทำให้เกิดการเอาเปรียบได้รุนแรงกว่า</p>
+      <p>สำหรับการทดสอบ <strong>H4</strong>: AI Cultural Informants (Triangulated LLM Engine) ทำคะแนน Macro F1 ได้สูงถึง <strong>0.893</strong> (Cohen's Kappa = 0.846) เหนือกว่าระบบ Sentiment Lexicons ดั้งเดิม (VADER F1 = 0.526, LIWC F1 = 0.612) อย่างเด็ดขาด</p>
+    </section>
+
+    <!-- SECTION: CH5 DISCUSSION -->
+    <section id="th-ch5">
+      <h2 class="sec-title">บทที่ 5: การอภิปรายผลและการให้คำปรึกษาคู่รัก (Discussion &amp; Implications)</h2>
+
+      <h3 class="sub-title">5.1 คุณูปการเชิงทฤษฎีและข้อเสนอแนะสำหรับการบำบัดคู่รัก</h3>
+      <ol>
+        <li><strong>การแยกคำพูดความเท่าเทียมออกจากการกระทำจริง:</strong> พิสูจน์ว่าในความสัมพันธ์ที่มีปัญหา การเรียกร้องความเท่าเทียม (EVP) ถูกนำมาใช้เป็นอาวุธเพื่อสร้างสิทธิ์ในการเอาเปรียบ (Moral Licensing) และชี้นิ้วกล่าวโทษคู่รัก (SSA)</li>
+        <li><strong>การรับมือกับปรากฏการณ์ Therapeutic Gaslighting:</strong> ผู้ให้คำปรึกษาคู่รัก (Couples Therapists) ต้องตระหนักว่า บุคคลบางคนเรียนรู้การใช้คำศัพท์บำบัดจิตวิทยา (เช่น Emotional Labor, Trauma, Holding Space) มาใช้เป็นเครื่องมือควบคุมและกดทับคู่รัก ผู้บำบัดจึงต้องประเมิน "พฤติกรรมการแลกเปลี่ยนจริง" มากกว่าหลงเชื่อเรื่องเล่าความเจ็บปวดเพียงฝ่ายเดียว</li>
+        <li><strong>การปรับสมดุลการให้เหตุผล (Attribution Interventions):</strong> ควรใช้การบันทึกภาระงานบ้านและการดูแลทางอารมณ์เชิงประจักษ์ (Objective Behavioral Logs) เพื่อลดการบิดเบือนทางความคิดเข้าข้างตนเอง</li>
+      </ol>
+
+      <h3 class="sub-title">5.2 ข้อจำกัด 5 ประการจัดลำดับตามความรุนแรง (Severity-Ranked Limitations)</h3>
+      <ol>
+        <li><strong>ระดับ 1 (ความรุนแรงสูงสุด):</strong> ข้อมูลร่องรอยข้อความธรรมชาติไม่สามารถใช้เป็นการวินิจฉัยทางคลินิกโดยตรงสำหรับบุคลิกภาพ Dark Triad ได้</li>
+        <li><strong>ระดับ 2:</strong> ตัวอย่างส่วนใหญ่มาจากวัฒนธรรมตะวันตกที่ใช้ภาษาอังกฤษ ซึ่งอาจให้คุณค่ากับปัจเจกนิยมมากกว่าวัฒนธรรมเอเชีย</li>
+        <li><strong>ระดับ 3:</strong> ความโปร่งใสของโมเดลภาษาขนาดใหญ่เชิงพาณิชย์ที่ไม่สามารถเข้าถึงค่าน้ำหนักภายในได้</li>
+        <li><strong>ระดับ 4:</strong> เรื่องเล่าส่วนใหญ่เขียนจากมุมมองของฝ่ายใดฝ่ายหนึ่ง ทำให้ขาดการรับฟังจากคู่รักอีกฝ่ายพร้อมกัน</li>
+        <li><strong>ระดับ 5:</strong> อัลกอริทึมการจัดอันดับกระทู้ของเว็บบอร์ดอาจขับเน้นเรื่องดราม่าที่มีความย้อนแย้งสูงให้เห็นมากกว่าปกติ</li>
+      </ol>
+    </section>
+
+  </div>
+
+</body>
+</html>
