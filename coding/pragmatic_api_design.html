@@ -1,0 +1,1530 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - Pragmatic Payload-Driven API Design (HTTP Status &amp; JSON Envelope)</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Master pragmatic API design by decoupling HTTP transport from business logic with a standard JSON envelope, smart 2xx codes, and clean error handling." />
+		<meta name="keywords" content="API Design, REST API, Pragmatic API, HTTP Status Codes, Payload-Driven, JSON Envelope, Software Architecture, Backend Engineering, Axios Interceptor" />
+		<link rel="canonical" href="https://www.peerapat.cc/coding/pragmatic_api_design.html" />
+		<meta name="author" content="Peerapat A" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="article" />
+		<meta property="og:title" content="Peerapat A - Pragmatic Payload-Driven API Design (HTTP Status &amp; JSON Envelope)" />
+		<meta property="og:description" content="Stop HTTP Status confusion! A definitive pragmatic guide to decoupling transport codes from business logic using standard JSON envelopes and smart 2xx/4xx/5xx practices." />
+		<meta property="og:url" content="https://www.peerapat.cc/coding/pragmatic_api_design.html" />
+		<meta property="og:image" content="https://www.peerapat.cc/images/coding-pragmatic-api-design.jpg" />
+
+		<!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Peerapat A - Pragmatic Payload-Driven API Design" />
+		<meta name="twitter:description" content="Stop HTTP Status confusion! Decouple transport from business logic with a standard JSON envelope and clean error boundaries." />
+		<meta name="twitter:image" content="https://www.peerapat.cc/images/coding-pragmatic-api-design.jpg" />
+
+		<!-- Schema.org JSON-LD Structured Data for SEO / AEO -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "TechArticle",
+			"headline": "Stop HTTP Status Confusion: Pragmatic Payload-Driven API Design",
+			"description": "A comprehensive engineering guide on decoupling infrastructure transport status codes from business logic using a standard JSON envelope and pragmatic 2xx/4xx/5xx status code guidelines.",
+			"image": "https://www.peerapat.cc/images/coding-pragmatic-api-design.jpg",
+			"author": {
+				"@type": "Person",
+				"name": "Peerapat Asoktummarungsri",
+				"url": "https://www.peerapat.cc/profile.html"
+			},
+			"publisher": {
+				"@type": "Person",
+				"name": "Peerapat Asoktummarungsri"
+			},
+			"datePublished": "2026-11-05",
+			"dateModified": "2026-11-05",
+			"inLanguage": ["en", "th", "zh", "ja", "de"]
+		}
+		</script>
+
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets/css/ci.css" />
+		<link rel="stylesheet" href="../assets/css/cookie-consent.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('consent', 'default', { analytics_storage: 'denied' });
+			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
+			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
+			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
+		</script>
+
+		<!-- Dark mode init (to prevent FOUC) -->
+		<script>
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
+
+		<style>
+			/* Language Switcher Floating Menu */
+			.lang-switcher {
+				position: fixed;
+				left: 3rem;
+				top: 50%;
+				transform: translateY(-50%);
+				z-index: 1000;
+				display: flex;
+				flex-direction: column;
+				gap: 0.5rem;
+				padding: 0.6rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 24px;
+				width: fit-content;
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			}
+			
+			.lang-icon {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+				gap: 0.3rem;
+				padding: 0.6rem 0.4rem;
+				border-radius: 16px;
+				color: var(--ci-muted) !important;
+				text-decoration: none !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.75em;
+				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				background-image: none !important;
+				width: 54px;
+			}
+			
+			.lang-icon .flag-icon {
+				border-radius: 4px;
+				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 24px;
+				height: 16px;
+			}
+			
+			.lang-icon:hover {
+				color: var(--ci-navy) !important;
+				background: var(--ci-canvas);
+				transform: translateX(4px);
+			}
+			
+			.lang-icon:hover .flag-icon {
+				transform: scale(1.15) rotate(-2deg);
+			}
+			
+			.lang-icon.active {
+				color: var(--ci-blue) !important;
+				background: rgba(5, 172, 225, 0.06);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+			}
+			
+			.lang-icon.active .flag-icon {
+				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
+			}
+
+			.lang-section {
+				display: none;
+			}
+			.lang-section.active {
+				display: block;
+				animation: fadeIn 0.4s ease;
+			}
+			@keyframes fadeIn {
+				from { opacity: 0; transform: translateY(5px); }
+				to { opacity: 1; transform: translateY(0); }
+			}
+
+			/* Mobile layout for language switcher */
+			@media screen and (max-width: 980px) {
+				.lang-switcher {
+					position: static;
+					transform: none;
+					flex-direction: row;
+					margin: 0 0 2.5rem 0;
+					padding: 0.4rem;
+					border-radius: 99px;
+				}
+				.lang-icon {
+					flex-direction: row;
+					width: auto;
+					padding: 0.3rem 1rem 0.3rem 0.4rem;
+					font-size: 0.85em;
+					border-radius: 99px;
+				}
+				.lang-icon:hover {
+					transform: translateY(-2px);
+				}
+			}
+
+			/* Callout and Quote styling */
+			blockquote.takeaway {
+				border-left: 4px solid var(--ci-cyan, #05ACE1);
+				padding: 1.1rem 1.35rem;
+				background: rgba(5, 172, 225, 0.06);
+				border-radius: 0 8px 8px 0;
+				margin: 1.75rem 0;
+				font-size: 1.02em;
+				line-height: 1.65;
+			}
+
+			/* Modern Table Styles */
+			.table-wrapper {
+				overflow-x: auto;
+				max-width: 100%;
+				margin: 1.5rem 0 2rem 0;
+				border: 1px solid var(--ci-line);
+				border-radius: 8px;
+				background: var(--ci-paper);
+				box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+			}
+
+			.comparison-table {
+				width: 100%;
+				border-collapse: collapse;
+				font-size: 0.92em;
+				text-align: left;
+			}
+
+			.comparison-table th, 
+			.comparison-table td {
+				padding: 0.85rem 1rem;
+				border-bottom: 1px solid var(--ci-line);
+				vertical-align: top;
+			}
+
+			.comparison-table thead th {
+				background: var(--ci-canvas);
+				color: var(--ci-navy);
+				font-weight: 700;
+				border-bottom: 2px solid var(--ci-line);
+				position: sticky;
+				top: 0;
+			}
+
+			.comparison-table tbody tr:hover {
+				background: rgba(5, 172, 225, 0.03);
+			}
+
+			/* Status Code Badges */
+			.status-pill {
+				display: inline-block;
+				padding: 0.2rem 0.55rem;
+				border-radius: 6px;
+				font-weight: 700;
+				font-family: monospace;
+				font-size: 0.88em;
+			}
+			.status-2xx {
+				background: rgba(46, 204, 113, 0.15);
+				color: #27ae60;
+				border: 1px solid rgba(46, 204, 113, 0.3);
+			}
+			.status-4xx {
+				background: rgba(243, 156, 18, 0.15);
+				color: #d35400;
+				border: 1px solid rgba(243, 156, 18, 0.3);
+			}
+			.status-5xx {
+				background: rgba(231, 76, 60, 0.15);
+				color: #c0392b;
+				border: 1px solid rgba(231, 76, 60, 0.3);
+			}
+
+			/* Card Grid */
+			.concept-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+				gap: 1.25rem;
+				margin: 1.5rem 0 2rem 0;
+			}
+
+			.concept-card {
+				padding: 1.3rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 10px;
+				box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+			}
+
+			.concept-card h4 {
+				margin: 0 0 0.5rem 0;
+				color: var(--ci-cyan, #05ACE1);
+				font-size: 1.15em;
+			}
+
+			/* Code snippet enhancements */
+			pre {
+				background: #111827 !important;
+				color: #f3f4f6 !important;
+				padding: 1.2rem;
+				border-radius: 8px;
+				overflow-x: auto;
+				border: 1px solid #1f2937;
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+				font-size: 0.9em;
+				line-height: 1.55;
+				margin: 1.25rem 0;
+			}
+			code {
+				font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+			}
+			p code, li code, td code {
+				background: rgba(5, 172, 225, 0.08);
+				color: var(--ci-blue, #05ACE1);
+				padding: 0.15em 0.4em;
+				border-radius: 4px;
+				font-size: 0.88em;
+			}
+
+			/* Header Cover Image */
+			.article-cover {
+				width: 100%;
+				height: auto;
+				max-height: 440px;
+				object-fit: cover;
+				border-radius: 12px;
+				border: 1px solid var(--ci-line);
+				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+				margin: 1.5rem 0 2rem 0;
+				display: block;
+			}
+
+			/* FAQ Accordion / Cards */
+			.faq-item {
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 8px;
+				padding: 1.2rem;
+				margin-bottom: 1rem;
+			}
+			.faq-item h4 {
+				margin: 0 0 0.5rem 0;
+				color: var(--ci-navy);
+				font-size: 1.08em;
+			}
+			.faq-item p {
+				margin: 0;
+			}
+		</style>
+	</head>
+
+	<body class="is-preload">
+		<div id="main">
+			<section id="one">
+				<header class="major">
+					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon" title="Toggle dark mode" aria-label="Toggle theme"></a>
+
+					<h1>Pragmatic Payload-Driven API Design</h1>
+					<p><a href="../coding.html">Coding</a> &gt; <em>November 2026 &nbsp;&middot;&nbsp; Peerapat A &nbsp;&middot;&nbsp; 8 min read</em></p>
+				</header>
+
+				<!-- Language Switcher Bar -->
+				<div class="lang-switcher">
+					<a href="#lang-en" class="lang-icon active" title="English">
+						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<span class="lang-code">EN</span>
+					</a>
+
+					<a href="#lang-th" class="lang-icon" title="ภาษาไทย">
+						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<span class="lang-code">TH</span>
+					</a>
+					
+					<a href="#lang-zh" class="lang-icon" title="中文">
+						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<span class="lang-code">ZH</span>
+					</a>
+					
+					<a href="#lang-ja" class="lang-icon" title="日本語">
+						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<span class="lang-code">JA</span>
+					</a>
+					
+					<a href="#lang-de" class="lang-icon" title="Deutsch">
+						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<span class="lang-code">DE</span>
+					</a>
+				</div>
+
+				<!-- ===================================================================
+				     1. ENGLISH SECTION (Default)
+				     =================================================================== -->
+				<div id="lang-en" class="lang-section active" style="padding-top: 1rem; margin-bottom: 4em;">
+					<h2>Stop HTTP Status Confusion: Pragmatic Payload-Driven API Design</h2>
+					<p><em>Clean Transport Separation, Standard JSON Envelope, and Smart Status Code Strategy.</em></p>
+
+					<blockquote class="takeaway">
+						<strong>Bottom Line Up Front (BLUF):</strong> Pragmatic Payload-Driven API design decouples infrastructure transport (HTTP Status Codes) from business outcomes (JSON Envelope). Reserve HTTP 4xx/5xx strictly for network, gateway, and transport-level failures. Let all application-level logic return 200 OK (or appropriate 2xx) wrapped in a standard <code>{ success, code, message, data, error }</code> envelope, eliminating ambiguous frontend error handling and nested try-catch blocks.
+					</blockquote>
+
+					<p>One of the most persistent architectural debates in backend engineering revolves around a deceptively simple question: <strong>"How should we design our REST APIs?"</strong></p>
+
+					<p>On one side stands the <strong>Strict RESTful</strong> camp, advocating that every application state must map strictly to an HTTP Status Code (e.g., returning <code>404 Not Found</code> when a user query finds no database record, or returning <code>400 Bad Request</code> / <code>422 Unprocessable Entity</code> when a wallet lacks sufficient funds). On the other side stands the raw <strong>Payload-Driven</strong> camp, which responds with <code>HTTP 200 OK</code> for virtually everything and encapsulates all statuses inside the JSON response.</p>
+
+					<p>The fatal flaw of the Strict RESTful approach in production is <strong>ambiguity</strong>. When a frontend client receives an HTTP <code>404 Not Found</code>, what does it truly mean? Did the developer mistype the endpoint URL? Did the API Gateway route to a dead service? Or was the HTTP routing completely successful, but the specific user record simply doesn't exist in the database? This ambiguity forces frontend developers to write deeply nested, defensive <code>try-catch</code> cascades just to differentiate between network failures and routine business states.</p>
+
+					<p>This article presents a <strong>Pragmatic Payload-Driven API Design</strong> — an industry-proven hybrid architecture that extracts the best aspects of both paradigms: giving backend services consistent conventions and providing frontend engineers with clean, predictable contracts.</p>
+
+					<hr />
+
+					<h3>🏛️ Core Philosophy: Decoupling Infrastructure from Business Logic</h3>
+					<p>The fundamental rule of this architecture is crystal clear:</p>
+					<ul>
+						<li><strong>HTTP Status Code:</strong> Solely responsible for describing the status of <em>data transport and infrastructure</em> (Routing, Gateway, Network, TLS, Schema Validation).</li>
+						<li><strong>Response Payload (JSON):</strong> Solely responsible for describing the outcome of <em>business rules and domain logic</em>.</li>
+					</ul>
+
+					<p>Whenever a client request successfully crosses the API Gateway, reaches the Controller, and the application executes its domain pipeline to completion — even if the transaction fails due to a domain rule (such as an overdraft or expired coupon) — the <em>communication itself succeeded</em>. Therefore, the HTTP transport layer must return a successful status code (such as <code>200 OK</code>).</p>
+
+					<div class="concept-grid">
+						<div class="concept-card">
+							<h4>🌐 Infrastructure Layer (HTTP)</h4>
+							<p>Answers: <em>"Did the request packet physically reach the server, authenticate, pass routing, and execute without server crash?"</em> Handled by Gateway, Reverse Proxy, and Framework Middleware.</p>
+						</div>
+						<div class="concept-card">
+							<h4>📦 Business Domain Layer (JSON)</h4>
+							<p>Answers: <em>"Did the business logic succeed according to domain rules?"</em> Handled entirely by Controllers, Services, and Domain Models.</p>
+						</div>
+					</div>
+
+					<h3>📋 The Standard Response Envelope</h3>
+					<p>Every API endpoint that reaches the business logic layer returns a consistent JSON envelope:</p>
+
+<pre><code>{
+  "success": true,               // boolean: true if business conditions were met, false otherwise
+  "code": "SUCCESS",             // UPPERCASE business string code for frontend conditional branching
+  "message": "Operation success",// Human-readable message for debugging or UI notification display
+  "data": { ... },               // Primary response payload object, array, or null
+  "error": null                  // Detailed error diagnostic object or array (null on success)
+}</code></pre>
+
+					<hr />
+
+					<h3>✨ The Art of 2xx (Success Group)</h3>
+					<p>A pragmatic architecture does not blindly spam <code>{ success: true, data: null }</code> for every request. Instead, we utilize the 2xx HTTP family to optimize bandwidth and convey precise transport intent:</p>
+
+					<ul>
+						<li>
+							<strong><span class="status-pill status-2xx">200 OK</span> (Success with Payload):</strong><br />
+							Used for standard queries and mutations that return state, such as <code>GET</code> retrieval or <code>POST</code> resource creation returning the newly minted object.
+						</li>
+						<li>
+							<strong><span class="status-pill status-2xx">204 No Content</span> (Success without Payload):</strong><br />
+							Used for operations where the client already knows the outcome and needs no data returned, such as <code>DELETE /users/123</code> or fire-and-forget status updates. The backend sends no response body, saving network bandwidth.
+						</li>
+						<li>
+							<strong><span class="status-pill status-2xx">202 Accepted</span> (Async Job Dispatched):</strong><br />
+							Used for asynchronous or long-running tasks, such as generating a multi-million-row export. The backend responds with 202 immediately and attaches a <code>jobId</code> in the payload, allowing the client to poll or await a webhook without incurring gateway timeouts.
+						</li>
+					</ul>
+
+					<hr />
+
+					<h3>🛡️ Strict Scope for Non-Success Codes (4xx &amp; 5xx)</h3>
+					<p>While 2xx represents business completion, we never discard 4xx and 5xx. Rather, we enforce a strict architectural boundary: <strong>Never use 4xx/5xx to represent business logic failures</strong>. These codes belong exclusively to the Framework, API Gateway, and Middleware:</p>
+
+					<ul>
+						<li>
+							<strong><span class="status-pill status-4xx">400 Bad Request</span> (Malformed Request):</strong><br />
+							Reserved for requests that fail syntax or schema validation before business logic executes (e.g., malformed JSON syntax, invalid data types, or missing mandatory transport parameters).
+						</li>
+						<li>
+							<strong><span class="status-pill status-4xx">401 Unauthorized</span> (Identity Missing / Expired):</strong><br />
+							The client sent no Access Token, or the JWT signature has expired.
+						</li>
+						<li>
+							<strong><span class="status-pill status-4xx">403 Forbidden</span> (Permission Denied):</strong><br />
+							The client identity is authenticated, but lacks Role-Based Access Control (RBAC) permissions to access the route.
+						</li>
+						<li>
+							<strong><span class="status-pill status-4xx">404 Not Found</span> (Routing Failure Only):</strong><br />
+							<strong>Has exactly one meaning: "The endpoint URL does not exist."</strong> It is never used when a database query returns empty. If a user record does not exist, return <code>200 OK</code> with <code>data: null</code>.
+						</li>
+						<li>
+							<strong><span class="status-pill status-4xx">429 Too Many Requests</span> (Throttled):</strong><br />
+							The client exceeded rate limits managed by the API Gateway or Redis bucket.
+						</li>
+						<li>
+							<strong><span class="status-pill status-5xx">500 Internal Server Error</span> (System Crash):</strong><br />
+							Database connection failure, out-of-memory crash, or an unhandled exception thrown in code.
+						</li>
+					</ul>
+
+					<hr />
+
+					<h3>📊 Comprehensive API Action Matrix</h3>
+					<p>The following table serves as the definitive reference guide across common engineering workflows:</p>
+
+					<div tabindex="0" role="region" aria-label="Comprehensive API Design Guideline Table" class="table-wrapper">
+						<table class="comparison-table">
+							<thead>
+								<tr>
+									<th scope="col">Action / Category</th>
+									<th scope="col">Sample Request</th>
+									<th scope="col">HTTP Status</th>
+									<th scope="col">Response Payload Structure</th>
+									<th scope="col">Frontend Interpretation</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Read (List)</strong></td>
+									<td><code>GET /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": [...] }</code></td>
+									<td>Render table/list. Empty list returns <code>[]</code>.</td>
+								</tr>
+								<tr>
+									<td><strong>Read (Single)</strong></td>
+									<td><code>GET /users/123</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": null }</code></td>
+									<td>System executed normally; entity does not exist. Render "User Not Found" empty state.</td>
+								</tr>
+								<tr>
+									<td><strong>Create</strong></td>
+									<td><code>POST /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span> / <span class="status-pill status-2xx">201</span></td>
+									<td><code>{ "success": true, "data": { "id": 1 } }</code></td>
+									<td>Resource created. Use returned ID for navigation.</td>
+								</tr>
+								<tr>
+									<td><strong>Update / Delete</strong></td>
+									<td><code>PUT /users/1</code>, <code>DELETE /users/1</code></td>
+									<td><span class="status-pill status-2xx">204 No Content</span></td>
+									<td><em>(Empty Body)</em></td>
+									<td>Operation finished successfully. No payload parsing required.</td>
+								</tr>
+								<tr>
+									<td><strong>Async Task</strong></td>
+									<td><code>POST /export</code></td>
+									<td><span class="status-pill status-2xx">202 Accepted</span></td>
+									<td><code>{ "success": true, "data": { "jobId": "x7z" } }</code></td>
+									<td>Job queued. Use <code>jobId</code> to poll progress.</td>
+								</tr>
+								<tr>
+									<td><strong>Business Error</strong></td>
+									<td><code>POST /transfer</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": false, "code": "INSUFFICIENT_FUNDS", "message": "Balance too low" }</code></td>
+									<td>Communication succeeded. Handle business constraint inside UI component.</td>
+								</tr>
+								<tr>
+									<td><strong>Routing Error</strong></td>
+									<td><code>GET /userrrrs</code></td>
+									<td><span class="status-pill status-4xx">404 Not Found</span></td>
+									<td><em>(Gateway Default Error Body)</em></td>
+									<td>Endpoint path mistyped or deprecated.</td>
+								</tr>
+								<tr>
+									<td><strong>Auth Protocol Error</strong></td>
+									<td>Missing Bearer Token</td>
+									<td><span class="status-pill status-4xx">401 Unauthorized</span></td>
+									<td><em>(Middleware Default Error Body)</em></td>
+									<td>Token expired or invalid. Redirect client to login page.</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<hr />
+
+					<h3>💻 Frontend Implementation: The Interceptor Pattern</h3>
+					<p>With this architecture, your frontend codebase becomes exceptionally clean. Axios HTTP Interceptors catch transport failures at the root, while UI components handle business outcomes effortlessly:</p>
+
+<pre><code>import axios from 'axios';
+
+const apiClient = axios.create({ baseURL: 'https://api.example.com/v1' });
+
+// Global Response Interceptor
+apiClient.interceptors.response.use(
+  (response) => {
+    // 2xx passes through cleanly
+    return response;
+  },
+  (error) => {
+    // 4xx and 5xx are handled centrally as network/infrastructure errors
+    if (error.response) {
+      const { status } = error.response;
+      if (status === 401) {
+        window.location.href = '/login';
+      } else if (status === 403) {
+        toast.error('You do not have permission to access this resource.');
+      } else if (status >= 500) {
+        toast.error('Server outage. Please try again later.');
+      }
+    } else {
+      toast.error('Network connection error.');
+    }
+    return Promise.reject(error);
+  }
+);
+
+// Usage inside a Component or Feature Service
+async function handleTransfer(amount) {
+  const res = await apiClient.post('/transfer', { amount });
+  
+  // Clean, straightforward business check - no try-catch soup!
+  if (!res.data.success) {
+    if (res.data.code === 'INSUFFICIENT_FUNDS') {
+      showTopUpModal();
+    } else {
+      toast.warning(res.data.message);
+    }
+    return;
+  }
+  
+  toast.success('Transfer completed successfully!');
+}</code></pre>
+
+					<hr />
+
+					<h3>❓ Frequently Asked Questions (FAQ)</h3>
+					<div class="faq-item">
+						<h4>Is returning 200 OK for business errors violating REST principles?</h4>
+						<p>No. HTTP is a transfer protocol, not an application business rules engine. Fielding's REST dissertation focuses on hypermedia and uniform resource manipulation; it does not mandate mapping complex domain business logic to coarse HTTP status codes.</p>
+					</div>
+					<div class="faq-item">
+						<h4>What should a Single Read return when a record is not found?</h4>
+						<p>Return <code>200 OK</code> with <code>"data": null</code> inside the standard envelope. Returning 404 creates confusion with missing endpoint routes. Null data cleanly signals that the query executed properly, but no matching entity exists.</p>
+					</div>
+					<div class="faq-item">
+						<h4>When should I return 204 No Content instead of 200 OK?</h4>
+						<p>Use <code>204 No Content</code> when the client only requires confirmation that the mutation completed without needing updated state data (e.g., resource deletion, fire-and-forget toggle switches).</p>
+					</div>
+
+					<hr />
+
+					<h3>🏁 Conclusion</h3>
+					<p>Pragmatic Payload-Driven API design permanently resolves the error handling bottleneck between backend and frontend teams. By strictly isolating infrastructure concerns to HTTP status codes and delegating domain decisions to standard JSON envelopes, your software architecture gains clarity, maintainability, and enterprise-grade resilience.</p>
+				</div>
+
+				<!-- ===================================================================
+				     2. THAI SECTION
+				     =================================================================== -->
+				<div id="lang-th" class="lang-section" style="padding-top: 1rem; margin-bottom: 4em;">
+					<h2>เลิกสับสนกับ HTTP Status! สรุปแนวทางการออกแบบ API สไตล์ Pragmatic Payload-Driven</h2>
+					<p><em>แยก Transport ออกจาก Business Logic, โครงสร้าง Standard Envelope และวิธีใช้ Status Code ให้เฉียบคม</em></p>
+
+					<blockquote class="takeaway">
+						<strong>สรุปประเด็นสำคัญ (BLUF):</strong> สถาปัตยกรรม Pragmatic Payload-Driven แยกชั้น Infrastructure ออกจาก Business Logic อย่างเด็ดขาด โดยสงวนรหัส HTTP 4xx/5xx ไว้สำหรับ Network และ Gateway เท่านั้น และให้ระบบตอบกลับด้วยกลุ่ม 2xx เสมอเมื่อผ่านกระบวนการฝั่ง Application พร้อมห่อหุ้มผลลัพธ์ด้วย Standard JSON Envelope <code>{ success, code, message, data, error }</code> เพื่อตัดปัญหาความคลุมเครือของ 404/400 และช่วยให้ Frontend จัดการ Error ผ่าน Interceptor ได้อย่างเป็นระบบ
+					</blockquote>
+
+					<p>หนึ่งในข้อถกเถียงคลาสสิกของคนทำ Backend คือ <strong>"เราควรออกแบบ API แบบไหน?"</strong></p>
+
+					<p>ระหว่างสาย <strong>Strict RESTful</strong> ที่พยายามผูกทุกอย่างเข้ากับ HTTP Status Code (เช่น หา User ไม่เจอให้ตอบ 404, เงินไม่พอให้ตอบ 400 หรือ 422) กับสาย <strong>Payload-Driven</strong> ที่ตอบ HTTP 200 เป็นหลักแล้วไปบอกสถานะข้างใน JSON</p>
+
+					<p>ปัญหาของ Strict RESTful คือ <strong>"ความคลุมเครือ"</strong> เช่น เมื่อ Frontend ได้รับ <code>404 Not Found</code> คำถามคือ... ตกลงพิมพ์ URL ผิด (Endpoint ไม่มีอยู่จริง) หรือว่าหาข้อมูลใน Database ไม่เจอ? ความสับสนนี้ทำให้ฝั่ง Frontend ต้องเขียน <code>try-catch</code> ซ้อนทับกันวุ่นวายเพื่อดัก Error</p>
+
+					<p>บทความนี้จะขอเสนอแนวทางการออกแบบ API แบบ <strong>"Pragmatic Payload-Driven"</strong> (เน้นการใช้งานจริง) ที่ดึงข้อดีของทั้งสองฝั่งมาผสมกัน เพื่อให้ Backend ทำงานเป็นมาตรฐาน และ Frontend เอาไปต่อยอดได้ง่ายที่สุด</p>
+
+					<hr />
+
+					<h3>🏛️ หัวใจสำคัญ: แยก Infrastructure ออกจาก Business Logic</h3>
+					<p>กฎเหล็กของสถาปัตยกรรมนี้คือ:</p>
+					<ul>
+						<li><strong>HTTP Status Code:</strong> มีหน้าที่บอกสถานะของการส่งข้อมูล (Transport/Infrastructure) เท่านั้น</li>
+						<li><strong>Response Payload (JSON):</strong> มีหน้าที่บอกผลลัพธ์ของเงื่อนไขทางธุรกิจ (Business Logic)</li>
+					</ul>
+
+					<p>ดังนั้น ตราบใดที่ Request วิ่งฝ่า API Gateway มาถึง Controller และระบบประมวลผลจนจบกระบวนการ (แม้ว่างานนั้นจะล้มเหลวเพราะผิดเงื่อนไขธุรกิจ เช่น เงินไม่พอ) เราจะถือว่า "การสื่อสารสำเร็จ" และตอบ HTTP 200 OK เสมอ</p>
+
+					<div class="concept-grid">
+						<div class="concept-card">
+							<h4>🌐 ฝั่ง Infrastructure (HTTP)</h4>
+							<p>ตอบคำถามว่า: <em>"ส่งข้อมูลถึง Controller สำเร็จไหม? ระบบล่มหรือเปล่า?"</em> ดูแลโดย Gateway, Reverse Proxy และ Framework Middleware</p>
+						</div>
+						<div class="concept-card">
+							<h4>📦 ฝั่ง Business Logic (JSON)</h4>
+							<p>ตอบคำถามว่า: <em>"ผลลัพธ์ตามกฎเกณฑ์ธุรกิจสำเร็จหรือไม่?"</em> ดูแลโดย Controller, Service และ Domain Logic</p>
+						</div>
+					</div>
+
+					<h3>📋 โครงสร้างมาตรฐาน (Standard Envelope)</h3>
+					<p>ทุกๆ API ที่ทำงานทะลุเข้าถึง Business Logic จะต้องตอบกลับด้วยโครงสร้าง JSON นี้เสมอ:</p>
+
+<pre><code>{
+  "success": true,               // boolean บอกว่างานสำเร็จตามเงื่อนไขหรือไม่
+  "code": "SUCCESS",             // Business Code (ตัวพิมพ์ใหญ่) สำหรับให้ Frontend ใช้เงื่อนไข
+  "message": "Operation success",// ข้อความสำหรับ Developer หรือใช้แสดงให้ User ดู
+  "data": { ... },               // ข้อมูลที่จะส่งกลับ หรือ null
+  "error": null                  // รายละเอียดเพิ่มเติมกรณีเกิด Error
+}</code></pre>
+
+					<hr />
+
+					<h3>✨ ศิลปะการใช้กลุ่ม 2xx (Success Group)</h3>
+					<p>เราจะไม่ตอบ <code>{ success: true, data: null }</code> กลับไปทุกครั้งให้เปลือง Bandwidth แต่เราจะใช้ HTTP Status ในกลุ่ม 2xx มาช่วยสื่อความหมายให้คมขึ้น:</p>
+
+					<ul>
+						<li>
+							<strong><span class="status-pill status-2xx">200 OK</span> (ตอบกลับพร้อมข้อมูล):</strong><br />
+							ใช้กับ Action ทั่วไปที่มีข้อมูลต้องส่งกลับ เช่น GET ข้อมูล, POST เพื่อสร้างข้อมูล (หรืออาจใช้ <code>201 Created</code> ก็ได้ถ้าต้องการ)
+						</li>
+						<li>
+							<strong><span class="status-pill status-2xx">204 No Content</span> (สำเร็จแบบไม่ต้องพูดเยอะ):</strong><br />
+							ใช้กับคำสั่งที่ Frontend รู้อยู่แล้วว่าผลลัพธ์คืออะไร เช่น <code>DELETE /users/123</code> หรือการแก้ไขสถานะแบบ Fire-and-forget ถ้าลบสำเร็จ Backend แค่ตอบ <code>204</code> กลับไป (ไม่มี Response Body) เพื่อประหยัด Payload
+						</li>
+						<li>
+							<strong><span class="status-pill status-2xx">202 Accepted</span> (รับเรื่องแล้ว แต่ขอเวลาไปทำก่อน):</strong><br />
+							ใช้กับงาน Asynchronous หรืองานที่ใช้เวลานาน เช่น สั่ง Export Report ล้านบรรทัด ระบบจะตอบ 202 พร้อมกับแนบ <code>jobId</code> กลับไปให้ Frontend ทำ Polling เช็คสถานะทีหลัง ป้องกันปัญหา Request Timeout
+						</li>
+					</ul>
+
+					<hr />
+
+					<h3>🛡️ การตีกรอบจำกัดกลุ่ม Non-Success Codes (4xx และ 5xx)</h3>
+					<p>แม้เราจะบอกว่าใช้ 200 เป็นหลัก แต่เราไม่ได้ทิ้ง 4xx และ 5xx ไปเลย เราแค่ <strong>"ห้ามนำมาใช้กับ Business Logic"</strong> เด็ดขาด โค้ดกลุ่มนี้จะถูกปล่อยให้เป็นหน้าที่ของ Framework, API Gateway หรือ Middleware เป็นคนจัดการ:</p>
+
+					<ul>
+						<li>
+							<strong><span class="status-pill status-4xx">400 Bad Request</span> (Client ส่งของพังมา):</strong><br />
+							ใช้เมื่อ Request ผิดรูปแบบตั้งแต่ยังไม่เข้า Logic เช่น ส่ง JSON Syntax พังๆ หรือ Schema Validation ไม่ผ่าน (ลืมส่งฟิลด์บังคับ)
+						</li>
+						<li>
+							<strong><span class="status-pill status-4xx">401 Unauthorized</span> (คุณเป็นใคร?):</strong><br />
+							ใช้เมื่อไม่มี Access Token หรือ Token หมดอายุ
+						</li>
+						<li>
+							<strong><span class="status-pill status-4xx">403 Forbidden</span> (รู้ว่าคือใคร แต่ไม่ให้เข้า):</strong><br />
+							ใช้เมื่อ Token ถูกต้อง แต่ User คนนั้นไม่มีสิทธิ์ (Permission/Role) ในการเข้าถึง Endpoint นี้
+						</li>
+						<li>
+							<strong><span class="status-pill status-4xx">404 Not Found</span> (มาผิดซอย):</strong><br />
+							<strong>มีความหมายเดียวเท่านั้นคือ "URL ผิด หรือ ไม่มี Endpoint นี้"</strong> (จะไม่ใช้กับกรณี Query ข้อมูลใน Database ไม่เจอเด็ดขาด ถ้าหาข้อมูลไม่เจอให้ตอบ <code>200 OK</code> + <code>data: null</code>)
+						</li>
+						<li>
+							<strong><span class="status-pill status-4xx">429 Too Many Requests</span>:</strong><br />
+							โดน Rate Limit บล็อกการยิง API ถี่เกินไป
+						</li>
+						<li>
+							<strong><span class="status-pill status-5xx">500 Internal Server Error</span> (Backend พังเอง):</strong><br />
+							Database ล่ม, ระบบ Crash, หรือเกิด Exception ที่ Developer ไม่ได้ดัก (Unhandled Error)
+						</li>
+					</ul>
+
+					<hr />
+
+					<h3>📊 สรุปตาราง Guideline การออกแบบครอบคลุมทุก Action</h3>
+					<div tabindex="0" role="region" aria-label="ตาราง Guideline การออกแบบ API" class="table-wrapper">
+						<table class="comparison-table">
+							<thead>
+								<tr>
+									<th scope="col">Action / ประเภท</th>
+									<th scope="col">ตัวอย่าง Request</th>
+									<th scope="col">HTTP Status</th>
+									<th scope="col">Response Payload</th>
+									<th scope="col">ความหมายในมุม Frontend</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Read (List)</strong></td>
+									<td><code>GET /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": [...] }</code></td>
+									<td>ได้ข้อมูลปกติ (ถ้าไม่มีข้อมูล ส่ง Array ว่าง <code>[]</code>)</td>
+								</tr>
+								<tr>
+									<td><strong>Read (Single)</strong></td>
+									<td><code>GET /users/123</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": null }</code></td>
+									<td>ระบบทำงานถูกแล้ว แค่ User หมายเลขนี้ไม่มีอยู่</td>
+								</tr>
+								<tr>
+									<td><strong>Create</strong></td>
+									<td><code>POST /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span> / <span class="status-pill status-2xx">201</span></td>
+									<td><code>{ "success": true, "data": { "id": 1 } }</code></td>
+									<td>สร้างสำเร็จ ได้ ID กลับไปใช้งานต่อ</td>
+								</tr>
+								<tr>
+									<td><strong>Update / Delete</strong></td>
+									<td><code>PUT /users/1</code>, <code>DELETE /users/1</code></td>
+									<td><span class="status-pill status-2xx">204 No Content</span></td>
+									<td><em>(ไม่มี Body)</em></td>
+									<td>งานจบเรียบร้อย ไม่ต้องบอกอะไรเพิ่ม</td>
+								</tr>
+								<tr>
+									<td><strong>Async Task</strong></td>
+									<td><code>POST /export</code></td>
+									<td><span class="status-pill status-2xx">202 Accepted</span></td>
+									<td><code>{ "success": true, "data": { "jobId": "x7z" } }</code></td>
+									<td>รับเรื่องแล้ว เอา ID ไปตามต่อเองนะ</td>
+								</tr>
+								<tr>
+									<td><strong>Business Error</strong></td>
+									<td><code>POST /transfer</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": false, "code": "NO_FUND", "message": "เงินในบัญชีไม่พอ" }</code></td>
+									<td>ทำงานจบ แต่เงินไม่พอ (จัดการ Error ผ่าน Data)</td>
+								</tr>
+								<tr>
+									<td><strong>Routing Error</strong></td>
+									<td><code>GET /userrrrs</code></td>
+									<td><span class="status-pill status-4xx">404 Not Found</span></td>
+									<td><em>(ตาม Default Gateway)</em></td>
+									<td>พิมพ์ URL ผิดแน่นอน</td>
+								</tr>
+								<tr>
+									<td><strong>Protocol Error</strong></td>
+									<td>ลืมส่ง Token</td>
+									<td><span class="status-pill status-4xx">401 Unauthorized</span></td>
+									<td><em>(ตาม Default Middleware)</em></td>
+									<td>ต้องเด้งกลับไปหน้า Login</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<hr />
+
+					<h3>💻 ตัวอย่างการนำไปใช้จริงฝั่ง Frontend (Axios Interceptor)</h3>
+					<p>ทีม Frontend สามารถเขียน HTTP Interceptor ให้ดัก 4xx/5xx ไว้จัดการปัญหาระดับ Network และปล่อยให้กลุ่ม 2xx วิ่งทะลุเข้าไปใน Component เพื่อเช็คเงื่อนไขธุรกิจได้อย่างเรียบง่าย:</p>
+
+<pre><code>import axios from 'axios';
+
+const api = axios.create({ baseURL: 'https://api.example.com/v1' });
+
+// Global Interceptor สำหรับดัก Error ระดับ Network / Gateway
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      const { status } = error.response;
+      if (status === 401) {
+        window.location.href = '/login';
+      } else if (status === 403) {
+        alert('คุณไม่มีสิทธิ์เข้าถึงข้อมูลนี้');
+      } else if (status >= 500) {
+        alert('ระบบเซิร์ฟเวอร์ขัดข้อง กรุณาลองใหม่ภายหลัง');
+      }
+    }
+    return Promise.reject(error);
+  }
+);
+
+// การเรียกใช้ใน Component: ไม่ต้องมี try-catch ซ้อนทับ!
+async function doTransfer(amount) {
+  const res = await api.post('/transfer', { amount });
+  
+  if (!res.data.success) {
+    if (res.data.code === 'NO_FUND') {
+      openTopUpModal();
+    } else {
+      alert(res.data.message);
+    }
+    return;
+  }
+  
+  alert('โอนเงินสำเร็จ!');
+}</code></pre>
+
+					<hr />
+
+					<h3>❓ คำถามที่พบบ่อย (FAQ)</h3>
+					<div class="faq-item">
+						<h4>การตอบ 200 สำหรับ Business Error ขัดกับหลักการของ REST หรือไม่?</h4>
+						<p>ไม่ขัดแย้งเลย เพราะ HTTP Status ถูกออกแบบมาเพื่อ Protocol Transport ชั้นเครือข่าย ไม่ได้ถูกสร้างมาเพื่อเป็นตัวแทนของ Business Domain Logic ที่ซับซ้อนของแอปพลิเคชัน</p>
+					</div>
+					<div class="faq-item">
+						<h4>ทำไมการหา User ไม่เจอถึงไม่ควรตอบ 404?</h4>
+						<p>เพราะ 404 มีความหมายดั้งเดิมคือ "Endpoint/Route นี้ไม่มีอยู่จริง" หากนำไปใช้กับข้อมูลใน Database ด้วย Frontend จะแยกไม่ออกว่าระบบพัง พิมพ์ URL ผิด หรือแค่ไม่มีข้อมูล</p>
+					</div>
+					<div class="faq-item">
+						<h4>เมื่อไหร่ควรใช้ 204 No Content?</h4>
+						<p>ใช้เมื่อ Client ต้องการเพียงการยืนยันว่าคำสั่งสำเร็จ และไม่ต้องการข้อมูลใดๆ กลับมา เช่น การลบข้อมูล (DELETE) หรือคำสั่งเปลี่ยนสถานะ เพื่อประหยัด Bandwidth ของระบบ</p>
+					</div>
+
+					<hr />
+
+					<h3>🏁 บทสรุป</h3>
+					<p>การออกแบบ API แบบ <strong>Pragmatic Payload-Driven</strong> ช่วยแก้ปัญหา "คอขวดของการจัดการ Error" ได้อย่างหมดจด</p>
+					<p>ทีม Frontend สามารถเขียน HTTP Interceptor (เช่น ใน Axios) ให้ดัก 4xx/5xx ไว้จัดการปัญหาระดับ Network (เช่น เด้งไปหน้า Login, โชว์หน้าเว็บล่ม) และปล่อยให้กลุ่ม 2xx วิ่งทะลุเข้าไปใน Component เพื่อเช็คแค่ <code>if (!response.data.success)</code> แล้วแสดงผลข้อความแจ้งเตือนทางธุรกิจได้อย่างสวยงาม โดยไม่ต้องเอา Business Logic ไปปนกับ Network Exception อีกต่อไป</p>
+				</div>
+
+				<!-- ===================================================================
+				     3. CHINESE SECTION
+				     =================================================================== -->
+				<div id="lang-zh" class="lang-section" style="padding-top: 1rem; margin-bottom: 4em;">
+					<h2>告别 HTTP Status 混乱！实用 Payload-Driven API 设计指南</h2>
+					<p><em>解耦传输层与业务逻辑、标准 JSON Envelope 规范与状态码精准分流</em></p>
+
+					<blockquote class="takeaway">
+						<strong>核心要点 (BLUF):</strong> Pragmatic Payload-Driven 架构彻底将传输层（HTTP Status Code）与业务逻辑（JSON Envelope）解耦。将 4xx/5xx 严格限制在网络、API Gateway 与协议级错误；只要应用层 Controller 正常执行完毕，一律返回 2xx 并使用统一的 <code>{ success, code, message, data, error }</code> Envelope，消除 404/400 歧义并极大简化前端 try-catch 逻辑。
+					</blockquote>
+
+					<p>在后端工程领域，一个经典的争论从未停歇：<strong>“我们应该如何设计 RESTful API？”</strong></p>
+
+					<p>一派是<strong>严格的 RESTful 派</strong>（试图将一切业务状态映射到 HTTP Status Code，例如查无此用户返回 404，余额不足返回 400 或 422）；另一派则是<strong>实用的 Payload-Driven 派</strong>（绝大多数接口统一返回 HTTP 200，在 JSON 内表达真实状态）。</p>
+
+					<p>严格 RESTful 最大的硬伤在于<strong>“歧义性”</strong>。当前端收到一个 <code>404 Not Found</code> 时，开发者无法判断到底是 URL 拼写错误（接口路由不存在），还是数据库中找不到对应记录？这种混淆迫使前端写满防御性的 <code>try-catch</code>。</p>
+
+					<p>本文介绍的 <strong>Pragmatic Payload-Driven</strong>（实用型载荷驱动）方案融合了两者的长处：既保持了后端标准的严密性，又赋予前端极致清晰的契约。</p>
+
+					<hr />
+
+					<h3>🏛️ 核心架构：解耦传输层 (Infrastructure) 与业务逻辑 (Business Logic)</h3>
+					<p>本设计的黄金法则是：</p>
+					<ul>
+						<li><strong>HTTP Status Code:</strong> 仅负责反映<em>网络传输与基础设施层</em>（Routing, Gateway, 协议校验）的状态。</li>
+						<li><strong>Response Payload (JSON):</strong> 仅负责表达<em>业务规则与业务领域逻辑</em>（Business Logic）的计算结果。</li>
+					</ul>
+
+					<p>只要请求成功穿越 API Gateway 抵达 Controller 并完成处理（即便由于业务规则未通过，如余额不足或优惠券过期），“网络通信”本身就已经成功了，必须返回 2xx（如 <code>200 OK</code>）。</p>
+
+					<h3>📋 标准 Envelope 结构</h3>
+					<p>所有抵达应用业务逻辑的接口，均返回如下规范的 JSON 结构：</p>
+
+<pre><code>{
+  "success": true,               // boolean: 业务规则是否执行成功
+  "code": "SUCCESS",             // UPPERCASE 业务错误码，供前端分支判断
+  "message": "Operation success",// 面向开发者调试或提示用户的消息
+  "data": { ... },               // 返回的主体数据对象或数组 (可为 null)
+  "error": null                  // 错误发生时的详细调试信息或上下文
+}</code></pre>
+
+					<hr />
+
+					<h3>✨ 2xx 成功状态码的精细运用</h3>
+					<p>我们无需每次都盲目返回冗余的 Payload，而是巧妙使用 2xx 系列优化网络传输：</p>
+					<ul>
+						<li><strong><span class="status-pill status-2xx">200 OK</span> (携带数据返回):</strong> 用于常规查询与资源创建（GET、POST 返回新数据实体）。</li>
+						<li><strong><span class="status-pill status-2xx">204 No Content</span> (操作完成无需 Body):</strong> 用于前端已明确结果的操作（如 <code>DELETE /users/123</code> 或状态更新），节省带宽。</li>
+						<li><strong><span class="status-pill status-2xx">202 Accepted</span> (异步任务已排队):</strong> 耗时任务（如导出百万行报表）立即响应 202 并附带 <code>jobId</code>，供前端轮询，避免 Gateway 超时。</li>
+					</ul>
+
+					<hr />
+
+					<h3>🛡️ 4xx 与 5xx 状态码的严格边界</h3>
+					<p>非 2xx 状态码<strong>严禁用于表达业务逻辑失败</strong>，它们完全由 Framework、API Gateway 或 Middleware 处理：</p>
+					<ul>
+						<li><strong><span class="status-pill status-4xx">400 Bad Request</span>:</strong> 请求语法畸形，未通过 Schema Validation。</li>
+						<li><strong><span class="status-pill status-4xx">401 Unauthorized</span>:</strong> 缺少 Access Token 或 Token 过期。</li>
+						<li><strong><span class="status-pill status-4xx">403 Forbidden</span>:</strong> 身份已验证但缺乏该端点的 RBAC 权限。</li>
+						<li><strong><span class="status-pill status-4xx">404 Not Found</span>:</strong> <strong>仅代表“URL 错误或端点不存在”</strong>（严禁用于数据库查询无结果；查询无结果请返回 <code>200 OK</code> + <code>data: null</code>）。</li>
+						<li><strong><span class="status-pill status-4xx">429 Too Many Requests</span>:</strong> 命中限流策略。</li>
+						<li><strong><span class="status-pill status-5xx">500 Internal Server Error</span>:</strong> 数据库宕机、未捕获的系统异常。</li>
+					</ul>
+
+					<hr />
+
+					<h3>📊 全场景 API 设计规范对照表</h3>
+					<div tabindex="0" role="region" aria-label="API 设计全场景对照表" class="table-wrapper">
+						<table class="comparison-table">
+							<thead>
+								<tr>
+									<th scope="col">动作 / 类别</th>
+									<th scope="col">示例请求</th>
+									<th scope="col">HTTP Status</th>
+									<th scope="col">Response Payload</th>
+									<th scope="col">前端处理方式</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>查询列表 (List)</strong></td>
+									<td><code>GET /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": [...] }</code></td>
+									<td>渲染列表，空数据返回空数组 <code>[]</code></td>
+								</tr>
+								<tr>
+									<td><strong>单项查询 (Single)</strong></td>
+									<td><code>GET /users/123</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": null }</code></td>
+									<td>请求成功，记录不存在，渲染空数据占位符</td>
+								</tr>
+								<tr>
+									<td><strong>新增资源 (Create)</strong></td>
+									<td><code>POST /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span> / <span class="status-pill status-2xx">201</span></td>
+									<td><code>{ "success": true, "data": { "id": 1 } }</code></td>
+									<td>创建成功，获取 ID 页面跳转</td>
+								</tr>
+								<tr>
+									<td><strong>更新 / 删除</strong></td>
+									<td><code>PUT /users/1</code>, <code>DELETE /users/1</code></td>
+									<td><span class="status-pill status-2xx">204 No Content</span></td>
+									<td><em>(无 Body)</em></td>
+									<td>操作完毕，无需解析 Payload</td>
+								</tr>
+								<tr>
+									<td><strong>异步任务 (Async)</strong></td>
+									<td><code>POST /export</code></td>
+									<td><span class="status-pill status-2xx">202 Accepted</span></td>
+									<td><code>{ "success": true, "data": { "jobId": "x7z" } }</code></td>
+									<td>任务已进入队列，凭 <code>jobId</code> 轮询</td>
+								</tr>
+								<tr>
+									<td><strong>业务逻辑错误</strong></td>
+									<td><code>POST /transfer</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": false, "code": "NO_FUND", "message": "余额不足" }</code></td>
+									<td>网络通信成功，组件内处理业务分支</td>
+								</tr>
+								<tr>
+									<td><strong>路由错误</strong></td>
+									<td><code>GET /userrrrs</code></td>
+									<td><span class="status-pill status-4xx">404 Not Found</span></td>
+									<td><em>(网关默认结构)</em></td>
+									<td>URL 拼写错误</td>
+								</tr>
+								<tr>
+									<td><strong>认证协议错误</strong></td>
+									<td>未携带 Token</td>
+									<td><span class="status-pill status-4xx">401 Unauthorized</span></td>
+									<td><em>(中间件默认结构)</em></td>
+									<td>拦截器统一跳转至登录页</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<hr />
+
+					<h3>💻 前端实践：Axios Interceptor 模式</h3>
+<pre><code>import axios from 'axios';
+
+const api = axios.create({ baseURL: 'https://api.example.com/v1' });
+
+// 全局拦截器处理传输层故障
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      const { status } = error.response;
+      if (status === 401) window.location.href = '/login';
+      else if (status === 403) alert('权限不足');
+      else if (status >= 500) alert('服务器异常');
+    }
+    return Promise.reject(error);
+  }
+);
+
+// 组件内部只关注业务
+async function handleTransfer(amount) {
+  const res = await api.post('/transfer', { amount });
+  if (!res.data.success) {
+    if (res.data.code === 'NO_FUND') openTopUpModal();
+    else alert(res.data.message);
+    return;
+  }
+  alert('转账成功');
+}</code></pre>
+
+					<hr />
+
+					<h3>❓ 常见问题 (FAQ)</h3>
+					<div class="faq-item">
+						<h4>业务失败返回 200 是否违反 REST 规范？</h4>
+						<p>不违反。HTTP 是网络传输协议，而非业务规则容器。REST 关注的是资源的统一表现与超媒体驱动，将复杂的业务逻辑硬套进 HTTP Status 往往适得其反。</p>
+					</div>
+					<div class="faq-item">
+						<h4>为何单条查询查不到数据时不应返回 404？</h4>
+						<p>因为 404 的本质是“路由资源未命中”。如果数据库无记录也返回 404，前端无法区分是接口写错了还是纯粹数据为空。</p>
+					</div>
+					<div class="faq-item">
+						<h4>何时使用 204 No Content？</h4>
+						<p>当客户端仅需要确认修改操作已成功执行，而不需要接收变更后的数据时（例如 DELETE 删除或开关切换），使用 204 可节省宝贵的网络带宽。</p>
+					</div>
+
+					<hr />
+
+					<h3>🏁 总结</h3>
+					<p>Pragmatic Payload-Driven API 设计从根本上打通了前后端对接的痛点。通过在传输层与业务层之间建立明确的隔离，系统不仅更加健壮，也让前端摆脱了恼人的 try-catch 泥潭。</p>
+				</div>
+
+				<!-- ===================================================================
+				     4. JAPANESE SECTION
+				     =================================================================== -->
+				<div id="lang-ja" class="lang-section" style="padding-top: 1rem; margin-bottom: 4em;">
+					<h2>HTTPステータスの混乱に終止符！実用的Payload-Driven API設計ガイド</h2>
+					<p><em>インフラ層とビジネスロジックの分離、標準JSON Envelope、ステータスコードの明確な役割分担</em></p>
+
+					<blockquote class="takeaway">
+						<strong>要約 (BLUF):</strong> Pragmatic Payload-Driven（実用的ペイロード駆動型）アーキテクチャは、インフラ輸送層（HTTPステータスコード）とビジネスロジック（JSON Envelope）を明確に分離します。4xx/5xxはネットワークやAPI Gateway、プロトコルエラーに厳格に限定し、アプリケーションが正常に処理を完了した場合は常に2xxと標準的な <code>{ success, code, message, data, error }</code> を返却することで、404の曖昧さを排除しフロントエンドのエラーハンドリングを大幅に簡素化します。
+					</blockquote>
+
+					<p>バックエンド開発における最も古典的な議論の一つが、<strong>「APIはどのように設計すべきか？」</strong>という問いです。</p>
+
+					<p>一方には、すべての状態をHTTPステータスコードに厳密にマッピングしようとする<strong>Strict RESTful派</strong>（ユーザーが見つからない場合は404、残高不足には400や422を返す）が存在し、もう一方には、基本的にHTTP 200を返しJSON内部で状態を表現する<strong>Payload-Driven派</strong>が存在します。</p>
+
+					<p>Strict RESTfulの最大の弱点は<strong>「曖昧さ」</strong>です。フロントエンドが <code>404 Not Found</code> を受け取ったとき、URLのスペルミス（Endpointが存在しない）なのか、それともデータベース内に該当レコードが存在しないのか判断できません。この曖昧さが、フロントエンドに何重もの <code>try-catch</code> を強いる原因となっていました。</p>
+
+					<p>本記事では、両者の利点を融合させた<strong>「Pragmatic Payload-Driven」</strong>設計手法を解説します。</p>
+
+					<hr />
+
+					<h3>🏛️ 基本方針：インフラ層とビジネスロジックの完全分離</h3>
+					<p>本アーキテクチャの黄金律は以下の通りです：</p>
+					<ul>
+						<li><strong>HTTP Status Code:</strong> データ転送およびインフラ（Routing, Gateway, Network）の状態のみを担当する。</li>
+						<li><strong>Response Payload (JSON):</strong> ビジネスルールおよびドメインロジックの実行結果のみを担当する。</li>
+					</ul>
+
+					<p>リクエストがAPI Gatewayを通過してControllerに到達し、処理が正常に完了したならば（たとえ残高不足などビジネス要件で処理が失敗した場合であっても）、「通信そのものは成功」とみなし、常に <code>200 OK</code> を返却します。</p>
+
+					<h3>📋 標準Envelope構造</h3>
+					<p>ビジネスロジック層に到達するすべてのAPIは、以下の標準JSON形式でレスポンスを返します：</p>
+
+<pre><code>{
+  "success": true,               // boolean: ビジネス条件を満たしたか否か
+  "code": "SUCCESS",             // 大文字のビジネスコード（フロントエンドの条件分岐用）
+  "message": "Operation success",// 開発者向けデバッグ情報またはユーザー表示用メッセージ
+  "data": { ... },               // 返却データオブジェクト、配列、または null
+  "error": null                  // エラー発生時の詳細情報
+}</code></pre>
+
+					<hr />
+
+					<h3>✨ 2xx（成功グループ）の洗練された使い分け</h3>
+					<p>通信量を削減しつつ意図を明確にするため、2xxグループを効果的に活用します：</p>
+					<ul>
+						<li><strong><span class="status-pill status-2xx">200 OK</span> (データ返却):</strong> GETクエリや、生成されたリソースを返すPOST処理。</li>
+						<li><strong><span class="status-pill status-2xx">204 No Content</span> (データなしの完了通知):</strong> <code>DELETE /users/123</code> やステータス更新など、フロントエンドに追加データが不要な操作。レスポンスボディを省略し帯域を節約します。</li>
+						<li><strong><span class="status-pill status-2xx">202 Accepted</span> (非同期タスク受付):</strong> レポート出力など時間のかかる処理。直ちに202とともに <code>jobId</code> を返し、タイムアウトを防ぎます。</li>
+					</ul>
+
+					<hr />
+
+					<h3>🛡️ 4xxおよび5xxコードの厳格な適用制限</h3>
+					<p>4xx/5xxは<strong>「ビジネスロジックの失敗に使用することを固く禁止」</strong>し、FrameworkやAPI Gatewayの責務とします：</p>
+					<ul>
+						<li><strong><span class="status-pill status-4xx">400 Bad Request</span>:</strong> リクエスト構文エラー、Schema Validation不合格。</li>
+						<li><strong><span class="status-pill status-4xx">401 Unauthorized</span>:</strong> Access Token未送信または有効期限切れ。</li>
+						<li><strong><span class="status-pill status-4xx">403 Forbidden</span>:</strong> 認証済みだが当該Endpointへの権限（RBAC）がない。</li>
+						<li><strong><span class="status-pill status-4xx">404 Not Found</span>:</strong> <strong>「URLの誤りまたはEndpointが存在しない」ことのみを意味する</strong>（DB検索結果ゼロには絶対に使用せず、<code>200 OK</code> + <code>data: null</code> を返します）。</li>
+						<li><strong><span class="status-pill status-4xx">429 Too Many Requests</span>:</strong> レートリミット制限。</li>
+						<li><strong><span class="status-pill status-5xx">500 Internal Server Error</span>:</strong> DBクラッシュ、未処理の例外。</li>
+					</ul>
+
+					<hr />
+
+					<h3>📊 API設計アクション別マトリクス</h3>
+					<div tabindex="0" role="region" aria-label="API設計アクション別マトリクス" class="table-wrapper">
+						<table class="comparison-table">
+							<thead>
+								<tr>
+									<th scope="col">アクション / 分類</th>
+									<th scope="col">リクエスト例</th>
+									<th scope="col">HTTP Status</th>
+									<th scope="col">Response Payload</th>
+									<th scope="col">フロントエンドの解釈</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>一覧取得 (List)</strong></td>
+									<td><code>GET /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": [...] }</code></td>
+									<td>一覧描画。データなしは空配列 <code>[]</code></td>
+								</tr>
+								<tr>
+									<td><strong>単一取得 (Single)</strong></td>
+									<td><code>GET /users/123</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": null }</code></td>
+									<td>通信成功、データなし状態（Not Found表示）</td>
+								</tr>
+								<tr>
+									<td><strong>作成 (Create)</strong></td>
+									<td><code>POST /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span> / <span class="status-pill status-2xx">201</span></td>
+									<td><code>{ "success": true, "data": { "id": 1 } }</code></td>
+									<td>作成成功、IDを用いて画面遷移</td>
+								</tr>
+								<tr>
+									<td><strong>更新 / 削除</strong></td>
+									<td><code>PUT /users/1</code>, <code>DELETE /users/1</code></td>
+									<td><span class="status-pill status-2xx">204 No Content</span></td>
+									<td><em>(Bodyなし)</em></td>
+									<td>処理完了、データ解析不要</td>
+								</tr>
+								<tr>
+									<td><strong>非同期処理 (Async)</strong></td>
+									<td><code>POST /export</code></td>
+									<td><span class="status-pill status-2xx">202 Accepted</span></td>
+									<td><code>{ "success": true, "data": { "jobId": "x7z" } }</code></td>
+									<td>受付完了。<code>jobId</code> でポーリング</td>
+								</tr>
+								<tr>
+									<td><strong>ビジネスエラー</strong></td>
+									<td><code>POST /transfer</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": false, "code": "NO_FUND", "message": "残高不足" }</code></td>
+									<td>通信成功、コンポーネント内でビジネスエラー表示</td>
+								</tr>
+								<tr>
+									<td><strong>ルーティングエラー</strong></td>
+									<td><code>GET /userrrrs</code></td>
+									<td><span class="status-pill status-4xx">404 Not Found</span></td>
+									<td><em>(Gateway標準Body)</em></td>
+									<td>URLスペルミス</td>
+								</tr>
+								<tr>
+									<td><strong>プロトコルエラー</strong></td>
+									<td>Token未添付</td>
+									<td><span class="status-pill status-4xx">401 Unauthorized</span></td>
+									<td><em>(Middleware標準Body)</em></td>
+									<td>ログイン画面へリダイレクト</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<hr />
+
+					<h3>💻 フロントエンド実装例：Axios Interceptor</h3>
+<pre><code>import axios from 'axios';
+
+const api = axios.create({ baseURL: 'https://api.example.com/v1' });
+
+// ネットワーク層のエラーをグローバルに処理
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      const { status } = error.response;
+      if (status === 401) window.location.href = '/login';
+      else if (status === 403) alert('アクセス権限がありません');
+      else if (status >= 500) alert('サーバー障害が発生しました');
+    }
+    return Promise.reject(error);
+  }
+);
+
+// コンポーネント内ではビジネス条件のチェックのみ
+async function handleTransfer(amount) {
+  const res = await api.post('/transfer', { amount });
+  if (!res.data.success) {
+    if (res.data.code === 'NO_FUND') openTopUpModal();
+    else alert(res.data.message);
+    return;
+  }
+  alert('送金が完了しました');
+}</code></pre>
+
+					<hr />
+
+					<h3>❓ よくある質問 (FAQ)</h3>
+					<div class="faq-item">
+						<h4>ビジネスエラーで200を返すのはREST違反ですか？</h4>
+						<p>違反ではありません。HTTPはトランスポートプロトコルであり、高度な業務ロジックの成否を粗いステータスコードで網羅することは本来の役割ではありません。</p>
+					</div>
+					<div class="faq-item">
+						<h4>なぜレコード不在で404を返してはいけないのですか？</h4>
+						<p>404は「ルーティング先が存在しない」ことを示すためです。DB不在でも404を使うと、URLミスとデータ不在をフロントエンドで区別できなくなります。</p>
+					</div>
+					<div class="faq-item">
+						<h4>204 No Contentのメリットは何ですか？</h4>
+						<p>削除処理などでレスポンスボディを完全に省略できるため、モバイル端末や高頻度APIにおけるネットワーク帯域を削減できます。</p>
+					</div>
+
+					<hr />
+
+					<h3>🏁 まとめ</h3>
+					<p>Pragmatic Payload-Driven API設計は、フロントエンドとバックエンドの連携摩擦を根本から解決します。インフラ層とビジネスロジックの責任境界を整えることで、保守性に優れた堅牢なシステムを構築できます。</p>
+				</div>
+
+				<!-- ===================================================================
+				     5. GERMAN SECTION
+				     =================================================================== -->
+				<div id="lang-de" class="lang-section" style="padding-top: 1rem; margin-bottom: 4em;">
+					<h2>Schluss mit HTTP-Status-Verwirrung! Pragmatisches Payload-Driven API-Design</h2>
+					<p><em>Saubere Trennung von Transport &amp; Business-Logik, Standard-JSON-Envelope und präzise Statuscodes</em></p>
+
+					<blockquote class="takeaway">
+						<strong>Das Wichtigste zuerst (BLUF):</strong> Pragmatic Payload-Driven API-Design entkoppelt die Infrastruktur-Transportebene (HTTP Status Codes) strikt von der Geschäftslogik (JSON Envelope). Reservieren Sie 4xx/5xx ausschließlich für Netzwerk-, Gateway- und Protokollfehler. Sobald die Applikationslogik fehlerfrei durchläuft, wird stets ein 2xx-Status mit einem einheitlichen <code>{ success, code, message, data, error }</code> Envelope zurückgegeben, was Frontend-Fehlerbehandlung und verschachtelte try-catch-Blöcke drastisch vereinfacht.
+					</blockquote>
+
+					<p>Eine der hitzigsten Debatten in der Backend-Entwicklung dreht sich um eine scheinbar simple Frage: <strong>„Wie sollten wir unsere APIs gestalten?“</strong></p>
+
+					<p>Auf der einen Seite steht das <strong>Strict RESTful</strong>-Lager, das jeden Anwendungszustand auf HTTP-Statuscodes abbilden möchte (z. B. 404 bei nicht gefundenem Datensatz, 400 oder 422 bei unzureichendem Kontoguthaben). Auf der anderen Seite steht das <strong>Payload-Driven</strong>-Lager, das nahezu immer HTTP 200 zurückgibt und den Status komplett im JSON-Body kapselt.</p>
+
+					<p>Die größte Schwachstelle des strikten REST-Ansatzes in der Praxis ist die <strong>Mehrdeutigkeit</strong>. Erhält das Frontend ein <code>404 Not Found</code>, stellt sich die Frage: Wurde die URL falsch geschrieben (Endpoint existiert nicht) oder existiert der Datensatz in der Datenbank nicht? Diese Unklarheit zwingt Frontend-Entwickler zu unübersichtlichen <code>try-catch</code>-Kaskaden.</p>
+
+					<p>Dieser Leitfaden stellt das <strong>Pragmatic Payload-Driven API-Design</strong> vor – eine praxiserprobte Hybridarchitektur, die Klarheit und Entwicklerfreundlichkeit maximiert.</p>
+
+					<hr />
+
+					<h3>🏛️ Kernphilosophie: Trennung von Infrastruktur und Business-Logik</h3>
+					<p>Die goldene Regel lautet:</p>
+					<ul>
+						<li><strong>HTTP Status Code:</strong> Signalisiert ausschließlich den Zustand von <em>Datentransport und Infrastruktur</em> (Routing, Gateway, Netzwerk, Schema-Validierung).</li>
+						<li><strong>Response Payload (JSON):</strong> Signalisiert das Ergebnis von <em>Geschäftsregeln und Domänenlogik</em>.</li>
+					</ul>
+
+					<p>Solange der Request das API Gateway passiert, den Controller erreicht und die Applikation vollständig durchläuft (selbst wenn die Operation an einer Geschäftsbedingung wie unzureichendem Guthaben scheitert), gilt die Kommunikation als erfolgreich. Folglich wird stets mit <code>200 OK</code> geantwortet.</p>
+
+					<h3>📋 Standard-Envelope-Struktur</h3>
+					<p>Jede API, die die Domänenlogik erreicht, antwortet mit folgender konsistenter JSON-Struktur:</p>
+
+<pre><code>{
+  "success": true,               // boolean: Zeigt an, ob die Geschäftslogik erfolgreich war
+  "code": "SUCCESS",             // UPPERCASE Business-Code für clientseitige Bedingungen
+  "message": "Operation success",// Nachricht für Entwickler oder zur direkten UI-Anzeige
+  "data": { ... },               // Nutzdaten-Objekt, Array oder null
+  "error": null                  // Fehlerdetails im Falle eines Fehlschlags
+}</code></pre>
+
+					<hr />
+
+					<h3>✨ Der gezielte Einsatz der 2xx-Statuscodes</h3>
+					<p>Wir nutzen die 2xx-Familie sinnvoll, um Bandbreite zu sparen:</p>
+					<ul>
+						<li><strong><span class="status-pill status-2xx">200 OK</span> (Erfolg mit Nutzdaten):</strong> Für Standard-Abfragen (GET) und Ressourcenerstellung mit Rückgabedaten.</li>
+						<li><strong><span class="status-pill status-2xx">204 No Content</span> (Erfolg ohne Body):</strong> Für Operationen, bei denen das Ergebnis feststeht (z. B. <code>DELETE /users/123</code>), ohne überflüssige Payload zu übertragen.</li>
+						<li><strong><span class="status-pill status-2xx">202 Accepted</span> (Asynchroner Auftrag):</strong> Für rechenintensive Aufgaben (z. B. 1-Mio.-Zeilen-Export). Sendet sofort 202 mit <code>jobId</code> zurück, um Timeouts zu verhindern.</li>
+					</ul>
+
+					<hr />
+
+					<h3>🛡️ Strikte Abgrenzung von 4xx und 5xx</h3>
+					<p>4xx- und 5xx-Codes dürfen <strong>unter keinen Umständen für fachliche Fehler</strong> verwendet werden. Sie obliegen Framework, Gateway und Middleware:</p>
+					<ul>
+						<li><strong><span class="status-pill status-4xx">400 Bad Request</span>:</strong> Syntaxfehler im JSON, ungültige Schemavalidierung.</li>
+						<li><strong><span class="status-pill status-4xx">401 Unauthorized</span>:</strong> Fehlender oder abgelaufener Access Token.</li>
+						<li><strong><span class="status-pill status-4xx">403 Forbidden</span>:</strong> Authentifiziert, aber keine ausreichenden Rechte (RBAC).</li>
+						<li><strong><span class="status-pill status-4xx">404 Not Found</span>:</strong> <strong>Bedeutet einzig und allein: „URL falsch oder Endpoint existiert nicht.“</strong> (Niemals bei leerem DB-Ergebnis nutzen; dort <code>200 OK</code> + <code>data: null</code> zurückgeben).</li>
+						<li><strong><span class="status-pill status-4xx">429 Too Many Requests</span>:</strong> Rate-Limit überschritten.</li>
+						<li><strong><span class="status-pill status-5xx">500 Internal Server Error</span>:</strong> Serverabsturz, Datenbankausfall oder unbehandelte Exceptions.</li>
+					</ul>
+
+					<hr />
+
+					<h3>📊 API-Design-Aktionsmatrix</h3>
+					<div tabindex="0" role="region" aria-label="API-Design Aktionsmatrix" class="table-wrapper">
+						<table class="comparison-table">
+							<thead>
+								<tr>
+									<th scope="col">Aktion / Kategorie</th>
+									<th scope="col">Beispiel-Request</th>
+									<th scope="col">HTTP Status</th>
+									<th scope="col">Response Payload</th>
+									<th scope="col">Frontend-Interpretation</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td><strong>Liste lesen (List)</strong></td>
+									<td><code>GET /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": [...] }</code></td>
+									<td>Tabelle rendern; leere Liste als <code>[]</code></td>
+								</tr>
+								<tr>
+									<td><strong>Einzelobjekt (Single)</strong></td>
+									<td><code>GET /users/123</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": true, "data": null }</code></td>
+									<td>Kommunikation intakt; Datensatz existiert nicht</td>
+								</tr>
+								<tr>
+									<td><strong>Erstellen (Create)</strong></td>
+									<td><code>POST /users</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span> / <span class="status-pill status-2xx">201</span></td>
+									<td><code>{ "success": true, "data": { "id": 1 } }</code></td>
+									<td>Erfolg, mit ID weiterarbeiten</td>
+								</tr>
+								<tr>
+									<td><strong>Update / Delete</strong></td>
+									<td><code>PUT /users/1</code>, <code>DELETE /users/1</code></td>
+									<td><span class="status-pill status-2xx">204 No Content</span></td>
+									<td><em>(Kein Body)</em></td>
+									<td>Erledigt; kein Payload-Parsing notwendig</td>
+								</tr>
+								<tr>
+									<td><strong>Async Task</strong></td>
+									<td><code>POST /export</code></td>
+									<td><span class="status-pill status-2xx">202 Accepted</span></td>
+									<td><code>{ "success": true, "data": { "jobId": "x7z" } }</code></td>
+									<td>Auftrag angenommen; Polling via <code>jobId</code></td>
+								</tr>
+								<tr>
+									<td><strong>Fachlicher Fehler</strong></td>
+									<td><code>POST /transfer</code></td>
+									<td><span class="status-pill status-2xx">200 OK</span></td>
+									<td><code>{ "success": false, "code": "NO_FUND", "message": "Guthaben unzureichend" }</code></td>
+									<td>Request erfolgreich; Fehler im UI behandeln</td>
+								</tr>
+								<tr>
+									<td><strong>Routing-Fehler</strong></td>
+									<td><code>GET /userrrrs</code></td>
+									<td><span class="status-pill status-4xx">404 Not Found</span></td>
+									<td><em>(Gateway-Default)</em></td>
+									<td>Tippfehler in der URL</td>
+								</tr>
+								<tr>
+									<td><strong>Protokollfehler</strong></td>
+									<td>Token vergessen</td>
+									<td><span class="status-pill status-4xx">401 Unauthorized</span></td>
+									<td><em>(Middleware-Default)</em></td>
+									<td>Automatische Weiterleitung zum Login</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+					<hr />
+
+					<h3>💻 Frontend-Integration: Axios-Interceptor-Muster</h3>
+<pre><code>import axios from 'axios';
+
+const api = axios.create({ baseURL: 'https://api.example.com/v1' });
+
+// Globaler Interceptor für Netzwerk- und Gateway-Fehler
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response) {
+      const { status } = error.response;
+      if (status === 401) window.location.href = '/login';
+      else if (status === 403) alert('Zugriff verweigert');
+      else if (status >= 500) alert('Serverfehler');
+    }
+    return Promise.reject(error);
+  }
+);
+
+// Im Component: Keine try-catch-Verschachtelung mehr
+async function handleTransfer(amount) {
+  const res = await api.post('/transfer', { amount });
+  if (!res.data.success) {
+    if (res.data.code === 'NO_FUND') openTopUpModal();
+    else alert(res.data.message);
+    return;
+  }
+  alert('Überweisung erfolgreich!');
+}</code></pre>
+
+					<hr />
+
+					<h3>❓ Häufig gestellte Fragen (FAQ)</h3>
+					<div class="faq-item">
+						<h4>Verstößt 200 OK bei Business-Fehlern gegen REST?</h4>
+						<p>Nein. HTTP ist ein Protokoll für den Nachrichtentransport, nicht für die feingranulare Geschäftslogik. Die REST-Prinzipien verlangen nicht, komplexe Anwendungsfälle krampfhaft auf HTTP-Statuscodes zu mappen.</p>
+					</div>
+					<div class="faq-item">
+						<h4>Warum sollte bei fehlenden Daten kein 404 zurückgegeben werden?</h4>
+						<p>Weil 404 bedeutet, dass der Endpunkt selbst nicht existiert. Wenn auch fehlende Datenbankzeilen ein 404 auslösen, kann das Frontend Netzwerkfehler nicht mehr von leeren Ergebnissen unterscheiden.</p>
+					</div>
+					<div class="faq-item">
+						<h4>Wann ist 204 No Content die beste Wahl?</h4>
+						<p>Wenn die Aktion abgeschlossen ist und der Client keine Rückmeldedaten benötigt (z. B. Löschvorgänge oder reine Status-Umschaltungen), um wertvolle Bandbreite einzusparen.</p>
+					</div>
+
+					<hr />
+
+					<h3>🏁 Fazit</h3>
+					<p>Pragmatic Payload-Driven API-Design eliminiert typische Reibungsverluste zwischen Backend und Frontend. Klare Zuständigkeiten und standardisierte JSON-Umschläge führen zu wartbarem, hochgradig produktionsreifem Code.</p>
+				</div>
+
+				<!-- Disqus Comments Section -->
+				<div id="disqus_thread"></div>
+				<script>
+					var disqus_config = function () {
+						this.page.url = 'https://www.peerapat.cc/coding/pragmatic_api_design.html';
+						this.page.identifier = 'coding-pragmatic-api-design';
+					};
+					(function() {
+						var d = document, s = d.createElement('script');
+						s.src = 'https://norbor.disqus.com/embed.js';
+						s.setAttribute('data-timestamp', +new Date());
+						(d.head || d.body).appendChild(s);
+					})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			</section>
+
+			<div class="inner">
+				<p class="copyright">
+					&copy; 2021 - 2026, Peerapat Asoktummarungsri
+				</p>
+			</div>
+		</div>
+
+		<!-- Scripts -->
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.poptrox.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
+		<script src="../assets/js/cookie-consent.js"></script>
+
+		<!-- Language Switcher Tab Script -->
+		<script>
+			document.addEventListener('DOMContentLoaded', () => {
+				const langIcons = document.querySelectorAll('.lang-icon');
+				const langSections = document.querySelectorAll('.lang-section');
+
+				function activateLanguage(hash) {
+					langIcons.forEach(i => i.classList.remove('active'));
+					langSections.forEach(s => s.classList.remove('active'));
+
+					const targetIcon = Array.from(langIcons).find(icon => icon.getAttribute('href') === hash) || langIcons[0];
+					const targetHash = targetIcon.getAttribute('href');
+					const targetSection = document.querySelector(targetHash);
+
+					if (targetIcon) targetIcon.classList.add('active');
+					if (targetSection) targetSection.classList.add('active');
+				}
+
+				langIcons.forEach(icon => {
+					icon.addEventListener('click', function(e) {
+						e.preventDefault();
+						const hash = this.getAttribute('href');
+						history.pushState(null, null, hash);
+						activateLanguage(hash);
+					});
+				});
+
+				activateLanguage(window.location.hash || langIcons[0].getAttribute('href'));
+			});
+		</script>
+
+		<!-- Dark Theme Toggle Logic -->
+		<script>
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				const updateIcon = () => {
+					if (document.documentElement.getAttribute('data-theme') === 'dark') {
+						themeToggle.classList.remove('fa-moon');
+						themeToggle.classList.add('fa-sun');
+					} else {
+						themeToggle.classList.remove('fa-sun');
+						themeToggle.classList.add('fa-moon');
+					}
+				};
+				updateIcon();
+
+				themeToggle.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					updateIcon();
+				});
+			}
+		</script>
+	</body>
+</html>

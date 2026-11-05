@@ -65,6 +65,7 @@ ROOT/
     2. Follow the Multilingual Rule from `AGENTS.md`, ensuring you use the exact HTML/CSS/JS structure for the floating `.lang-switcher` and `.lang-section` containers as found in `general/touch-typing.html`, and populate the content for all 5 languages.
     3. Update the category listing page (if it exists) to include a link to the new post.
     4. **Apply Dark Mode:** Include the dark mode initialization script in the `<head>` and add the theme toggle logic script at the bottom of the body. Also include the dark mode toggle button (`fa-moon`) in the header section, exactly as implemented in `profile.html`.
+    5. **No Thumbnail in Article Body:** Do NOT include a thumbnail or cover banner image inside the article page itself unless an image is strictly required for technical or explanatory detail (diagrams, flowcharts, screenshots). Thumbnail images belong in category listings and SEO/Open Graph tags only.
 * **When writing code:** Prioritize modern, vanilla HTML5, CSS3, and ES6+ JavaScript. Ensure the design remains responsive for mobile devices.
 ```
 
