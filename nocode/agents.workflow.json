@@ -1,0 +1,183 @@
+{
+ "schema_version": 2,
+ "diagram_type": "workflow",
+ "meta": {
+  "title": "AGENTS.md × Skills: วงจรทำงาน",
+  "quality_profile": "showcase"
+ },
+ "lanes": [
+  {
+   "id": "queue",
+   "label": "คำขอ & คิวงาน"
+  },
+  {
+   "id": "rules",
+   "label": "กฎ AGENTS.md"
+  },
+  {
+   "id": "skills",
+   "label": "Skills (Secure TDD)"
+  },
+  {
+   "id": "verify",
+   "label": "ตรวจ & บันทึก"
+  }
+ ],
+ "mainPath": [
+  "prompt",
+  "tasks",
+  "doctrine",
+  "secure",
+  "red",
+  "green",
+  "mirror",
+  "sbt",
+  "log"
+ ],
+ "nodes": [
+  {
+   "id": "prompt",
+   "lane": "queue",
+   "col": 0,
+   "type": "external",
+   "label": "Prompt / start",
+   "sublabel": "ไม่ใช่ EN → antigravity",
+   "width": 132
+  },
+  {
+   "id": "tasks",
+   "lane": "queue",
+   "col": 1,
+   "type": "database",
+   "label": "TASKS.md",
+   "sublabel": "## TODD ทีละข้อ",
+   "width": 132
+  },
+  {
+   "id": "doctrine",
+   "lane": "rules",
+   "col": 2,
+   "type": "security",
+   "label": "Design Doctrine",
+   "sublabel": "md/README.md",
+   "tag": "plane · txn · config",
+   "width": 132
+  },
+  {
+   "id": "secure",
+   "lane": "rules",
+   "col": 3,
+   "type": "backend",
+   "label": "secure-tdd",
+   "sublabel": "orchestrator",
+   "width": 132
+  },
+  {
+   "id": "red",
+   "lane": "skills",
+   "col": 3,
+   "type": "backend",
+   "label": "write-test",
+   "sublabel": "Red: spec ล้ม",
+   "width": 132
+  },
+  {
+   "id": "green",
+   "lane": "skills",
+   "col": 4,
+   "type": "security",
+   "label": "owasp + iso-27001",
+   "sublabel": "Green: โค้ดปลอดภัย",
+   "width": 132
+  },
+  {
+   "id": "skillmd",
+   "lane": "rules",
+   "col": 4,
+   "type": "frontend",
+   "label": "SKILL.md",
+   "sublabel": "ถ้าแตะ /skill/*",
+   "width": 132
+  },
+  {
+   "id": "mirror",
+   "lane": "verify",
+   "col": 4,
+   "type": "messagebus",
+   "label": "scala-doc",
+   "sublabel": "md/app mirror",
+   "width": 132
+  },
+  {
+   "id": "sbt",
+   "lane": "verify",
+   "col": 5,
+   "type": "backend",
+   "label": "sbt test",
+   "sublabel": "DocMirrorSpec + suite",
+   "width": 132
+  },
+  {
+   "id": "log",
+   "lane": "queue",
+   "col": 5,
+   "type": "database",
+   "label": "LOG + console.md",
+   "sublabel": "mark [✅]",
+   "width": 132
+  }
+ ],
+ "edges": [
+  {
+   "id": "e1",
+   "from": "prompt",
+   "to": "tasks"
+  },
+  {
+   "id": "e3",
+   "from": "tasks",
+   "to": "doctrine",
+   "label": "วางในโมเดล"
+  },
+  {
+   "id": "e4",
+   "from": "doctrine",
+   "to": "secure"
+  },
+  {
+   "id": "e5",
+   "from": "secure",
+   "to": "red",
+   "variant": "emphasis"
+  },
+  {
+   "id": "e6",
+   "from": "red",
+   "to": "green",
+   "variant": "emphasis"
+  },
+  {
+   "id": "e7",
+   "from": "green",
+   "to": "skillmd",
+   "variant": "dashed",
+   "role": "branch"
+  },
+  {
+   "id": "e8",
+   "from": "green",
+   "to": "mirror"
+  },
+  {
+   "id": "e9",
+   "from": "mirror",
+   "to": "sbt"
+  },
+  {
+   "id": "e10",
+   "from": "sbt",
+   "to": "log",
+   "label": "เขียว"
+  }
+ ]
+}
