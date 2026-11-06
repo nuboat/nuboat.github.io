@@ -30,18 +30,116 @@
 				document.documentElement.setAttribute('data-theme', 'dark');
 			}
 		</script>
+		<style>
+			/* Left Sidebar Article Header */
+			@media screen and (min-width: 981px) {
+				header.major {
+					position: fixed;
+					left: 0;
+					top: 0;
+					width: 35%;
+					height: 100%;
+					padding: 4.5em 3em 3em 3.5em;
+					box-sizing: border-box;
+					overflow-y: auto;
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-start;
+					background: var(--ci-canvas);
+					z-index: 10;
+				}
+				header.major .header-nav {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-bottom: 1.5rem;
+					width: 100%;
+				}
+				header.major .header-back-link {
+					color: var(--ci-blue);
+					text-decoration: none;
+					font-size: 0.9em;
+					font-weight: 600;
+					display: inline-flex;
+					align-items: center;
+					gap: 0.4rem;
+				}
+				header.major .header-back-link:hover {
+					color: var(--ci-cyan);
+				}
+				header.major h1, header.major h2 {
+					font-size: 1.85em;
+					line-height: 1.35;
+					margin: 0.5rem 0 0.8rem 0;
+					color: var(--ci-headline);
+				}
+				header.major p.article-meta {
+					color: var(--ci-muted);
+					font-size: 0.9em;
+					line-height: 1.5;
+					margin: 0 0 1.5rem 0;
+				}
+			}
+
+			@media screen and (max-width: 980px) {
+				header.major {
+					position: static;
+					width: 100%;
+					height: auto;
+					padding: 3em 1.5em 0 1.5em;
+					box-sizing: border-box;
+					margin-bottom: 1.5rem;
+					border-bottom: 1px solid var(--ci-line);
+					padding-bottom: 1.5rem;
+				}
+				header.major .header-nav {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-bottom: 1rem;
+					width: 100%;
+				}
+				header.major .header-back-link {
+					color: var(--ci-blue);
+					text-decoration: none;
+					font-size: 0.9em;
+					font-weight: 600;
+					display: inline-flex;
+					align-items: center;
+					gap: 0.4rem;
+				}
+				header.major h1, header.major h2 {
+					font-size: 1.6em;
+					line-height: 1.3;
+					margin: 0.5rem 0;
+					color: var(--ci-headline);
+				}
+				header.major p.article-meta {
+					color: var(--ci-muted);
+					font-size: 0.88em;
+					margin: 0 0 1rem 0;
+				}
+				#main {
+					padding-top: 1em !important;
+				}
+			}
+		</style>
 	</head>
 
 	<body class="is-preload">
 
+		<header class="major">
+			<div class="header-nav">
+				<a href="../english.html" class="header-back-link"><i class="fa fa-arrow-left"></i> Fast English</a>
+				<a id="theme-toggle" style="cursor: pointer; border-bottom: none; font-size: 1.2em;" class="fa fa-moon" title="Toggle dark mode" aria-label="Toggle theme"></a>
+			</div>
+
+			<h1>English Grammar: The 12 Tenses</h1>
+			<p class="article-meta"><em>June 2026 &nbsp;·&nbsp; Peerapat A</em></p>
+		</header>
+
 		<div id="main">
 			<section id="one">
-				<header class="major">
-					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon"></a>
-
-					<h1>English Grammar: The 12 Tenses</h1>
-					<p><em>June 2026 &nbsp;·&nbsp; Peerapat A &nbsp;·&nbsp; <a href="../english.html">&larr; Fast English</a></em></p>
-				</header>
 
 				<p><strong>สรุปประเด็นสำคัญ (BLUF):</strong> Tense ทั้ง 12 ในภาษาอังกฤษเกิดจากการประกอบกันของ 3 ช่วงเวลา (Present, Past, Future) และ 4 รูปแบบการกระทำ (Simple, Continuous, Perfect, Perfect Continuous) บทความนี้สรุปโครงสร้าง วิธีจำง่ายๆ คีย์เวิร์ด (Signal Words) และตัวอย่างประโยคครบทุก Tense</p>
 
