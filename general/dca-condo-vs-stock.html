@@ -24,65 +24,156 @@
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
 		<style>
-			.lang-switcher {
-				position: fixed;
-				left: 3rem;
-				top: 50%;
-				transform: translateY(-50%);
-				z-index: 1000;
-				display: flex;
-				flex-direction: column;
-				gap: 0.5rem;
-				padding: 0.6rem 0.5rem;
-				background: var(--ci-paper);
-				border: 1px solid var(--ci-line);
-				border-radius: 24px;
-				width: fit-content;
-				box-shadow: 0 8px 24px rgba(0, 40, 86, 0.08);
+			/* Left Sidebar Article Header */
+			@media screen and (min-width: 981px) {
+				header.major {
+					position: fixed;
+					left: 0;
+					top: 0;
+					width: 35%;
+					height: 100%;
+					padding: 4.5em 3em 3em 3.5em;
+					box-sizing: border-box;
+					overflow-y: auto;
+					display: flex;
+					flex-direction: column;
+					justify-content: flex-start;
+					background: var(--ci-canvas);
+					z-index: 10;
+				}
+				header.major .header-nav {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-bottom: 1.5rem;
+					width: 100%;
+				}
+				header.major .header-back-link {
+					color: var(--ci-blue);
+					text-decoration: none;
+					font-size: 0.9em;
+					font-weight: 600;
+					display: inline-flex;
+					align-items: center;
+					gap: 0.4rem;
+				}
+				header.major .header-back-link:hover {
+					color: var(--ci-cyan);
+				}
+				header.major h1, header.major h2 {
+					font-size: 1.85em;
+					line-height: 1.35;
+					margin: 0.5rem 0 0.8rem 0;
+					color: var(--ci-headline);
+				}
+				header.major p.article-meta {
+					color: var(--ci-muted);
+					font-size: 0.9em;
+					line-height: 1.5;
+					margin: 0 0 1.5rem 0;
+				}
 			}
 
+			@media screen and (max-width: 980px) {
+				header.major {
+					position: static;
+					width: 100%;
+					height: auto;
+					padding: 3em 1.5em 0 1.5em;
+					box-sizing: border-box;
+					margin-bottom: 1.5rem;
+					border-bottom: 1px solid var(--ci-line);
+					padding-bottom: 1.5rem;
+				}
+				header.major .header-nav {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					margin-bottom: 1rem;
+					width: 100%;
+				}
+				header.major .header-back-link {
+					color: var(--ci-blue);
+					text-decoration: none;
+					font-size: 0.9em;
+					font-weight: 600;
+					display: inline-flex;
+					align-items: center;
+					gap: 0.4rem;
+				}
+				header.major h1, header.major h2 {
+					font-size: 1.6em;
+					line-height: 1.3;
+					margin: 0.5rem 0;
+					color: var(--ci-headline);
+				}
+				header.major p.article-meta {
+					color: var(--ci-muted);
+					font-size: 0.88em;
+					margin: 0 0 1rem 0;
+				}
+				#main {
+					padding-top: 1em !important;
+				}
+			}
+
+			/* Horizontal Language Switcher */
+			.lang-switcher {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 0.4rem;
+				padding: 0.35rem 0.5rem;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 99px;
+				width: fit-content;
+				box-shadow: 0 4px 16px rgba(0, 40, 86, 0.06);
+				margin-top: 0.5rem;
+				flex-wrap: wrap;
+			}
+			
 			.lang-icon {
 				display: flex;
-				flex-direction: column;
+				flex-direction: row;
 				align-items: center;
 				justify-content: center;
-				gap: 0.3rem;
-				padding: 0.6rem 0.4rem;
-				border-radius: 16px;
+				gap: 0.35rem;
+				padding: 0.3rem 0.65rem;
+				border-radius: 99px;
 				color: var(--ci-muted) !important;
 				text-decoration: none !important;
 				font-family: var(--ci-display);
 				font-weight: 600;
-				font-size: 0.75em;
-				transition: all 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+				font-size: 0.78em;
+				transition: all 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
 				background-image: none !important;
-				width: 54px;
 			}
-
+			
 			.lang-icon .flag-icon {
-				border-radius: 4px;
-				box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-				transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
-				width: 24px;
-				height: 16px;
+				border-radius: 3px;
+				box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+				transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1);
+				width: 20px;
+				height: 14px;
 			}
-
+			
 			.lang-icon:hover {
 				color: var(--ci-navy) !important;
 				background: var(--ci-canvas);
-				transform: translateX(4px);
+				transform: translateY(-2px);
 			}
-
+			
 			.lang-icon:hover .flag-icon {
-				transform: scale(1.15) rotate(-2deg);
+				transform: scale(1.12);
 			}
-
+			
 			.lang-icon.active {
 				color: var(--ci-blue) !important;
-				background: rgba(5, 172, 225, 0.06);
-				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.2);
+				background: rgba(5, 172, 225, 0.08);
+				box-shadow: inset 0 0 0 1px rgba(5, 172, 225, 0.25);
 			}
-
+			
 			.lang-icon.active .flag-icon {
 				box-shadow: 0 0 0 2px rgba(5, 172, 225, 0.3);
 			}
@@ -97,28 +188,6 @@
 			@keyframes fadeIn {
 				from { opacity: 0; transform: translateY(5px); }
 				to { opacity: 1; transform: translateY(0); }
-			}
-
-			/* On smaller screens where the layout collapses to a single column, we revert to horizontal layout */
-			@media screen and (max-width: 980px) {
-				.lang-switcher {
-					position: static;
-					transform: none;
-					flex-direction: row;
-					margin: 0 0 2.5rem 0;
-					padding: 0.4rem;
-					border-radius: 99px;
-				}
-				.lang-icon {
-					flex-direction: row;
-					width: auto;
-					padding: 0.3rem 1rem 0.3rem 0.4rem;
-					font-size: 0.85em;
-					border-radius: 99px;
-				}
-				.lang-icon:hover {
-					transform: translateY(-2px);
-				}
 			}
 
 			/* ============ Wealth comparison chart ============ */
@@ -226,7 +295,7 @@
 
 			.hero-figure { margin: 2.5rem 0 0; }
 			.hero-figure img {
-				display: block;
+				
 				width: 100%;
 				height: auto;
 				border-radius: 12px;
@@ -282,44 +351,49 @@
 
 	<body class="is-preload">
 
-		<div id="main">
-			<section id="one">
-				<header class="major">
-					<a id="theme-toggle" style="cursor: pointer; border-bottom: none; float: right; font-size: 1.2em;" class="fa fa-moon"></a>
+		<header class="major">
+			<div class="header-nav">
+				<a href="../general.html" class="header-back-link"><i class="fa fa-arrow-left"></i> General</a>
+				<a id="theme-toggle" style="cursor: pointer; border-bottom: none; font-size: 1.2em;" class="fa fa-moon" title="Toggle dark mode" aria-label="Toggle theme"></a>
+			</div>
 
-					<h1>DCA Condo vs DCA Stock: ออมเดือนละ 6,000 บาท 10 ปี ใครรวยกว่า?</h1>
-					<p><a href="../general.html">General</a> > <em>August 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp;</em></p>
-				</header>
+			<h1>DCA Condo vs DCA Stock: ออมเดือนละ 6,000 บาท 10 ปี ใครรวยกว่า?</h1>
+			<p class="article-meta"><em>August 2026 &nbsp;·&nbsp; Peerapat A &nbsp;&middot;&nbsp</em></p>
 
-				<div class="lang-switcher">
+<nav class="lang-switcher" aria-label="Language selector">
 					<a href="#lang-en" class="lang-icon active" title="English">
-						<svg viewBox="0 0 60 30" width="24" height="16" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
+						<svg viewBox="0 0 60 30" width="20" height="13" class="flag-icon"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v-15 z v15 h30 z"/></clipPath><g clip-path="url(#s)"><path d="M0,0 v30 h60 v-30 z" fill="#012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/></g></svg>
 						<span class="lang-code">EN</span>
 					</a>
 
 					<a href="#lang-th" class="lang-icon" title="ภาษาไทย">
-						<svg viewBox="0 0 36 24" width="24" height="16" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
+						<svg viewBox="0 0 36 24" width="20" height="13" class="flag-icon"><rect width="36" height="24" fill="#A51931"/><rect width="36" height="16" y="4" fill="#F4F5F8"/><rect width="36" height="8" y="8" fill="#2D2A4A"/></svg>
 						<span class="lang-code">TH</span>
 					</a>
 
 					<a href="#lang-zh" class="lang-icon" title="中文">
-						<svg viewBox="0 0 30 20" width="24" height="16" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
+						<svg viewBox="0 0 30 20" width="20" height="13" class="flag-icon"><rect width="30" height="20" fill="#ee1c25"/><g transform="translate(5,5) scale(2)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2"/></g><g transform="translate(10,2) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(23)"/></g><g transform="translate(12,4) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(46)"/></g><g transform="translate(12,7) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(70)"/></g><g transform="translate(10,9) scale(0.6)"><polygon fill="#ffce00" points="0,-1.5 0.88,1.2 -1.43,-0.48 1.43,-0.48 -0.88,1.2" transform="rotate(90)"/></g></svg>
 						<span class="lang-code">ZH</span>
 					</a>
 
 					<a href="#lang-ja" class="lang-icon" title="日本語">
-						<svg viewBox="0 0 900 600" width="24" height="16" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
+						<svg viewBox="0 0 900 600" width="20" height="13" class="flag-icon"><rect width="900" height="600" fill="#fff"/><circle cx="450" cy="300" r="180" fill="#bc002d"/></svg>
 						<span class="lang-code">JA</span>
 					</a>
 
 					<a href="#lang-de" class="lang-icon" title="Deutsch">
-						<svg viewBox="0 0 5 3" width="24" height="16" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
+						<svg viewBox="0 0 5 3" width="20" height="13" class="flag-icon"><rect width="5" height="3" fill="#000"/><rect width="5" height="2" y="1" fill="#D00"/><rect width="5" height="1" y="2" fill="#FFCE00"/></svg>
 						<span class="lang-code">DE</span>
 					</a>
-				</div>
+				</nav>
+		</header>
+
+		<div id="main">
+			<section id="one">
+				
 
 				<!-- ==================== ENGLISH ==================== -->
-				<div id="lang-en" class="lang-section" style="padding-top: 2em; margin-bottom: 4em;">
+				<div id="lang-en" class="lang-section active" style="padding-top: 2em; margin-bottom: 4em;">
 					<h2>DCA Condo vs DCA Stock: 6,000 Baht a Month for 10 Years</h2>
 					<p><strong>Bottom Line Up Front:</strong> Put 6,000 baht a month into stocks at 6% a year and you end up with about 983,000 baht after 10 years. Put the same 6,000 baht into a 1M baht condo, add 5,000 baht of rent from a tenant, and you end up with about 1,121,000 baht — a debt-free unit plus cash. The condo wins by roughly 138,000 baht, and the reason is not the property market. It is that someone else paid part of your instalment.</p>
 
