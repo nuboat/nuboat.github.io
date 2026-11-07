@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "AGENTS.md & SKILL.md Operating Architecture",
+    "locale": "en",
+    "output": "agents-skill-architecture.html",
+    "quality_profile": "showcase",
+    "views": [
+      {
+        "id": "primary-dispatch",
+        "label": "Main dispatch",
+        "focus": ["researcher", "agents_os", "skill_dispatcher", "active_skills", "quality_gate", "deliverables"],
+        "note": "Follow a prompt through always-on AGENTS.md governance, on-demand SKILL.md loading, and Q1 verification."
+      },
+      {
+        "id": "three-tier-context",
+        "label": "3-tier separation",
+        "focus": ["readme_ssot", "agents_os", "session_state", "skill_catalog", "active_skills"],
+        "note": "Separate project scope (README.md), always-on agent rules (AGENTS.md), and domain-agnostic methods (SKILL.md)."
+      },
+      {
+        "id": "progressive-disclosure",
+        "label": "Skills & subagents",
+        "focus": ["skill_catalog", "skill_dispatcher", "active_skills", "subagents"],
+        "note": "Only lightweight YAML frontmatter enters startup context; full SKILL.md playbooks and subagents load on demand."
+      }
+    ]
+  },
+  "components": [
+    {
+      "id": "researcher",
+      "type": "external",
+      "label": "Researcher",
+      "sublabel": "User Prompt / Task",
+      "pos": [40, 275],
+      "size": [135, 64]
+    },
+    {
+      "id": "readme_ssot",
+      "type": "database",
+      "label": "README.md",
+      "sublabel": "Project Source of Truth",
+      "tag": "Tier 3 · Locked Scope",
+      "pos": [270, 105],
+      "size": [155, 64]
+    },
+    {
+      "id": "agents_os",
+      "type": "security",
+      "label": "AGENTS.md",
+      "sublabel": "Always-On Agent OS",
+      "tag": "Tier 2 · L99 Rules",
+      "pos": [270, 275],
+      "size": [155, 66]
+    },
+    {
+      "id": "session_state",
+      "type": "database",
+      "label": "Session Memory",
+      "sublabel": "TODO.md & research-log",
+      "pos": [270, 445],
+      "size": [155, 64]
+    },
+    {
+      "id": "skill_catalog",
+      "type": "messagebus",
+      "label": "Skill Registry",
+      "sublabel": "YAML Frontmatter Index",
+      "tag": "Progressive Disclosure",
+      "pos": [525, 105],
+      "size": [160, 64]
+    },
+    {
+      "id": "skill_dispatcher",
+      "type": "backend",
+      "label": "Skill Dispatcher",
+      "sublabel": "§5.1 Workflow Router",
+      "pos": [525, 275],
+      "size": [160, 66]
+    },
+    {
+      "id": "active_skills",
+      "type": "cloud",
+      "label": "SKILL.md Modules",
+      "sublabel": ".agents/skills/* (5 Skills)",
+      "tag": "Tier 1 · On-Demand",
+      "pos": [785, 275],
+      "size": [165, 66]
+    },
+    {
+      "id": "subagents",
+      "type": "backend",
+      "label": "Subagent Workers",
+      "sublabel": "invoke_subagent Roles",
+      "tag": "Isolated Context",
+      "pos": [785, 445],
+      "size": [165, 64]
+    },
+    {
+      "id": "deliverables",
+      "type": "frontend",
+      "label": "Manuscript Outputs",
+      "sublabel": "journal.pdf & journal-th.pdf",
+      "pos": [1055, 105],
+      "size": [165, 64]
+    },
+    {
+      "id": "quality_gate",
+      "type": "security",
+      "label": "Q1 Quality Gate",
+      "sublabel": "DOI · SJR Q1 · 2022+ Rules",
+      "pos": [1055, 275],
+      "size": [165, 66]
+    },
+    {
+      "id": "audit_logs",
+      "type": "database",
+      "label": "Substantive Logs",
+      "sublabel": "CONSOLE.md & AI_USE_LOG",
+      "pos": [1055, 445],
+      "size": [165, 64]
+    }
+  ],
+  "boundaries": [
+    {
+      "kind": "region",
+      "label": "Antigravity Research Workspace (phdjournal)",
+      "wraps": [
+        "readme_ssot",
+        "agents_os",
+        "session_state",
+        "skill_catalog",
+        "skill_dispatcher",
+        "active_skills",
+        "subagents",
+        "deliverables",
+        "quality_gate",
+        "audit_logs"
+      ]
+    },
+    {
+      "kind": "security-group",
+      "label": "On-Demand Skill Sandbox (.agents/skills/)",
+      "wraps": ["active_skills", "subagents"]
+    }
+  ],
+  "connections": [
+    {
+      "id": "prompt_intake",
+      "from": "researcher",
+      "to": "agents_os",
+      "label": "prompt",
+      "variant": "emphasis"
+    },
+    {
+      "id": "load_project_scope",
+      "from": "readme_ssot",
+      "to": "agents_os",
+      "label": "RQs & scope",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 64
+    },
+    {
+      "id": "read_session_state",
+      "from": "session_state",
+      "to": "agents_os",
+      "label": "prior state",
+      "variant": "dashed",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDy": -58
+    },
+    {
+      "id": "governed_routing",
+      "from": "agents_os",
+      "to": "skill_dispatcher",
+      "label": "§6 workflow",
+      "variant": "emphasis"
+    },
+    {
+      "id": "match_frontmatter",
+      "from": "skill_catalog",
+      "to": "skill_dispatcher",
+      "label": "name + desc",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 64
+    },
+    {
+      "id": "activate_skill",
+      "from": "skill_dispatcher",
+      "to": "active_skills",
+      "label": "read SKILL.md",
+      "variant": "emphasis"
+    },
+    {
+      "id": "delegate_subagent",
+      "from": "active_skills",
+      "to": "subagents",
+      "label": "spawn role",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 64
+    },
+    {
+      "id": "verify_draft",
+      "from": "active_skills",
+      "to": "quality_gate",
+      "label": "verify claims",
+      "variant": "security"
+    },
+    {
+      "id": "emit_manuscripts",
+      "from": "quality_gate",
+      "to": "deliverables",
+      "label": "compile PDF",
+      "variant": "emphasis",
+      "fromSide": "top",
+      "toSide": "bottom",
+      "labelDy": -58
+    },
+    {
+      "id": "record_substance",
+      "from": "quality_gate",
+      "to": "audit_logs",
+      "label": "mirror & log",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top",
+      "labelDy": 64
+    }
+  ],
+  "cards": [
+    {
+      "dot": "rose",
+      "title": "3-Tier Separation",
+      "items": [
+        "Tier 1 SKILL (.agents/skills/): domain-agnostic methods & prompt codes",
+        "Tier 2 AGENTS (AGENTS.md): always-on L99 rules, Q1 gates & §5.1 router",
+        "Tier 3 README (README.md): locked project topic, RQ0–RQ5 & 9 constructs"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "Progressive Disclosure",
+      "items": [
+        "Startup injects AGENTS.md; Skills expose YAML frontmatter only",
+        "Dispatcher loads full SKILL.md strictly when a §6 workflow matches",
+        "Complex workflows spawn isolated invoke_subagent worker roles"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "5 Workspace Skills",
+      "items": [
+        "academic-prompt-codes & research-background-writer (L99 & Ch.1 CARS)",
+        "literature-review-synthesizer & elsevier_format (2022+ matrix & layout)",
+        "q1-manuscript-redteam (IMRaD, Reviewer-2 audit & journal targeting)"
+      ]
+    }
+  ]
+}
