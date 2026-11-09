@@ -1,0 +1,1779 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TDAS — สไลด์นำเสนอดุษฎีนิพนธ์ บทที่ 1 และ 2 (Light Theme)</title>
+  <style>
+    /* =========================================================================
+       ACADEMIC SLIDE PRESENTATION STYLING — LIGHT THEME EDITION
+       Language: Thai with English Technical Terms (ทับศัพท์เทคนิค)
+       Scope: Strictly Aligned with Journal Chapter 1 & Chapter 2
+       ========================================================================= */
+    :root {
+      --bg-body: #f1f5f9;
+      --bg-slide: #ffffff;
+      --bg-card: #ffffff;
+      --bg-card-alt: #f8fafc;
+      --bg-card-hover: #f1f5f9;
+      --border-subtle: #e2e8f0;
+      --border-medium: #cbd5e1;
+      --border-accent: #3b82f6;
+      --text-main: #0f172a;
+      --text-headings: #1e293b;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      
+      --accent-blue: #2563eb;
+      --accent-blue-dark: #1d4ed8;
+      --accent-blue-light: #eff6ff;
+      --accent-cyan: #0284c7;
+      --accent-teal: #0d9488;
+      --accent-emerald: #059669;
+      --accent-emerald-light: #ecfdf5;
+      --accent-amber: #d97706;
+      --accent-amber-light: #fffbeb;
+      --accent-rose: #e11d48;
+      --accent-rose-light: #fff1f2;
+      --accent-purple: #7c3aed;
+      --accent-purple-light: #f5f3ff;
+
+      --shadow-slide: 0 20px 45px -12px rgba(15, 23, 42, 0.1);
+      --shadow-card: 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+      --shadow-hover: 0 10px 25px -4px rgba(15, 23, 42, 0.09);
+
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Sarabun', 'Noto Sans Thai', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: 'JetBrains Mono', 'Fira Code', Consolas, Monaco, monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--bg-body);
+      color: var(--text-main);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* Top Navigation Header */
+    header.slide-header {
+      height: 54px;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.75rem;
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .journal-left-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      color: #ffffff !important;
+      padding: 0.35rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 1px 3px rgba(37, 99, 235, 0.25);
+      border: 1px solid #1d4ed8;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .journal-left-btn:hover {
+      background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 3px 6px rgba(37, 99, 235, 0.35);
+      color: #ffffff !important;
+      text-decoration: none;
+    }
+
+    .journal-left-btn .btn-icon {
+      font-size: 0.9rem;
+    }
+
+    .journal-left-btn .btn-label {
+      letter-spacing: 0.02em;
+    }
+
+    .brand-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--accent-blue-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .brand-title .badge {
+      background: var(--accent-blue-light);
+      border: 1px solid #bfdbfe;
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      color: var(--accent-blue-dark);
+      font-weight: 700;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 0.35rem;
+    }
+
+    .nav-tab-btn {
+      background: var(--bg-card-alt);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 0.32rem 0.68rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .nav-tab-btn:hover {
+      background: #e2e8f0;
+      color: var(--text-main);
+      border-color: var(--border-medium);
+    }
+
+    .nav-tab-btn.active {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue-dark);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .control-btn {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 0.35rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .control-btn:hover {
+      background: #f8fafc;
+      color: var(--accent-blue-dark);
+      border-color: #bfdbfe;
+    }
+
+    .control-btn.active {
+      background: var(--accent-blue-light);
+      color: var(--accent-blue-dark);
+      border-color: #bfdbfe;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      height: 3px;
+      background: #e2e8f0;
+      width: 100%;
+      position: relative;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #2563eb 0%, #0284c7 100%);
+      width: 11.11%;
+      transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Main Slide Deck Stage */
+    main.stage {
+      flex: 1;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.75rem;
+      overflow: hidden;
+    }
+
+    .slide-viewport {
+      width: 100%;
+      max-width: 1480px;
+      aspect-ratio: 16 / 9;
+      max-height: calc(100vh - 118px);
+      background: var(--bg-slide);
+      border-radius: 12px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-slide);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Individual Slide */
+    .slide {
+      position: absolute;
+      inset: 0;
+      padding: 2.2rem 2.85rem;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateX(35px);
+      transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s;
+      overflow-y: auto;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(0);
+      z-index: 10;
+    }
+
+    .slide.prev {
+      transform: translateX(-35px);
+    }
+
+    /* Slide Header Meta */
+    .slide-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.3rem;
+    }
+
+    .slide-section-badge {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 0.22rem 0.65rem;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .sec-ch1 { background: var(--accent-blue-light); color: var(--accent-blue-dark); border: 1px solid #bfdbfe; }
+    .sec-ch2 { background: var(--accent-emerald-light); color: var(--accent-emerald); border: 1px solid #a7f3d0; }
+    .sec-concl { background: var(--accent-amber-light); color: var(--accent-amber); border: 1px solid #fde68a; }
+
+    .slide-title {
+      font-size: 1.82rem;
+      font-weight: 800;
+      color: var(--text-headings);
+      line-height: 1.25;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.015em;
+    }
+
+    .slide-subtitle {
+      font-size: 0.96rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 1.15rem;
+    }
+
+    /* Grids */
+    .grid-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      flex: 1;
+    }
+
+    .grid-3col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.1rem;
+      flex: 1;
+    }
+
+    .grid-4col {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.95rem;
+      flex: 1;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 1.15rem 1.35rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-card);
+    }
+
+    .card:hover {
+      background: #ffffff;
+      border-color: #cbd5e1;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.65rem;
+    }
+
+    .card-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--text-headings);
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .card-tag {
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 0.15rem 0.45rem;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .tag-blue { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+    .tag-emerald { background: #ecfdf5; color: #047857; border: 1px solid #a7f3d0; }
+    .tag-amber { background: #fffbeb; color: #b45309; border: 1px solid #fde68a; }
+    .tag-purple { background: #f5f3ff; color: #6d28d9; border: 1px solid #ddd6fe; }
+    .tag-rose { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
+
+    .card p, .card li {
+      font-size: 0.88rem;
+      line-height: 1.52;
+      color: #334155;
+    }
+
+    .card ul {
+      list-style-type: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .card li {
+      position: relative;
+      padding-left: 1.25rem;
+    }
+
+    .card li::before {
+      content: '▪';
+      position: absolute;
+      left: 0;
+      color: var(--accent-blue);
+      font-size: 0.95rem;
+    }
+
+    /* Callout Box */
+    .callout {
+      background: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-left: 4px solid var(--accent-blue);
+      border-radius: 0 8px 8px 0;
+      padding: 0.85rem 1.25rem;
+      margin-top: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .callout-title {
+      font-weight: 800;
+      color: var(--accent-blue-dark);
+      font-size: 0.88rem;
+      margin-bottom: 0.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .callout p {
+      font-size: 0.86rem;
+      line-height: 1.45;
+      color: #334155;
+    }
+
+    /* Academic Tables */
+    .academic-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82rem;
+      margin: 0.4rem 0;
+      line-height: 1.4;
+    }
+
+    .academic-table th {
+      background: #f1f5f9;
+      color: #0f172a;
+      font-weight: 800;
+      text-align: left;
+      padding: 0.6rem 0.75rem;
+      border-top: 2px solid #0f172a;
+      border-bottom: 1.5px solid #0f172a;
+    }
+
+    .academic-table td {
+      padding: 0.55rem 0.75rem;
+      border-bottom: 1px solid var(--border-subtle);
+      color: #1e293b;
+      vertical-align: top;
+    }
+
+    .academic-table tr:hover td {
+      background: #f8fafc;
+    }
+
+    .academic-table tr:last-child td {
+      border-bottom: 2px solid #0f172a;
+    }
+
+    /* Title Slide Custom Layout */
+    .title-slide {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 3rem 4rem;
+      background: radial-gradient(circle at 50% 35%, #ffffff 0%, #f8fafc 100%);
+    }
+
+    .title-slide .badge-group {
+      display: flex;
+      gap: 0.55rem;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+    }
+
+    .title-slide h1 {
+      font-size: 2.35rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: #0f172a;
+      margin-bottom: 0.85rem;
+      max-width: 1100px;
+    }
+
+    .title-slide .subtitle {
+      font-size: 1.12rem;
+      color: #475569;
+      max-width: 900px;
+      line-height: 1.5;
+      margin-bottom: 2rem;
+      font-weight: 500;
+    }
+
+    .title-slide .meta-box {
+      background: #ffffff;
+      border: 1px solid var(--border-medium);
+      border-radius: 12px;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      gap: 3rem;
+      text-align: left;
+      box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.05);
+    }
+
+    .meta-item .meta-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--accent-blue-dark);
+      margin-bottom: 0.25rem;
+      font-weight: 800;
+    }
+
+    .meta-item .meta-val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    /* Footer */
+    footer.slide-footer {
+      height: 48px;
+      background: #ffffff;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.75rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      z-index: 100;
+      flex-shrink: 0;
+    }
+
+    .slide-counter {
+      font-weight: 800;
+      color: var(--accent-blue-dark);
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+    }
+
+    .nav-buttons {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-btn {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    }
+
+    .nav-btn:hover {
+      background: var(--accent-blue);
+      color: #ffffff;
+      border-color: var(--accent-blue-dark);
+    }
+
+    /* Speaker Notes Panel (Light Theme) */
+    .notes-panel {
+      position: fixed;
+      right: -460px;
+      top: 54px;
+      bottom: 48px;
+      width: 460px;
+      background: #ffffff;
+      border-left: 1px solid var(--border-medium);
+      box-shadow: -10px 0 30px rgba(15, 23, 42, 0.1);
+      z-index: 200;
+      transition: right 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+      overflow-y: auto;
+    }
+
+    .notes-panel.open {
+      right: 0;
+    }
+
+    .notes-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .notes-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--accent-amber);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .notes-close {
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+    }
+
+    .notes-section {
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      padding: 0.95rem 1.15rem;
+      margin-bottom: 1rem;
+    }
+
+    .notes-section-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--accent-blue-dark);
+      margin-bottom: 0.45rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .notes-timer {
+      font-family: var(--font-mono);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--accent-emerald);
+      text-align: center;
+      padding: 0.5rem;
+      background: var(--accent-emerald-light);
+      border-radius: 6px;
+      border: 1px solid #a7f3d0;
+      margin-bottom: 1rem;
+    }
+
+    /* Grid Overview Modal (Light Theme) */
+    .overview-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(248, 250, 252, 0.98);
+      backdrop-filter: blur(16px);
+      z-index: 300;
+      display: none;
+      flex-direction: column;
+      padding: 2.5rem 3.5rem;
+      overflow-y: auto;
+    }
+
+    .overview-overlay.open {
+      display: flex;
+    }
+
+    .overview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    .overview-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--text-headings);
+    }
+
+    .overview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .overview-card {
+      background: #ffffff;
+      border: 1px solid var(--border-medium);
+      border-radius: 9px;
+      padding: 1.25rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+
+    .overview-card:hover {
+      border-color: var(--accent-blue);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .overview-card.current {
+      border-color: var(--accent-blue-dark);
+      background: var(--accent-blue-light);
+    }
+
+    .overview-card-sec {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--accent-blue-dark);
+    }
+
+    .overview-card-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.4;
+    }
+
+    /* Print / PDF */
+    @media print {
+      body {
+        overflow: visible;
+        height: auto;
+        background: #ffffff;
+        color: #000000;
+      }
+      header.slide-header, footer.slide-footer, .notes-panel, .overview-overlay, .progress-container {
+        display: none !important;
+      }
+      main.stage {
+        padding: 0;
+        display: block;
+      }
+      .slide-viewport {
+        border: none;
+        box-shadow: none;
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: auto;
+        max-height: none;
+        overflow: visible;
+        display: block;
+      }
+      .slide {
+        position: relative !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        transform: none !important;
+        page-break-after: always;
+        height: 100vh;
+        width: 100vw;
+        padding: 2cm !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="slide-header">
+    <div class="header-left">
+      <a href="journal.html" class="journal-left-btn" id="btn-journal" title="this is index of any html on ./journal">
+        <span class="btn-icon">📖</span>
+        <span class="btn-label">Journal</span>
+      </a>
+      <div class="brand-title">
+        <span>TDAS</span>
+        <span class="badge">ดุษฎีนิพนธ์ IT Management</span>
+        <span style="color: var(--text-muted); font-size: 0.8rem; font-weight: 600;">บทที่ 1 &amp; 2 (Light Theme)</span>
+      </div>
+    </div>
+
+    <!-- Direct Jump Tabs for Key Sections -->
+    <div class="nav-tabs">
+      <button class="nav-tab-btn active" id="tab-1" onclick="goToSlide(1)">หน้าปก</button>
+      <button class="nav-tab-btn" id="tab-2" onclick="goToSlide(2)">1.1 ที่มา &amp; ทางเลือกคู่เท็จ</button>
+      <button class="nav-tab-btn" id="tab-3" onclick="goToSlide(3)">1.2 ทฤษฎี TDAS &amp; 4 เสาหลัก</button>
+      <button class="nav-tab-btn" id="tab-4" onclick="goToSlide(4)">1.3 คำถามวิจัย (RQ0–RQ3)</button>
+      <button class="nav-tab-btn" id="tab-5" onclick="goToSlide(5)">1.4 คุณูปการ 3 มิติ</button>
+      <button class="nav-tab-btn" id="tab-6" onclick="goToSlide(6)">2.1 สังเคราะห์ 3 มิติ</button>
+      <button class="nav-tab-btn" id="tab-7" onclick="goToSlide(7)">2.2 ตาราง 4 กระบวนทัศน์</button>
+      <button class="nav-tab-btn" id="tab-8" onclick="goToSlide(8)">2.3 เมทริกซ์ 5 มิติ &amp; Gaps</button>
+      <button class="nav-tab-btn" id="tab-9" onclick="goToSlide(9)">สรุป &amp; แผนผัง</button>
+    </div>
+
+    <div class="header-controls">
+      <button class="control-btn" id="btn-timer" title="Presentation Timer">⏱️ <span id="timer-display">00:00</span></button>
+      <button class="control-btn" id="btn-overview" title="ตารางรวมสไลด์ (O / Esc)">⊞ Grid</button>
+      <button class="control-btn" id="btn-notes" title="บทพูดภาษาไทย (N / S)">📝 Speaker Notes</button>
+      <button class="control-btn" id="btn-fullscreen" title="เต็มหน้าจอ (F)">⛶ Fullscreen</button>
+      <button class="control-btn" id="btn-print" title="พิมพ์เป็น PDF (P)">🖨️ PDF</button>
+    </div>
+  </header>
+
+  <!-- Progress Bar -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+
+  <!-- Main Slide Viewport -->
+  <main class="stage">
+    <div class="slide-viewport">
+
+      <!-- =========================================================================
+           SLIDE 1: TITLE SLIDE (หน้าปก)
+           ========================================================================= -->
+      <section class="slide title-slide active" data-slide="1">
+        <div class="badge-group">
+          <span class="card-tag tag-blue">Information Systems &amp; IT Management</span>
+          <span class="card-tag tag-emerald">Gregor Type I &amp; Type IV Theory</span>
+          <span class="card-tag tag-amber">บทที่ 1 บทนำ &amp; บทที่ 2 วรรณกรรม</span>
+        </div>
+        <h1>ทฤษฎีอธิปไตยด้านปัญญาประดิษฐ์แบบแยกส่วน<br>(Theory of Decoupled AI Sovereignty — TDAS)</h1>
+        <p class="subtitle">Governance, Inference, Portability, and Epistemic Control in Technology-Importing Middle Powers</p>
+        
+        <div class="meta-box">
+          <div class="meta-item">
+            <div class="meta-label">ผู้วิจัย (Candidate)</div>
+            <div class="meta-val">พีรพัฒน์ อโศกธรรมรังสี</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">นักศึกษาปริญญาเอก สาขาวิชา IT Management</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">อาจารย์ที่ปรึกษา (Advisor)</div>
+            <div class="meta-val">รศ.ดร.สุภาภรณ์ เกียรติสิน</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">ภาควิชาการจัดการเทคโนโลยีสารสนเทศ</div>
+          </div>
+          <div class="meta-item">
+            <div class="meta-label">บริบทเชิงประจักษ์ (Empirical Setting)</div>
+            <div class="meta-val">Technology-Importing Middle Powers</div>
+            <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">กลุ่มประเทศอำนาจปานกลางที่นำเข้าเทคโนโลยี</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SLIDE 2: SECTION 1.1 — BACKGROUND & THE MIDDLE-POWER DILEMMA
+           ========================================================================= -->
+      <section class="slide" data-slide="2">
+        <div class="slide-meta-row">
+          <span class="slide-section-badge sec-ch1">บทที่ 1.1 | ที่มาและบริบทเชิงกลยุทธ์ (Macro &amp; Meso Context)</span>
+          <span style="font-size: 0.8rem; color: #64748b; font-family: var(--font-mono);">CARS Move 1: Establishing a Territory</span>
+        </div>
+        <h2 class="slide-title">การกระจุกตัวของห่วงโซ่ AI, Middle-Power Dilemma และ IS Discontinuity</h2>
+        <p class="slide-subtitle">การแปรสภาพจุดคอขวดทางเทคโนโลยีเป็นเครื่องมือกดดันระดับโลก และข้อจำกัดของ Data Sovereignty เดิมในระบบ AI</p>
+
+        <div class="grid-3col">
+          <!-- Card 1 -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">1. การผูกขาดห่วงโซ่คุณค่า AI</span>
+              <span class="card-tag tag-rose">Macro Asymmetry</span>
+            </div>
+            <p>ห่วงโซ่คุณค่า AI ยุคปัจจุบันกระจุกตัวอยู่ในสหรัฐฯ และจีน อย่างเบ็ดเสร็จใน 3 ชั้น:</p>
+            <ul style="margin-top: 0.65rem;">
+              <li><strong>Silicon &amp; Photolithography:</strong> การผูกขาดผลิตชิป (TSMC/ASML) และสถาปัตยกรรม GPU (NVIDIA)</li>
+              <li><strong>Hyperscale Cloud:</strong> คลัสเตอร์คลาวด์ขนาดกิกะวัตต์ของ Hyperscalers มหาอำนาจ</li>
+              <li><strong>Frontier Model Pre-training:</strong> การเทรนโมเดลระดับ Trillion-Parameter ที่ต้องใช้ทุนมหาศาล</li>
+              <li><strong>Weaponized Interdependence:</strong> จุดคอขวดถูกเปลี่ยนเป็นเครื่องมือกดดันทางกฎหมายข้ามพรมแดน (US CLOUD Act)</li>
+            </ul>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">2. ทางเลือกคู่เท็จของ Middle Powers</span>
+              <span class="card-tag tag-amber">The False Binary</span>
+            </div>
+            <p>ประเทศอำนาจปานกลางที่พึ่งพาการนำเข้าเทคโนโลยี (Southeast Asia, Latin America) ติดกับดัก:</p>
+            <ul style="margin-top: 0.65rem;">
+              <li><strong>กับดักที่ 1 (Unattainable Autarky):</strong> การทุ่มงบประมาณสร้างโรงงานชิปหรือเทรนโมเดลเอง ละเมิดความคุ้มค่าทางการคลัง ($\mu/\alpha$) กลายเป็น White Elephants ที่ล้าสมัย</li>
+              <li><strong>กับดักที่ 2 (Digital Vassalage):</strong> การพึ่งพาต่างชาติโดยไร้กลไกควบคุม เสี่ยงต่อการถูกตัด API, การขึ้นราคาผูกขาด (Hold-Up), และการครอบงำทางภาษา/วัฒนธรรม</li>
+              <li><strong>โจทย์หลัก:</strong> สร้างอธิปไตยได้อย่างไรโดยไม่ต้องสร้างชิปเอง</li>
+            </ul>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">3. ความแตกหักของ IS Data Sovereignty</span>
+              <span class="card-tag tag-blue">Meso IS Discontinuity</span>
+            </div>
+            <p>กรอบ Data Sovereignty เดิมในสาขา IS (IDS Connectors, Usage Control) ล้มเหลวในระบบ AI:</p>
+            <ul style="margin-top: 0.65rem;">
+              <li><strong>Weight Ingestion:</strong> เมื่อข้อมูลถูกดูดซับเข้าสู่ Neural Weights จะไม่สามารถเพิกถอนสิทธิ์ (Revoke) การเข้าถึงได้ (Abbas et al., 2024)</li>
+              <li><strong>Hyperscale Asymmetry:</strong> ระบบแลกเปลี่ยนข้อมูลแบบ Peer-to-Peer ไม่สามารถชดเชยการพึ่งพา Cloud และ Model APIs ของมหาอำนาจได้ (Opriel et al., 2025)</li>
+              <li><strong>Multi-Layered Stack:</strong> อธิปไตย AI ครอบคลุม Compute, Cloud, Runtime และ Knowledge (Yoo et al., 2010)</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">💡 คำถามเชิงภววิทยาหลัก (Central Ontological Puzzle)</div>
+          <p>ประเทศและองค์กรที่ต้องพึ่งพาการนำเข้าเทคโนโลยี จะสามารถบรรลุ <strong>AI Sovereignty</strong> ที่แท้จริงได้อย่างไร ท่ามกลางระบบประมวลผลและโมเดลที่อยู่ภายใต้เขตอำนาจศาลต่างชาติ?</p>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SLIDE 3: SECTION 1.2 — PROBLEMATIZATION & TDAS CONCEPTUAL DEFINITION
+           ========================================================================= -->
+      <section class="slide" data-slide="3">
+        <div class="slide-meta-row">
+          <span class="slide-section-badge sec-ch1">บทที่ 1.2 | การตั้งคำถามเชิงรากฐาน สู่ทฤษฎี TDAS</span>
+          <span style="font-size: 0.8rem; color: #64748b; font-family: var(--font-mono);">CARS Move 2 (Niche) &amp; Move 3a (Theory Formulation)</span>
+        </div>
+        <h2 class="slide-title">การตั้งคำถามเชิงรากฐาน และทฤษฎีอธิปไตย AI แบบแยกส่วน (TDAS)</h2>
+        <p class="slide-subtitle">การรื้อถอนสมมติฐานการเป็นเจ้าของสินทรัพย์ต้นน้ำ สู่การสร้างขีดความสามารถการควบคุมระดับปลายน้ำ 4 เสาหลัก</p>
+
+        <!-- Problematization & Core Conceptual Reconceptualization -->
+        <div class="grid-2col" style="flex: 0 0 auto; margin-bottom: 0.75rem;">
+          <div class="card" style="padding: 0.85rem 1.15rem;">
+            <div class="card-header" style="margin-bottom: 0.35rem;">
+              <span class="card-title" style="font-size: 0.92rem;">การตั้งคำถามเชิงรากฐาน (Problematization)</span>
+              <span class="card-tag tag-rose">Alvesson &amp; Sandberg, 2011</span>
+            </div>
+            <p style="font-size: 0.84rem;">
+              เราท้าทายสมมติฐานเดิมเรื่อง <em>The Universal Upstream Asset-Ownership Assumption</em> ในนโยบายระดับโลกที่มองอธิปไตยผ่านฟังก์ชันการใช้จ่ายต้นน้ำ $S = f(D, C, M, N)$ (Singh &amp; Sengupta, 2025) ซึ่งเป็นความเข้าใจผิดที่นำ <strong>การผลิตเครื่องยนต์ (Engine Manufacturing)</strong> ไปปะปนกับ <strong>การควบคุมระบบที่ติดตั้งใช้งาน (Residual Control over Deployed Systems)</strong>
+            </p>
+          </div>
+
+          <div class="card" style="padding: 0.85rem 1.15rem; border-color: #bfdbfe; background: #eff6ff;">
+            <div class="card-header" style="margin-bottom: 0.35rem;">
+              <span class="card-title" style="font-size: 0.92rem; color: var(--accent-blue-dark);">นิยามมโนทัศน์ของทฤษฎี TDAS</span>
+              <span class="card-tag tag-blue">Conceptual Reconceptualization</span>
+            </div>
+            <p style="font-size: 0.84rem; color: #1e3a8a;">
+              <strong>Theory of Decoupled AI Sovereignty (TDAS)</strong> นิยามอธิปไตย AI ใหม่ว่า: ไม่ใช่สินทรัพย์ฮาร์ดแวร์หรือการเป็นเจ้าของโมเดลต้นน้ำ แต่คือ <strong>ขีดความสามารถเชิงสถาบันและสถาปัตยกรรม (Institutional &amp; Architectural Capability)</strong> ในการบังคับใช้อำนาจควบคุมระดับปลายน้ำที่ทดแทนกันไม่ได้ ครอบคลุม 4 เสาหลัก
+            </p>
+          </div>
+        </div>
+
+        <!-- 4 Pillars Grid (Strictly conceptual from Section 1.2) -->
+        <div class="grid-4col">
+          <!-- Pillar G -->
+          <div class="card" style="border-top: 3px solid var(--accent-blue);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-blue-dark);">G: Governance Authority</span>
+              <span class="card-tag tag-blue">PRT / สิทธิ์ควบคุม</span>
+            </div>
+            <p style="font-weight: 700; color: #0f172a; font-size: 0.84rem; margin-bottom: 0.35rem;">สิทธิ์ขาดในการควบคุม (Residual Control)</p>
+            <ul>
+              <li>อำนาจศาลและกฎหมายภายในประเทศ</li>
+              <li>การถือกุญแจเข้ารหัส <strong>BYOK / HYOK</strong></li>
+              <li>การตรวจสอบในวงจร <strong>ModelOps</strong></li>
+              <li>สิทธิ์สั่งตัดการทำงาน (<strong>Kill-Switch</strong>)</li>
+            </ul>
+          </div>
+
+          <!-- Pillar I -->
+          <div class="card" style="border-top: 3px solid var(--accent-teal);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-teal);">I: Inference Survivability</span>
+              <span class="card-tag tag-emerald">Loose Coupling</span>
+            </div>
+            <p style="font-weight: 700; color: #0f172a; font-size: 0.84rem; margin-bottom: 0.35rem;">ความอยู่รอดของรันไทม์ประมวลผล</p>
+            <ul>
+              <li>แยก Runtime ออกจากการเทรนต่างชาติ</li>
+              <li>คลัสเตอร์ GPU สำรองภายในประเทศ/ไฮบริด</li>
+              <li>โมเดลสำรองแบบ <strong>Quantized Fallback</strong></li>
+              <li>ระบบไม่หยุดทำงานแม้ถูกคว่ำบาตร API</li>
+            </ul>
+          </div>
+
+          <!-- Pillar P -->
+          <div class="card" style="border-top: 3px solid var(--accent-amber);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-amber);">P: Portability Capacity</span>
+              <span class="card-tag tag-amber">TCE ป้องกัน Hold-Up</span>
+            </div>
+            <p style="font-weight: 700; color: #0f172a; font-size: 0.84rem; margin-bottom: 0.35rem;">ความสามารถในการสับเปลี่ยนโมเดล</p>
+            <ul>
+              <li>ระบบ Container บน <strong>Kubernetes</strong></li>
+              <li>การเชื่อมต่อที่เป็นกลางผ่าน <strong>OpenAPI</strong></li>
+              <li>ทำลายการผูกขาด (Zero Vendor Lock-In)</li>
+              <li>สัญญาทางกฎหมายที่บังคับย้ายระบบได้จริง</li>
+            </ul>
+          </div>
+
+          <!-- Pillar E -->
+          <div class="card" style="border-top: 3px solid var(--accent-purple);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-purple);">E: Epistemic Integrity</span>
+              <span class="card-tag tag-purple">ความยุติธรรมทางญาณวิทยา</span>
+            </div>
+            <p style="font-weight: 700; color: #0f172a; font-size: 0.84rem; margin-bottom: 0.35rem;">ความถูกต้องด้านภาษา กฎหมาย และบริบท</p>
+            <ul>
+              <li>คลังข้อมูลภาษาไทยที่ผ่านการรับรองที่มา</li>
+              <li>การฝังบริบทผ่าน <strong>RAG / SLM</strong> ท้องถิ่น</li>
+              <li>เกณฑ์วัดผลด้านกฎหมายและจริยธรรมไทย</li>
+              <li>ป้องกันการครอบงำทางภาษาและวัฒนธรรม</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3 Research Gaps Callout from Section 1.2 -->
+        <div class="callout" style="margin-top: 0.75rem;">
+          <div class="callout-title">📐 ขอบเขตบริบทและ 3 ช่องว่างการวิจัยหลัก (Whetten, 1989 &amp; Section 1.2)</div>
+          <p style="font-size: 0.82rem; line-height: 1.45;">
+            TDAS กำหนดขอบเขตอย่างชัดเจนสำหรับ <strong>กลุ่มประเทศอำนาจปานกลางในระบบเศรษฐกิจเปิด (Technology-Importing Middle Powers)</strong> โดยระบุ 3 ช่องว่างในวรรณกรรม: 
+            (1) <em>Ontological Gap</em> (ขีดจำกัดของโมเดลการเป็นเจ้าของต้นน้ำ), 
+            (2) <em>Architectural Gap</em> (ความแตกหักของระบบแชร์ข้อมูลเดิมใน AI), และ 
+            (3) <em>Functional &amp; Nomological Gap</em> (การทดสอบคอขวดที่จำเป็นและการเปิดรับอย่างมีการคุ้มกัน)
+          </p>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SLIDE 4: SECTION 1.3 — RESEARCH QUESTIONS (Strictly RQ0, RQ1, RQ2, RQ3)
+           ========================================================================= -->
+      <section class="slide" data-slide="4">
+        <div class="slide-meta-row">
+          <span class="slide-section-badge sec-ch1">บทที่ 1.3 | คำถามการวิจัย (Research Questions)</span>
+          <span style="font-size: 0.8rem; color: #64748b; font-family: var(--font-mono);">CARS Move 3b: Stating Inquiries</span>
+        </div>
+        <h2 class="slide-title">คำถามการวิจัยหลัก และคำถามการวิจัยย่อย (RQ0 – RQ3)</h2>
+        <p class="slide-subtitle">สอดคล้อง 1 ต่อ 1 กับช่องว่างการวิจัยทั้ง 3 ด้าน ในบทที่ 1 เพื่อสร้างกรอบการศึกษาที่รัดกุม</p>
+
+        <!-- Central RQ0 Box -->
+        <div class="card" style="border-left: 4px solid var(--accent-blue); padding: 0.85rem 1.25rem; margin-bottom: 0.75rem; flex: 0 0 auto;">
+          <div class="card-header" style="margin-bottom: 0.3rem;">
+            <span class="card-title" style="color: var(--accent-blue-dark); font-size: 0.95rem;">คำถามวิจัยหลัก (Central Research Question — RQ0)</span>
+            <span class="card-tag tag-blue">Ontological Core</span>
+          </div>
+          <p style="font-size: 0.98rem; font-weight: 700; color: #0f172a; line-height: 1.45;">
+            "อธิปไตยด้านปัญญาประดิษฐ์สามารถถูกนิยาม สร้างกรอบมโนทัศน์ และแปลงไปสู่การปฏิบัติการวัดผลได้อย่างไร สำหรับประเทศและองค์กรอำนาจปานกลางที่เป็นผู้รับและนำเข้าเทคโนโลยี มากกว่าการเป็นผู้ผลิตเทคโนโลยีต้นน้ำ?"
+          </p>
+        </div>
+
+        <!-- 3 Sub-RQs Grid aligned with Chapter 1 text -->
+        <div class="grid-3col">
+          <!-- RQ1 -->
+          <div class="card" style="border-top: 3px solid var(--accent-blue);">
+            <div class="card-header">
+              <span class="card-title" style="font-size: 0.92rem;">RQ1: Construct Constitution</span>
+              <span class="card-tag tag-blue">Type II HOC</span>
+            </div>
+            <p style="font-size: 0.85rem; color: #334155;">
+              <strong>Governance ($G$), Inference ($I$), Portability ($P$), และ Epistemic ($E$)</strong> ประกอบรวมกันเป็นตัวแปรอันดับสอง <em>Decoupled AI Sovereignty</em> ที่แตกต่างจากการผลิตฮาร์ดแวร์ต้นน้ำและการกักเก็บข้อมูล (Data Localization) อย่างไร?
+            </p>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.45rem;">
+              ➔ ตอบสนอง <em>Ontological Gap</em> ผ่าน Disjoint Two-Stage PLS-SEM
+            </p>
+          </div>
+
+          <!-- RQ2 -->
+          <div class="card" style="border-top: 3px solid var(--accent-emerald);">
+            <div class="card-header">
+              <span class="card-title" style="font-size: 0.92rem;">RQ2: Bottleneck Logic</span>
+              <span class="card-tag tag-emerald">NCA Bottlenecks</span>
+            </div>
+            <p style="font-size: 0.85rem; color: #334155;">
+              $G, I, P,$ และ $E$ ทำหน้าที่เป็น <strong>เงื่อนไขจำเป็นที่เป็นคอขวดและไม่สามารถทดแทนกันได้ (Non-Compensatory Necessary Bottlenecks)</strong> ซึ่งหากขาดเสาใดเสาหนึ่งไป อธิปไตยทาง AI จะล่มสลายลงจริงหรือไม่?
+            </p>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.45rem;">
+              ➔ ตอบสนอง <em>Architectural &amp; Functional Gap</em> ด้วย Necessary Condition Analysis (NCA)
+            </p>
+          </div>
+
+          <!-- RQ3 -->
+          <div class="card" style="border-top: 3px solid var(--accent-amber);">
+            <div class="card-header">
+              <span class="card-title" style="font-size: 0.92rem;">RQ3: Hold-Up Attenuation</span>
+              <span class="card-tag tag-amber">SGO &amp; OAR</span>
+            </div>
+            <p style="font-size: 0.85rem; color: #334155;">
+              อธิปไตย AI แบบแยกส่วน ช่วยลด <strong>ความเสี่ยงจากการถูกกดขี่และแทรกแซงจากต่างชาติ (Hold-Up Risk: HUP)</strong> เพื่อเปิดทางสู่การเปิดรับอย่างมีการคุ้มกัน (SGO) และความยืดหยุ่นทนทาน (OAR) ได้อย่างไร?
+            </p>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.45rem;">
+              ➔ แก้ปัญหา <em>Sovereignty–Openness Paradox</em> ในแบบจำลองโครงสร้าง
+            </p>
+          </div>
+        </div>
+
+        <div class="callout" style="padding: 0.65rem 1.15rem; margin-top: 0.65rem;">
+          <p style="font-size: 0.84rem;"><strong>หมายเหตุความต่อเนื่องสู่บทที่ 3 &amp; 4:</strong> มิติความแตกต่างตามบทบาทสถาบันและขนาดองค์กร (Regulators vs. Enterprises vs. SMEs) จะถูกวิเคราะห์ผ่านการทดสอบ Multigroup Analysis (MGA / $H_7$) ในระเบียบวิธีวิจัย</p>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SLIDE 5: SECTION 1.4 — EXPECTED CONTRIBUTIONS & ROADMAP
+           ========================================================================= -->
+      <section class="slide" data-slide="5">
+        <div class="slide-meta-row">
+          <span class="slide-section-badge sec-ch1">บทที่ 1.4 | คุณูปการที่คาดว่าจะได้รับ และแผนผังเล่ม</span>
+          <span style="font-size: 0.8rem; color: #64748b; font-family: var(--font-mono);">CARS Move 3c: Outlining Contributions</span>
+        </div>
+        <h2 class="slide-title">คุณูปการ 3 มิติ และแผนผังโครงสร้างวิทยานิพนธ์</h2>
+        <p class="slide-subtitle">การสร้างคุณูปการทั้งด้านทฤษฎีสารสนเทศ ระเบียบวิธีวิจัยทางสถิติ และนโยบายระดับชาติ</p>
+
+        <!-- Tripartite Contributions Grid -->
+        <div class="grid-3col">
+          <!-- 1. Theoretical -->
+          <div class="card" style="border-top: 3px solid var(--accent-blue);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-blue-dark); font-size: 0.95rem;">01. ด้านทฤษฎี (Theoretical)</span>
+              <span class="card-tag tag-blue">IS Paradigm</span>
+            </div>
+            <ul>
+              <li>สร้าง <strong>Theory of Decoupled AI Sovereignty (TDAS)</strong> ในสาขา IS เชื่อมโยงรอยต่อจาก Data Sovereignty สู่ AI Stacks</li>
+              <li>พิสูจน์ว่าการควบคุมปลายน้ำสามารถ <strong>ทดแทนการพยายามสร้างฮาร์ดแวร์ต้นน้ำที่ไม่คุ้มค่า</strong></li>
+              <li>สร้างกฎ <strong>Endogenous Guarded Openness Law</strong> พิสูจน์ว่าอธิปไตยช่วยเปิดรับเทคโนโลยีโลกอย่างปลอดภัย</li>
+            </ul>
+          </div>
+
+          <!-- 2. Methodological -->
+          <div class="card" style="border-top: 3px solid var(--accent-emerald);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-emerald); font-size: 0.95rem;">02. ด้านวิธีวิจัย (Methodological)</span>
+              <span class="card-tag tag-emerald">Dual Pipeline</span>
+            </div>
+            <ul>
+              <li>พัฒนา <strong>แบบวัดจิตวิทยา 37 ข้อ (37-Item Scale)</strong> สำหรับวัดอธิปไตย AI ปลายน้ำ</li>
+              <li>ผสานวิธี <strong>Disjoint Two-Stage Type II PLS-SEM</strong> เข้ากับ <strong>Necessary Condition Analysis (NCA)</strong> และ <strong>cIPMA</strong></li>
+              <li>ออกแบบภารกิจ <strong>100-Point Constant-Sum Allocation</strong> เพื่อวัดพฤติกรรมงบประมาณจริงและตัด Stated-Preference Bias</li>
+            </ul>
+          </div>
+
+          <!-- 3. Policy & Practical -->
+          <div class="card" style="border-top: 3px solid var(--accent-amber);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-amber); font-size: 0.95rem;">03. ด้านนโยบายและปฏิบัติการ</span>
+              <span class="card-tag tag-amber">Actionable Blueprint</span>
+            </div>
+            <ul>
+              <li>มอบ <strong>Actionable Diagnostic Blueprint</strong> ให้กับ CIOs, สถาปนิกคลาวด์, และหน่วยงานกำกับดูแล</li>
+              <li>จัดลำดับความสำคัญให้ <strong>BYOK/HYOK, Hybrid Fallback, และ Kubernetes Portability</strong></li>
+              <li>ช่วยป้องกันการสูญเสียงบประมาณมหาศาลไปกับการเทรนโมเดลที่ไม่คุ้มค่าและไม่ยั่งยืน</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Empirical Laboratory & Roadmap Box -->
+        <div class="grid-2col" style="flex: 0 0 auto; margin-top: 0.85rem;">
+          <div class="card" style="padding: 0.85rem 1.15rem;">
+            <div class="card-header" style="margin-bottom: 0.35rem;">
+              <span class="card-title" style="font-size: 0.88rem; color: var(--accent-emerald);">ห้องปฏิบัติการวิจัยเชิงประจักษ์: ประเทศไทย</span>
+              <span class="card-tag tag-emerald">Critical Laboratory</span>
+            </div>
+            <p style="font-size: 0.82rem; line-height: 1.45; color: #334155;">
+              เลือกประเทศไทยตามหลัก Theoretical Sampling: เป็นจุดปะทะของคลาวด์สหรัฐฯ และจีน (AWS, Google, Huawei, Alibaba), มีความเปราะบางของภาษาไทยและกฎหมายลายลักษณ์อักษร, และมีความเหลื่อมล้ำทางขีดความสามารถระหว่างธนาคารใหญ่กับ Startups
+            </p>
+          </div>
+
+          <div class="card" style="padding: 0.85rem 1.15rem;">
+            <div class="card-header" style="margin-bottom: 0.35rem;">
+              <span class="card-title" style="font-size: 0.88rem; color: var(--accent-blue-dark);">แผนผังวิทยานิพนธ์ (Manuscript Organization)</span>
+              <span class="card-tag tag-blue">IMRaD Structure</span>
+            </div>
+            <p style="font-size: 0.82rem; line-height: 1.45; color: #334155;">
+              <strong>บทที่ 1:</strong> บทนำ (ปัญหา, Problematization, TDAS, RQs) ➔ <strong>บทที่ 2:</strong> การทบทวนวรรณกรรม ➔ <strong>บทที่ 3:</strong> กรอบทฤษฎีและสมมติฐาน ($H_1\text{--}H_7$) ➔ <strong>บทที่ 4:</strong> ระเบียบวิธีวิจัยและผลการทดสอบมาตรวัด
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SLIDE 6: SECTION 2.1 — THEMATIC LITERATURE SYNTHESIS (2022-2026)
+           ========================================================================= -->
+      <section class="slide" data-slide="6">
+        <div class="slide-meta-row">
+          <span class="slide-section-badge sec-ch2">บทที่ 2.1 | การสังเคราะห์วรรณกรรม 3 มิติหลัก (2022–2026)</span>
+          <span style="font-size: 0.8rem; color: #64748b; font-family: var(--font-mono);">Thematic Synthesis &amp; Steelmanned Rivals</span>
+        </div>
+        <h2 class="slide-title">การสังเคราะห์วรรณกรรมอธิปไตยดิจิทัลและ AI ร่วมสมัย</h2>
+        <p class="slide-subtitle">การทบทวนวรรณกรรมระดับ Q1 เชิงประจักษ์และการโต้แย้งคำอธิบายคู่แข่งที่แข็งแกร่งที่สุด (Steelmanned Rivals)</p>
+
+        <div class="grid-3col">
+          <!-- Stream 1 -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">1. ภูมิรัฐศาสตร์และขีดจำกัด Autarky</span>
+              <span class="card-tag tag-rose">Stream 1: Macro</span>
+            </div>
+            <p><strong>การกระจุกตัวและมายาคติของความพยายามแยกตัว:</strong></p>
+            <ul style="margin-top: 0.55rem;">
+              <li>การศึกษาการกระจายเชิงพื้นที่ของคลาวด์ชี้ว่า Gaia-X ล้มเหลวเมื่อ Hyperscalers ต่างชาติเข้าร่วม (Glasze et al., 2023)</li>
+              <li>งบประมาณ AI เอกชนยุโรป (6 พันล้านดอลลาร์) ตามหลังสหรัฐฯ (52 พันล้านดอลลาร์) ชี้ว่าการกำกับกฎหมายอย่างเดียวไม่สร้างเอกราช (Calderaro, 2022; Mügge, 2024)</li>
+              <li><strong>Steelmanned Rival:</strong> โมเดล $S = f(D, C, M, N)$ ของ Singh &amp; Sengupta (2025) พิสูจน์เองว่าเมื่อต้นทุนการคลังสูง ($\mu/\alpha$) งบสร้างชิปจะเหลือศูนย์</li>
+            </ul>
+          </div>
+
+          <!-- Stream 2 -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">2. IS Data Sovereignty &amp; AI Breakdown</span>
+              <span class="card-tag tag-blue">Stream 2: Meso</span>
+            </div>
+            <p><strong>ความแตกหักจาก Data สู่ Multi-layered AI:</strong></p>
+            <ul style="margin-top: 0.55rem;">
+              <li>von Scherenberg et al. (2024) สังเคราะห์ 7 มิติของ Data Sovereignty และชี้ว่าอธิปไตยคือ Usage Control ไม่ใช่การปิดกั้น</li>
+              <li>Opriel et al. (2025) ทำ ADR 17 เดือน พัฒนา OpenAPI microservices และ XACML 24-hr deletion แต่ยอมรับว่าการแลกเปลี่ยนล้มเหลวเมื่อพึ่งพา AI ภายนอก</li>
+              <li><strong>Steelmanned Rival:</strong> Abbas et al. (2024, p. 11) ยืนยันเชิงประจักษ์ว่า Connector พังทลายเมื่อข้อมูลเข้าสู่ ML Weights</li>
+            </ul>
+          </div>
+
+          <!-- Stream 3 -->
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">3. ความเปราะบางของ Middle Powers</span>
+              <span class="card-tag tag-amber">Stream 3: Micro</span>
+            </div>
+            <p><strong>การถ่วงดุลและการครอบงำทางญาณวิทยา:</strong></p>
+            <ul style="margin-top: 0.55rem;">
+              <li>การวิเคราะห์ 70 ประเทศชี้ว่ามีเพียง 8.57% ที่แบนเทคโนโลยีจีนสะท้อนการถ่วงดุลหลายขั้ว (Christie et al., 2023; Putra, 2024)</li>
+              <li>การนำเข้าโมเดลต่างชาติสร้างภาวะ <em>Hermeneutical Injustice</em> บิดเบือนภาษาและกฎหมายท้องถิ่น (Lehuedé, 2024; Gwagwa, 2024)</li>
+              <li><strong>Steelmanned Rival:</strong> การใช้ Multi-cloud หรือ Open-weight เพียงอย่างเดียว ไม่สามารถป้องกัน API lock-in ได้หากขาด BYOK และ Local RAG</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">📌 ข้อสรุปสำคัญจากการสังเคราะห์วรรณกรรม บทที่ 2.1</div>
+          <p>วรรณกรรมทั้ง 3 สายยืนยันตรงกันว่า: <strong>การพึ่งพาเทคโนโลยีจากภายนอกเป็นสิ่งที่หลีกเลี่ยงไม่ได้สำหรับประเทศอำนาจปานกลาง</strong> แต่ความเปราะบางไม่ได้เกิดจากการซื้อเทคโนโลยีต่างชาติ หากเกิดจากการขาดกลไกสถาปัตยกรรมควบคุมระดับปลายน้ำ</p>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SLIDE 7: SECTION 2.2 — COMPARATIVE PARADIGM TYPOLOGY (TABLE 1)
+           ========================================================================= -->
+      <section class="slide" data-slide="7">
+        <div class="slide-meta-row">
+          <span class="slide-section-badge sec-ch2">บทที่ 2.2 | ตารางเปรียบเทียบ 4 กระบวนทัศน์อธิปไตย AI ระดับโลก (Table 1)</span>
+          <span style="font-size: 0.8rem; color: #64748b; font-family: var(--font-mono);">Comparative Typology of Global AI Sovereignty</span>
+        </div>
+        <h2 class="slide-title">ตารางเปรียบเทียบ 4 กระบวนทัศน์: Upstream vs. Downstream Decoupled (TDAS)</h2>
+        <p class="slide-subtitle">การจำแนกความแตกต่างเชิงภววิทยา รูปแบบการลงทุน สถาปัตยกรรมควบคุม และจุดล้มเหลวเชิงโครงสร้าง (Table 1 ในเล่มดุษฎีนิพนธ์)</p>
+
+        <div style="flex: 1; overflow-x: auto;">
+          <table class="academic-table">
+            <thead>
+              <tr>
+                <th style="width: 18%;">กระบวนทัศน์ &amp; ตัวอย่าง</th>
+                <th style="width: 19%;">จุดเน้นเชิงภววิทยา (Locus)</th>
+                <th style="width: 21%;">รูปแบบการลงทุน Compute &amp; Model</th>
+                <th style="width: 22%;">สถาปัตยกรรม Governance &amp; Switching</th>
+                <th style="width: 20%;">จุดล้มเหลวเชิงโครงสร้าง (Failure Mode)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>1. Frontier Stack Hegemony</strong><br><span style="font-size: 0.74rem; color: var(--text-muted);">(สหรัฐอเมริกา &amp; จีน)</span></td>
+                <td>เป็นเจ้าของฮาร์ดแวร์ โรงงานชิป คลาวด์ และโมเดลทั้งหมดในประเทศ</td>
+                <td>ลงทุนระดับแสนล้านดอลลาร์ผ่าน Hyperscalers หรือกองทุนชี้นำของรัฐ</td>
+                <td>การรวมศูนย์แนวดิ่ง (Vertical Integration); ใช้อำนาจศาลข้ามพรมแดน</td>
+                <td>การผูกขาดของแพลตฟอร์มเอกชน หรือการถูกตัดขาดจากการคว่ำบาตรเทคโนโลยี</td>
+              </tr>
+              <tr>
+                <td><strong>2. Supranational Geo-Dirigisme</strong><br><span style="font-size: 0.74rem; color: var(--text-muted);">(สหภาพยุโรป — EU)</span></td>
+                <td>การกำกับสิทธิล่วงหน้า (Brussels Effect) + ระบบแชร์ข้อมูล Gaia-X</td>
+                <td>งบร่วมภาครัฐ-เอกชน แต่ตามหลังสหรัฐฯ/จีนด้าน Frontier AI CapEx</td>
+                <td>เน้นการปฏิบัติตามกฎหมาย (AI Act, GDPR) + IDS Data Connectors</td>
+                <td>มีแต่อำนาจกำกับแต่ขาดอำนาจรันไทม์จริง; คอนเนคเตอร์พังในโมเดล ML; สมองไหล</td>
+              </tr>
+              <tr>
+                <td><strong>3. Upstream Input Optimization</strong><br><span style="font-size: 0.74rem; color: var(--text-muted);">(S = f(D,C,M,N): กลุ่ม Sovereign Wealth)</span></td>
+                <td>การสะสม Data, Compute, Model, และ Norms ภายใต้งบประมาณรัฐ</td>
+                <td>อุดหนุนงบประมาณสร้าง GPU คลัสเตอร์แห่งชาติและสร้างโมเดลภาษาของรัฐ</td>
+                <td>การจัดสรรงบโดย Planner ส่วนกลาง; มองความเสี่ยงเป็นค่าคงที่ภายนอก ($p$)</td>
+                <td>ละเมิดข้อจำกัดการคลัง ($\mu/\alpha$); สินทรัพย์ชิปล้าสมัย; ละเลยคอขวดรันไทม์</td>
+              </tr>
+              <tr style="background: #f0fdf4; font-weight: 600;">
+                <td style="color: #047857;"><strong>4. Decoupled Downstream Control (TDAS)</strong><br><span style="font-size: 0.74rem; color: #059669;">(ประเทศอำนาจปานกลาง / ไทย)</span></td>
+                <td style="color: #0f172a;">สิทธิ์ควบคุมปลายน้ำที่แยกส่วนจากการเป็นเจ้าของชิปและโมเดลต้นน้ำ</td>
+                <td style="color: #0f172a;">ไม่ทุ่มงบเทรน Base Model; เน้นสร้าง <strong>Hybrid Fallback (I)</strong> และคลังข้อมูล <strong>SLM/RAG (E)</strong></td>
+                <td style="color: #0f172a;"><strong>BYOK/HYOK &amp; Kill-Switch (G)</strong> + <strong>Kubernetes &amp; OpenAPI Portability (P)</strong></td>
+                <td style="color: #b91c1c;">ภาวะคอขวดพังทลาย ($\lim X_i \to 0 \implies S = 0$) หากละเลยเสาใดเสาหนึ่ง</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="callout" style="margin-top: 0.75rem;">
+          <div class="callout-title">🎯 ความแตกต่างหลักของ TDAS (Paradigm 4)</div>
+          <p>TDAS ปฏิเสธการเปรียบเทียบแบบทื่อๆ กับ Superpower Hegemons (Paradigm 1) และชี้ให้เห็นว่าประเทศอำนาจปานกลางสามารถมีอธิปไตยที่สมบูรณ์ได้ผ่าน <strong>สถาปัตยกรรมควบคุมปลายน้ำ (Downstream Residual Control)</strong></p>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SLIDE 8: SECTION 2.3 — SYNTHESIS MATRIX & 3 TYPED RESEARCH GAPS
+           ========================================================================= -->
+      <section class="slide" data-slide="8">
+        <div class="slide-meta-row">
+          <span class="slide-section-badge sec-ch2">บทที่ 2.3 | เมทริกซ์การสังเคราะห์ และ 3 ช่องว่างการวิจัย</span>
+          <span style="font-size: 0.8rem; color: #64748b; font-family: var(--font-mono);">Synthesis Matrix &amp; 3 Typed Gaps</span>
+        </div>
+        <h2 class="slide-title">เมทริกซ์การสังเคราะห์วรรณกรรม 5 มิติ และ 3 ช่องว่างการวิจัย</h2>
+        <p class="slide-subtitle">การวิเคราะห์วรรณกรรม Q1 (2022–2026) เพื่อกำหนดช่องว่างการวิจัยที่นำไปสู่กรอบทฤษฎี TDAS อย่างชัดเจน</p>
+
+        <!-- 3 Typed Gaps Grid -->
+        <div class="grid-3col">
+          <!-- Gap 1 -->
+          <div class="card" style="border-top: 3px solid var(--accent-blue);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-blue-dark); font-size: 0.95rem;">Gap 1: Ontological Gap</span>
+              <span class="card-tag tag-blue">นำไปสู่ RQ0 &amp; RQ1</span>
+            </div>
+            <p style="font-weight: 700; color: #0f172a; margin-bottom: 0.4rem;">ขีดจำกัดของโมเดลการเป็นเจ้าของสินทรัพย์ต้นน้ำ</p>
+            <p style="font-size: 0.84rem; color: #334155;">
+              วรรณกรรมและนโยบายปัจจุบันผูกอธิปไตยไว้กับชิปและโมเดลต้นน้ำ ทำให้ขาด <strong>นิยามเชิงภววิทยาและมาตรวัดอธิปไตยสำหรับประเทศผู้นำเข้าเทคโนโลยี</strong> ที่ต้องทำงานบนโครงสร้างพื้นฐานต่างชาติ
+            </p>
+            <ul style="margin-top: 0.6rem; font-size: 0.8rem;">
+              <li>Calderaro (2022); Mügge (2024); Singh &amp; Sengupta (2025)</li>
+              <li>TDAS ปิดช่องว่างโดยนิยามอธิปไตยผ่าน 4 เสาหลัก Governance, Inference, Portability, Epistemic</li>
+            </ul>
+          </div>
+
+          <!-- Gap 2 -->
+          <div class="card" style="border-top: 3px solid var(--accent-emerald);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-emerald); font-size: 0.95rem;">Gap 2: Architectural Discontinuity</span>
+              <span class="card-tag tag-emerald">นำไปสู่ RQ1 &amp; RQ2</span>
+            </div>
+            <p style="font-weight: 700; color: #0f172a; margin-bottom: 0.4rem;">ความแตกหักจาก Data สู่ Multi-layered AI Stack</p>
+            <p style="font-size: 0.84rem; color: #334155;">
+              กรอบ Data Sovereignty ใน IS หยุดอยู่แค่การแชร์ไฟล์ข้อมูล แต่ <strong>ล้มเหลวเมื่อข้อมูลถูกดูดซับเข้าสู่โมเดล ML</strong> และไม่ครอบคลุมความอยู่รอดของรันไทม์ประมวลผล (Inference) และความเที่ยงตรงทางภาษา (Epistemic)
+            </p>
+            <ul style="margin-top: 0.6rem; font-size: 0.8rem;">
+              <li>von Scherenberg et al. (2024); Opriel et al. (2025); Abbas et al. (2024)</li>
+              <li>TDAS เชื่อมโยง G, I, P, E ข้ามเลเยอร์ของ AI Stack ตามกรอบ LMA</li>
+            </ul>
+          </div>
+
+          <!-- Gap 3 -->
+          <div class="card" style="border-top: 3px solid var(--accent-amber);">
+            <div class="card-header">
+              <span class="card-title" style="color: var(--accent-amber); font-size: 0.95rem;">Gap 3: Functional &amp; Nomological</span>
+              <span class="card-tag tag-amber">นำไปสู่ RQ2 &amp; RQ3</span>
+            </div>
+            <p style="font-weight: 700; color: #0f172a; margin-bottom: 0.4rem;">ความเข้าใจผิดเรื่องการทดแทนกันและกำแพงปิดกั้น</p>
+            <p style="font-size: 0.84rem; color: #334155;">
+              งานวิจัยเดิมสันนิษฐานว่าตัวแปรต่างๆ ทดแทนกันได้แบบบวก (Additive) และมองว่าอธิปไตยทำให้ต้องปิดประเทศ โดย <strong>ยังไม่มีใครทดสอบสมมติฐานคอขวดจำเป็น (NCA)</strong> และผลต่อการเปิดรับเทคโนโลยีโลกอย่างปลอดภัย
+            </p>
+            <ul style="margin-top: 0.6rem; font-size: 0.8rem;">
+              <li>Ishkhanyan (2025); Hauff et al. (2024); Dul (2016)</li>
+              <li>TDAS สร้างกรอบเพื่อทดสอบคอขวดจำเป็น (NCA) และ Endogenous Guarded Openness</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top: 0.75rem;">
+          <div class="callout-title">📋 ความเชื่อมโยงสู่บทที่ 3 (Bridging to Chapter 3)</div>
+          <p>ช่องว่างทั้ง 3 ประการนี้นำไปสู่การสร้าง <strong>แบบจำลองโครงสร้างและสมมติฐานการวิจัย ($H_1$ ถึง $H_7$)</strong> ในบทที่ 3 ซึ่งจะถูกทดสอบเชิงประจักษ์ด้วยระเบียบวิธีวิจัยคู่ขนาน (PLS-SEM + NCA) ในบทที่ 4 ต่อไป</p>
+        </div>
+      </section>
+
+      <!-- =========================================================================
+           SLIDE 9: CONCLUSION & DISSERTATION ROADMAP
+           ========================================================================= -->
+      <section class="slide title-slide" data-slide="9">
+        <div class="badge-group">
+          <span class="card-tag tag-emerald">บทสรุปและสาระสำคัญของดุษฎีนิพนธ์</span>
+          <span class="card-tag tag-blue">แผนผังบทที่ 1 ถึง 4</span>
+        </div>
+        <h2 style="font-size: 2.1rem; font-weight: 800; color: #0f172a; margin-bottom: 0.85rem; line-height: 1.3;">
+          "อธิปไตยด้านปัญญาประดิษฐ์ไม่ได้ขึ้นอยู่กับการสร้างเครื่องยนต์เองตั้งแต่ต้น<br>
+          แต่คือการถือพวงมาลัย เบรก และความสามารถในการสับเปลี่ยนเครื่องยนต์ได้โดยไม่ล่มสลาย"
+        </h2>
+        <p style="font-size: 1.08rem; color: var(--accent-blue-dark); margin-bottom: 1.8rem; font-weight: 600;">
+          Theory of Decoupled AI Sovereignty (TDAS)
+        </p>
+
+        <!-- 4 Chapters Flow -->
+        <div class="grid-4col" style="max-width: 1100px; margin: 0 auto 1.5rem auto; text-align: left;">
+          <div class="card" style="padding: 0.85rem; border-top: 3px solid var(--accent-blue);">
+            <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-blue-dark);">บทที่ 1: บทนำ</div>
+            <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a; margin-top: 2px;">Introduction &amp; TDAS</div>
+            <p style="font-size: 0.76rem; color: #64748b; margin-top: 4px;">CARS Funnel, Problematization, RQs, และ Contributions</p>
+          </div>
+          <div class="card" style="padding: 0.85rem; border-top: 3px solid var(--accent-emerald);">
+            <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-emerald);">บทที่ 2: วรรณกรรม</div>
+            <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a; margin-top: 2px;">Literature Review</div>
+            <p style="font-size: 0.76rem; color: #64748b; margin-top: 4px;">การสังเคราะห์ 3 ด้าน, ตาราง 4 กระบวนทัศน์, และ 3 Research Gaps</p>
+          </div>
+          <div class="card" style="padding: 0.85rem; border-top: 3px solid var(--accent-amber);">
+            <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-amber);">บทที่ 3: กรอบทฤษฎี</div>
+            <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a; margin-top: 2px;">Theoretical Framework</div>
+            <p style="font-size: 0.76rem; color: #64748b; margin-top: 4px;">กลไกทฤษฎีฐาน, กฎคณิตศาสตร์ CES &amp; SGO, และสมมติฐาน $H_1\text{--}H_7$</p>
+          </div>
+          <div class="card" style="padding: 0.85rem; border-top: 3px solid var(--accent-purple);">
+            <div style="font-size: 0.72rem; font-weight: 800; color: var(--accent-purple);">บทที่ 4: ระเบียบวิธีวิจัย</div>
+            <div style="font-size: 0.82rem; font-weight: 700; color: #0f172a; margin-top: 2px;">Research Methodology</div>
+            <p style="font-size: 0.76rem; color: #64748b; margin-top: 4px;">แบบวัด 37 ข้อ, กลุ่มตัวอย่างไทย ($N=400\text{--}480$), PLS-SEM + NCA</p>
+          </div>
+        </div>
+
+        <div>
+          <button class="control-btn" onclick="goToSlide(1)" style="display: inline-flex; font-size: 0.88rem; padding: 0.55rem 1.35rem; font-weight: 700;">
+            ↺ กลับสู่หน้าแรก (Slide 1)
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Bottom Navigation Footer -->
+  <footer class="slide-footer">
+    <div style="display: flex; align-items: center; gap: 1rem;">
+      <span class="slide-counter" id="slide-counter">Slide 01 / 09</span>
+      <span style="font-size: 0.78rem; color: #64748b;" id="slide-name">หน้าปก: ดุษฎีนิพนธ์ TDAS</span>
+    </div>
+
+    <div class="nav-buttons">
+      <button class="nav-btn" id="btn-prev" title="ก่อนหน้า (← / Space)">‹</button>
+      <button class="nav-btn" id="btn-next" title="ถัดไป (→ / Enter)">›</button>
+    </div>
+
+    <div style="font-size: 0.75rem; color: #64748b;">
+      คีย์ลัด: <code>←</code> <code>→</code> <code>Space</code> | <code>1</code>–<code>9</code> (ข้ามสไลด์) | <code>O</code> (Grid) | <code>N</code> (บทพูด) | <code>F</code> (เต็มจอ) | <code>J</code> (Journal)
+    </div>
+  </footer>
+
+  <!-- Speaker Notes Side Panel (Light Theme) -->
+  <aside class="notes-panel" id="notes-panel">
+    <div class="notes-header">
+      <div class="notes-title">📝 บทพูดนำเสนอภาษาไทย (Speaker Notes)</div>
+      <div class="notes-close" id="notes-close">✕</div>
+    </div>
+
+    <div class="notes-timer" id="notes-stopwatch">00:00:00</div>
+
+    <div class="notes-content" id="notes-body">
+      <!-- Injected dynamically via JS based on active slide -->
+    </div>
+  </aside>
+
+  <!-- Overview Modal (Light Theme) -->
+  <div class="overview-overlay" id="overview-overlay">
+    <div class="overview-header">
+      <div class="overview-title">📑 ผังรวมสไลด์นำเสนอ บทที่ 1 และ 2 (Light Theme)</div>
+      <button class="control-btn" id="overview-close">✕ ปิดหน้าต่าง</button>
+    </div>
+    <div class="overview-grid" id="overview-grid">
+      <!-- Injected dynamically via JS -->
+    </div>
+  </div>
+
+  <!-- JavaScript Slide Engine -->
+  <script>
+    // Detailed Thai Speaker Notes with English Technical Terms strictly preserved
+    const speakerNotesData = {
+      1: {
+        sec: "หน้าปก (Title Slide)",
+        time: "1.0 นาที",
+        focus: "การเปิดตัวหัวข้อวิจัยและขอบเขตวิชาการ",
+        thaiCues: "กราบเรียนท่านประธานและคณะกรรมการทุกท่าน หัวข้องานวิจัยดุษฎีนิพนธ์นี้คือ 'Theory of Decoupled AI Sovereignty (TDAS)' เป็นการศึกษาวิจัยเพื่อสร้างองค์ความรู้ใหม่ในสาขา Information Systems / IT Management โดยมีเป้าหมายเพื่อแก้ปัญหาเชิงโครงสร้างของกลุ่มประเทศอำนาจปานกลางที่พึ่งพาการนำเข้าเทคโนโลยี (Technology-Importing Middle Powers) ให้สามารถมีอธิปไตยด้าน AI ที่แท้จริงได้โดยไม่ต้องสร้างโรงงานชิปหรือเทรน Base Model ขนาดใหญ่ตั้งแต่ต้น",
+        defenseQA: "หากกรรมการถามว่าทำไมใช้คำว่า 'Decoupled': ชี้แจงว่า Decoupled หมายถึงการ 'แยกส่วน' สิทธิ์การควบคุมระดับปลายน้ำ (Downstream Residual Control) ออกจากการเป็นเจ้าของฮาร์ดแวร์ต้นน้ำ (Upstream Asset Ownership) ตามหลัก Layered Modular Architecture"
+      },
+      2: {
+        sec: "บทที่ 1.1 ที่มาและบริบท",
+        time: "2.0 นาที",
+        focus: "ที่มา บริบทเชิงกลยุทธ์ และความแตกหักของ Data Sovereignty สู่ AI",
+        thaiCues: "สไลด์นี้ฉายภาพปัญหาหลัก: ปัจจุบันห่วงโซ่คุณค่า AI กระจุกตัวอย่างยิ่งในสหรัฐฯ และจีน ทั้งชิป คลาวด์ และโมเดลต้นน้ำ ทำให้เกิดภาวะ 'Weaponized Interdependence' ที่จุดคอขวดทางเทคโนโลยีถูกใช้เป็นเครื่องมือกดดันข้ามพรมแดน (เช่น US CLOUD Act) ประเทศผู้นำเข้าเทคโนโลยีจึงติดกับดัก False Binary ระหว่างการทุ่มงบสร้างชิปเองที่ไม่คุ้มค่าทางการคลัง (Unattainable Autarky) กับการยอมจำนนพึ่งพาต่างชาติ (Digital Vassalage) นอกจากนี้ ในสาขา IS กลไก Data Sovereignty เดิม (เช่น IDS Connectors) พังทลายทันทีเมื่อข้อมูลถูกดูดซับเข้าสู่ Neural Weights ของโมเดล ML",
+        defenseQA: "หากกรรมการถามเรื่องข้อจำกัดของ Data Sovereignty เดิม: อ้างอิงผลการศึกษาของ Abbas et al. (2024) ที่พบเชิงประจักษ์ว่า Connector ไม่สามารถเพิกถอนสิทธิ์ข้อมูลคืนได้เมื่อข้อมูลกลายเป็นน้ำหนักโมเดล"
+      },
+      3: {
+        sec: "บทที่ 1.2 ทฤษฎี TDAS & 4 เสาหลัก",
+        time: "3.0 นาที",
+        focus: "การรื้อถอนสมมติฐานเดิมและนิยามมโนทัศน์ TDAS ผ่าน 4 เสาหลักปลายน้ำ",
+        thaiCues: "สไลด์นี้แสดงการตั้งคำถามเชิงรากฐาน (Problematization) ต่อนโยบายระดับโลกที่มองอธิปไตยผ่านการทุ่มงบผลิตสินทรัพย์ต้นน้ำ S = f(D,C,M,N) โดยชี้ว่าเป็นความเข้าใจผิดระหว่างการผลิตเครื่องยนต์กับการควบคุมรถยนต์ ทฤษฎี TDAS จึงนิยามอธิปไตย AI ใหม่ว่าคือ 'ขีดความสามารถเชิงสถาบันและสถาปัตยกรรมในการควบคุมระดับปลายน้ำที่ทดแทนกันไม่ได้' ครอบคลุม 4 เสาหลัก: G (Governance ถือกุญแจ BYOK และ Kill-Switch ในอำนาจศาลไทย), I (Inference มีรันไทม์สำรองในประเทศผ่าน Quantized Fallback), P (Portability ใช้ Kubernetes และ OpenAPI ป้องกัน Vendor Hold-up), และ E (Epistemic ความถูกต้องภาษาและบริบทกฎหมายไทยผ่าน RAG/SLM ป้องกัน Hermeneutical Injustice) นำไปสู่การระบุ 3 Research Gaps ภายใต้ Whetten Boundary Conditions",
+        defenseQA: "หากกรรมการถามเรื่องการสร้างโมเดลคณิตศาสตร์: ตอบว่าการสร้างฟังก์ชันและสมการเชิงคณิตศาสตร์อย่างเป็นทางการจะอยู่ในบทที่ 3 ส่วนในบทที่ 1 เป็นการปูพื้นฐานมโนทัศน์และนิยามเชิงแนวคิด (Gregor Type I)"
+      },
+      4: {
+        sec: "บทที่ 1.3 คำถามวิจัย (RQ0–RQ3)",
+        time: "2.0 นาที",
+        focus: "คำถามวิจัยหลัก RQ0 และ 3 ข้อย่อย (RQ1 - RQ3) ที่สอดคล้องกับ Gap",
+        thaiCues: "คำถามวิจัยในบทที่ 1 สอดคล้อง 1 ต่อ 1 กับ Gap ทั้ง 3 ประการ: คำถามหลัก RQ0 คือการนิยามและแปลงอธิปไตย AI ปลายน้ำไปสู่การปฏิบัติในประเทศผู้รับเทคโนโลยี โดยแตกเป็น 3 ข้อย่อย: RQ1 ทดสอบการประกอบสร้างตัวแปรอันดับสอง (Type II Reflective-Formative HOC); RQ2 ทดสอบสมมติฐานคอขวดที่จำเป็น (Necessary Condition Analysis - NCA); และ RQ3 ศึกษาการลดความเสี่ยง Hold-Up เพื่อเปิดทางสู่ Strategic Guarded Openness (SGO) และ Operational AI Resilience (OAR) ส่วนมิติความแตกต่างตามขนาดองค์กรจะอยู่ในบทที่ 3 และ 4",
+        defenseQA: "หากกรรมการถามถึงความสอดคล้องของ RQ: ชี้แจงว่า RQ1-RQ3 ตอบโจทย์ Ontological, Architectural, และ Functional Gaps อย่างครบถ้วน"
+      },
+      5: {
+        sec: "บทที่ 1.4 คุณูปการ 3 มิติ",
+        time: "2.0 นาที",
+        focus: "คุณูปการ 3 ด้าน (ทฤษฎี, วิธีวิจัย, นโยบาย) และห้องปฏิบัติการวิจัยไทย",
+        thaiCues: "คุณูปการของงานวิจัยแบ่งเป็น 3 ด้าน: 1) ด้านทฤษฎี สร้างทฤษฎี TDAS ในสาขา IS อุดช่องว่าง Data-to-AI Discontinuity และแก้ Sovereignty-Openness Paradox; 2) ด้านวิธีวิจัย พัฒนาเครื่องมือวัด 37 ข้อ ผสาน PLS-SEM เข้ากับ NCA และใช้ภารกิจ 100-Point Constant-Sum Allocation เพื่อแก้ Stated-Preference Bias; 3) ด้านนโยบาย มอบ Actionable Blueprint ให้ CIOs และหน่วยงานกำกับดูแล โดยเราเลือกประเทศไทยเป็น Critical Case Laboratory เพราะมีสภาวะการปะทะกันของคลาวด์สหรัฐฯ และจีน และมีความเปราะบางด้านภาษาไทยอย่างชัดเจน",
+        defenseQA: "หากกรรมการถามเรื่อง Generalizability ของไทย: ตอบว่าไทยเป็นตัวแทนของกลุ่ม Non-Core-Tech Middle Powers ที่มีระบบเศรษฐกิจเปิดและพึ่งพาเทคโนโลยีจากภายนอก ซึ่งผลการศึกษาสามารถขยายผลสู่สากลได้"
+      },
+      6: {
+        sec: "บทที่ 2.1 สังเคราะห์วรรณกรรม",
+        time: "2.5 นาที",
+        focus: "การสังเคราะห์วรรณกรรม 3 มิติ และการโต้แย้งคำอธิบายคู่แข่ง (Steelmanned Rivals)",
+        thaiCues: "บทที่ 2 สังเคราะห์วรรณกรรมปี 2022-2026 ออกเป็น 3 สายหลัก: 1) มิติภูมิรัฐศาสตร์และขีดจำกัดของ Autarky ชี้ว่างบลงทุน AI ยุโรปตามหลังสหรัฐฯ มหาศาล และการกำกับกฎหมายอย่างเดียวไม่ช่วยให้พึ่งพาตนเองได้; 2) มิติ IS Data Sovereignty ชี้ว่าระบบแชร์ข้อมูลเดิมล้มเหลวเมื่อเข้าสู่โมเดล ML ตามที่ Abbas et al. (2024) ค้นพบ; 3) มิติความเปราะบางของประเทศอำนาจปานกลาง พบว่าการนำเข้าโมเดลโดยไม่มีการปรับบริบทจะเกิด Hermeneutical Injustice บิดเบือนภาษาและกฎหมายท้องถิ่น พร้อมทั้งโต้แย้งคำอธิบายคู่แข่ง (Steelmanned Rivals) ทั้ง 3 ด้าน",
+        defenseQA: "เน้นย้ำว่าเราไม่ได้ปฏิเสธการใช้วรรณกรรมเดิม แต่ชี้ให้เห็นรอยต่อที่วรรณกรรมเดิมยังไปไม่ถึง (Boundary Limits)"
+      },
+      7: {
+        sec: "บทที่ 2.2 ตาราง 4 กระบวนทัศน์",
+        time: "2.5 นาที",
+        focus: "การเปรียบเทียบ 4 กระบวนทัศน์อธิปไตย AI ระดับโลก (Table 1)",
+        thaiCues: "สไลด์นี้นำเสนอ Table 1 ซึ่งจำแนกอธิปไตย AI ออกเป็น 4 กระบวนทัศน์: 1) Frontier Stack Hegemony (สหรัฐฯ และจีน) เน้นการเป็นเจ้าของตั้งแต่ต้นน้ำ; 2) Supranational Geo-Dirigisme (EU) เน้นการกำกับสิทธิและแชร์ข้อมูลแต่ขาดรันไทม์; 3) Upstream Input Optimization (กลุ่มประเทศ Sovereign Wealth เช่น ตะวันออกกลาง) ทุ่มงบสร้างชิปและโมเดลของรัฐ; และ 4) Decoupled Downstream Control (TDAS) สำหรับประเทศอำนาจปานกลาง ที่เปลี่ยนจุดเน้นจากการเป็นเจ้าของฮาร์ดแวร์ มาเป็นการควบคุมปลายน้ำผ่าน BYOK, Hybrid Fallback, Kubernetes Portability, และ Local RAG",
+        defenseQA: "หากกรรมการถามว่าไทยจัดอยู่ในกลุ่มไหน: ตอบว่าไทยอยู่ในกลุ่มที่ 4 (TDAS) เนื่องจากไม่มีศักยภาพทางการคลังหรือเทคโนโลยีที่จะเป็นเจ้าของต้นน้ำแบบกลุ่มที่ 1 หรือ 3"
+      },
+      8: {
+        sec: "บทที่ 2.3 เมทริกซ์ 5 มิติ & Gaps",
+        time: "2.5 นาที",
+        focus: "เมทริกซ์การสังเคราะห์วรรณกรรม 5 มิติ และ 3 ช่องว่างการวิจัยสำคัญ",
+        thaiCues: "จากเมทริกซ์การสังเคราะห์วรรณกรรม เราสกัด 3 ช่องว่างการวิจัยสำคัญ (Three Typed Gaps): Gap 1 (Ontological) การขาดนิยามและมาตรวัดอธิปไตยสำหรับประเทศผู้นำเข้าเทคโนโลยี (นำไปสู่ RQ0 & RQ1); Gap 2 (Architectural) ความแตกหักจากระบบแชร์ข้อมูลเดิมสู่ Multi-layered AI Stack ที่ต้องมีทั้ง G, I, P, E (นำไปสู่ RQ1 & RQ2); และ Gap 3 (Functional & Nomological) ความเข้าใจผิดเรื่องการทดแทนกันแบบบวกและมองว่าอธิปไตยคือการปิดประเทศ ซึ่ง TDAS ได้ปิดช่องว่างด้วยแบบจำลอง NCA Bottleneck และกฎ Endogenous Guarded Openness",
+        defenseQA: "ชี้ให้เห็นว่า Gap ทั้ง 3 ประการนำไปสู่การตั้งสมมติฐาน H1-H7 ในบทที่ 3 อย่างไร้รอยต่อ"
+      },
+      9: {
+        sec: "บทสรุปและแผนผังวิทยานิพนธ์",
+        time: "1.0 นาที",
+        focus: "สรุปสาระสำคัญหลักและเปิดรับข้อซักถาม",
+        thaiCues: "สรุปใจความสำคัญของงานวิจัย: อธิปไตยด้านปัญญาประดิษฐ์ไม่ได้ขึ้นอยู่กับการสร้างเครื่องยนต์เองตั้งแต่ต้น แต่คือการถือพวงมาลัย เบรก และความสามารถในการสับเปลี่ยนเครื่องยนต์ได้โดยไม่ล่มสลาย ขอขอบพระคุณคณะกรรมการทุกท่าน และพร้อมรับข้อซักถามและคำแนะนำครับ",
+        defenseQA: "ยิ้มรับและพร้อมตอบข้อซักถามของคณะกรรมการในเชิงลึก"
+      }
+    };
+
+    let currentSlide = 1;
+    const totalSlides = 9;
+    const slides = document.querySelectorAll('.slide');
+    const progressBar = document.getElementById('progress-bar');
+    const slideCounter = document.getElementById('slide-counter');
+    const slideName = document.getElementById('slide-name');
+    const notesPanel = document.getElementById('notes-panel');
+    const notesBody = document.getElementById('notes-body');
+    const overviewOverlay = document.getElementById('overview-overlay');
+    const overviewGrid = document.getElementById('overview-grid');
+    const timerDisplay = document.getElementById('timer-display');
+    const notesStopwatch = document.getElementById('notes-stopwatch');
+
+    const slideTitles = {
+      1: "หน้าปก: ทฤษฎีอธิปไตย AI แบบแยกส่วน (TDAS)",
+      2: "บทที่ 1.1: ที่มา บริบทกลยุทธ์ และความแตกหักสู่ AI",
+      3: "บทที่ 1.2: การตั้งคำถามเชิงรากฐาน & นิยาม TDAS 4 เสาหลัก",
+      4: "บทที่ 1.3: คำถามการวิจัยหลัก และข้อย่อย (RQ0–RQ3)",
+      5: "บทที่ 1.4: คุณูปการ 3 มิติ และแผนผังเล่ม",
+      6: "บทที่ 2.1: การสังเคราะห์วรรณกรรม 3 มิติหลัก (2022–2026)",
+      7: "บทที่ 2.2: ตารางเปรียบเทียบ 4 กระบวนทัศน์ (Table 1)",
+      8: "บทที่ 2.3: เมทริกซ์การสังเคราะห์ 5 มิติ & 3 Research Gaps",
+      9: "บทสรุปและแผนผังวิทยานิพนธ์ 4 บท (Roadmap & Q&A)"
+    };
+
+    function init() {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#slide-')) {
+        const slideNum = parseInt(hash.replace('#slide-', ''), 10);
+        if (slideNum >= 1 && slideNum <= totalSlides) {
+          currentSlide = slideNum;
+        }
+      }
+      updateSlide(currentSlide);
+      buildOverviewGrid();
+      setupEventListeners();
+      startPresentationTimer();
+    }
+
+    function goToSlide(n) {
+      if (n < 1) n = 1;
+      if (n > totalSlides) n = totalSlides;
+
+      slides.forEach(slide => {
+        slide.classList.remove('active', 'prev');
+        const num = parseInt(slide.dataset.slide, 10);
+        if (num < n) slide.classList.add('prev');
+      });
+
+      currentSlide = n;
+      const targetSlide = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
+      if (targetSlide) targetSlide.classList.add('active');
+
+      window.location.hash = `#slide-${currentSlide}`;
+
+      // Progress & Counters
+      progressBar.style.width = `${(currentSlide / totalSlides) * 100}%`;
+      slideCounter.textContent = `Slide ${currentSlide.toString().padStart(2, '0')} / 09`;
+      slideName.textContent = slideTitles[currentSlide] || '';
+
+      // Update Nav Tabs
+      document.querySelectorAll('.nav-tab-btn').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx + 1 === currentSlide);
+      });
+
+      // Update Speaker Notes
+      updateSpeakerNotes(currentSlide);
+
+      // Update Overview Selection
+      document.querySelectorAll('.overview-card').forEach(card => {
+        card.classList.toggle('current', parseInt(card.dataset.slide, 10) === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) goToSlide(currentSlide - 1);
+    }
+
+    function updateSlide(n) {
+      goToSlide(n);
+    }
+
+    function updateSpeakerNotes(n) {
+      const note = speakerNotesData[n];
+      if (!note) return;
+
+      notesBody.innerHTML = `
+        <div class="notes-section">
+          <div class="notes-section-title">📌 ส่วนที่นำเสนอ &amp; เวลาเป้าหมาย</div>
+          <div style="font-weight: 800; color: var(--accent-emerald); font-size: 1.05rem;">${note.sec} (${note.time})</div>
+        </div>
+
+        <div class="notes-section">
+          <div class="notes-section-title">🎯 ประเด็นหลักที่ต้องเน้น (Key Focus)</div>
+          <p style="font-weight: 700; color: #0f172a;">${note.focus}</p>
+        </div>
+
+        <div class="notes-section">
+          <div class="notes-section-title">🗣️ บทพูดนำเสนอภาษาไทย (Thai Presentation Script)</div>
+          <p style="font-size: 0.88rem; line-height: 1.6; color: #334155;">${note.thaiCues}</p>
+        </div>
+
+        <div class="notes-section" style="border-left: 3px solid var(--accent-rose); background: #fff1f2;">
+          <div class="notes-section-title" style="color: var(--accent-rose);">🛡️ แนวทางการตอบข้อซักถามกรรมการ (Defense Q&amp;A)</div>
+          <p style="font-size: 0.85rem; line-height: 1.5; color: #9f1239;">${note.defenseQA}</p>
+        </div>
+      `;
+    }
+
+    function buildOverviewGrid() {
+      overviewGrid.innerHTML = '';
+      for (let i = 1; i <= totalSlides; i++) {
+        const card = document.createElement('div');
+        card.className = `overview-card ${i === currentSlide ? 'current' : ''}`;
+        card.dataset.slide = i;
+        card.innerHTML = `
+          <div class="overview-card-sec">SLIDE ${i.toString().padStart(2, '0')}</div>
+          <div class="overview-card-title">${slideTitles[i]}</div>
+        `;
+        card.addEventListener('click', () => {
+          goToSlide(i);
+          closeOverview();
+        });
+        overviewGrid.appendChild(card);
+      }
+    }
+
+    function toggleOverview() {
+      overviewOverlay.classList.toggle('open');
+    }
+
+    function closeOverview() {
+      overviewOverlay.classList.remove('open');
+    }
+
+    function toggleNotes() {
+      notesPanel.classList.toggle('open');
+      document.getElementById('btn-notes').classList.toggle('active', notesPanel.classList.contains('open'));
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+      }
+    }
+
+    let secondsElapsed = 0;
+    function startPresentationTimer() {
+      setInterval(() => {
+        secondsElapsed++;
+        const mins = Math.floor(secondsElapsed / 60);
+        const secs = secondsElapsed % 60;
+        const hrs = Math.floor(mins / 60);
+
+        const minStr = (mins % 60).toString().padStart(2, '0');
+        const secStr = secs.toString().padStart(2, '0');
+        const hrStr = hrs.toString().padStart(2, '0');
+
+        timerDisplay.textContent = `${minStr}:${secStr}`;
+        notesStopwatch.textContent = `${hrStr}:${minStr}:${secStr}`;
+      }, 1000);
+    }
+
+    function setupEventListeners() {
+      document.getElementById('btn-next').addEventListener('click', nextSlide);
+      document.getElementById('btn-prev').addEventListener('click', prevSlide);
+      document.getElementById('btn-overview').addEventListener('click', toggleOverview);
+      document.getElementById('overview-close').addEventListener('click', closeOverview);
+      document.getElementById('btn-notes').addEventListener('click', toggleNotes);
+      document.getElementById('notes-close').addEventListener('click', toggleNotes);
+      document.getElementById('btn-fullscreen').addEventListener('click', toggleFullscreen);
+      document.getElementById('btn-print').addEventListener('click', () => window.print());
+
+      document.getElementById('btn-timer').addEventListener('click', () => {
+        secondsElapsed = 0;
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+        switch (e.key) {
+          case 'ArrowRight':
+          case 'PageDown':
+          case ' ':
+            e.preventDefault();
+            nextSlide();
+            break;
+          case 'ArrowLeft':
+          case 'PageUp':
+          case 'Backspace':
+            e.preventDefault();
+            prevSlide();
+            break;
+          case '1': case '2': case '3': case '4': case '5':
+          case '6': case '7': case '8': case '9':
+            goToSlide(parseInt(e.key, 10));
+            break;
+          case 'Home':
+            goToSlide(1);
+            break;
+          case 'End':
+            goToSlide(totalSlides);
+            break;
+          case 'o':
+          case 'O':
+            toggleOverview();
+            break;
+          case 'Escape':
+            closeOverview();
+            if (notesPanel.classList.contains('open')) toggleNotes();
+            break;
+          case 'n':
+          case 'N':
+          case 's':
+          case 'S':
+            toggleNotes();
+            break;
+          case 'f':
+          case 'F':
+            toggleFullscreen();
+            break;
+          case 'p':
+          case 'P':
+            window.print();
+            break;
+          case 'j':
+          case 'J':
+            window.location.href = 'journal.html';
+            break;
+        }
+      });
+
+      let touchStartX = 0;
+      let touchEndX = 0;
+      document.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, { passive: true });
+
+      document.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchEndX < touchStartX - 50) nextSlide();
+        if (touchEndX > touchStartX + 50) prevSlide();
+      }, { passive: true });
+    }
+
+    window.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
