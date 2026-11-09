@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>Peerapat A - Public</title>
+		<title>Peerapat A - Public Keys &amp; Payment</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Peerapat Asoktummarungsri's public cryptographic keys, PromptPay QR, and official contact links." />
+		<link rel="canonical" href="https://www.peerapat.cc/pub.html" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/ci.css" />
 		<link rel="stylesheet" href="assets/css/cookie-consent.css" />
@@ -19,8 +21,8 @@
 			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
 			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
 		</script>
-			<script>
-			// Dark mode init
+		<script>
+			// Dark mode init (Prevents FOUC)
 			const savedTheme = localStorage.getItem('theme');
 			if (savedTheme) {
 				document.documentElement.setAttribute('data-theme', savedTheme);
@@ -28,99 +30,346 @@
 				document.documentElement.setAttribute('data-theme', 'dark');
 			}
 		</script>
+		<style>
+			.pub-page-container {
+				max-width: 480px;
+				margin: 0 auto;
+				padding: 1.25rem 1rem 2.5rem;
+				min-height: 100dvh;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+			}
+			.pub-top-nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 1.5rem;
+			}
+			.pub-nav-back {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-weight: 600;
+				color: var(--ci-headline);
+				border-bottom: none;
+				padding: 0.35rem 0.75rem;
+				border-radius: 999px;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				box-shadow: var(--ci-shadow);
+				font-size: 0.9rem;
+				transition: all 0.2s ease;
+			}
+			.pub-nav-back:hover {
+				color: var(--ci-cyan) !important;
+				border-color: var(--ci-cyan);
+			}
+			.pub-nav-btn {
+				width: 36px;
+				height: 36px;
+				border-radius: 999px;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				color: var(--ci-headline);
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				cursor: pointer;
+				box-shadow: var(--ci-shadow);
+				transition: all 0.2s ease;
+			}
+			.pub-nav-btn:hover {
+				color: var(--ci-cyan);
+				border-color: var(--ci-cyan);
+			}
+			.pub-card {
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 16px;
+				box-shadow: var(--ci-shadow);
+				padding: 1.4rem;
+				margin-bottom: 1.25rem;
+				text-align: center;
+			}
+			.pub-card-title {
+				font-family: var(--ci-display);
+				font-size: 1.1rem;
+				font-weight: 600;
+				color: var(--ci-headline);
+				margin-bottom: 0.8rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.5rem;
+			}
+			.pub-qr-img {
+				width: 100%;
+				max-width: 220px;
+				height: auto;
+				border-radius: 10px;
+				border: 1px solid var(--ci-line);
+				box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+				display: block;
+				margin: 0 auto;
+			}
+			.pub-split-banner {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				background: linear-gradient(135deg, rgba(0, 96, 152, 0.08), rgba(5, 172, 225, 0.12));
+				border: 1px solid rgba(5, 172, 225, 0.3);
+				border-radius: 14px;
+				padding: 1rem 1.2rem;
+				margin-bottom: 1.25rem;
+				text-align: left;
+			}
+			.pub-split-banner i {
+				font-size: 1.8rem;
+				color: var(--ci-blue);
+				flex-shrink: 0;
+			}
+			[data-theme="dark"] .pub-split-banner i {
+				color: var(--ci-cyan);
+			}
+			.pub-split-text strong {
+				display: block;
+				font-family: var(--ci-display);
+				font-size: 0.95rem;
+				color: var(--ci-headline);
+			}
+			.pub-split-text p {
+				margin: 0.2rem 0 0;
+				font-size: 0.8rem;
+				color: var(--ci-muted);
+				line-height: 1.35;
+			}
+			.pub-split-btn {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				background: var(--ci-blue);
+				color: #fff !important;
+				font-family: var(--ci-display);
+				font-size: 0.82rem;
+				font-weight: 600;
+				padding: 0.45rem 0.9rem;
+				border-radius: 8px;
+				text-decoration: none;
+				border-bottom: none;
+				white-space: nowrap;
+				flex-shrink: 0;
+				transition: background 0.2s ease;
+			}
+			.pub-split-btn:hover {
+				background: var(--ci-cyan);
+				color: #fff !important;
+			}
+			.pub-key-box {
+				text-align: left;
+				position: relative;
+			}
+			.pub-key-box pre {
+				margin: 0;
+				background: var(--ci-canvas);
+				border: 1px solid var(--ci-line);
+				border-radius: 8px;
+				padding: 0.9rem;
+			}
+			.pub-key-box code {
+				font-size: 0.68rem;
+				white-space: pre-wrap;
+				overflow-wrap: anywhere;
+				background: transparent !important;
+				border: none !important;
+				padding: 0;
+			}
+			.copy-key-btn {
+				margin-top: 0.6rem;
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+				font-size: 0.8rem;
+				font-weight: 600;
+				padding: 0.4rem 0.8rem;
+				border-radius: 6px;
+				background: var(--ci-canvas);
+				border: 1px solid var(--ci-line);
+				color: var(--ci-headline);
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+			.copy-key-btn:hover {
+				border-color: var(--ci-cyan);
+				color: var(--ci-cyan);
+			}
+			.pub-footer {
+				margin-top: 2rem;
+				text-align: center;
+				font-size: 0.85rem;
+				color: var(--ci-muted);
+			}
+			.pub-footer-links {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.75rem;
+				margin-bottom: 0.5rem;
+				flex-wrap: wrap;
+			}
+			.pub-footer-links a {
+				color: var(--ci-headline);
+				font-weight: 500;
+				border-bottom: none;
+			}
+			.pub-footer-links a:hover {
+				color: var(--ci-cyan) !important;
+			}
+			.toast-message {
+				position: fixed;
+				bottom: 24px;
+				left: 50%;
+				transform: translateX(-50%) translateY(100px);
+				background: var(--ci-navy);
+				color: #fff;
+				padding: 0.6rem 1.2rem;
+				border-radius: 999px;
+				font-size: 0.85rem;
+				font-weight: 500;
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+				z-index: 10001;
+				opacity: 0;
+				pointer-events: none;
+				transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s ease;
+			}
+			[data-theme="dark"] .toast-message {
+				background: var(--ci-cyan);
+				color: #00162e;
+			}
+			.toast-message.show {
+				transform: translateX(-50%) translateY(0);
+				opacity: 1;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
-		<div id="main-carousel" class="carousel" aria-roledescription="carousel" aria-label="Public info">
-			<button type="button" class="carousel-nav prev" aria-label="Previous slide">&#10094;</button>
-			<ul class="carousel-track">
-				<li class="carousel-slide">
-					<span class="carousel-caption">Contact</span>
-					<img src="images/myvcard.png" alt="Contact vCard QR" />
-				</li>
-				<li class="carousel-slide">
-					<span class="carousel-caption">PromptPay QR</span>
-					<img src="images/promptpay.jpeg" alt="PromptPay QR" />
-				</li>
-			</ul>
-			<button type="button" class="carousel-nav next" aria-label="Next slide">&#10095;</button>
-			<div class="carousel-dots" role="tablist" aria-label="Choose slide"></div>
+		<div class="pub-page-container">
+			<div>
+				<!-- Top Navigation Header -->
+				<header class="pub-top-nav">
+					<a href="index.html" class="pub-nav-back">
+						<i class="fa fa-arrow-left" aria-hidden="true"></i>
+						<span>Home</span>
+					</a>
+					<button type="button" id="theme-toggle" class="pub-nav-btn fa fa-moon" title="Toggle theme" aria-label="Toggle theme"></button>
+				</header>
+
+				<!-- UIH Digital Business Card (Split link) -->
+				<div class="pub-split-banner">
+					<i class="fa fa-address-card" aria-hidden="true"></i>
+					<div class="pub-split-text">
+						<strong>UIH Digital Business Card</strong>
+						<p>Official vCard, mobile contact import &amp; scannable QR</p>
+					</div>
+					<a href="vcard.html" class="pub-split-btn">
+						<span>View Card</span>
+						<i class="fa fa-chevron-right" aria-hidden="true"></i>
+					</a>
+				</div>
+
+				<!-- PromptPay QR Card -->
+				<section class="pub-card" aria-label="PromptPay Payment">
+					<h2 class="pub-card-title">
+						<i class="fa fa-qrcode" aria-hidden="true"></i>
+						<span>PromptPay QR</span>
+					</h2>
+					<img src="images/promptpay.jpeg" alt="PromptPay QR Code" class="pub-qr-img" width="220" height="220" />
+				</section>
+
+				<!-- SSH Public Key Card -->
+				<section class="pub-card pub-key-box" aria-label="ECDSA Public Key">
+					<h2 class="pub-card-title" style="justify-content: flex-start;">
+						<i class="fa fa-key" aria-hidden="true"></i>
+						<span>id_ecdsa.pub</span>
+					</h2>
+					<pre><code id="ecdsa-key">ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAxnfyhrGGRdmWje3wsEJwkQc869rzIlp3ayX10DBd6H9TiTFb40ZEbovSzKx94xryeG+QmkyF/pnbNLfTH3PeY</code></pre>
+					<button type="button" id="copy-key-btn" class="copy-key-btn">
+						<i class="fa fa-copy" aria-hidden="true"></i>
+						<span>Copy Public Key</span>
+					</button>
+				</section>
+			</div>
+
+			<!-- Footer -->
+			<footer class="pub-footer">
+				<div class="pub-footer-links">
+					<a href="index.html">Home</a>
+					<span>&bull;</span>
+					<a href="profile.html">Resume</a>
+					<span>&bull;</span>
+					<a href="vcard.html">vCard</a>
+					<span>&bull;</span>
+					<a href="policy.html">Privacy</a>
+				</div>
+				<p class="copyright" style="margin: 0;">
+					&copy; 2021 - 2026, Peerapat Asoktummarungsri
+				</p>
+			</footer>
 		</div>
-		
-		<div id="main-carousel" class="carousel" aria-roledescription="carousel" aria-label="Public info">
-			<pre><code>ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBAxnfyhrGGRdmWje3wsEJwkQc869rzIlp3ayX10DBd6H9TiTFb40ZEbovSzKx94xryeG+QmkyF/pnbNLfTH3PeY</code></pre>
 
-			<p class="copyright">
-				&copy; 2021 - 2026, Peerapat Asoktummarungsri
-			</p>
+		<!-- Toast Message -->
+		<div id="toast-message" class="toast-message" role="status" aria-live="polite">
+			<span id="toast-text">Copied to clipboard!</span>
 		</div>
-		
-		<script>
-			(function () {
-				var carousel = document.getElementById('main-carousel');
-				if (!carousel) return;
-				var track = carousel.querySelector('.carousel-track');
-				var slides = Array.prototype.slice.call(carousel.querySelectorAll('.carousel-slide'));
-				var dotsWrap = carousel.querySelector('.carousel-dots');
-				var prev = carousel.querySelector('.carousel-nav.prev');
-				var next = carousel.querySelector('.carousel-nav.next');
-				var current = 0;
 
-				// build one dot per slide
-				var dots = slides.map(function (slide, i) {
-					var dot = document.createElement('button');
-					dot.type = 'button';
-					dot.className = 'carousel-dot';
-					dot.setAttribute('role', 'tab');
-					dot.setAttribute('aria-label', 'Slide ' + (i + 1));
-					dot.addEventListener('click', function () { goTo(i); });
-					dotsWrap.appendChild(dot);
-					return dot;
-				});
-
-				function setActive(i) {
-					current = i;
-					dots.forEach(function (d, j) {
-						d.classList.toggle('is-active', j === i);
-						d.setAttribute('aria-selected', j === i ? 'true' : 'false');
-					});
-					prev.disabled = i === 0;
-					next.disabled = i === slides.length - 1;
-				}
-
-				function goTo(i) {
-					i = Math.max(0, Math.min(slides.length - 1, i));
-					track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: 'smooth' });
-					setActive(i);
-				}
-
-				prev.addEventListener('click', function () { goTo(current - 1); });
-				next.addEventListener('click', function () { goTo(current + 1); });
-
-				// keep dots in sync when the user swipes/scrolls the track
-				if ('IntersectionObserver' in window) {
-					var io = new IntersectionObserver(function (entries) {
-						entries.forEach(function (entry) {
-							if (entry.isIntersecting) setActive(slides.indexOf(entry.target));
-						});
-					}, { root: track, threshold: 0.6 });
-					slides.forEach(function (s) { io.observe(s); });
-				}
-
-				setActive(0);
-			})();
-		</script>
 		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.poptrox.min.js"></script>
 		<script src="assets/js/browser.min.js"></script>
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
 		<script src="./assets/js/cookie-consent.js"></script>
-			<script>
+		<script>
+			// Toast helper
+			function showToast(msg) {
+				const toast = document.getElementById('toast-message');
+				const text = document.getElementById('toast-text');
+				if (!toast || !text) return;
+				text.textContent = msg;
+				toast.classList.add('show');
+				setTimeout(() => {
+					toast.classList.remove('show');
+				}, 2200);
+			}
+
+			// Copy key helper
+			const copyKeyBtn = document.getElementById('copy-key-btn');
+			if (copyKeyBtn) {
+				copyKeyBtn.addEventListener('click', async () => {
+					const code = document.getElementById('ecdsa-key');
+					if (!code) return;
+					const str = code.textContent.trim();
+					try {
+						if (navigator.clipboard && window.isSecureContext) {
+							await navigator.clipboard.writeText(str);
+						} else {
+							const ta = document.createElement('textarea');
+							ta.value = str;
+							document.body.appendChild(ta);
+							ta.select();
+							document.execCommand('copy');
+							document.body.removeChild(ta);
+						}
+						showToast('Public key copied to clipboard!');
+					} catch (e) {
+						showToast('Failed to copy');
+					}
+				});
+			}
+
 			// Theme toggle logic
 			const themeToggle = document.getElementById('theme-toggle');
 			if (themeToggle) {
-				// Update icon based on current theme
 				const updateIcon = () => {
 					if (document.documentElement.getAttribute('data-theme') === 'dark') {
 						themeToggle.classList.remove('fa-moon');

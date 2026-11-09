@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Norbor;Peerapat;;;
+FN:Peerapat Norbor
+TITLE:Department Director
+ORG:UIH
+URL:https://www.peerapat.cc
+EMAIL;TYPE=INTERNET,WORK:peerapat_a@uih.co.th
+TEL;TYPE=CELL,VOICE,PREF:0934944493
+TEL;TYPE=WORK,VOICE:020165111
+ADR;TYPE=WORK:;;;;;10900;Thailand
+NOTE:Peerapat Asoktummarungsri - Department Director at UIH
+END:VCARD
