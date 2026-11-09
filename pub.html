@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>Peerapat A - Public Keys &amp; Payment</title>
+		<title>Peerapat A - Public Key</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="Peerapat Asoktummarungsri's public cryptographic keys, PromptPay QR, and official contact links." />
+		<meta name="description" content="Peerapat Asoktummarungsri's public cryptographic keys." />
 		<link rel="canonical" href="https://www.peerapat.cc/pub.html" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/ci.css" />
@@ -100,71 +100,8 @@
 				margin-bottom: 0.8rem;
 				display: flex;
 				align-items: center;
-				justify-content: center;
+				justify-content: flex-start;
 				gap: 0.5rem;
-			}
-			.pub-qr-img {
-				width: 100%;
-				max-width: 220px;
-				height: auto;
-				border-radius: 10px;
-				border: 1px solid var(--ci-line);
-				box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-				display: block;
-				margin: 0 auto;
-			}
-			.pub-split-banner {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				gap: 1rem;
-				background: linear-gradient(135deg, rgba(0, 96, 152, 0.08), rgba(5, 172, 225, 0.12));
-				border: 1px solid rgba(5, 172, 225, 0.3);
-				border-radius: 14px;
-				padding: 1rem 1.2rem;
-				margin-bottom: 1.25rem;
-				text-align: left;
-			}
-			.pub-split-banner i {
-				font-size: 1.8rem;
-				color: var(--ci-blue);
-				flex-shrink: 0;
-			}
-			[data-theme="dark"] .pub-split-banner i {
-				color: var(--ci-cyan);
-			}
-			.pub-split-text strong {
-				display: block;
-				font-family: var(--ci-display);
-				font-size: 0.95rem;
-				color: var(--ci-headline);
-			}
-			.pub-split-text p {
-				margin: 0.2rem 0 0;
-				font-size: 0.8rem;
-				color: var(--ci-muted);
-				line-height: 1.35;
-			}
-			.pub-split-btn {
-				display: inline-flex;
-				align-items: center;
-				gap: 0.35rem;
-				background: var(--ci-blue);
-				color: #fff !important;
-				font-family: var(--ci-display);
-				font-size: 0.82rem;
-				font-weight: 600;
-				padding: 0.45rem 0.9rem;
-				border-radius: 8px;
-				text-decoration: none;
-				border-bottom: none;
-				white-space: nowrap;
-				flex-shrink: 0;
-				transition: background 0.2s ease;
-			}
-			.pub-split-btn:hover {
-				background: var(--ci-cyan);
-				color: #fff !important;
 			}
 			.pub-key-box {
 				text-align: left;
@@ -265,28 +202,6 @@
 					<button type="button" id="theme-toggle" class="pub-nav-btn fa fa-moon" title="Toggle theme" aria-label="Toggle theme"></button>
 				</header>
 
-				<!-- UIH Digital Business Card (Split link) -->
-				<div class="pub-split-banner">
-					<i class="fa fa-address-card" aria-hidden="true"></i>
-					<div class="pub-split-text">
-						<strong>UIH Digital Business Card</strong>
-						<p>Official vCard, mobile contact import &amp; scannable QR</p>
-					</div>
-					<a href="vcard.html" class="pub-split-btn">
-						<span>View Card</span>
-						<i class="fa fa-chevron-right" aria-hidden="true"></i>
-					</a>
-				</div>
-
-				<!-- PromptPay QR Card -->
-				<section class="pub-card" aria-label="PromptPay Payment">
-					<h2 class="pub-card-title">
-						<i class="fa fa-qrcode" aria-hidden="true"></i>
-						<span>PromptPay QR</span>
-					</h2>
-					<img src="images/promptpay.jpeg" alt="PromptPay QR Code" class="pub-qr-img" width="220" height="220" />
-				</section>
-
 				<!-- SSH Public Key Card -->
 				<section class="pub-card pub-key-box" aria-label="ECDSA Public Key">
 					<h2 class="pub-card-title" style="justify-content: flex-start;">
@@ -309,6 +224,8 @@
 					<a href="profile.html">Resume</a>
 					<span>&bull;</span>
 					<a href="vcard.html">vCard</a>
+					<span>&bull;</span>
+					<a href="promptpay.html">PromptPay</a>
 					<span>&bull;</span>
 					<a href="policy.html">Privacy</a>
 				</div>

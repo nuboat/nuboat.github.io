@@ -1,0 +1,542 @@
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Peerapat A - PromptPay QR</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="Official Thai PromptPay QR code for Peerapat Asoktummarungsri (Peerapat Norbor). Scan to pay via any Thai Mobile Banking app." />
+		<meta name="keywords" content="Peerapat Asoktummarungsri, Peerapat Norbor, PromptPay, PromptPay QR, Thai QR Payment, Mobile Banking, Scan to Pay" />
+		<link rel="canonical" href="https://www.peerapat.cc/promptpay.html" />
+		<meta name="author" content="Peerapat A" />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Peerapat Asoktummarungsri - PromptPay QR" />
+		<meta property="og:description" content="Official Thai PromptPay QR Code for Peerapat Asoktummarungsri. Scan to pay via any Thai Mobile Banking app." />
+		<meta property="og:url" content="https://www.peerapat.cc/promptpay.html" />
+		<meta property="og:image" content="https://www.peerapat.cc/images/promptpay.jpeg" />
+
+		<!-- Twitter Cards -->
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content="Peerapat Asoktummarungsri - PromptPay QR" />
+		<meta name="twitter:description" content="Official Thai PromptPay QR Code for Peerapat Asoktummarungsri. Scan to pay via any Thai Mobile Banking app." />
+		<meta name="twitter:image" content="https://www.peerapat.cc/images/promptpay.jpeg" />
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/ci.css" />
+		<link rel="stylesheet" href="assets/css/cookie-consent.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+		<!-- Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('consent', 'default', { analytics_storage: 'denied' });
+			var ccOk = false; try { ccOk = localStorage.getItem('cookie-consent') === 'accepted'; } catch (e) {}
+			window['ga-disable-G-TKCX2DN0ZT'] = !ccOk;
+			if (ccOk) { gtag('consent', 'update', { analytics_storage: 'granted' }); gtag('config', 'G-TKCX2DN0ZT'); }
+		</script>
+
+		<!-- Dark Mode Init (prevents FOUC) -->
+		<script>
+			const savedTheme = localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			} else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+				document.documentElement.setAttribute('data-theme', 'dark');
+			}
+		</script>
+
+		<!-- Structured Data / JSON-LD -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@graph": [
+				{
+					"@type": "Person",
+					"@id": "https://www.peerapat.cc/#person",
+					"name": "Peerapat Asoktummarungsri",
+					"alternateName": "Peerapat Norbor",
+					"url": "https://www.peerapat.cc/promptpay.html",
+					"image": "https://www.peerapat.cc/images/promptpay.jpeg"
+				},
+				{
+					"@type": "WebPage",
+					"url": "https://www.peerapat.cc/promptpay.html",
+					"name": "Peerapat A - PromptPay QR",
+					"description": "Thai PromptPay QR code for Peerapat Asoktummarungsri.",
+					"mainEntity": {
+						"@id": "https://www.peerapat.cc/#person"
+					}
+				}
+			]
+		}
+		</script>
+
+		<style>
+			/* ==========================================================================
+			   PromptPay Modern Responsive QR Card Layout
+			   ========================================================================== */
+			.vcard-page-wrapper {
+				min-height: 100dvh;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				padding: 1.25rem 1rem 2.5rem;
+				max-width: 460px;
+				margin: 0 auto;
+			}
+
+			/* Header Navigation Bar */
+			.vcard-top-nav {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				margin-bottom: 1.5rem;
+			}
+			.vcard-top-nav a.nav-back {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				font-size: 0.92rem;
+				font-weight: 600;
+				color: var(--ci-headline);
+				border-bottom: none;
+				padding: 0.4rem 0.85rem;
+				border-radius: 999px;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				box-shadow: var(--ci-shadow);
+				transition: all 0.2s ease;
+			}
+			.vcard-top-nav a.nav-back:hover {
+				color: var(--ci-cyan) !important;
+				border-color: var(--ci-cyan);
+				transform: translateX(-2px);
+			}
+			.vcard-nav-controls {
+				display: flex;
+				gap: 0.5rem;
+				align-items: center;
+			}
+			.nav-icon-btn {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 38px;
+				height: 38px;
+				border-radius: 999px;
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				color: var(--ci-headline);
+				font-size: 1rem;
+				cursor: pointer;
+				box-shadow: var(--ci-shadow);
+				transition: all 0.2s ease;
+			}
+			.nav-icon-btn:hover {
+				color: var(--ci-cyan);
+				border-color: var(--ci-cyan);
+				transform: translateY(-1px);
+			}
+
+			/* Main Content Area */
+			.vcard-container {
+				width: 100%;
+			}
+
+			/* Dedicated QR Section Card */
+			.vcard-qr-section {
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 20px;
+				box-shadow: var(--ci-shadow);
+				padding: 2rem 1.5rem 1.8rem;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				transition: border-color 0.25s ease, box-shadow 0.25s ease;
+			}
+
+			.vcard-qr-header {
+				font-family: var(--ci-display);
+				font-weight: 700;
+				font-size: clamp(1.15rem, 1rem + 0.8vw, 1.35rem);
+				color: var(--ci-headline);
+				margin: 0 0 0.35rem 0;
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+			}
+			.vcard-qr-header i {
+				color: var(--ci-blue);
+			}
+			[data-theme="dark"] .vcard-qr-header i {
+				color: var(--ci-cyan);
+			}
+
+			.vcard-qr-name {
+				font-family: var(--ci-display);
+				font-size: 1rem;
+				font-weight: 600;
+				color: var(--ci-headline);
+				margin: 0 0 0.15rem 0;
+			}
+			.vcard-qr-org {
+				font-size: 0.85rem;
+				font-weight: 500;
+				color: var(--ci-blue);
+				margin: 0 0 0.5rem 0;
+			}
+			[data-theme="dark"] .vcard-qr-org {
+				color: var(--ci-sand);
+			}
+
+			.vcard-qr-subtitle {
+				font-size: 0.84rem;
+				color: var(--ci-muted);
+				margin: 0 0 1.3rem 0;
+				line-height: 1.45;
+				max-width: 320px;
+			}
+
+			/* High contrast quiet zone frame for reliable camera scanning */
+			.vcard-qr-frame {
+				background: #ffffff;
+				padding: 1.1rem;
+				border-radius: 16px;
+				box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+				border: 2px solid var(--ci-line);
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+				cursor: pointer;
+				margin-bottom: 1.35rem;
+			}
+			.vcard-qr-frame:hover {
+				transform: scale(1.02);
+				box-shadow: 0 8px 26px rgba(5, 172, 225, 0.18);
+			}
+			.vcard-qr-frame img {
+				display: block;
+				width: 100%;
+				max-width: 240px;
+				aspect-ratio: 1 / 1;
+				height: auto;
+				border-radius: 4px;
+				object-fit: contain;
+			}
+
+			/* Primary Call to Action Button */
+			.vcard-primary-cta {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.6rem;
+				background: linear-gradient(135deg, var(--ci-blue), var(--ci-cyan));
+				color: #fff !important;
+				font-family: var(--ci-display);
+				font-weight: 600;
+				font-size: 0.95rem;
+				padding: 0.8rem 1.4rem;
+				border-radius: 12px;
+				text-decoration: none;
+				border: none;
+				cursor: pointer;
+				box-shadow: 0 4px 16px rgba(0, 96, 152, 0.28);
+				transition: transform 0.2s ease, box-shadow 0.2s ease;
+				width: 100%;
+				max-width: 280px;
+				margin-bottom: 0.75rem;
+			}
+			.vcard-primary-cta:hover {
+				transform: translateY(-2px);
+				box-shadow: 0 8px 24px rgba(5, 172, 225, 0.35);
+				color: #fff !important;
+			}
+
+			/* Secondary Action Buttons */
+			.vcard-qr-actions {
+				display: flex;
+				gap: 0.6rem;
+				width: 100%;
+				max-width: 280px;
+			}
+			.vcard-qr-btn {
+				flex: 1;
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				gap: 0.4rem;
+				padding: 0.55rem 0.75rem;
+				border-radius: 8px;
+				font-size: 0.82rem;
+				font-weight: 600;
+				background: var(--ci-canvas);
+				border: 1px solid var(--ci-line);
+				color: var(--ci-headline);
+				text-decoration: none;
+				border-bottom: none;
+				cursor: pointer;
+				transition: all 0.2s ease;
+			}
+			.vcard-qr-btn:hover {
+				border-color: var(--ci-cyan);
+				color: var(--ci-cyan) !important;
+				background: var(--ci-paper);
+				transform: translateY(-1px);
+			}
+
+			/* Badge Metadata */
+			.vcard-specs-chip {
+				margin-top: 1.25rem;
+				font-size: 0.74rem;
+				color: var(--ci-muted);
+				display: inline-flex;
+				align-items: center;
+				gap: 0.4rem;
+			}
+
+			/* Footer Navigation Links */
+			.vcard-footer {
+				margin-top: 2rem;
+				text-align: center;
+				font-size: 0.85rem;
+				color: var(--ci-muted);
+			}
+			.vcard-footer-links {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				gap: 0.75rem;
+				margin-bottom: 0.5rem;
+				flex-wrap: wrap;
+			}
+			.vcard-footer-links a {
+				color: var(--ci-headline);
+				font-weight: 500;
+				border-bottom: none;
+			}
+			.vcard-footer-links a:hover {
+				color: var(--ci-cyan) !important;
+			}
+
+			/* Toast Notification */
+			.toast-message {
+				position: fixed;
+				bottom: 24px;
+				left: 50%;
+				transform: translateX(-50%) translateY(100px);
+				background: var(--ci-navy);
+				color: #fff;
+				padding: 0.7rem 1.4rem;
+				border-radius: 999px;
+				font-size: 0.88rem;
+				font-weight: 500;
+				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				z-index: 10001;
+				opacity: 0;
+				pointer-events: none;
+				transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s ease;
+			}
+			[data-theme="dark"] .toast-message {
+				background: var(--ci-cyan);
+				color: #00162e;
+			}
+			.toast-message.show {
+				transform: translateX(-50%) translateY(0);
+				opacity: 1;
+			}
+		</style>
+	</head>
+
+	<body class="is-preload">
+		<div class="vcard-page-wrapper">
+			<!-- Header / Top Navigation -->
+			<header class="vcard-top-nav">
+				<a href="index.html" class="nav-back">
+					<i class="fa fa-arrow-left" aria-hidden="true"></i>
+					<span>Home</span>
+				</a>
+				<div class="vcard-nav-controls">
+					<button type="button" id="share-card-btn" class="nav-icon-btn" title="Share PromptPay QR" aria-label="Share PromptPay QR">
+						<i class="fa fa-share-nodes" aria-hidden="true"></i>
+					</button>
+					<button type="button" id="theme-toggle" class="nav-icon-btn fa fa-moon" title="Toggle theme" aria-label="Toggle theme"></button>
+				</div>
+			</header>
+
+			<!-- Main Content -->
+			<main class="vcard-container" id="main-content">
+				<div class="vcard-qr-section">
+					<h1 class="vcard-qr-header">
+						<i class="fa fa-qrcode" aria-hidden="true"></i>
+						<span>PromptPay QR</span>
+					</h1>
+					<p class="vcard-qr-name">Peerapat Asoktummarungsri</p>
+					<p class="vcard-qr-org">PromptPay &bull; Thai QR Payment</p>
+					<p class="vcard-qr-subtitle">Scan with any Thai Mobile Banking app to transfer funds instantly.</p>
+
+					<div class="vcard-qr-frame" id="qr-frame" title="PromptPay QR Code">
+						<img src="images/promptpay.jpeg" alt="PromptPay QR Code - Peerapat Asoktummarungsri" width="240" height="240" loading="eager" />
+					</div>
+
+					<a href="images/promptpay.jpeg" download="PromptPay_QR_Peerapat.jpeg" id="save-qr-btn" class="vcard-primary-cta" role="button">
+						<i class="fa fa-download" aria-hidden="true"></i>
+						<span>Save PromptPay QR</span>
+					</a>
+
+					<div class="vcard-qr-actions">
+						<button type="button" id="copy-page-link-btn" class="vcard-qr-btn">
+							<i class="fa fa-link" aria-hidden="true"></i>
+							<span>Copy Link</span>
+						</button>
+						<button type="button" id="share-btn-action" class="vcard-qr-btn">
+							<i class="fa fa-share-nodes" aria-hidden="true"></i>
+							<span>Share</span>
+						</button>
+					</div>
+
+					<div class="vcard-specs-chip">
+						<i class="fa fa-shield-alt" aria-hidden="true"></i>
+						<span>Thai QR Standard &bull; Any Thai Mobile Banking</span>
+					</div>
+				</div>
+			</main>
+
+			<!-- Footer -->
+			<footer class="vcard-footer">
+				<div class="vcard-footer-links">
+					<a href="index.html">Home</a>
+					<span>&bull;</span>
+					<a href="profile.html">Resume</a>
+					<span>&bull;</span>
+					<a href="vcard.html">vCard</a>
+					<span>&bull;</span>
+					<a href="pub.html">Publications &amp; Keys</a>
+					<span>&bull;</span>
+					<a href="policy.html">Privacy</a>
+				</div>
+				<p class="copyright" style="margin: 0;">
+					&copy; 2021 - 2026, Peerapat Asoktummarungsri
+				</p>
+			</footer>
+		</div>
+
+		<!-- Toast Feedback Element -->
+		<div id="toast-message" class="toast-message" role="status" aria-live="polite">
+			<i class="fa fa-circle-check" aria-hidden="true"></i>
+			<span id="toast-text">Copied to clipboard!</span>
+		</div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="./assets/js/cookie-consent.js"></script>
+
+		<script>
+			// Toast notification helper
+			function showToast(msg) {
+				const toast = document.getElementById('toast-message');
+				const text = document.getElementById('toast-text');
+				if (!toast || !text) return;
+				text.textContent = msg;
+				toast.classList.add('show');
+				setTimeout(() => {
+					toast.classList.remove('show');
+				}, 2200);
+			}
+
+			// Copy text to clipboard helper
+			async function copyToClipboard(text, successMsg) {
+				try {
+					if (navigator.clipboard && window.isSecureContext) {
+						await navigator.clipboard.writeText(text);
+					} else {
+						const textArea = document.createElement('textarea');
+						textArea.value = text;
+						textArea.style.position = 'fixed';
+						textArea.style.opacity = '0';
+						document.body.appendChild(textArea);
+						textArea.focus();
+						textArea.select();
+						document.execCommand('copy');
+						document.body.removeChild(textArea);
+					}
+					showToast(successMsg || 'Copied to clipboard!');
+				} catch (err) {
+					console.error('Copy failed: ', err);
+					showToast('Failed to copy');
+				}
+			}
+
+			// Copy Page URL
+			const copyLinkBtn = document.getElementById('copy-page-link-btn');
+			if (copyLinkBtn) {
+				copyLinkBtn.addEventListener('click', () => {
+					copyToClipboard(window.location.href, 'PromptPay link copied to clipboard!');
+				});
+			}
+
+			// Web Share API handler
+			async function handleShare() {
+				const shareData = {
+					title: 'Peerapat Asoktummarungsri - PromptPay QR',
+					text: 'Official Thai PromptPay QR Code for Peerapat Asoktummarungsri.',
+					url: window.location.href
+				};
+				if (navigator.share) {
+					try {
+						await navigator.share(shareData);
+					} catch (err) {
+						if (err.name !== 'AbortError') {
+							copyToClipboard(window.location.href, 'PromptPay link copied to clipboard!');
+						}
+					}
+				} else {
+					copyToClipboard(window.location.href, 'PromptPay link copied to clipboard!');
+				}
+			}
+
+			const shareBtn = document.getElementById('share-card-btn');
+			if (shareBtn) shareBtn.addEventListener('click', handleShare);
+
+			const shareBtnAction = document.getElementById('share-btn-action');
+			if (shareBtnAction) shareBtnAction.addEventListener('click', handleShare);
+
+			// Theme toggle logic
+			const themeToggle = document.getElementById('theme-toggle');
+			if (themeToggle) {
+				const updateIcon = () => {
+					if (document.documentElement.getAttribute('data-theme') === 'dark') {
+						themeToggle.classList.remove('fa-moon');
+						themeToggle.classList.add('fa-sun');
+					} else {
+						themeToggle.classList.remove('fa-sun');
+						themeToggle.classList.add('fa-moon');
+					}
+				};
+				updateIcon();
+
+				themeToggle.addEventListener('click', () => {
+					const currentTheme = document.documentElement.getAttribute('data-theme');
+					const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+					document.documentElement.setAttribute('data-theme', newTheme);
+					localStorage.setItem('theme', newTheme);
+					updateIcon();
+				});
+			}
+		</script>
+	</body>
+</html>
