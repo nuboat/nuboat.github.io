@@ -167,7 +167,7 @@
 				font-weight: 700;
 				font-size: clamp(1.15rem, 1rem + 0.8vw, 1.35rem);
 				color: var(--ci-headline);
-				margin: 0 0 0.35rem 0;
+				margin: 0 0 1.25rem 0;
 				display: flex;
 				align-items: center;
 				gap: 0.5rem;
@@ -177,31 +177,6 @@
 			}
 			[data-theme="dark"] .vcard-qr-header i {
 				color: var(--ci-cyan);
-			}
-
-			.vcard-qr-name {
-				font-family: var(--ci-display);
-				font-size: 1rem;
-				font-weight: 600;
-				color: var(--ci-headline);
-				margin: 0 0 0.15rem 0;
-			}
-			.vcard-qr-org {
-				font-size: 0.85rem;
-				font-weight: 500;
-				color: var(--ci-blue);
-				margin: 0 0 0.5rem 0;
-			}
-			[data-theme="dark"] .vcard-qr-org {
-				color: var(--ci-sand);
-			}
-
-			.vcard-qr-subtitle {
-				font-size: 0.84rem;
-				color: var(--ci-muted);
-				margin: 0 0 1.3rem 0;
-				line-height: 1.45;
-				max-width: 320px;
 			}
 
 			/* High contrast quiet zone frame for reliable camera scanning */
@@ -252,44 +227,12 @@
 				transition: transform 0.2s ease, box-shadow 0.2s ease;
 				width: 100%;
 				max-width: 280px;
-				margin-bottom: 0.75rem;
+				margin-bottom: 0;
 			}
 			.vcard-primary-cta:hover {
 				transform: translateY(-2px);
 				box-shadow: 0 8px 24px rgba(5, 172, 225, 0.35);
 				color: #fff !important;
-			}
-
-			/* Secondary Action Buttons */
-			.vcard-qr-actions {
-				display: flex;
-				gap: 0.6rem;
-				width: 100%;
-				max-width: 280px;
-			}
-			.vcard-qr-btn {
-				flex: 1;
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				gap: 0.4rem;
-				padding: 0.55rem 0.75rem;
-				border-radius: 8px;
-				font-size: 0.82rem;
-				font-weight: 600;
-				background: var(--ci-canvas);
-				border: 1px solid var(--ci-line);
-				color: var(--ci-headline);
-				text-decoration: none;
-				border-bottom: none;
-				cursor: pointer;
-				transition: all 0.2s ease;
-			}
-			.vcard-qr-btn:hover {
-				border-color: var(--ci-cyan);
-				color: var(--ci-cyan) !important;
-				background: var(--ci-paper);
-				transform: translateY(-1px);
 			}
 
 			/* Badge Metadata */
@@ -325,36 +268,6 @@
 			.vcard-footer-links a:hover {
 				color: var(--ci-cyan) !important;
 			}
-
-			/* Toast Notification */
-			.toast-message {
-				position: fixed;
-				bottom: 24px;
-				left: 50%;
-				transform: translateX(-50%) translateY(100px);
-				background: var(--ci-navy);
-				color: #fff;
-				padding: 0.7rem 1.4rem;
-				border-radius: 999px;
-				font-size: 0.88rem;
-				font-weight: 500;
-				box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				z-index: 10001;
-				opacity: 0;
-				pointer-events: none;
-				transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28), opacity 0.3s ease;
-			}
-			[data-theme="dark"] .toast-message {
-				background: var(--ci-cyan);
-				color: #00162e;
-			}
-			.toast-message.show {
-				transform: translateX(-50%) translateY(0);
-				opacity: 1;
-			}
 		</style>
 	</head>
 
@@ -367,9 +280,6 @@
 					<span>Home</span>
 				</a>
 				<div class="vcard-nav-controls">
-					<button type="button" id="share-card-btn" class="nav-icon-btn" title="Share PromptPay QR" aria-label="Share PromptPay QR">
-						<i class="fa fa-share-nodes" aria-hidden="true"></i>
-					</button>
 					<button type="button" id="theme-toggle" class="nav-icon-btn fa fa-moon" title="Toggle theme" aria-label="Toggle theme"></button>
 				</div>
 			</header>
@@ -381,29 +291,15 @@
 						<i class="fa fa-qrcode" aria-hidden="true"></i>
 						<span>PromptPay QR</span>
 					</h1>
-					<p class="vcard-qr-name">Peerapat Asoktummarungsri</p>
-					<p class="vcard-qr-org">PromptPay &bull; Thai QR Payment</p>
-					<p class="vcard-qr-subtitle">Scan with any Thai Mobile Banking app to transfer funds instantly.</p>
 
 					<div class="vcard-qr-frame" id="qr-frame" title="PromptPay QR Code">
-						<img src="images/promptpay.jpeg" alt="PromptPay QR Code - Peerapat Asoktummarungsri" width="240" height="240" loading="eager" />
+						<img src="images/promptpay.jpeg" alt="PromptPay QR Code" width="240" height="240" loading="eager" />
 					</div>
 
 					<a href="images/promptpay.jpeg" download="PromptPay_QR_Peerapat.jpeg" id="save-qr-btn" class="vcard-primary-cta" role="button">
 						<i class="fa fa-download" aria-hidden="true"></i>
 						<span>Save PromptPay QR</span>
 					</a>
-
-					<div class="vcard-qr-actions">
-						<button type="button" id="copy-page-link-btn" class="vcard-qr-btn">
-							<i class="fa fa-link" aria-hidden="true"></i>
-							<span>Copy Link</span>
-						</button>
-						<button type="button" id="share-btn-action" class="vcard-qr-btn">
-							<i class="fa fa-share-nodes" aria-hidden="true"></i>
-							<span>Share</span>
-						</button>
-					</div>
 
 					<div class="vcard-specs-chip">
 						<i class="fa fa-shield-alt" aria-hidden="true"></i>
@@ -417,10 +313,6 @@
 				<div class="vcard-footer-links">
 					<a href="index.html">Home</a>
 					<span>&bull;</span>
-					<a href="profile.html">Resume</a>
-					<span>&bull;</span>
-					<a href="vcard.html">vCard</a>
-					<span>&bull;</span>
 					<a href="pub.html">Publications &amp; Keys</a>
 					<span>&bull;</span>
 					<a href="policy.html">Privacy</a>
@@ -429,12 +321,6 @@
 					&copy; 2021 - 2026, Peerapat Asoktummarungsri
 				</p>
 			</footer>
-		</div>
-
-		<!-- Toast Feedback Element -->
-		<div id="toast-message" class="toast-message" role="status" aria-live="polite">
-			<i class="fa fa-circle-check" aria-hidden="true"></i>
-			<span id="toast-text">Copied to clipboard!</span>
 		</div>
 
 		<!-- Scripts -->
@@ -446,75 +332,6 @@
 		<script src="./assets/js/cookie-consent.js"></script>
 
 		<script>
-			// Toast notification helper
-			function showToast(msg) {
-				const toast = document.getElementById('toast-message');
-				const text = document.getElementById('toast-text');
-				if (!toast || !text) return;
-				text.textContent = msg;
-				toast.classList.add('show');
-				setTimeout(() => {
-					toast.classList.remove('show');
-				}, 2200);
-			}
-
-			// Copy text to clipboard helper
-			async function copyToClipboard(text, successMsg) {
-				try {
-					if (navigator.clipboard && window.isSecureContext) {
-						await navigator.clipboard.writeText(text);
-					} else {
-						const textArea = document.createElement('textarea');
-						textArea.value = text;
-						textArea.style.position = 'fixed';
-						textArea.style.opacity = '0';
-						document.body.appendChild(textArea);
-						textArea.focus();
-						textArea.select();
-						document.execCommand('copy');
-						document.body.removeChild(textArea);
-					}
-					showToast(successMsg || 'Copied to clipboard!');
-				} catch (err) {
-					console.error('Copy failed: ', err);
-					showToast('Failed to copy');
-				}
-			}
-
-			// Copy Page URL
-			const copyLinkBtn = document.getElementById('copy-page-link-btn');
-			if (copyLinkBtn) {
-				copyLinkBtn.addEventListener('click', () => {
-					copyToClipboard(window.location.href, 'PromptPay link copied to clipboard!');
-				});
-			}
-
-			// Web Share API handler
-			async function handleShare() {
-				const shareData = {
-					title: 'Peerapat Asoktummarungsri - PromptPay QR',
-					text: 'Official Thai PromptPay QR Code for Peerapat Asoktummarungsri.',
-					url: window.location.href
-				};
-				if (navigator.share) {
-					try {
-						await navigator.share(shareData);
-					} catch (err) {
-						if (err.name !== 'AbortError') {
-							copyToClipboard(window.location.href, 'PromptPay link copied to clipboard!');
-						}
-					}
-				} else {
-					copyToClipboard(window.location.href, 'PromptPay link copied to clipboard!');
-				}
-			}
-
-			const shareBtn = document.getElementById('share-card-btn');
-			if (shareBtn) shareBtn.addEventListener('click', handleShare);
-
-			const shareBtnAction = document.getElementById('share-btn-action');
-			if (shareBtnAction) shareBtnAction.addEventListener('click', handleShare);
-
 			// Theme toggle logic
 			const themeToggle = document.getElementById('theme-toggle');
 			if (themeToggle) {

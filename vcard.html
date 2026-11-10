@@ -175,7 +175,7 @@
 				font-weight: 700;
 				font-size: clamp(1.15rem, 1rem + 0.8vw, 1.35rem);
 				color: var(--ci-headline);
-				margin: 0 0 0.35rem 0;
+				margin: 0 0 1.25rem 0;
 				display: flex;
 				align-items: center;
 				gap: 0.5rem;
@@ -185,31 +185,6 @@
 			}
 			[data-theme="dark"] .vcard-qr-header i {
 				color: var(--ci-cyan);
-			}
-
-			.vcard-qr-name {
-				font-family: var(--ci-display);
-				font-size: 1rem;
-				font-weight: 600;
-				color: var(--ci-headline);
-				margin: 0 0 0.15rem 0;
-			}
-			.vcard-qr-org {
-				font-size: 0.85rem;
-				font-weight: 500;
-				color: var(--ci-blue);
-				margin: 0 0 0.5rem 0;
-			}
-			[data-theme="dark"] .vcard-qr-org {
-				color: var(--ci-sand);
-			}
-
-			.vcard-qr-subtitle {
-				font-size: 0.84rem;
-				color: var(--ci-muted);
-				margin: 0 0 1.3rem 0;
-				line-height: 1.45;
-				max-width: 320px;
 			}
 
 			/* High contrast quiet zone frame for reliable camera scanning */
@@ -259,44 +234,12 @@
 				transition: transform 0.2s ease, box-shadow 0.2s ease;
 				width: 100%;
 				max-width: 280px;
-				margin-bottom: 0.75rem;
+				margin-bottom: 0;
 			}
 			.vcard-primary-cta:hover {
 				transform: translateY(-2px);
 				box-shadow: 0 8px 24px rgba(5, 172, 225, 0.35);
 				color: #fff !important;
-			}
-
-			/* Secondary Action Buttons */
-			.vcard-qr-actions {
-				display: flex;
-				gap: 0.6rem;
-				width: 100%;
-				max-width: 280px;
-			}
-			.vcard-qr-btn {
-				flex: 1;
-				display: inline-flex;
-				align-items: center;
-				justify-content: center;
-				gap: 0.4rem;
-				padding: 0.55rem 0.75rem;
-				border-radius: 8px;
-				font-size: 0.82rem;
-				font-weight: 600;
-				background: var(--ci-canvas);
-				border: 1px solid var(--ci-line);
-				color: var(--ci-headline);
-				text-decoration: none;
-				border-bottom: none;
-				cursor: pointer;
-				transition: all 0.2s ease;
-			}
-			.vcard-qr-btn:hover {
-				border-color: var(--ci-cyan);
-				color: var(--ci-cyan) !important;
-				background: var(--ci-paper);
-				transform: translateY(-1px);
 			}
 
 			/* Badge Metadata */
@@ -388,29 +331,15 @@
 						<i class="fa fa-qrcode" aria-hidden="true"></i>
 						<span>UIH Contact vCard</span>
 					</h1>
-					<p class="vcard-qr-name">Peerapat Asoktummarungsri</p>
-					<p class="vcard-qr-org">Department Director &bull; UIH</p>
-					<p class="vcard-qr-subtitle">Scan with your mobile camera to import contact details directly into your phone.</p>
 
 					<div class="vcard-qr-frame" id="qr-frame" title="UIH vCard QR Code">
-						<img src="images/myvcard.png" alt="UIH vCard QR Code - Peerapat Norbor" width="240" height="240" loading="eager" />
+						<img src="images/myvcard.png" alt="UIH vCard QR Code" width="240" height="240" loading="eager" />
 					</div>
 
 					<a href="peerapat-uih.vcf" download="Peerapat_Norbor_UIH.vcf" id="save-vcf-btn" class="vcard-primary-cta" role="button">
 						<i class="fa fa-address-card" aria-hidden="true"></i>
 						<span>Add to Contacts (.vcf)</span>
 					</a>
-
-					<div class="vcard-qr-actions">
-						<a href="images/myvcard.png" download="UIH_vCard_QR_Peerapat.png" class="vcard-qr-btn">
-							<i class="fa fa-download" aria-hidden="true"></i>
-							<span>Save QR</span>
-						</a>
-						<button type="button" id="copy-vcard-text-btn" class="vcard-qr-btn">
-							<i class="fa fa-copy" aria-hidden="true"></i>
-							<span>Copy Text</span>
-						</button>
-					</div>
 
 					<div class="vcard-specs-chip">
 						<i class="fa fa-id-badge" aria-hidden="true"></i>
@@ -423,8 +352,6 @@
 			<footer class="vcard-footer">
 				<div class="vcard-footer-links">
 					<a href="index.html">Home</a>
-					<span>&bull;</span>
-					<a href="profile.html">Resume</a>
 					<span>&bull;</span>
 					<a href="promptpay.html">PromptPay</a>
 					<span>&bull;</span>
@@ -486,15 +413,6 @@
 					console.error('Copy failed: ', err);
 					showToast('Failed to copy');
 				}
-			}
-
-			// Copy raw vCard formatted text
-			const rawVCard = "BEGIN:VCARD\nVERSION:3.0\nN:Norbor;Peerapat;;;\nFN:Peerapat Norbor\nTITLE:Department Director\nORG:UIH\nURL:https://www.peerapat.cc\nEMAIL;TYPE=INTERNET:peerapat_a@uih.co.th\nTEL;TYPE=voice,work,pref:020165111\nTEL;TYPE=voice,cell,pref:0934944493\nADR:;;;;;10900;\nEND:VCARD";
-			const copyVCardBtn = document.getElementById('copy-vcard-text-btn');
-			if (copyVCardBtn) {
-				copyVCardBtn.addEventListener('click', () => {
-					copyToClipboard(rawVCard, 'vCard data copied to clipboard!');
-				});
 			}
 
 			// Web Share API handler
