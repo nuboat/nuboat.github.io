@@ -1,22 +1,273 @@
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>Peerapat A - Profile</title>
-		<meta name="description" content="Professional profile of Peerapat Asoktummarungsri, Software Engineering Leader with 20+ years of experience in Microservices, Big Data, and Cloud Solutions." />
+		<title>Peerapat A - Profile &amp; Resume</title>
+		<meta name="description" content="Professional profile and resume of Peerapat Asoktummarungsri, Software Engineering Leader with 20+ years of experience in Microservices, Big Data, and Cloud Solutions." />
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="canonical" href="https://www.peerapat.cc/profile.html" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/ci.css" />
 		<link rel="stylesheet" href="assets/css/cookie-consent.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-		<style media="print">
-			body { font-size: 16pt; }
-			h1 { font-size: 1.5em; }
-			h2 { font-size: 1.3em; }
-			h3 { font-size: 1.1em; }
-			h4 { font-size: 1em; }
-			p { font-size: 0.9em; }
-			#main { font-size: 0.9em; }
+		<style>
+			/* =================================================================
+			   PROFESSIONAL RESUME LAYOUT & COMPACT SPACING
+			   ================================================================= */
+
+			/* Left Zone Action Controls (Theme Toggle & Print) */
+			.left-zone {
+				position: fixed;
+				top: 1.75rem;
+				left: 0;
+				width: 13%;
+				min-width: 110px;
+				display: flex;
+				flex-direction: row;
+				justify-content: center;
+				align-items: center;
+				gap: 0.85rem;
+				z-index: 100;
+			}
+
+			.left-zone .action-icon {
+				display: inline-flex;
+				align-items: center;
+				justify-content: center;
+				width: 3rem;
+				height: 3rem;
+				font-size: 1.55rem;
+				color: var(--ci-headline);
+				background: var(--ci-paper);
+				border: 1px solid var(--ci-line);
+				border-radius: 12px;
+				cursor: pointer;
+				border-bottom: none !important;
+				box-shadow: var(--ci-shadow);
+				transition: color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+			}
+
+			.left-zone .action-icon:hover {
+				color: var(--ci-cyan) !important;
+				border-color: var(--ci-cyan);
+				transform: translateY(-2px);
+			}
+
+			/* Compact Professional Resume Main Container */
+			#main {
+				margin-left: 13%;
+				width: 87%;
+				max-width: 58em;
+				padding: 1.75rem 2.5rem 2rem 1.5rem;
+				font-size: 10.5pt;
+				line-height: 1.45;
+			}
+
+			#main header.major h1 {
+				font-size: 1.65rem;
+				line-height: 1.2;
+				margin: 0 0 0.45rem 0;
+				letter-spacing: 0.01em;
+			}
+
+			#main p {
+				margin: 0 0 0.45rem 0;
+				line-height: 1.45;
+			}
+
+			#main > section {
+				margin: 0.75rem 0 0 0;
+				padding: 0.75rem 0 0 0;
+				border-top: 1px solid var(--ci-line);
+			}
+
+			#main > section:first-child {
+				margin-top: 0;
+				padding-top: 0;
+				border-top: 0;
+			}
+
+			#main h2 {
+				font-size: 1.12rem;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 0.03em;
+				line-height: 1.25;
+				margin: 0 0 0.45rem 0;
+				padding-left: 0.65rem;
+			}
+
+			#one h2 {
+				margin-top: 0.85rem;
+				padding-top: 0.75rem;
+				border-top: 1px solid var(--ci-line);
+			}
+
+			#main h3 {
+				font-size: 0.96rem;
+				font-weight: 600;
+				line-height: 1.3;
+				margin: 0 0 0.12rem 0;
+			}
+
+			#main h4 {
+				font-size: 0.9rem;
+				line-height: 1.3;
+				margin: 0 0 0.12rem 0;
+			}
+
+			#main ul {
+				margin: 0.2rem 0 0.65rem 0;
+				padding-left: 1.15rem;
+			}
+
+			#main ul li {
+				margin-bottom: 0.18rem;
+				padding-left: 0.25rem;
+				line-height: 1.42;
+			}
+
+			#main .row {
+				margin-left: -1.25rem;
+			}
+
+			#main .row > * {
+				padding-left: 1.25rem;
+			}
+
+			.profile-footer {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				flex-wrap: wrap;
+				gap: 0.75rem;
+				margin-top: 1.25rem;
+				padding-top: 0.75rem;
+				border-top: 1px solid var(--ci-line);
+				font-size: 0.85rem;
+			}
+
+			/* Responsive Adjustments */
+			@media screen and (max-width: 1280px) {
+				.left-zone {
+					width: 14%;
+				}
+				#main {
+					margin-left: 14%;
+					width: 86%;
+					padding: 1.5rem 2rem 2rem 1.25rem;
+				}
+			}
+
+			@media screen and (max-width: 980px) {
+				.left-zone {
+					position: static;
+					width: 100%;
+					justify-content: flex-start;
+					padding: 1.25rem 1.5rem 0;
+				}
+				#main {
+					margin: 0;
+					width: 100%;
+					max-width: none;
+					padding: 1rem 1.5rem 2rem;
+				}
+			}
+
+			/* =================================================================
+			   PRINT MODE: NO HEADER / FOOTER LINES & COMPACT PROFESSIONAL CV
+			   ================================================================= */
+			@page {
+				size: A4;
+				margin: 0;
+			}
+
+			@media print {
+				html, body {
+					margin: 0 !important;
+					padding: 0 !important;
+					background: #ffffff !important;
+					font-size: 9.5pt !important;
+					line-height: 1.35 !important;
+				}
+
+				/* Remove top brand line, left zone buttons, and footer line */
+				body::before,
+				#header,
+				.left-zone,
+				.profile-footer,
+				#cookie-consent-banner {
+					display: none !important;
+				}
+
+				#main {
+					width: 100% !important;
+					max-width: 100% !important;
+					margin: 0 !important;
+					padding: 10mm 14mm !important;
+					font-size: 9.5pt !important;
+					line-height: 1.35 !important;
+					background: #ffffff !important;
+					box-decoration-break: clone;
+					-webkit-box-decoration-break: clone;
+				}
+
+				/* Remove section lines and forced page breaks in print */
+				#main > section,
+				#one h2 {
+					border-top: none !important;
+					page-break-before: auto !important;
+					break-before: auto !important;
+					margin-top: 0.5rem !important;
+					padding-top: 0.2rem !important;
+				}
+
+				#main > section:first-child {
+					margin-top: 0 !important;
+					padding-top: 0 !important;
+				}
+
+				#main header.major h1 {
+					font-size: 1.45rem !important;
+					margin-bottom: 0.25rem !important;
+				}
+
+				#main h2 {
+					font-size: 1.05rem !important;
+					margin: 0 0 0.25rem 0 !important;
+					padding-left: 0 !important;
+				}
+
+				#main h2::before {
+					display: none !important;
+				}
+
+				#main h3 {
+					font-size: 0.92rem !important;
+					margin: 0 0 0.08rem 0 !important;
+				}
+
+				#main p {
+					font-size: 0.9rem !important;
+					margin: 0 0 0.3rem 0 !important;
+					line-height: 1.35 !important;
+				}
+
+				#main ul {
+					margin: 0.15rem 0 0.45rem 0 !important;
+					padding-left: 1.1rem !important;
+				}
+
+				#main ul li {
+					font-size: 0.88rem !important;
+					margin-bottom: 0.1rem !important;
+					line-height: 1.32 !important;
+				}
+
+				#main .row > .col-6 {
+					width: 50% !important;
+				}
+			}
 		</style>
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-TKCX2DN0ZT"></script>
@@ -40,16 +291,15 @@
 		</script>
 	</head>
 	<body class="is-preload">
+		<header class="left-zone" aria-label="Resume actions">
+			<a id="theme-toggle" class="action-icon fa fa-moon" role="button" tabindex="0" title="Toggle dark/light theme" aria-label="Toggle theme"></a>
+			<a onclick="window.print()" class="action-icon fa fa-print" role="button" tabindex="0" title="Print resume" aria-label="Print resume"></a>
+		</header>
+
 		<div id="main">
 			<section id="one">
 				<header class="major">
-					<div style="display: flex; justify-content: space-between; align-items: flex-start;">
-						<h1><strong>PEERAPAT ASOKTUMMARUNGSRI</strong></h1>
-						<div style="display: flex; gap: 15px; font-size: 1.2em; align-items: center;">
-							<a id="theme-toggle" style="cursor: pointer; border-bottom: none;" class="fa fa-moon"></a>
-							<a onclick="window.print()" style="cursor: pointer; border-bottom: none;" class="fa fa-print"></a>
-						</div>
-					</div>
+					<h1><strong>PEERAPAT ASOKTUMMARUNGSRI</strong></h1>
 				</header>
 				<p>Software Engineering Leader | 20+ Years of Excellence in Software Development | Expert in Software Development & Large Scale Production</p>
 				<p>With over two decades of experience driving technological innovation, I specialize in architecting robust, scalable solutions for global leaders across the banking, finance, and retail sectors. My mission is to bridge the gap between complex technology and business value. 💡</p>
@@ -195,7 +445,7 @@
 				</div>
 			</section>
 
-			<div class="inner" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 2rem;">
+			<div class="inner profile-footer">
 				<p class="copyright" style="margin: 0;">
 					&copy; 2021 - 2026, Peerapat Asoktummarungsri
 				</p>
